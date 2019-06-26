@@ -2,13 +2,24 @@
     margin-top: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: 1px solid black;
+    align-items: center;
     text-align: center;
+    height: 54vh;
+    // justify-content: space-between;
+
 
     h1 {
         font-size: 44px;
-        color: white;
-        text-shadow: 1px 1px 22px rgba(0, 0, 0, 0.322)
+        text-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.39);
+        font-family: AvenirNext;
+        color: #ffffff;
+    }
+
+    span {
+        color: #ffffff;
+        opacity: .9;
+        text-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.21);
+        font-family: AvenirNext;
+        letter-spacing: 0.04px;
     }
 }

@@ -4,21 +4,28 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from '../Button/style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
-export class Button extends Component{
-    
 
-    render() {        
+export class Button extends Component {
+
+    render() {
+
+
         return (
-        <div className="common-btn" style={{background:`${this.props.back}`, width:`${this.props.width}`}}>
-            {this.props.text}
-        </div>
+            <div className='common_btn'
+                onMouseEnter={this.props.onMouseEnter}
+                onClick={this.props.onClick}
+                onFocus={this.props.onFocus}
+                onMouseLeave={this.props.onMouseLeave}
+                style={{ background: `${this.props.back}`, width: `${this.props.width}`, color: `${this.props.color}` }}>
+                {this.props.text}
+            </div>
         );
     }
 }
 
 
 
-    
+
 
 
 export default connect(

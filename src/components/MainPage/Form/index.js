@@ -9,18 +9,20 @@ export class Form extends Component {
 
 
     handleEnter = e => {
-        console.log(e)
+        e.target.style.cursor = 'pointer';
+        e.target.style.backgroundColor = 'rgb(253, 83, 83)';
+    }
+    handleBlur = e => {
+        e.target.style.backgroundColor = 'rgba(177, 167, 200, 0.16)';
     }
     render() {
-        console.log(styles)
-
         return (
  
             <div className='wrapp' >
                 <h1>Розпочни свій бізнес вже сьогодні</h1>
-                <span>Знайди ідеальне рішення за декілька секунд...</span>
+                <span >Знайди ідеальне рішення за декілька секунд...</span>
             <div className='search_form'>
-                <Button onClick = {this.handleEnter} back='#CCC' text='Розширений пошук'/>
+                <Button onMouseEnter = {this.handleEnter} onMouseLeave={this.handleBlur} back='rgba(177, 167, 200, 0.16)' color='#707488' text='Розширений пошук' />
                 <Button text='Знайти'/>
             </div>
             </div>

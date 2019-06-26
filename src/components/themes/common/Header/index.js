@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 // import links from '../../../../config/links';
 // import groups from '../../../../core/constants/groups';
 import styles from './styles.module.scss';
+import main_logo from '../../../../assets/images/logo@3x.png'
 
 // class Header extends Component {
 
@@ -221,7 +222,7 @@ class Header extends Component {
     return(
       <header>
         <div>Language</div>
-        <div>Logo</div>
+        <img src={main_logo} className='main_logo'></img>
         <div>Create Advert /</div>
         <div> Profile </div>
       </header>

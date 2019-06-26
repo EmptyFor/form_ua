@@ -5,7 +5,8 @@ import Header from '../themes/common/Header';
 import { Form } from './Form';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
-import styles from '../../assets/styles/global.styles.scss';
+// import styles from '../../assets/styles/global.styles.scss';
+import styles from '../MainPage/style.modules.scss'
 
 export class MainPage extends Component {
 
@@ -16,9 +17,10 @@ export class MainPage extends Component {
         console.log(this.props)
         return (
             <Fragment>
-
-                <Header />
-                <Form />
+                <div className='wrap'>
+                    <Header />
+                    <Form />
+                </div>
             </Fragment>
         );
     }
