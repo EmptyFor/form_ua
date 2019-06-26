@@ -22,7 +22,11 @@ export class Form extends Component {
                 <h1>Розпочни свій бізнес вже сьогодні</h1>
                 <span >Знайди ідеальне рішення за декілька секунд...</span>
             <div className='search_form'>
-                <Button onMouseEnter = {this.handleEnter} onMouseLeave={this.handleBlur} back='rgba(177, 167, 200, 0.16)' color='#707488' text='Розширений пошук' />
+                <Button onMouseEnter = {this.handleEnter}
+                 onMouseLeave={this.handleBlur} 
+                 back='rgba(177, 167, 200, 0.16)' 
+                 color='#707488'
+                 text='Розширений пошук' />
                 <Button text='Знайти'/>
             </div>
             </div>
