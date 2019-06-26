@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history';
 import createSagaMiddleware from 'redux-saga'
 import Routes from './routes';
 import './index.css';
+import './reset.css'
 
 const history = createBrowserHistory();
 

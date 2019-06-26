@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
-// import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { Row, Dropdown, Menu } from 'antd';
@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 // import groups from '../../../../core/constants/groups';
 import styles from './styles.module.scss';
 import main_logo from '../../../../assets/images/logo@3x.png'
+import links from '../../../../config/links';
 
 // class Header extends Component {
 
@@ -217,13 +218,23 @@ import main_logo from '../../../../assets/images/logo@3x.png'
 
 class Header extends Component {
 
-  render(){
-
-    return(
+  handleClick = e => {
+    console.log(e)
+  }
+  render() {
+    console.log(links)
+    return (
       <header>
         <div>Language</div>
-        <img src={main_logo} className='main_logo'></img>
-        <div>Create Advert /</div>
+        <Link to={links.login}>
+          <img src={main_logo} className='main_logo' onClick={this.handleClick}></img>
+        </Link>
+
+        <Link to={links.createAdvert}>
+          <div className={styles.advert}>Створити оголошення <span className={styles.adding_advert}>+</span></div>
+        </Link>
+
+
         <div> Profile </div>
       </header>
     )

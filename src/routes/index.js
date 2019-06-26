@@ -4,6 +4,7 @@ import links from '../config/links';
 import Login from '../components/Login';
 import App from '../components/App';
 import MainPage from '../components/MainPage';
+import CreateAdvert from '../components/CreateAdvert';
 import Provider from '../components/Provider';
 import { MainTemplate } from '../components/themes';
 
@@ -21,7 +22,7 @@ class Routes extends PureComponent {
 
             <MainTemplate>
             <Route exact path={links.home} component={MainPage} />
-
+            <Route exact path={links.createAdvert} component={CreateAdvert} />
             </MainTemplate>
 
           </Provider>
