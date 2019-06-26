@@ -8,7 +8,9 @@ class App extends Component {
     // TODO: add app global messages here with other global things
 
     return (
-        <Fragment></Fragment>
+        <Fragment>
+        { this.props.children }
+        </Fragment>
     //   <Fragment>
     //     { this.props.children }
     //   </Fragment>
