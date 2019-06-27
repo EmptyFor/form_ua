@@ -1,10 +1,10 @@
-import * as types from '../types/authorize';
+import * as types from '../types/authorise';
+import { getToken } from '../helpers/localStorage';
 
 
 const initState = {
-  token: null,
+  token: getToken() || null,
   error: '',
-//   isLoading: false,
 };
 
 export default (state = initState, action) => {
@@ -25,16 +25,16 @@ export default (state = initState, action) => {
     //     ...state,
     //     error: ''
     //   };
-    // case types.LOGOUT:
-    //   return {
-    //     ...initState,
-    //     token: null
-    //   };
-    case types.SET_LOADING_STATUS:
+    case types.LOGOUT:
       return {
-        ...state,
-        isLoading: action.status
+        ...initState,
+        token: null
       };
+    // case types.SET_LOADING_STATUS:
+    //   return {
+    //     ...state,
+    //     isLoading: action.status
+    //   };
     default:
       return state;
   };

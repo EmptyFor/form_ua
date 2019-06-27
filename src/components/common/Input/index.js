@@ -16,7 +16,7 @@ export class Input extends Component {
 
   render() {
     return (
-    <input type={this.props.type} placeholder={this.props.placeholder} onChange={this.props.onChange} value={this.props.value} defaultValue={this.props.defValue} pattern={this.props.pattern} className="form_input"></input>
+    <input type={this.props.type} name={this.props.name} placeholder={this.props.placeholder} onChange={this.props.onChange} value={this.props.value} defaultValue={this.props.defValue} pattern={this.props.pattern} className="form_input"></input>
     );
   }
 }    

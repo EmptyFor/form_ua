@@ -5,12 +5,8 @@ import { bindActionCreators } from 'redux';
 import styles from '../Button/style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 
-export class Button extends Component {
-
-        
+export const Button = props => ({
     render() {
-        
-
         return (
             <div className='common_btn'
                 onSubmit={this.props.onSubmit}
@@ -18,12 +14,12 @@ export class Button extends Component {
                 onClick={this.props.onClick}
                 onFocus={this.props.onFocus}
                 onMouseLeave={this.props.onMouseLeave}
-                style={{ background: `${this.props.back}`, width: `${this.props.width}`, color: `${this.props.color}` , cursor:'pointer'}}>
+                style={{ background: `${this.props.back}`, width: `${this.props.width}`, color: `${this.props.color}`, cursor: 'pointer' }}>
                 {this.props.text}
             </div>
         );
     }
-}
+})
 
 
 

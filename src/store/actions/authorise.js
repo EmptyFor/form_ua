@@ -19,7 +19,3 @@ export const setError = (error) => ({
     type: types.SET_ERROR,
     error
 });
-
-export const resetError = () => ({
-    type: types.RESET_ERROR
-});
