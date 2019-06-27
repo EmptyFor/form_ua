@@ -1,20 +1,20 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { setToken, removeToken } from '../helpers';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
-
+import api from '../helpers/api'
 
 export function* authorise(email, password) {
     console.log('saga', email, password)
-    // try {
-    //   const { token } = yield api.post('/user/login', null, { email, password });
-    //   yield put(actions.setAuthData(token));
-    //   yield setToken(token);
+    try {
+      const { token } = yield call(api(), { email, password});
+      yield put(actions.setAuthData(token));
+      yield setToken(token);
 
-    // } catch(error) {
-    //   yield put(actions.setError(error.message));
-    //   yield removeToken();
-    // }
+    } catch(error) {
+      yield put(actions.setError(error.message));
+      yield removeToken();
+    }
     // yield put(actions.setLoadingStatus(false));
 }
 
