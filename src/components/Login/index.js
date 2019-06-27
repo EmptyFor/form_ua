@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
-// import styles from './styles.module.scss';
+import LogForm from '../common/LogForm';
+import { Input } from '../common/LogForm/Input';
+import styles from './style.modules.scss';
+import { Button } from '../common/Button';
 
 export class Login extends Component {
 
@@ -23,35 +26,40 @@ export class Login extends Component {
     console.log('AAAAAAAAAAAAA')
 
     return (
-    //   <div className={styles.wrapper}>
-    //     <div className={styles.container}>
-    //       <div className={styles.imageWrapper}>
-    //         <img src={logo} alt="logo" />
-    //       </div>
+      //   <div className={styles.wrapper}>
+      //     <div className={styles.container}>
+      //       <div className={styles.imageWrapper}>
+      //         <img src={logo} alt="logo" />
+      //       </div>
 
-    //       {
-    //         <LoginForm
-    //           onSubmit={authActions.login}
-    //           onClearError={authActions.resetError}
-    //           error={error}
-    //         />
-    //       }
+      //       {
+      //         <LoginForm
+      //           onSubmit={authActions.login}
+      //           onClearError={authActions.resetError}
+      //           error={error}
+      //         />
+      //       }
 
-        // </div>
+      // </div>
 
-    //   </div>
+      //   </div>
 
 
-    <div>
-    AAAA
-    </div>
+
+      <div className="login_form">
+        <h1>Login</h1>
+        <Input />
+        <Input type='password' />
+        <Button width='340px' text='Увійти'/>
+      </div>
+
     );
   }
-}    
+}
 
 export default connect(
-    (state) => ({}),
-    dispatch => ({
-      // actions: bindActionCreators(actions, dispatch)
-    })
-  )(Login);
+  (state) => ({}),
+  dispatch => ({
+    // actions: bindActionCreators(actions, dispatch)
+  })
+)(Login);

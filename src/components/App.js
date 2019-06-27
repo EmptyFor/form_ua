@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Footer } from './Footer';
 // import { bindActionCreators } from 'redux';
 
 class App extends Component {
@@ -10,6 +11,8 @@ class App extends Component {
     return (
         <Fragment>
         { this.props.children }
+
+        <Footer />
         </Fragment>
     //   <Fragment>
     //     { this.props.children }

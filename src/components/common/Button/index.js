@@ -12,6 +12,7 @@ export class Button extends Component {
 
         return (
             <div className='common_btn'
+                onSubmit={this.props.onSubmit}
                 onMouseEnter={this.props.onMouseEnter}
                 onClick={this.props.onClick}
                 onFocus={this.props.onFocus}

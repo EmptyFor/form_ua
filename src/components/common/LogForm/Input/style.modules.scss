@@ -1,0 +1,16 @@
+.form_input{
+    width: 300px;
+    // height: 30px;
+	font-size: 17px;
+	padding: 10px 20px;
+	border: 1.3px solid hsl(215, 58%, 71%);
+	border-radius: 25px;
+}
+input[type="password"]{
+    font-family: caption;
+    letter-spacing:2px;
+    padding: 0px 20px;
+    height: 42px;
+    font-size: 25px;
+    font-weight: 900
+}
