@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
 import LogForm from '../common/LogForm';
-import { Input } from '../common/LogForm/Input';
+import { Input } from '../common/Input';
 import styles from './style.modules.scss';
 import { Button } from '../common/Button';
 
@@ -44,13 +45,21 @@ export class Login extends Component {
 
       //   </div>
 
+      
+
+      <div className="login_page">
+        <span>Log</span>
+        <div className='login_modal_form'>
+          <span className="login_form_header">Вхід</span>
+          <form>
+            <Input placeholder="Електронна адреса"/>
+            <Input type='password' placeholder="Пароль" />
+            <Button width='340px' text='Увійти' />
+          </form>
+          <div className="login_form_footer">Ви ще не з нами?  &nbsp;<Link> Зареєструватися >></Link></div>
+        </div>
 
 
-      <div className="login_form">
-        <h1>Login</h1>
-        <Input />
-        <Input type='password' />
-        <Button width='340px' text='Увійти'/>
       </div>
 
     );

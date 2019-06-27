@@ -55,3 +55,42 @@
 //       // actions: bindActionCreators(actions, dispatch)
 //     })
 //   )(Login);
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom';
+import styles from './style.modules.scss';
+
+
+export class Form extends Component {
+  render() {
+    return (
+ 
+
+
+
+      <div className="login_page">
+        <span>Log</span>
+        <div className='login_modal_form'>
+          <span className="login_form_header">Вхід</span>
+          <form>
+          </form>
+          <div className="login_form_footer">Ви ще не з нами?  &nbsp;<Link> Зареєструватися >></Link></div>
+        </div>
+
+
+      </div>
+
+    );
+  }
+}
+
+export default connect(
+  (state) => ({}),
+  dispatch => ({
+    // actions: bindActionCreators(actions, dispatch)
+  })
+)(Form);
