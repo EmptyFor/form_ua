@@ -9,7 +9,7 @@ export class Form extends Component {
 
 
     handleEnter = e => {
-        e.target.style.cursor = 'pointer';
+        // e.target.style.cursor = 'pointer';
         e.target.style.backgroundColor = 'rgb(253, 83, 83)';
     }
     handleBlur = e => {

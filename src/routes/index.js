@@ -6,13 +6,17 @@ import App from '../components/App';
 import MainPage from '../components/MainPage';
 import CreateAdvert from '../components/CreateAdvert';
 import Provider from '../components/Provider';
+import { RegistrationFirst } from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
+import { RegistrationTwice } from '../components/Registration/TwicePage';
+
 
 
 class Routes extends PureComponent {
-    render () {
-      return (
-        <App>
+  render() {
+    return (
+      <App>
+
         <Switch>
           <Route path={links.login} component={Login} />
 
@@ -21,16 +25,18 @@ class Routes extends PureComponent {
           <Provider>
 
             <MainTemplate>
-            <Route exact path={links.home} component={MainPage} />
-            <Route exact path={links.createAdvert} component={CreateAdvert} />
+              <Route exact path={links.home} component={MainPage} />
+              <Route exact path={links.createAdvert} component={CreateAdvert} />
+              <Route exact path={links.registrationFirst} component={RegistrationFirst} />
+              <Route exact path={links.registrationTwice} component={RegistrationTwice} />
             </MainTemplate>
 
           </Provider>
 
         </Switch>
       </App>
-      )
-    }
+    )
   }
+}
 
-  export default withRouter(Routes);
+export default withRouter(Routes);

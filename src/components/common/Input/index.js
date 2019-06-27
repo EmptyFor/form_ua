@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
-import styles from '../Input/style.modules.scss';
+import styles from './style.modules.scss';
 
 export class Input extends Component {
 

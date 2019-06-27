@@ -45,7 +45,7 @@ export class Login extends Component {
 
       //   </div>
 
-      
+
 
       <div className="login_page">
         <span>Log</span>
@@ -56,7 +56,7 @@ export class Login extends Component {
             <Input type='password' placeholder="Пароль" />
             <Button width='340px' text='Увійти' />
           </form>
-          <div className="login_form_footer">Ви ще не з нами?  &nbsp;<Link> Зареєструватися >></Link></div>
+          <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.registrationFirst}>Зареєструватися >></Link></div>
         </div>
 
 
