@@ -51,11 +51,18 @@ export class Select extends Component {
 
     selectItem = (e) => {
         let value = e.target.getAttribute('value')
+        let selectArea = document.getElementById('selectArea')
+        let cloneNode = e.target.cloneNode(true)
+        let removeNode = document.getElementById(e.target.id)
         this.setState({
-            placeholder: e.target.innerText
+            // placeholder: e.target.innerText
+            placeholder: ''
         })
         value === 'true' ? e.target.setAttribute('value', false) : e.target.setAttribute('value', true)
         value === 'true' ? e.target.classList.remove('active') : e.target.classList.add('active')
+
+        value === 'true' ? selectArea.removeChild(removeNode) : selectArea.appendChild(cloneNode)
+    
         
     }
 
@@ -68,7 +75,7 @@ export class Select extends Component {
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} >
                     {
                         this.selectItems.map((item, index) => {
-                            return <div value = 'false' onClick={this.selectItem} id={index} className="list_item" >{item}</div>
+                            return <div value = 'false' onClick={this.selectItem} id= {`select_item_${index}`} className="list_item" >{item}</div>
                         })
 
                     }
