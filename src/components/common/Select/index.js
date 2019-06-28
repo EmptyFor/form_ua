@@ -45,37 +45,74 @@ export class Select extends Component {
         }
     }
 
-    togleActiveClass = () => {
-
-    }
-
-    selectItem = (e) => {
-        let value = e.target.getAttribute('value')
-        let selectArea = document.getElementById('selectArea')
-        let cloneNode = e.target.cloneNode(true)
-        let removeNode = document.getElementById(e.target.id)
-        this.setState({
-            // placeholder: e.target.innerText
-            placeholder: ''
-        })
+    togleActiveClass = (e, value) => {
         value === 'true' ? e.target.setAttribute('value', false) : e.target.setAttribute('value', true)
         value === 'true' ? e.target.classList.remove('active') : e.target.classList.add('active')
+    }
 
-        value === 'true' ? selectArea.removeChild(removeNode) : selectArea.appendChild(cloneNode)
-    
-        
+    toglePlaceholder = (selectedItems) => {
+        if (selectedItems.childNodes.length == 0) {
+            this.setState({
+                placeholder: this.props.placeholder
+            })
+        }
+        else {
+            this.setState({
+                placeholder: ''
+            })
+        }
+    }
+
+    togleItems = (e) => {
+        let value = e.target.getAttribute('value')
+        let selectedItems = document.getElementById('selected_items')
+        let cloneNode = e.target.cloneNode(true)
+
+        // Create selected item node
+
+        let selectedItem = document.createElement('div')
+        selectedItem.classList.add('selected_item')
+        selectedItem.id = e.target.id
+
+        // Create rebove button
+
+        let removeButton = document.createElement("div")
+        let textNode = document.createTextNode('✖')
+        removeButton.classList.add('remove_button')
+        removeButton.id = e.target.id
+        removeButton.appendChild(textNode)
+
+        selectedItem.appendChild(cloneNode)
+        selectedItem.appendChild(removeButton)
+
+        let removeSelectedItem = document.getElementById(e.target.id)
+
+        this.togleActiveClass(e, value)
+
+        value === 'true' ? selectedItems.removeChild(removeSelectedItem) : selectedItems.appendChild(selectedItem)
+
+        removeButton.addEventListener('click', function (e) {
+            let selectItem = document.getElementsByClassName('select_list')[0].childNodes[e.target.id]
+            selectItem.setAttribute('value', false)
+            selectItem.classList.remove('active')
+            selectedItems.removeChild(document.getElementById(e.target.id))
+            this.toglePlaceholder(selectedItems)
+        }.bind(this))
+
+        this.toglePlaceholder(selectedItems)
     }
 
     render() {
         return (
             <div id="common_select" className="common_select" style={{ width: `${this.props.width}` }}>
-                <div id = "selectArea" className = "selectArea" onClick={this.togleSelectList}>
-                    <p id = "selectPlaceholder">{this.state.placeholder}</p>
+                <div id="selectArea" className="selectArea" onClick={this.togleSelectList}>
+                    <p id="selectPlaceholder">{this.state.placeholder}</p>
+                    <div id="selected_items" className="selected_items" ></div>
                 </div>
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} >
                     {
                         this.selectItems.map((item, index) => {
-                            return <div value = 'false' onClick={this.selectItem} id= {`select_item_${index}`} className="list_item" >{item}</div>
+                            return <div value='false' onClick={this.togleItems} id={`${index}`} className="list_item" >{item}</div>
                         })
 
                     }
