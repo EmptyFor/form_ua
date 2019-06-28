@@ -1,29 +1,5 @@
-.form_input{
-    width: 260px;
-    // height: 30px;
-	font-size: 17px;
-	padding: 10px 20px 10px 60px;
-	border: 1.3px solid hsl(215, 58%, 71%);
-	border-radius: 25px;
+.common-input {
+  padding: 5px;
+  border-radius: 15.8px;
+  border: solid 0.5px #b1a7c8;
 }
-input[type="password"]{
-    font-family: caption;
-    letter-spacing:2px;
-    padding: 0px 20px 0px 60px;
-    height: 42px;
-    font-size: 25px;
-    font-weight: 900;
-    &::placeholder{
-        font-size: 18px;
-        padding: 10px 20px 10px 0;
-        font-weight: normal;
-        letter-spacing:0.8px;
-        // font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-}
-// input[type="password"]::placeholder{
-//     color:blue;
-//     font-size: 17px;
-//     font-weight: 700;
-//     letter-spacing:2px;
-// }

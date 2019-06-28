@@ -62,13 +62,14 @@
     }
   }
   .select_list {
-    margin-top: 10px;
+    position: absolute;
+    top: 40px;
     align-self: flex-start;
     background-color: #fff;
     border-top: solid 0.5px #b1a7c8;
-    width: 99.8%;
+    width: 100%;
     .list_item {
-      width: 99.8%;
+      width: 100%;
       padding-top: 15px;
       &:hover {
         background-color: rgb(161, 251, 251);

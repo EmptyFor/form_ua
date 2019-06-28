@@ -43,15 +43,27 @@ export class Select extends Component {
                 isOpen: false,
                 togleClass: 'close'
             })
-            // document.getElementById(this.props.id).style.borderRadius = '20px'
+            document.getElementById(this.props.id).style.borderRadius = '20px'
+            document.getElementById(this.props.id).style.zIndex = '1'
         }
         else {
             this.setState({
                 isOpen: true,
                 togleClass: 'open'
             })
-            // document.getElementById(this.props.id).style.borderRadius = '20px 20px 0px 0px'
+            document.getElementById(this.props.id).style.borderRadius = '20px 20px 0px 0px'
+            document.getElementById(this.props.id).style.zIndex = '999'
         }
+    }
+
+    closeSelectList = () => {
+        // this.setState({
+        //     isOpen: false,
+        //     togleClass: 'close'
+        // })
+        // document.getElementById(this.props.id).style.borderRadius = '20px'
+        // document.getElementById(this.props.id).style.zIndex = '1'
+        console.log(1)
     }
 
     togleActiveClass = (e, value) => {
@@ -119,10 +131,12 @@ export class Select extends Component {
         })
     }
 
+
+
     render() {
         return (
-            <div id = {this.props.id} className="common_select" style={{ width: `${this.props.width}` }}>
-                <div id="selectArea" className="select_area" onClick={this.togleSelectList}>
+            <div id={this.props.id} className="common_select" style={{ width: `${this.props.width}` }}>
+                <div id="selectArea" className="select_area" onClick={this.togleSelectList} onBlur = {this.closeSelectList}>
                     <img className="select_icon" src={this.props.icon}></img>
                     <p id="selectPlaceholder">{this.state.placeholder}</p>
                     <div id="selected_items" className="selected_items" ></div>

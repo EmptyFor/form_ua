@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import styles from '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
+import { Input } from '../../common/Input';
 import house_select_icon from '../../../../src/assets/images/house_select_icon.png'
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Form extends Component {
@@ -19,20 +20,33 @@ export class Form extends Component {
     }
     render() {
         return (
- 
+
             <div className='wrapp' >
-                <h1>Розпочни свій бізнес вже сьогодні</h1>
-                <span >Знайди ідеальне рішення за декілька секунд...</span>
-            <div className='search_form'>
-                <Button onMouseEnter = {this.handleEnter}
-                 onMouseLeave={this.handleBlur} 
-                 back='rgba(177, 167, 200, 0.16)' 
-                 color='#707488'
-                 text='Розширений пошук' />
-                <Button text='Знайти'/>
-                <Select width = '300px' placeholder = 'Організаційно правова форма' icon = {house_select_icon} type = 'multiply' id = 'select_1'/>
-                <Select width = '300px' placeholder = 'Організаційно правова форма' icon = {house_select_icon} type = 'common' id = 'select_2' />
-            </div>
+                {/* <h1>Розпочни свій бізнес вже сьогодні</h1>
+                <span >Знайди ідеальне рішення за декілька секунд...</span> */}
+
+                <div className='search_form grid'>
+
+                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_1' />
+                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_2' />
+                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_3' />
+                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_4' />
+
+                    <p className="price">Ціна</p>
+                    <Input className='price_from' placeholder='від (₴)' />
+                    <Input className='price_to' placeholder='до (₴)' />
+
+                    <p className="is_PDV_payer">Є платником ПДВ</p>
+                    <Input className="is_PDV_payer_radio" type="radio" />
+
+                    <Button onMouseEnter={this.handleEnter}
+                        onMouseLeave={this.handleBlur}
+                        back='rgba(177, 167, 200, 0.16)'
+                        color='#707488'
+                        text='Розширений пошук' />
+                    <Button text='Знайти' />
+
+                </div>
             </div>
 
         );
