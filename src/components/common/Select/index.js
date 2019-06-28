@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
 import styles from './style.modules.scss';
+import arrow from '../../../../src/assets/images/arrow.png'
 
 export class Select extends Component {
 
@@ -28,20 +29,28 @@ export class Select extends Component {
         'Пункт 6'
     ]
 
+    // Multiply selct
+
+    MultiplySelect = () => {
+        this.selectItems.map((item, index) => {
+            return <div value='false' onClick={this.togleItems} id={`${index}`} className="list_item" >{item}</div>
+        })
+    }
+
     togleSelectList = () => {
         if (this.state.isOpen) {
             this.setState({
                 isOpen: false,
                 togleClass: 'close'
             })
-            document.getElementById('common_select').style.borderRadius = '20px'
+            // document.getElementById(this.props.id).style.borderRadius = '20px'
         }
         else {
             this.setState({
                 isOpen: true,
                 togleClass: 'open'
             })
-            document.getElementById('common_select').style.borderRadius = '20px 20px 0px 0px'
+            // document.getElementById(this.props.id).style.borderRadius = '20px 20px 0px 0px'
         }
     }
 
@@ -102,20 +111,38 @@ export class Select extends Component {
         this.toglePlaceholder(selectedItems)
     }
 
+    // Common select
+
+    setPlaceholder = (e) => {
+        this.setState({
+            placeholder: e.target.innerText
+        })
+    }
+
     render() {
         return (
-            <div id="common_select" className="common_select" style={{ width: `${this.props.width}` }}>
-                <div id="selectArea" className="selectArea" onClick={this.togleSelectList}>
+            <div id = {this.props.id} className="common_select" style={{ width: `${this.props.width}` }}>
+                <div id="selectArea" className="select_area" onClick={this.togleSelectList}>
+                    <img className="select_icon" src={this.props.icon}></img>
                     <p id="selectPlaceholder">{this.state.placeholder}</p>
                     <div id="selected_items" className="selected_items" ></div>
+                    <img className="arrow" src={arrow}></img>
                 </div>
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} >
+
                     {
-                        this.selectItems.map((item, index) => {
+                        this.props.type == 'multiply' && this.selectItems.map((item, index) => {
                             return <div value='false' onClick={this.togleItems} id={`${index}`} className="list_item" >{item}</div>
                         })
 
                     }
+
+                    {
+                        this.props.type == 'common' && this.selectItems.map((item, index) => {
+                            return <div value='false' onClick={this.setPlaceholder} id={`${index}`} className="list_item" >{item}</div>
+                        })
+                    }
+
                 </div>
             </div>
         );

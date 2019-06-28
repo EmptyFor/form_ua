@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import styles from '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
+import house_select_icon from '../../../../src/assets/images/house_select_icon.png'
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Form extends Component {
 
@@ -29,7 +30,8 @@ export class Form extends Component {
                  color='#707488'
                  text='Розширений пошук' />
                 <Button text='Знайти'/>
-                <Select width = '300px' placeholder = 'Організаційно правова форма'/>
+                <Select width = '300px' placeholder = 'Організаційно правова форма' icon = {house_select_icon} type = 'multiply' id = 'select_1'/>
+                <Select width = '300px' placeholder = 'Організаційно правова форма' icon = {house_select_icon} type = 'common' id = 'select_2' />
             </div>
             </div>
 
