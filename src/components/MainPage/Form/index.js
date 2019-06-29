@@ -36,15 +36,19 @@ export class Form extends Component {
                     <Input className='price_from' placeholder='від (₴)' />
                     <Input className='price_to' placeholder='до (₴)' />
 
-                    <p className="is_PDV_payer">Є платником ПДВ</p>
-                    <Input className="is_PDV_payer_radio" type="radio" />
+                    <div className="is_PDV_payer">
+                        <p>Є платником ПДВ</p>
+                        <Input type="radio" />
+                    </div>
 
-                    <Button onMouseEnter={this.handleEnter}
+                    <Button className='extendet_search'
+                        onMouseEnter={this.handleEnter}
                         onMouseLeave={this.handleBlur}
                         back='rgba(177, 167, 200, 0.16)'
                         color='#707488'
                         text='Розширений пошук' />
-                    <Button text='Знайти' />
+                    <Button className='find'
+                        text='Знайти' />
 
                 </div>
             </div>

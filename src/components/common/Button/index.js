@@ -8,7 +8,7 @@ import styles from '../Button/style.modules.scss';
 export const Button = props => ({
     render() {
         return (
-            <div className='common_btn'
+            <div className={`common_btn ${this.props.className}`}
                 onSubmit={this.props.onSubmit}
                 onMouseEnter={this.props.onMouseEnter}
                 onClick={this.props.onClick}

@@ -24,55 +24,76 @@
 // }
 
 .wrapp {
+  height: 65vh;
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  background-image: url("../../../assets/images/baground@2x.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   .search_form {
+    position: absolute;
+    bottom: 0;
+    width: auto;
     display: grid;
-    grid-template-columns: repeat(14, 1fr);
+    background-color: #fff;
+    padding: 5%;
+    grid-template-columns: repeat(13, 2.7vw);
     grid-template-rows: repeat(3, 40px);
     grid-auto-flow: dense;
-    grid-gap: 1em;
-    padding: 1em;
+    grid-gap: 2vw;
+
     #select_1 {
       object-fit: cover;
       grid-row: span 1;
-      grid-column: span 4;
+      grid-column: span 5;
     }
     #select_2 {
       object-fit: cover;
       grid-row: span 1;
-      grid-column: span 10;
+      grid-column: span 8;
     }
     #select_3 {
       object-fit: cover;
       grid-row: span 1;
-      grid-column: span 4;
+      grid-column: span 5;
     }
     #select_4 {
       object-fit: cover;
       grid-row: span 1;
-      grid-column: span 10;
+      grid-column: span 8;
     }
     .price {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       grid-row: span 1;
       grid-column: span 1;
     }
     .price_from {
       grid-row: span 1;
-      grid-column: span 1;
+      grid-column: span 2;
     }
     .price_to {
       grid-row: span 1;
-      grid-column: span 1;
+      grid-column: span 2;
     }
     .is_PDV_payer {
+      display: flex;
+      align-items: center;
       grid-row: span 1;
-      grid-column: span 1;
+      grid-column: span 3;
+      p {
+        margin-right: 10px;
+      }
     }
-    .is_PDV_payer_radio {
+    .extendet_search {
       grid-row: span 1;
-      grid-column: span 1;
+      grid-column: span 3;
+    }
+    .find {
+      grid-row: span 1;
+      grid-column: span 2;
     }
   }
 }

@@ -17,10 +17,8 @@ export class MainPage extends Component {
         console.log(this.props)
         return (
             <Fragment>
-                <div className='wrap'>
-                    <Header />
+                    {/* <Header /> */}
                     <Form />
-                </div>
             </Fragment>
         );
     }
