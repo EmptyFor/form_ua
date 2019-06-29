@@ -22,8 +22,8 @@ export class Form extends Component {
         return (
 
             <div className='wrapp' >
-                {/* <h1>Розпочни свій бізнес вже сьогодні</h1>
-                <span >Знайди ідеальне рішення за декілька секунд...</span> */}
+                <h1>Розпочни свій бізнес вже сьогодні</h1>
+                <span >Знайди ідеальне рішення за декілька секунд...</span>
 
                 <div className='search_form grid'>
 

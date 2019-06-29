@@ -230,12 +230,10 @@ class Header extends Component {
           <img src={main_logo} className='main_logo' onClick={this.handleClick}></img>
         </Link>
 
-        <Link to={links.createAdvert}>
-          <div className={styles.advert}>Створити оголошення <span className={styles.adding_advert}>+</span></div>
-        </Link>
-
-
-        <div> Profile </div>
+          <Link to={links.createAdvert}>
+            <div className={styles.advert}>Створити оголошення <span className={styles.adding_advert}>+</span></div>
+          </Link>
+          <div> Profile </div>
       </header>
     )
   }

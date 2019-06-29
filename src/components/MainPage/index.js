@@ -7,7 +7,7 @@ import { Form } from './Form';
 // import * as actions from '../../store/actions/';
 // import styles from '../../assets/styles/global.styles.scss';
 import styles from '../MainPage/style.modules.scss'
-
+import triangle_bg from '../../assets/images/triangle_bg.png'
 export class MainPage extends Component {
 
     static propTypes = {}
@@ -17,8 +17,9 @@ export class MainPage extends Component {
         console.log(this.props)
         return (
             <Fragment>
-                    {/* <Header /> */}
+                    <Header />
                     <Form />
+                    <img style = {{width: '100%', height: '100%', marginTop: '-65vh'}} src = {triangle_bg}></img>
             </Fragment>
         );
     }
