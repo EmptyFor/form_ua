@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 // import links from '../../../../config/links';
 // import groups from '../../../../core/constants/groups';
 import styles from './styles.module.scss';
-import main_logo from '../../../../assets/images/logo@3x.png'
+import main_logo from '../../../../assets/images/logo@2x.png'
 import links from '../../../../config/links';
 
 // class Header extends Component {
@@ -224,16 +224,26 @@ class Header extends Component {
   render() {
     console.log(links)
     return (
-      <header>
-        <div>Language</div>
-        <Link to={links.login}>
-          <img src={main_logo} className='main_logo' onClick={this.handleClick}></img>
+      <header className="menu">
+        <div className={styles.language} id="language">
+          <p>
+            Language
+          </p>
+        </div>
+        <Link className={styles.main_logo} to={links.login}>
+          <img src={main_logo} onClick={this.handleClick}></img>
         </Link>
 
-          <Link to={links.createAdvert}>
+        <div className={styles.right_side}>
+          <Link className={styles.create_advert} to={links.createAdvert}>
             <div className={styles.advert}>Створити оголошення <span className={styles.adding_advert}>+</span></div>
           </Link>
-          <div> Profile </div>
+          <div className={styles.profile}>
+            <p>
+              Profile
+            </p>
+          </div>
+        </div>
       </header>
     )
   }
