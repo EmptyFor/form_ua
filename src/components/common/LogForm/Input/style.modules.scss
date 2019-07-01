@@ -1,16 +1,27 @@
 .form_input{
-    width: 300px;
+    width: 280px;
     // height: 30px;
 	font-size: 17px;
-	padding: 10px 20px;
+	padding: 10px 10px 10px 40px;
 	border: 1.3px solid hsl(215, 58%, 71%);
-	border-radius: 25px;
+    border-radius: 25px;
+    
 }
 input[type="password"]{
     font-family: caption;
     letter-spacing:2px;
-    padding: 0px 20px;
+	padding: 0 10px 0 40px;
     height: 42px;
     font-size: 25px;
-    font-weight: 900
+    font-weight: 900;
+    
+}
+input[type="password"]::placeholder{
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 0;
+    font-family: 'Lucida Sans'
+}
+.warning_mail{
+    background: rebeccapurple
 }

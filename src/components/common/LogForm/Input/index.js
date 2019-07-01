@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,23 +14,36 @@ export class Input extends Component {
     authActions: PropTypes.object,
   }
 
+  state = {
+    visibillity: 'hidden'
+  }
+  componentDidMount = () => {
+    if(this.props.visibleLabel){
+      this.setState({visibillity:'visible'})
+    }else{
+      this.setState({visibillity:'hidden'})
+    }
+  }
   render() {
+    const { visibillity } = this.state
     // const { token, error, authActions } = this.props;
 
     // if (token) {
     //   return <Redirect to={links.home} />
     // }
-    
+
 
     return (
-    <input type={this.props.type} onChange={this.props.onChange} value={this.props.value} defaultValue={this.props.defValue} pattern={this.props.pattern} className="form_input"></input>
-    );
+      <Fragment>
+        <input type={this.props.type} value={this.props.value} className={this.props.className} validation={this.props.validation} onChange={this.props.onChange} placeholder={this.props.placeholder} value={this.props.value} defaultValue={this.props.defValue} pattern={this.props.pattern} name={this.props.name} className="form_input"></input>
+        <label visibleLabel={this.props.visibleLabel} style={{ visibility:visibillity }}>{this.props.label}</label>
+      </Fragment>);
   }
-}    
+}
 
 export default connect(
-    (state) => ({}),
-    dispatch => ({
-      // actions: bindActionCreators(actions, dispatch)
-    })
-  )(Input);
+  (state) => ({}),
+  dispatch => ({
+    // actions: bindActionCreators(actions, dispatch)
+  })
+)(Input);
