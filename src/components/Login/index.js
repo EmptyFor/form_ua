@@ -20,40 +20,51 @@ export class Login extends Component {
   state = {
     email: '',
     password: '',
-    validMail: true,
-    validPass: true,
-    classMail: '',
-    classPass: '',
-    message: 'Confirm'
-  }
-  handleValid = e => {
+    validMail: false,
+    validPass: false,
+    message: 'Неправильно введений логін або пароль',
+    borderColor: '',
+    visibility: 'hidden'
 
   }
 
   handleSubmit = e => {
-    const { email, password, validMail, validPass } = this.state;
+    const { email, password, validMail, validPass, borderColor } = this.state;
     console.log(this.state);
-    // if(validMail && validPass){
-    //   this.props.authActions.login(email, password)
-    // }
-
+    // email.length === 0 ? this.setState({ checkLengthMail: this.state.checkLengthMail = true }) :
+    //   password.length === 0 ? this.setState({ checkLengthPass: this.state.checkLengthPass = true }) 
+    if(!(validMail && validPass) ){
+      this.setState({ borderColor: 'red', visibility: 'visible' })
+    } else{
+      this.setState({ borderColor: '', visibility: 'hidden' })
+      this.props.authActions.login(email, password);
+    }
+      
   }
+
   handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value });
-    if (!regexps.log_mail.test(e.target.value)) {
-      this.setState({ validMail: false });
+    console.log('test', regexps.log_mail.test(e.target.value))
+    if (regexps.log_mail.test(e.target.value)) {
+      console.log('111112')
+      this.setState({ validMail: true });
     }
-    if (!regexps.log_pass.test(e.target.value)) {
-      this.setState({ validPass: false });
+    if (regexps.log_pass.test(e.target.value)) {
+      this.setState({ validPass: true });
     }
+    // if (!(regexps.log_pass.test(e.target.value) && regexps.log_mail.test(e.target.value))) {
+    //   this.setState({ validPass: false, validMail: false });
+    // }
+    console.log(this.state);
   }
 
 
   render() {
     // const { token, error, authActions } = this.props;
-    const { email, password, message } = this.state
+    const { email, password, message, borderColor, visibility } = this.state
+
     // if (token) {
     //   return <Redirect to={links.home} />
     // }
@@ -62,11 +73,12 @@ export class Login extends Component {
 
       <div className="login_page">
         <span>Log</span>
-        <div className='login_modal_form'>
+        <div className='login_modal_form' style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
-          <form ref='logForm'>
-            <Input visibleLabel={true} label={message} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
-            <Input visibleLabel={true} label={message} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" />
+          <form ref='logForm' >
+            <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть e-mail' visibleLabel={false} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
+            <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" />
+            <label style={{ visibility: visibility }}>{message}</label>
             <Button width='340px' text='Увійти' onClick={this.handleSubmit} />
           </form>
           <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.home}>Зареєструватися >></Link></div>

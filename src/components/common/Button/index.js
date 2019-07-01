@@ -9,6 +9,7 @@ export const Button = props => ({
     render() {
         return (
             <div className={`common_btn ${this.props.className}`}
+                onPressKey={this.props.onPressKey}
                 onSubmit={this.props.onSubmit}
                 onMouseEnter={this.props.onMouseEnter}
                 onClick={this.props.onClick}
