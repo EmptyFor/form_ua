@@ -23,7 +23,6 @@ export class MainPage extends Component {
                 <Header />
                 <Form />
                 <Info />
-                <Footer />
             </div>
         );
     }
