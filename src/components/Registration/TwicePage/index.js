@@ -20,20 +20,23 @@ export class RegistrationTwice extends Component {
         validEmail: false,
         validPass: false,
         validConfPass: false,
-        validConfirmation: false,
+        visibility: 'hidden',
         borderColor: '',
 
     }
 
     handleSubmit = e => {
-        const { email, password, confPassword } = this.state
+        const { email, password, confPassword, validConfPass, validPass } = this.state
         if (password !== confPassword) {
-            this.setState({ password: '', confPassword: '', borderColor: 'red', validConfirmation:true  })
-
+            this.setState({ password: '', confPassword: '', validPass: false, validConfPass: false, borderColor: 'red', visibility: 'visible' })
+        } else {
+            this.setState({ borderColor: '', visibility: 'hidden' })
+            //action
         }
     }
 
     handleChange = e => {
+        const { password, confPassword } = this.state
         const name = e.target.name;
         const value = e.target.value;
         this.setState({ [name]: value });
@@ -41,29 +44,34 @@ export class RegistrationTwice extends Component {
         if (regexps.log_mail.test(e.currentTarget.value)) {
             this.setState({ validEmail: true });
         }
+
         if (regexps.log_pass.test(e.currentTarget.value)) {
             this.setState({ validPass: true });
         }
+
         if (regexps.log_pass.test(this.state.confPassword)) {
             this.setState({ validConfPass: true });
         }
+
+
     }
 
     render() {
-        const { email, password, confPassword, validEmail, validPass, validConfPass, validConfirmation,borderColor } = this.state
+        const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
-
+        console.log(this.state)
         return (
             <div className="login_page">
                 <span>Log</span>
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
-                    <form>
+                    <form className='reg_form'>
                         <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
-                        <Input style={{ borderColor: borderColor }} name='confPassword' visibleLabel={validConfirmation} label={`Паролі не співпадають. \n Будь ласка, введіть однaкові паролі`} value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
+                        <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
+                        <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
                         <Button width='340px' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
 
                     </form>

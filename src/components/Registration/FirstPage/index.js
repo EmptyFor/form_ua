@@ -43,8 +43,8 @@ export class RegistrationFirst extends Component {
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
                     <form>
-                        <Input name='login' value={login} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxlength='30'/>
-                        <Input name='phone' value={phone} onChange={this.handleChange} type='tel' placeholder="+38(0_ _) - _ _ _ - _ _ - _ _" maxlength='13'/>
+                        <Input name='login' value={login} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30'/>
+                        <Input name='phone' value={phone} onChange={this.handleChange} type='tel' placeholder="+38(0_ _) - _ _ _ - _ _ - _ _" maxLength='13'/>
                         <Link to={links.registrationTwice}><Button width='340px' back={disabledColor} text='Далі' disabled={!isOk} /></Link>
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links}> Увійти >></Link></div>
