@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import * as actions from '../../store/actions/';
 import styles from './style.modules.scss'
 
-export class OwnerInfo extends Component {
+export class StatutInfo extends Component {
 
     static propTypes = {}
 
@@ -24,4 +24,4 @@ export default connect(
     dispatch => ({
         // actions: bindActionCreators(actions, dispatch)
     })
-)(OwnerInfo);
+)(StatutInfo);

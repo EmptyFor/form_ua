@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Advert from '../../../common/Advert';
 // import { bindActionCreators } from 'redux';
 // import { Row, Dropdown, Menu } from 'antd';
 // import cn from 'classnames';
@@ -236,7 +237,7 @@ class Header extends Component {
 
         <div className={styles.right_side}>
           <Link className={styles.create_advert} to={links.createAdvert}>
-            <div className={styles.advert}>Створити оголошення <span className={styles.adding_advert}>+</span></div>
+            <Advert />
           </Link>
           <div className={styles.profile}>
             <p>

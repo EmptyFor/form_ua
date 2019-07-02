@@ -38,7 +38,7 @@ export class Form extends Component {
 
                     <div className="is_PDV_payer">
                         <p>Є платником ПДВ</p>
-                        <Input type="radio" />
+                        <Input type="checkbox" />
                     </div>
 
                     <Button className='extendet_search'

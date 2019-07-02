@@ -1,9 +1,12 @@
-.wrap {
-    height: 64vh;
-    background-image: url('../../assets/images/baground@2x.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-
+.bg {
+  background-image: linear-gradient(to top, rgba(111, 134, 214, 0.16), rgba(72, 198, 239, 0));
+  .image_bg {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: auto;
+      z-index: -1;
+  }
 }
 
 // .wrap{
