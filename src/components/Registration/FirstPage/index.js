@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 import links from '../../../config/links';
-import { Input } from '../../common/Input';
+import { Input } from '../../common/LogForm/Input';
 import styles from './style.modules.scss';
 import { Button } from '../../common/Button';
 
