@@ -8,6 +8,7 @@ import rootSaga from './store/sagas';
 import { createBrowserHistory } from 'history';
 import createSagaMiddleware from 'redux-saga'
 import Routes from './routes';
+import './assets/fonts/AdvenirNext/advenir-next.css'
 import './index.css';
 import './reset.css';
 

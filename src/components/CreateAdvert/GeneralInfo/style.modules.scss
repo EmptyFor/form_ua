@@ -1,0 +1,30 @@
+.general_info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(40px, auto);
+  grid-gap: 1em;
+  .input {
+    border-radius: 1.5px;
+    border: solid 0.5px rgba(177, 167, 200, 0.19);
+    background-color: #ffffff;
+    &::placeholder {
+      font-family: AvenirNext-Medium;
+      font-size: 12px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.92;
+      letter-spacing: 0.03px;
+      color: #99abc3;
+    }
+  }
+  .first_position {
+    grid-row-start: 2;
+  }
+  .second_position {
+    grid-row-start: 3;
+  }
+  .third_position {
+    grid-row-start: 4;
+  }
+}

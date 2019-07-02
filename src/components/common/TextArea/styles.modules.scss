@@ -1,0 +1,17 @@
+.common_text_area {
+  resize: none;
+  border-radius: 1.5px;
+  border: solid 0.5px rgba(177, 167, 200, 0.19);
+  background-color: #ffffff;
+  padding: 4% 3%;
+  &::placeholder {
+    font-family: AvenirNext-Medium;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.92;
+    letter-spacing: 0.03px;
+    color: #99abc3;
+  }
+}
