@@ -2,36 +2,84 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import styles from '../Form/style.modules.scss';
-import { Button } from '../../common/Button';
-import { Select } from '../../common/Select';
-import { Input } from '../../common/Input';
-import house_select_icon from '../../../../src/assets/images/house_select_icon.png'
+import left_image from '../../../assets/images/rectangle-16@3x.png'
+import styles from '../Info/style.modules.scss';
+import Advert from '../../common/Advert';
+import description_img_1 from '../../../assets/images/icon-1@2x.png';
+import description_img_2 from '../../../assets/images/icon-2@2x.png';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
-export class Form extends Component {
+export class Info extends Component {
 
-
-    handleEnter = e => {
-        // e.target.style.cursor = 'pointer';
-        e.target.style.backgroundColor = 'rgb(253, 83, 83)';
-    }
-    handleBlur = e => {
-        e.target.style.backgroundColor = 'rgba(177, 167, 200, 0.16)';
-    }
     render() {
         return (
 
-            <div className='wrapp' >
-                
-            </div>
+            <div className='grid' >
+                <div className="left_img">
+                    <img src={left_image}></img>
+                </div>
 
-        );
-    }
-}
+                <div className="right_create_advert">
+                    <h1>
+                        Шукаєш рішення для продажу власної компанії?
+                    </h1>
+                    <p>
+                        Тоді не варто зволікати, створюй оголошення всього за декілька секунд
+                    </p>
+                    <Advert />
+                </div>
 
-export default connect(
+                <div className="how_it_works">
+                    <h1>
+                        Як це працює?
+                    </h1>
+                    <p>
+                        Це зовсім просто, розпочни прямо зараз
+                    </p>
+                    <div className="red_line"></div>
+                </div>
+
+                <div className="left_description">
+                    <div className="description">
+                        <img src={description_img_1}></img>
+                        <div className="text">
+                            <h1>
+                                Знайди бажане за декілька хвилин
+                            </h1>
+                            <p>
+                                За допомогою параметрів розширеного пошуку ти легко зможеш знайти потрібне оголошення
+                                на нашому сайті.
+                                Зконтактуйся з власником та отримуй задоволення від успішної покупки без жодних перешкод.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="right_description">
+                    <div className="description">
+                        <img src={description_img_2}></img>
+                        <div className="text">
+                            <h1>
+                                Вирішуй всі питання без проблем
+                            </h1>
+                            <p>
+                                Реєструйся на сайті та публікуй свої оголошення
+                                про бізнес, Клієнти не змусять себе чекати!
+                                Отримуй дзвінки і вибирай найкращі пропозиції з
+                                користю для себе. Всього декілька кроків
+                                відділяють тебе від бажаного.
+                             </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                );
+            }
+        }
+        
+        export default connect(
     (state) => ({}),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
-    })
-)(Form);
+                    // actions: bindActionCreators(actions, dispatch)
+                })
+)(Info);

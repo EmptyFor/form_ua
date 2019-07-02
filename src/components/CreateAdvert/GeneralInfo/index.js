@@ -5,14 +5,19 @@ import { connect } from 'react-redux';
 // import * as actions from '../../store/actions/';
 import styles from './style.modules.scss'
 
-export class OwnerInfo extends Component {
+export class GeneralInfo extends Component {
 
     static propTypes = {}
 
     render() {
 
         return (
-            <div>
+            <div className="general_info" >
+                
+                <h1>
+                    Загальна інформація
+                    
+                </h1>
 
             </div>
         );
@@ -24,4 +29,4 @@ export default connect(
     dispatch => ({
         // actions: bindActionCreators(actions, dispatch)
     })
-)(OwnerInfo);
+)(GeneralInfo);

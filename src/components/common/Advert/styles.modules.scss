@@ -1,0 +1,30 @@
+.advert {
+    display: flex;
+    width: 190.5px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20.8px;
+    font-size: 13px;
+    border: solid 0.5px #ffffff;
+    margin-top: 2.4%;
+    padding: 0 15px;
+    text-align: center;
+    justify-content: space-around;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.13px;
+    .adding_advert {
+        width: 15px;
+        height: 15px;
+        line-height: 15px;
+        border-radius: 50%;
+        font-weight: 300;
+        margin-top: 3.5%;
+        background: #ffffff;
+        border: 1px solid white;
+        color: black;
+        font-size: 23px;
+      }
+  }

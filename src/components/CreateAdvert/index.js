@@ -3,6 +3,9 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
+import GeneralInfo from './GeneralInfo';
+import StatutInfo from './StatutInfo';
+import OwnerInfo from './OwnerInfo';
 import styles from '../CreateAdvert/style.modules.scss'
 
 export class CreateAdvert extends Component {
@@ -13,9 +16,11 @@ export class CreateAdvert extends Component {
 
         return (
             <Fragment>
-                <div>
-                    Створити оголошення
-            </div>
+                <div className="bg">
+                    <GeneralInfo />
+                    <StatutInfo />
+                    <OwnerInfo />
+                </div>
             </Fragment>
         );
     }

@@ -3,6 +3,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Header from '../themes/common/Header';
 import { Form } from './Form';
+import Info from './Info';
+import Footer from '../Footer';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
 // import styles from '../../assets/styles/global.styles.scss';
@@ -16,11 +18,13 @@ export class MainPage extends Component {
         // const { } = this.props;
         console.log(this.props)
         return (
-            <Fragment>
-                    <Header />
-                    <Form />
-                    <img style = {{width: '100%', height: '100%', marginTop: '-65vh'}} src = {triangle_bg}></img>
-            </Fragment>
+            <div className="bg">
+                <img className="image_bg" src={triangle_bg}></img>
+                <Header />
+                <Form />
+                <Info />
+                <Footer />
+            </div>
         );
     }
 }

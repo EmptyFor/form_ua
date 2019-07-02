@@ -1,0 +1,126 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding-top: 100px;
+  height: 120vh;
+  .left_img {
+    object-fit: cover;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .right_create_advert {
+    background-image: linear-gradient(252deg, #0057b6, #20bdcb);
+    grid-row: span 1;
+    grid-column: span 1;
+    color: #fff;
+    object-fit: cover;
+    padding: 10% 15%;
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.09;
+      letter-spacing: 0.09px;
+      margin-bottom: 5%;
+    }
+    p {
+      text-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.21);
+      font-family: AvenirNext;
+      font-size: 20px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.35;
+      margin-bottom: 5%;
+    }
+    .advert {
+      background-color: #fff;
+      color: #276596;
+      .adding_advert {
+        color: #fff;
+        background: #276597;
+        font-size: 14px;
+        border: none;
+      }
+    }
+  }
+  .how_it_works {
+    grid-row: span 1;
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 45px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: 0.08px;
+      color: #28252f;
+    }
+    p {
+      font-size: 25px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.2;
+      letter-spacing: 0.04px;
+      color: #707488;
+    }
+    .red_line {
+      margin-top: 1%;
+      width: 5%;
+      height: 5px;
+      background-color: #fc4445;
+    }
+  }
+  .left_description {
+    grid-row: span 1;
+    grid-column: span 1;
+    padding: 0% 0% 100px 100px;
+    box-sizing: border-box;
+  }
+}
+.right_description {
+  grid-row: span 1;
+  grid-column: span 1;
+  padding: 0 100px 100px 0;
+  box-sizing: border-box;
+}
+.description {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  padding: 50px  50px 50px 50px;
+  img {
+    height: 100%;
+    margin-right: 5%;
+  }
+  .text {
+    padding-top: 5%;
+    h1 {
+      font-size: 18px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: 0.04px;
+      color: #28252f;
+    }
+    p {
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.62;
+      letter-spacing: 0.03px;
+      color: #707488;
+    }
+  }
+}
