@@ -6,10 +6,19 @@ import styles from '../Button/style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 
 export const Button = props => ({
+
+//    const handleDisabled = e => {
+        
+//     }
     render() {
+        
+           
+        
         return (
-            <div className={`common_btn ${this.props.className}`}
+            <button className={`common_btn ${this.props.className}`}
+                type="button"
                 onPressKey={this.props.onPressKey}
+                disabled={this.props.disabled}
                 onSubmit={this.props.onSubmit}
                 onMouseEnter={this.props.onMouseEnter}
                 onClick={this.props.onClick}
@@ -17,7 +26,7 @@ export const Button = props => ({
                 onMouseLeave={this.props.onMouseLeave}
                 style={{ background: `${this.props.back}`, width: `${this.props.width}`, color: `${this.props.color}`, cursor: 'pointer' }}>
                 {this.props.text}
-            </div>
+            </button>
         );
     }
 })

@@ -48,7 +48,6 @@ export class Login extends Component {
     this.setState({ [name]: value });
     console.log('test', regexps.log_mail.test(e.target.value))
     if (regexps.log_mail.test(e.target.value)) {
-      console.log('111112')
       this.setState({ validMail: true });
     }
     if (regexps.log_pass.test(e.target.value)) {
@@ -81,7 +80,7 @@ export class Login extends Component {
             <label style={{ visibility: visibility }}>{message}</label>
             <Button width='340px' text='Увійти' onClick={this.handleSubmit} />
           </form>
-          <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.home}>Зареєструватися >></Link></div>
+          <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.registrationFirst}>Зареєструватися >></Link></div>
         </div>
       </div>
 

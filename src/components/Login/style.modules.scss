@@ -49,7 +49,7 @@
     }
 
     form {
-        padding: 16% 0;
+        padding: 14% 0;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -61,7 +61,8 @@
     label{
         color: red;
         font-weight: 600;
-        margin-bottom: 10%;
-
+        position: inherit;
+        margin-top: -8%;
+        margin-bottom: -5%
     }
 }

@@ -18,7 +18,7 @@ export class Input extends Component {
     visibillity: 'hidden'
   }
   componentDidMount = () => {
-    if(this.props.visibleLabel){
+    if(this.props.visiblelabel){
       this.setState({visibillity:'visible'})
     }else{
       this.setState({visibillity:'hidden'})
@@ -35,8 +35,8 @@ export class Input extends Component {
 
     return (
       <Fragment>
-        <input style={this.props.style} type={this.props.type} value={this.props.value} className={this.props.className} validation={this.props.validation} onChange={this.props.onChange} placeholder={this.props.placeholder} value={this.props.value} defaultValue={this.props.defValue} onKeyPress={this.props.onKeyPress} pattern={this.props.pattern} name={this.props.name} className="form_input"></input>
-        <label visibleLabel={this.props.visibleLabel} style={{ visibility:visibillity }}>{this.props.label}</label>
+        <input style={this.props.style} maxLength={this.props.maxLength} type={this.props.type} value={this.props.value} className={this.props.className} validation={this.props.validation} onChange={this.props.onChange} placeholder={this.props.placeholder} value={this.props.value} defaultValue={this.props.defValue} onKeyPress={this.props.onKeyPress} pattern={this.props.pattern} name={this.props.name} className="form_input"></input>
+        <label visiblelabel={this.props.visiblelabel} style={{ visibility:visibillity }}>{this.props.label}</label>
       </Fragment>);
   }
 }
