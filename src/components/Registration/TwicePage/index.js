@@ -20,7 +20,7 @@ export class RegistrationTwice extends Component {
         validEmail: false,
         validPass: false,
         validConfPass: false,
-        validConfirmation: true,
+        validConfirmation: false,
         borderColor: '',
 
     }
@@ -63,7 +63,7 @@ export class RegistrationTwice extends Component {
                     <form>
                         <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
-                        <Input style={{ borderColor: borderColor }} name='confPassword' visibleLabel={!validConfirmation} label='Паролі не співпадають. Будь ласка, введіть однікові паролі' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
+                        <Input style={{ borderColor: borderColor }} name='confPassword' visibleLabel={validConfirmation} label={`Паролі не співпадають. \n Будь ласка, введіть однaкові паролі`} value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
                         <Button width='340px' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
 
                     </form>
