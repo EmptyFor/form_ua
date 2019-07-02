@@ -12,17 +12,13 @@ import * as authActions from '../../store/actions/authorise';
 import * as regexps from '../../core/constants/regexp'
 export class Login extends Component {
 
-  // static propTypes = {
-  //   token: PropTypes.string,
-  //   error: PropTypes.string,
-  //   authActions: PropTypes.object,
-  // }
+  
   state = {
     email: '',
     password: '',
     validMail: false,
     validPass: false,
-    message: 'Неправильно введений логін або пароль',
+    message: 'Заповніть будь ласка поля',
     borderColor: '',
     visibility: 'hidden'
 
@@ -30,16 +26,19 @@ export class Login extends Component {
 
   handleSubmit = e => {
     const { email, password, validMail, validPass, borderColor } = this.state;
-    console.log(this.state);
-    // email.length === 0 ? this.setState({ checkLengthMail: this.state.checkLengthMail = true }) :
-    //   password.length === 0 ? this.setState({ checkLengthPass: this.state.checkLengthPass = true }) 
-    if(!(validMail && validPass) ){
-      this.setState({ borderColor: 'red', visibility: 'visible' })
-    } else{
-      this.setState({ borderColor: '', visibility: 'hidden' })
-      this.props.authActions.login(email, password);
+    console.log(email.length === 0 && password.length === 0)
+    if (email.length === 0 && password.length === 0) {
+      this.setState({ message: 'Заповніть будь ласка поля',borderColor: 'red', visibility: 'visible' })
+    } else {
+      if (!(validMail && validPass)) {
+        this.setState({ borderColor: 'red', visibility: 'visible', message: 'Неправильно введений логін або пароль' })
+      } else {
+        this.setState({ borderColor: '', visibility: 'hidden' })
+        this.props.authActions.login(email, password);
+      }
     }
-      
+
+
   }
 
   handleChange = e => {

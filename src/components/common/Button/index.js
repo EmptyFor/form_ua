@@ -17,7 +17,6 @@ export const Button = props => ({
         return (
             <button className={`common_btn ${this.props.className}`}
                 type="button"
-                onPressKey={this.props.onPressKey}
                 disabled={this.props.disabled}
                 onSubmit={this.props.onSubmit}
                 onMouseEnter={this.props.onMouseEnter}

@@ -32,7 +32,7 @@ export class RegistrationFirst extends Component {
     };
 
     render() {
-        const { login, phone, validLogin, validPhone } = this.state;
+        const { login, phone, validLogin, validPhone } = this.state; 
         const isOk = login.length > 0 && validLogin && phone.length > 0 && validPhone;
         let disabledColor = '';
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';

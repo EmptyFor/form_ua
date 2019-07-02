@@ -9,6 +9,7 @@ import Provider from '../components/Provider';
 import { RegistrationFirst } from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
 import { RegistrationTwice } from '../components/Registration/TwicePage';
+import Search from '../components/Search';
 
 
 
@@ -16,7 +17,7 @@ class Routes extends PureComponent {
   render() {
     return (
       <App>
-
+        
         <Switch>
           <Route path={links.login} component={Login} />
 
@@ -29,6 +30,7 @@ class Routes extends PureComponent {
               <Route exact path={links.createAdvert} component={CreateAdvert} />
               <Route exact path={links.registrationFirst} component={RegistrationFirst} />
               <Route exact path={links.registrationTwice} component={RegistrationTwice} />
+              <Route exact path={links.search} component={Search} />
             </MainTemplate>
 
           </Provider>
