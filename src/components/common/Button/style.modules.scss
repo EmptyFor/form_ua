@@ -1,10 +1,17 @@
-.common_btn{
-    
-    border-radius:24px 24px;
+.common_btn {
+
+    border-radius: 24px 24px;
     line-height: 40px;
     font-size: 20px;
     color: white;
     background-color: rgb(253, 83, 83);
     overflow: hidden;
-    text-align: center
+    text-align: center;
+    border: none;
+
+    // button {
+    //     outline: none;
+        
+    //     outline-offset: 0;
+    // }
 }
