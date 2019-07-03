@@ -1,0 +1,30 @@
+.results_list {
+    width: 55.83%;
+    height: auto;
+    margin-left: 5%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+
+    .results_list_header {
+        height: 5.5%;
+        // line-height: 40px;
+        border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+        font-size: 20px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 2.7;
+        letter-spacing: 0.09px;
+        color: #99abc3;
+
+        span {
+            margin-inline-start: 3.5%;
+        }
+
+        .results_header_counter {
+            margin-inline-start: 1%;
+            color: #fc4445
+        }
+    }
+}

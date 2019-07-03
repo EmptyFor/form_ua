@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import left_image from '../../../assets/images/rectangle-16@3x.png'
 import styles from '../Info/style.modules.scss';
-import Advert from '../../common/Advert';
+import CreateAdvertBtn from '../../common/CreateAdvertBtn';
 import description_img_1 from '../../../assets/images/icon-1@2x.png';
 import description_img_2 from '../../../assets/images/icon-2@2x.png';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
@@ -25,7 +25,7 @@ export class Info extends Component {
                     <p>
                         Тоді не варто зволікати, створюй оголошення всього за декілька секунд
                     </p>
-                    <Advert />
+                    <CreateAdvertBtn />
                 </div>
 
                 <div className="how_it_works">

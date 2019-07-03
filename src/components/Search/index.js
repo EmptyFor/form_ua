@@ -1,19 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
+import FilterForm from '../Search/FilterForm/index';
+import SearchResult from '../Search/SearchResult/index'
 
 class Search extends Component {
 
   render () {
-    // TODO: add app global messages here with other global things
 
     return (
         <Fragment>
-        { this.props.children }
+        <FilterForm />
+        <SearchResult />
         </Fragment>
-    //   <Fragment>
-    //     { this.props.children }
-    //   </Fragment>
+
     )
   }
 }

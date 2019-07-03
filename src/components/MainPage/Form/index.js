@@ -39,11 +39,13 @@ export class Form extends Component {
 
                     <Button className='extendet_search '
                         text='Розширений пошук' />
-                    <Button className='find'
-                        text='Знайти' />
 
+                    <Link to={links.search} >
+                        <Button className='find'
+                            text='Знайти' />
+                    </Link>
                 </div>
-            </div>
+            </div >
 
         );
     }
