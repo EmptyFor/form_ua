@@ -7,7 +7,9 @@ class FilterForm extends Component {
   render () {
 
     return (
-        <div className="filter_form">Filters</div>
+        <div className="filter_form">
+          <div className="filter_header">Загальні параметри пошуку</div>
+        </div>
 
     )
   }

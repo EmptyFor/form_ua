@@ -225,7 +225,7 @@ class Header extends Component {
   render() {
     console.log(links)
     return (
-      <header className="menu">
+      <header className={`menu ${this.props.className}`}>
         <div className={styles.language} id="language">
           <p>
             Language

@@ -1,9 +1,21 @@
-.filter_form{
+.filter_form {
     width: 26.18%;
     height: 56vh;
-    border: 1px solid black;
     text-align: center;
-    background: linear-gradient(266deg, #0072f0, #20bdcb);
     float: left;
-    
+    background-color: #ffffff;
+}
+
+.filter_header {
+    height: 8.5%;
+    border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+    font-size: 20px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.7;
+    letter-spacing: 0.09px;
+    color: #99abc3;
+    text-align: start;
+    padding-left: 7%
 }

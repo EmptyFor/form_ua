@@ -1,10 +1,23 @@
 .results_list {
-    width: 55.83%;
+    width: 63.71%;
     height: auto;
     margin-left: 5%;
     float: left;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+
+    a:hover {
+        box-shadow: 0px 2px 12px #aaaaaa;
+    }
+
+    a:link {
+        color: #28252f;
+    }
+
+    a:visited {
+        color: #28252f
+    }
 
     .results_list_header {
         height: 5.5%;
@@ -24,7 +37,7 @@
 
         .results_header_counter {
             margin-inline-start: 1%;
-            color: #fc4445
+            color: #fc4445;
         }
     }
 }

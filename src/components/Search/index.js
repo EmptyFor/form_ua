@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import FilterForm from '../Search/FilterForm/index';
 import SearchResult from '../Search/SearchResult/index'
-
+import { wrap } from 'module';
+import styles from './style.modules.scss'
+import Header from '../themes/common/Header';
 class Search extends Component {
 
-  render () {
+  render() {
 
     return (
-        <Fragment>
-        <FilterForm />
-        <SearchResult />
-        </Fragment>
-
+      <Fragment>
+        <Header className ='menu_fix' />
+        <div className='short_wrapp' >
+          <FilterForm />
+          <SearchResult />
+        </div>
+      </Fragment>
     )
   }
 }
 
 export default connect(
-  (state) => ({ }),
-  dispatch => ({ })
+  (state) => ({}),
+  dispatch => ({})
 )(Search);

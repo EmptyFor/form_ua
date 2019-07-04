@@ -1,0 +1,27 @@
+.wrapp{
+// height: 70vh;
+// position: relative;
+// display: flex;
+// flex-direction: column;
+// align-items: center;
+// background-image: url("../../../assets/images/baground@2x.png");
+// background-position: center;
+// background-size: cover;
+// background-repeat: no-repeat;
+}
+
+.short_wrapp{
+    position: relative;
+    background-image: linear-gradient( rgba(57, 96, 238, 0.16), rgba(21, 169, 218, 0.034));
+    padding: 6% 8.2% 4% 9.8%;
+    background-color: #efeff6;
+    margin: 0 auto;
+    height: 130vh;
+}
+.menu_fix{
+    background-image: linear-gradient(266deg, #0072f0, #20bdcb);
+    position: fixed;
+    top: 0;
+    height: 7.9%;
+    line-height: 40px !important;
+}

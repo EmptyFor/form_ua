@@ -16,7 +16,7 @@ const mockData = [
     },
     {
         name: 'Конституційно-правова агенція твого міста',
-        isPDF: false,
+        isPDF: true,
         date: '10/02/2019',
         city: 'Львів',
         price: '12 000',
@@ -32,7 +32,7 @@ const mockData = [
     },
     {
         name: 'Конституційно-правова агенція твого міста',
-        isPDF: false,
+        isPDF: true,
         date: '10/02/2019',
         city: 'Львів',
         price: '12 000',
