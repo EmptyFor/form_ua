@@ -16,8 +16,8 @@ export class Login extends Component {
   state = {
     email: '',
     password: '',
-    validMail: false,
-    validPass: false,
+    validMail: true,
+    validPass: true,
     message: 'Заповніть будь ласка поля',
     borderColor: '',
     visibility: 'hidden'
@@ -25,8 +25,7 @@ export class Login extends Component {
   }
 
   handleSubmit = e => {
-    const { email, password, validMail, validPass, borderColor } = this.state;
-    console.log(email.length === 0 && password.length === 0)
+    const { email, password, validMail, validPass} = this.state;
     if (email.length === 0 && password.length === 0) {
       this.setState({ message: 'Заповніть будь ласка поля',borderColor: 'red', visibility: 'visible' })
     } else {
@@ -42,16 +41,9 @@ export class Login extends Component {
   }
 
   handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
     this.setState({ [name]: value });
-    console.log('test', regexps.log_mail.test(e.target.value))
-    if (regexps.log_mail.test(e.target.value)) {
-      this.setState({ validMail: true });
-    }
-    if (regexps.log_pass.test(e.target.value)) {
-      this.setState({ validPass: true });
-    }
     // if (!(regexps.log_pass.test(e.target.value) && regexps.log_mail.test(e.target.value))) {
     //   this.setState({ validPass: false, validMail: false });
     // }
