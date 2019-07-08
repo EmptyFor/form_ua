@@ -46,18 +46,53 @@ const mockData = [
         price: '12 000',
         about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
     },
+    {
+        name: 'Конституційно-правова агенція твого міста',
+        isPDF: true,
+        date: '10/02/2019',
+        city: 'Львів',
+        price: '12 000',
+        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
+    },
 ]
 class SearchResult extends Component {
 
     state = {
-        currentCount: 0,
+        currentPage: 1,
+        pagesLength: 5,
+        pageStep: 6,
+        crumbs: false,
+        disPrev: true,
+        disNext: false,
+        colorNext: '#1ccee9',
+        colorPrev: '#aeaeae'
     }
-    counter = () => {
-        this.setState({ currentCount: this.state.currentCount + 1 })
-    }
+
     componentDidMount = () => {
-        setInterval(this.counter, 1000);
+        const { pagesLength } = this.state;
+        if (pagesLength > 4) {
+            this.setState({ crumbs: true });
+        }
     }
+
+    nextPage = e => {
+        const { currentPage, pagesLength } = this.state;
+        if (currentPage === pagesLength - 1) {
+            this.setState({ disNext: true, colorNext: '#aeaeae' })
+        }
+        this.setState({ currentPage: currentPage + 1, colorPrev: '#1ccee9', disPrev: false })
+    }
+
+    prevPage = e => {
+        const { currentPage, pagesLength } = this.state;
+        if (currentPage === 1 + 1) {
+            this.setState({ disPrev: true, colorPrev: '#aeaeae' })
+        }
+        this.setState({ currentPage: currentPage - 1, disNext: false, colorNext: '#1ccee9' })
+    }
+
+    // ----------------------- ! Pagination
+
     renderAdverts = () => {
         return (
             mockData.map((item, i) => {
@@ -73,15 +108,28 @@ class SearchResult extends Component {
                         />
                     </Link>
                 )
-        }))
+            }))
     }
 
+
     render() {
-        // let content =
+        const { crumbs, pagesLength, disPrev, disNext, colorNext, colorPrev } = this.state;
+        // let pagesNum = moc
+        console.log(this.state)
         return (
             <div className='results_list'>
                 <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>{`(${mockData.length})`}</span></div>
                 {this.renderAdverts()}
+
+                <div className="pagination_div">
+                    <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
+                    {`${this.state.currentPage - 1}`} &nbsp;
+                     <span className='pagination_current'> {this.state.currentPage} </span> &nbsp; {`${this.state.currentPage + 1} .. ${this.state.pagesLength}`}
+                <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
+                </div>
+
+
+
             </div>
 
         )

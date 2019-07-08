@@ -40,4 +40,31 @@
             color: #fc4445;
         }
     }
+
+    .pagination_div {
+        height: 6vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+
+        button {
+            width: 140px;
+            background-color: inherit;
+            outline: none;
+            border: none;
+
+        }
+
+
+        .pagination_current {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #1ccee9;
+            text-align: center
+        }
+    }
+
 }

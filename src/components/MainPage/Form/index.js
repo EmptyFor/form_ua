@@ -37,10 +37,10 @@ export class Form extends Component {
                         <Input type="checkbox" />
                     </div>
 
-                    <Link to={links.search} className='links'>
+                   
                         <Button className='extendet_search '
                             text='Розширений пошук' />
-                    </Link>
+                    
 
                     <Link to={links.search} className='links'>
                         <Button className='find'
