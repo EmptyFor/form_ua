@@ -2,28 +2,18 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { setToken, removeToken } from '../helpers';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
-import * as api from './api/index';
 import fetchSome from '../helpers/fetchJSON'
-
+import { options } from '../helpers/options'
 
 
 export function* authorise(email, password) {
+  options.GET.body = { email, password }
   try {
-    console.log({email, password})
-    const someData = yield fetchSome('https://192.168.1.151:3000/api/v1/log_in', {
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password })
-    })
-    console.log(someData)
+    const someData = yield fetchSome('https://jsonplaceholder.typicode.com/posts', options.GET)
   } catch (error) {
     yield put(actions.setError(error.message));
     // yield removeToken();
   }
-  // yield put(actions.setLoadingStatus(false));
 }
 
 export function* logout() {
