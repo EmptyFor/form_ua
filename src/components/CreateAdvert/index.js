@@ -7,8 +7,13 @@ import GeneralInfo from './GeneralInfo';
 import StatutInfo from './StatutInfo';
 import OwnerInfo from './OwnerInfo';
 import styles from '../CreateAdvert/style.modules.scss'
+import { Modal } from '../common/Modal';
 
 export class CreateAdvert extends Component {
+
+//  <GeneralInfo />
+    // <StatutInfo />
+    // <OwnerInfo />)
 
     static propTypes = {}
 
@@ -17,9 +22,7 @@ export class CreateAdvert extends Component {
         return (
             <Fragment>
                 <div className="bg">
-                    <GeneralInfo />
-                    <StatutInfo />
-                    <OwnerInfo />
+                    <Modal />
                 </div>
             </Fragment>
         );

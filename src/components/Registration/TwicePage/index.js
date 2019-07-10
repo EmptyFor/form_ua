@@ -9,7 +9,7 @@ import { Input } from '../../common/LogForm/Input';
 import styles from './style.modules.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
-
+import * as actions from '../../../store/actions/registration'
 
 export class RegistrationTwice extends Component {
 
@@ -61,7 +61,6 @@ export class RegistrationTwice extends Component {
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
-        console.log(this.state)
         return (
             <div className="login_page">
                 <span>Log</span>
@@ -88,6 +87,12 @@ export class RegistrationTwice extends Component {
 export default connect(
     (state) => ({}),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )(RegistrationTwice);
+
+// const mapDispatchToProps = dispatch => ({
+//     actions: bindActionCreators({ actions }, dispatch)
+//    });
+
+// export default connect(null, mapDispatchToProps)(RegistrationTwice);

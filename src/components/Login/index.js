@@ -33,6 +33,7 @@ export class Login extends Component {
         this.setState({ borderColor: 'red', visibility: 'visible', message: 'Неправильно введений логін або пароль' })
       } else {
         this.setState({ borderColor: '', visibility: 'hidden' })
+        console.log(this.props)
         this.props.authActions.login(email, password);
       }
     }
@@ -47,14 +48,12 @@ export class Login extends Component {
     // if (!(regexps.log_pass.test(e.target.value) && regexps.log_mail.test(e.target.value))) {
     //   this.setState({ validPass: false, validMail: false });
     // }
-    console.log(this.state);
   }
 
 
   render() {
     // const { token, error, authActions } = this.props;
     const { email, password, message, borderColor, visibility } = this.state
-
     // if (token) {
     //   return <Redirect to={links.home} />
     // }
