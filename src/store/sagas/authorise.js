@@ -7,9 +7,10 @@ import { options } from '../helpers/options'
 
 
 export function* authorise(email, password) {
-  options.GET.body = { email, password }
+  options.POST.body = { email, password }
   try {
-    const someData = yield fetchSome('https://jsonplaceholder.typicode.com/posts', options.GET)
+    const someData = yield fetchSome('https://jsonplaceholder.typicode.com/posts', options.POST)
+    console.log(someData)
   } catch (error) {
     yield put(actions.setError(error.message));
     // yield removeToken();
