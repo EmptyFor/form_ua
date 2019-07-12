@@ -56,14 +56,9 @@ export class Select extends Component {
         }
     }
 
-    closeSelectList = () => {
-        // this.setState({
-        //     isOpen: false,
-        //     togleClass: 'close'
-        // })
-        // document.getElementById(this.props.id).style.borderRadius = '20px'
-        // document.getElementById(this.props.id).style.zIndex = '1'
+    closeSelectList = (e) => {
         console.log(1)
+        console.log(e.target)
     }
 
     togleActiveClass = (e, value) => {
@@ -123,6 +118,11 @@ export class Select extends Component {
         this.toglePlaceholder(selectedItems)
     }
 
+    handleClick = (e) => {
+        this.closeSelectList(e)
+        this.togleItems(e)
+    }
+
     // Common select
 
     setPlaceholder = (e) => {
@@ -142,6 +142,9 @@ export class Select extends Component {
                     <div id="selected_items" className="selected_items" ></div>
                     <img className="arrow" src={arrow}></img>
                 </div>
+
+                
+
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} >
 
                     {

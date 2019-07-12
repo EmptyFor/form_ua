@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/registration';
-import { bindActionCreators } from '../../../../../../../../AppData/Local/Microsoft/TypeScript/3.5/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { RegistrationFirst } from './FirstPage';
 import { RegistrationTwice } from './TwicePage';
 
