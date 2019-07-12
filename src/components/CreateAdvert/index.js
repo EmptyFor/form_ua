@@ -9,7 +9,6 @@ import OwnerInfo from './OwnerInfo';
 import styles from '../CreateAdvert/style.modules.scss'
 import { Modal } from '../common/Modal';
 import { Select } from 'antd';
-import { Button, Radio, Icon } from 'antd';
 const { Option } = Select;
 export class CreateAdvert extends Component {
 
@@ -24,9 +23,14 @@ export class CreateAdvert extends Component {
         return (
             <Fragment>
                 <div className="bg">
-                    <Button type="danger" size={48}>
-                        Danger
-              </Button>
+                <div style={{display:'flex',justifyContent:'center'}}>
+                <Select defaultValue="lucy" style={{ width: 120 }}>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="lucy">Jack</Option>
+                        <Option value="lucy">Hitler</Option>
+                    </Select>
+                </div>
+                    
                 </div>
             </Fragment>
         );
