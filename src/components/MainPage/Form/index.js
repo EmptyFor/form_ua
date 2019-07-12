@@ -11,7 +11,6 @@ import house_select_icon from '../../../../src/assets/images/house_select_icon.p
 import links from '../../../config/links';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 import { Select } from 'antd';
-
 const { Option } = Select;
 
 export class Form extends Component {
@@ -23,21 +22,31 @@ export class Form extends Component {
                 <h1>Розпочни свій бізнес вже сьогодні</h1>
                 <span >Знайди ідеальне рішення за декілька секунд...</span>
 
-                <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select a person"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="tom">Tom</Option>
-                </Select>
-              
                 <div className='search_form grid'>
+
+                    <Select defaultValue="lucy" style={{ gridColumn: 'span 5' }}>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="lucy">Jack</Option>
+                        <Option value="lucy">Hitler</Option>
+                    </Select>
+
+                    <Select defaultValue="lucy" style={{ gridColumn: 'span 8' }}>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="lucy">Jack</Option>
+                        <Option value="lucy">Hitler</Option>
+                    </Select>
+
+                    <Select defaultValue="lucy" style={{ gridColumn: 'span 5' }}>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="lucy">Jack</Option>
+                        <Option value="lucy">Hitler</Option>
+                    </Select>
+
+                    <Select defaultValue="lucy" style={{ gridColumn: 'span 8' }}>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="lucy">Jack</Option>
+                        <Option value="lucy">Hitler</Option>
+                    </Select>
 
                     {/*                   
                     <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='multiply' id='select_1' />

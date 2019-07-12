@@ -23,14 +23,14 @@ export class CreateAdvert extends Component {
         return (
             <Fragment>
                 <div className="bg">
-                <div style={{display:'flex',justifyContent:'center'}}>
-                <Select defaultValue="lucy" style={{ width: 120 }}>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="lucy">Jack</Option>
-                        <Option value="lucy">Hitler</Option>
-                    </Select>
-                </div>
-                    
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Select defaultValue="lucy" style={{ width: 120 }}>
+                            <Option value="lucy">Lucy</Option>
+                            <Option value="lucy">Jack</Option>
+                            <Option value="lucy">Hitler</Option>
+                        </Select>
+                    </div>
+
                 </div>
             </Fragment>
         );
