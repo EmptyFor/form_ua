@@ -10,6 +10,7 @@ import { RegistrationFirst } from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
 import { RegistrationTwice } from '../components/Registration/TwicePage';
 import Search from '../components/Search';
+import Registration from '../components/Registration';
 
 
 
@@ -24,7 +25,6 @@ class Routes extends PureComponent {
           <Redirect exact from='/' to={links.home} />
 
           <Provider>
-
             <MainTemplate>
               <Route exact path={links.home} component={MainPage} />
               <Route exact path={links.createAdvert} component={CreateAdvert} />

@@ -8,10 +8,12 @@ import StatutInfo from './StatutInfo';
 import OwnerInfo from './OwnerInfo';
 import styles from '../CreateAdvert/style.modules.scss'
 import { Modal } from '../common/Modal';
-
+import { Select } from 'antd';
+import { Button, Radio, Icon } from 'antd';
+const { Option } = Select;
 export class CreateAdvert extends Component {
 
-//  <GeneralInfo />
+    //  <GeneralInfo />
     // <StatutInfo />
     // <OwnerInfo />)
 
@@ -22,7 +24,9 @@ export class CreateAdvert extends Component {
         return (
             <Fragment>
                 <div className="bg">
-                    <Modal />
+                    <Button type="danger" size={48}>
+                        Danger
+              </Button>
                 </div>
             </Fragment>
         );
