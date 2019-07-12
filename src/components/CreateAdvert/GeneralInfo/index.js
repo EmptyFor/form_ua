@@ -38,8 +38,11 @@ export class GeneralInfo extends Component {
 
                 <div className="forth_position">
 
-                <UploadField />
+                    <UploadField />
 
+
+                    <br />
+                    
                 </div>
             </div>
         );

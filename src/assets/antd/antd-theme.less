@@ -1,0 +1,162 @@
+@import "../../../../node_modules/antd/dist/antd.less";
+
+// see list of variables in
+// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+
+// Colors
+@primary-color: #80c0d8;
+@success-color: #4fd693;
+@error-color: #f06979;
+@warning-color: #ffc05c;
+@highlight-color: #f06979;
+@normal-color: #d9d9d9;
+
+// Base Scaffolding Variables
+@border-radius-base: 3px;
+@font-family: 'Roboto', sans-serif;
+@text-color: #4a4a4a;
+
+// Border color
+@border-color-base: #d4d4d4;
+
+
+// Buttons
+@btn-height-base: 36px;
+@btn-shadow: 0 2px 0 transparent;
+@btn-primary-shadow: 0 2px 0 transparent;
+@btn-text-shadow: 0 -1px 0 transparent;
+@radio-button-color: #c7c7c7;
+
+// Input
+@input-height-base: 36px;
+@input-padding-horizontal: 12px;
+@input-padding-vertical-base: 10px;
+
+// Select
+@select-border-color: @border-color-base;
+@select-item-selected-font-weight: 400;
+
+// Forms
+@form-item-margin-bottom: 18px;
+
+
+// other style overwrites
+a:hover {
+  color: @primary-color;
+}
+
+.ant-dropdown-menu-item {
+  padding: 8px 16px;
+  line-height: 16px;
+  &:hover {
+    background-color: #fafafa;
+  }
+
+  & > a {
+    &:hover {
+      color: #4a4a4a;
+    }
+  }
+}
+
+.ant-select-auto-complete.ant-select .ant-input:focus {
+  border-color: @primary-color;
+}
+.ant-select-selection {
+  &:active,
+  &:focus {
+    border-color: @primary-color;
+  }
+}
+.ant-select-selection__rendered {
+  line-height: 36px;
+}
+
+.ant-select-focused .ant-select-selection,
+.ant-select-open .ant-select-selection {
+  border-color: @primary-color;
+  box-shadow: none;
+}
+
+.ant-select-selection--multiple {
+  padding: 2px 0 5px;
+
+  .ant-select-selection__rendered {
+    line-height: 26px;
+  }
+
+  .ant-select-selection__choice {
+    border-radius: 3px;
+    border-color: #4a4a4a;
+  }
+  .ant-select-selection__rendered > ul > li {
+    height: 24px;
+    line-height: 22px;
+  }
+}
+
+.ant-radio-button-wrapper {
+  min-width: 74px;
+  text-align: center;
+}
+
+.ant-steps-item-title {
+  font-size: 12px;
+}
+.ant-steps-item-process > .ant-steps-item-content > .ant-steps-item-title {
+  color: @primary-color;
+}
+
+.ant-steps-item-finish {
+  & > .ant-steps-item-tail::after {
+    background-color: @text-color;
+  }
+  .ant-steps-item-icon {
+    border-color: @text-color;
+  }
+}
+.ant-steps-label-vertical .ant-steps-item-content {
+  margin-top: 0;
+}
+
+.ant-dropdown-link svg,
+.ant-input-suffix svg,
+.ant-select-arrow svg.ant-select-arrow-icon {
+  height: 16px;
+  width: 16px;
+}
+.ant-select-arrow svg.ant-select-arrow-icon {
+  color: @text-color;
+}
+
+.ant-dropdown-link svg {
+  vertical-align: middle;
+}
+
+// inputs and forms
+.ant-input-affix-wrapper .ant-input-suffix {
+  color: #8f8f8f;
+}
+.ant-input {
+  &:focus {
+    border-color: @primary-color;
+    box-shadow: none !important;
+    & + .ant-input-suffix {
+      color: #4a4a4a;
+    }
+  }
+}
+
+.ant-form-explain {
+  font-size: 12px;
+  min-height: 14px;
+  margin-bottom: 10px;
+}
+.has-error {
+  .ant-input-affix-wrapper {
+    .ant-input-suffix {
+      color: @error-color;
+    }
+  }
+
+}
