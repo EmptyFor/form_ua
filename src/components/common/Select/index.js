@@ -17,16 +17,26 @@ export class Select extends Component {
     state = {
         isOpen: false,
         togleClass: 'close',
-        placeholder: this.props.placeholder
+        placeholder: this.props.placeholder,
+        style: {
+            arrow: {
+                transform: '',
+                transition: ''
+            },
+        }
     }
 
     selectItems = [
-        'Пункт 1',
-        'Пункт 2',
-        'Пункт 3',
-        'Пункт 4',
-        'Пункт 5',
-        'Пункт 6'
+        "Aкціонерне товариство",
+        "Aсоціація",
+        "Благодійна асоціація",
+        "Виробничий підрозділ",
+        "Гаражний кооператив",
+        "Господарські товариства",
+        "Громадська організація",
+        "Житлово-будівельний кооператив",
+        "Концерн",
+        "Кооператив",
     ]
 
     // Multiply selct
@@ -57,8 +67,13 @@ export class Select extends Component {
     }
 
     closeSelectList = (e) => {
-        console.log(1)
         console.log(e.target)
+        this.setState({
+            isOpen: false,
+            togleClass: 'close'
+        })
+        document.getElementById(this.props.id).style.borderRadius = '20px'
+        document.getElementById(this.props.id).style.zIndex = '1'
     }
 
     togleActiveClass = (e, value) => {
@@ -135,15 +150,27 @@ export class Select extends Component {
 
     render() {
         return (
-            <div id={this.props.id} className="common_select" style={{ width: `${this.props.width}` }}>
-                <div id="selectArea" className="select_area" onClick={this.togleSelectList} onBlur = {this.closeSelectList}>
+            <div id={this.props.id} className="common_select" style={{ width: `${this.props.width}` }} tabindex="0" onBlur={this.closeSelectList}>
+                <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
                     <img className="select_icon" src={this.props.icon}></img>
                     <p id="selectPlaceholder">{this.state.placeholder}</p>
                     <div id="selected_items" className="selected_items" ></div>
-                    <img className="arrow" src={arrow}></img>
+                    <svg id="arrow"
+                        className="arrow"
+                        style={this.state.style.arrow}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="17"
+                        viewBox="0 0 9 5"
+                        onClick={this.rotateArrow}>
+
+                        <path fill="#1ADDEF" fill-rule="evenodd" d="M4.375 5L8.75 0H0z">
+
+                        </path>
+                    </svg>
                 </div>
 
-                
+
 
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} >
 
@@ -156,6 +183,12 @@ export class Select extends Component {
 
                     {
                         this.props.type == 'common' && this.selectItems.map((item, index) => {
+                            return <div value='false' onClick={this.setPlaceholder} id={`${index}`} className="list_item" >{item}</div>
+                        })
+                    }
+
+                    {
+                        this.props.type == 'checkbox' && this.selectItems.map((item, index) => {
                             return <div value='false' onClick={this.setPlaceholder} id={`${index}`} className="list_item" >{item}</div>
                         })
                     }

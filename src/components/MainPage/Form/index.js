@@ -5,54 +5,37 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import styles from '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
-// import { Select } from '../../common/Select';
+import { Select } from '../../common/Select';
+import { CheckBoxSelect } from '../../common/CheckBoxSelect';
 import { Input } from '../../common/Input';
-import house_select_icon from '../../../../src/assets/images/house_select_icon.png'
+import { AntdCheckBoxSelect } from '../../common/AntdCheckBoxSelect'
+import house from '../../../assets/images/combined-gray@2x.png'
 import links from '../../../config/links';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
-import { Select } from 'antd';
-const { Option } = Select;
+// import { Select } from 'antd';
+// const { Option } = Select;
 
 export class Form extends Component {
+
+    
 
     render() {
         return (
 
             <div className='wrapp' >
                 <h1>Розпочни свій бізнес вже сьогодні</h1>
-                <span >Знайди ідеальне рішення за декілька секунд...</span>
+                <span className="form_subtitle" >Знайди ідеальне рішення за декілька секунд...</span>
 
                 <div className='search_form grid'>
 
-                    <Select defaultValue="lucy" style={{ gridColumn: 'span 5' }}>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="lucy">Jack</Option>
-                        <Option value="lucy">Hitler</Option>
-                    </Select>
+                    {/* <AntdCheckBoxSelect gridColumn='span 5' value="Організаційно правова форма" />
+                    <AntdCheckBoxSelect gridColumn='span 8' value="Оновний вид господарської діяльності (КВЕДи)" /> */}
 
-                    <Select defaultValue="lucy" style={{ gridColumn: 'span 8' }}>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="lucy">Jack</Option>
-                        <Option value="lucy">Hitler</Option>
-                    </Select>
-
-                    <Select defaultValue="lucy" style={{ gridColumn: 'span 5' }}>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="lucy">Jack</Option>
-                        <Option value="lucy">Hitler</Option>
-                    </Select>
-
-                    <Select defaultValue="lucy" style={{ gridColumn: 'span 8' }}>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="lucy">Jack</Option>
-                        <Option value="lucy">Hitler</Option>
-                    </Select>
-
-                    {/*                   
-                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='multiply' id='select_1' />
-                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_2' />
-                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_3' />
-                    <Select width='auto' placeholder='Організаційно правова форма' icon={house_select_icon} type='common' id='select_4' /> */}
+                                      
+                    <CheckBoxSelect width='auto' placeholder='Організаційно правова форма' icon={house} type='checkbox' id='select_1' />
+                    <CheckBoxSelect width='auto' placeholder='Організаційно правова форма' icon={house} type='checkbox' id='select_2' />
+                    <CheckBoxSelect width='auto' placeholder='Організаційно правова форма' icon={house} type='checkbox' id='select_3' />
+                    <CheckBoxSelect width='auto' placeholder='Організаційно правова форма' icon={house} type='checkbox' id='select_4' />
 
                     <p className="price">Ціна</p>
                     <Input className='price_from' placeholder='від (₴)' />

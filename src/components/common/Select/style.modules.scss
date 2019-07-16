@@ -2,7 +2,7 @@
   height: auto;
   padding: 10px 0;
   border-radius: 20px 20px 20px 20px;
-  border:  1px solid #b1a7c8;
+  border: 1px solid #b1a7c8;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -26,15 +26,19 @@
     height: 100%;
     p {
       text-align: left;
-      padding-left: 30px;
+      padding-left: 40px;
+      margin-bottom: 0;
     }
     .select_icon {
       position: absolute;
       left: 15px;
+      width: 17px;
+      height: 15px;
     }
     .arrow {
-      position: absolute;
-      right: 15px;
+      position: absolute; 
+      top: 0px;
+      right: 20px;
     }
   }
   .selected_items {
