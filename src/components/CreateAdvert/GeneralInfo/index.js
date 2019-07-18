@@ -21,28 +21,26 @@ export class GeneralInfo extends Component {
                     <h1>Загальна інформація</h1>
                 </div>
 
-                <div className="first_position">
+                <div className="first_position grid_right_column">
                     <p className="subtitle">Назва організації:<span>*</span></p>
                     <TextArea className="text_area" placeholder="Введіть назву організації" />
                 </div>
 
-                <div className="second_position">
+                <div className="second_position grid_right_column">
                     <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
                     <Input className="input" placeholder="Введіть восьмизначний код" />
                 </div>
 
-                <div className="third_position">
+                <div className="third_position grid_right_column">
                     <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
                     <Input className="input" placeholder="Ведіть ціну в гривнях" />
                 </div>
 
-                <div className="forth_position">
-
+                <div className="forth_position grid_left_column">
+                    <p className="subtitle">Фото документу який засвідчує право власності:<span>*</span></p>
                     <UploadField />
-
-
                     <br />
-                    
+
                 </div>
             </div>
         );

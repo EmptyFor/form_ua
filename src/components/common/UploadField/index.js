@@ -7,8 +7,8 @@ import styles from './styles.modules.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
 export class UloadField extends Component {
 
-    
-    dragZone 
+
+    dragZone
 
     state = {
         drag: false
@@ -40,7 +40,7 @@ export class UloadField extends Component {
             this.setState({ drag: false })
         }
         this.dragZone.classList.remove("dragover")
-        
+
     }
 
     handleDrop = (e) => {
@@ -74,8 +74,8 @@ export class UloadField extends Component {
     render() {
         return (
             <form id="upload-container" method="POST" action="send.php" ref={this.dropRef}>
-                <img id="upload-image" src={ulpoad_img}></img>
-                <div>
+                <div className="upload_info">
+                    <img id="upload-image" src={ulpoad_img}></img>
                     <input id="file-input" type="file" name="file" multiple></input>
                     <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
                 </div>

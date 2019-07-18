@@ -9,9 +9,8 @@ import { createBrowserHistory } from 'history';
 import createSagaMiddleware from 'redux-saga'
 import Routes from './routes';
 import './assets/fonts/AdvenirNext/advenir-next.css'
-import './index.css';
 import './reset.css';
-import './assets/antd/antd.min.css'
+import './index.css';
 
 const history = createBrowserHistory();
 

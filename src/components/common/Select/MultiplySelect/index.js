@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -101,6 +101,7 @@ export class MultiplySelect extends Component {
     //Togle Select List
 
     togleSelectList = (e) => {
+        console.log(e.target)
         if (e.target.getAttribute('id') === 'selectPlaceholder') {
             this.togleIsOpenState()
             this.state.isOpen ? this.closeSelectStyle() : this.openSelectStyle()
@@ -150,12 +151,15 @@ export class MultiplySelect extends Component {
     cloneListItem = (e) => {
         let name = e.target.getAttribute('name')
         return (
-            <div className="selected_item" id={e.target.id}>
-                {name}
-                <div className="remove_button" id={e.target.id} onClick={this.removeListItem}>
-                    ✖
+            <Fragment>
+                <div className="selected_item" id={e.target.id}>
+                    <p>
+                        {name}
+                        <span className="remove_button" id={e.target.id} onClick={this.removeListItem}>✕</span>
+                    </p>
                 </div>
-            </div>
+                <br />
+            </Fragment>
         )
     }
 
