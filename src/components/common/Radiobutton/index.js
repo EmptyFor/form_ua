@@ -8,7 +8,8 @@ export class Radiobutton extends Component {
 
 
     selectRadio = () => {
-        let radio = document.getElementById('PDV_radio').getElementsByTagName('input')
+        let radio = document.getElementById(this.props.id).getElementsByTagName('input')
+        console.log(radio)
         for (let i = 0; i < radio.length; i++) {
             if (radio[i].checked === true) {
                 console.log(radio[i].value)
@@ -20,7 +21,7 @@ export class Radiobutton extends Component {
         return (
             <label class="container" id={`${this.props.id}_${index}`}>
                 <span>{item}</span>
-                <input type="radio" name="radio" value={item} onClick={this.selectRadio}></input>
+                <input type="radio" name={this.props.id} value={item} onClick={this.selectRadio}></input>
                 <span class="checkmark"></span>
             </label>
         )

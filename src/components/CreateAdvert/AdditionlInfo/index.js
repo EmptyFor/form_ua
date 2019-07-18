@@ -58,18 +58,18 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="eith_position grid_left_column">
-                    <p className="subtitle">Є латником ПДВ?<span>*</span></p>
-                    <Radiobutton options={['Так', 'Ні']} id='PDV_radio' />
+                    <p className="subtitle">Є платником ПДВ?<span>*</span></p>
+                    <Radiobutton options={['A', 'B']} id='PDV_radio' />
                 </div>
 
                 <div className="nineth_position grid_left_column">
                     <p className="subtitle">Вела господарську діяльність?</p>
-                    <Radiobutton options={['Так', 'Ні']} id='Economic_activity_radio' />
+                    <Radiobutton options={['C', 'D']} id='Economic_activity_radio' />
                 </div>
 
                 <div className="tenth_position grid_left_column">
                     <p className="subtitle">Без обтяжень та заборгованостей?</p>
-                    <Radiobutton options={['Так', 'Ні']} id='has_owed_radio' />
+                    <Radiobutton options={['E', 'F']} id='has_owed_radio' />
                 </div>
 
                 <div className="eleventh_position grid_left_column">
