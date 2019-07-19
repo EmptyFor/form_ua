@@ -7,20 +7,23 @@ import styles from './styles.modules.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
 export class UloadField extends Component {
 
-
-    dragZone
+    dropRef = React.createRef()
+    imageRef = React.createRef()
+    uploadInfoRef = React.createRef()
 
     state = {
-        drag: false
+        drag: false,
+        dragoverClass: '',
+        image: {
+            src: ulpoad_img
+        }
     }
 
-    dropRef = React.createRef()
+    dropZone = document.getElementById('upload-container')
 
     handleDrag = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        this.dragZone.classList.add("dragover")
-        console.log(this.dragZone.classList)
     }
 
     handleDragIn = (e) => {
@@ -28,41 +31,74 @@ export class UloadField extends Component {
         e.stopPropagation()
         this.dragCounter++
         if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-            this.setState({ drag: true })
+            this.setState({
+                dragging: true,
+                dragoverClass: 'dragover'
+            })
         }
+        // console.log(e.dataTransfer)
+        console.log(1)
     }
 
     handleDragOut = (e) => {
         e.preventDefault()
         e.stopPropagation()
         this.dragCounter--
-        if (this.dragCounter === 0) {
-            this.setState({ drag: false })
-        }
-        this.dragZone.classList.remove("dragover")
-
+        this.setState({
+            dragging: false,
+            dragoverClass: ''
+        })
     }
 
     handleDrop = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        this.setState({ drag: false })
+        this.setState({
+            dragging: false,
+            dragoverClass: ''
+        })
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            this.props.handleDrop(e.dataTransfer.files)
+            let file = e.dataTransfer.files
             e.dataTransfer.clearData()
             this.dragCounter = 0
+            this.previewFile(file)
+            console.log(this.state)
         }
     }
 
+    //Preview Image
+
+    previewFile(file) {
+        let reader = new FileReader();
+        let img = this.imageRef.current
+        let uploadInfo = this.uploadInfoRef.current
+        let uploadContainer = document.getElementById('upload-container')
+
+        reader.onloadend = function () {
+            this.state.image.src = reader.result;
+            console.log(this.state)
+            img.style.width = '100%'
+            uploadContainer.style.padding = '0'
+            uploadInfo.style.display = 'none'
+            img.src = this.state.image.src
+        }.bind(this)
+
+        if (file[0]) {
+            reader.readAsDataURL(file[0]); //reads the data as a URL
+        } else {
+            this.state.image.src = "";
+        }
+    }
+
+    //Init handle func
     componentDidMount() {
-        this.dragZone = document.getElementById('upload-container')
+        this.dragCounter = 0
         let div = this.dropRef.current
         div.addEventListener('dragenter', this.handleDragIn)
         div.addEventListener('dragleave', this.handleDragOut)
         div.addEventListener('dragover', this.handleDrag)
         div.addEventListener('drop', this.handleDrop)
     }
-
     componentWillUnmount() {
         let div = this.dropRef.current
         div.removeEventListener('dragenter', this.handleDragIn)
@@ -73,13 +109,13 @@ export class UloadField extends Component {
 
     render() {
         return (
-            <form id="upload-container" method="POST" action="send.php" ref={this.dropRef}>
-                <div className="upload_info">
-                    <img id="upload-image" src={ulpoad_img}></img>
+            <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} >
+                <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
+                <div className="upload_info" ref={this.uploadInfoRef}>
                     <input id="file-input" type="file" name="file" multiple></input>
                     <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
+                    <label for="file-input">Завантажити</label>
                 </div>
-                <label for="file-input">Завантажити</label>
             </form>
         );
     }

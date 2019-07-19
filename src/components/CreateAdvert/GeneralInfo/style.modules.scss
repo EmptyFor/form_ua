@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(40px, auto);
   grid-gap: 1em;
-  box-sizing:border-box;
+  box-sizing: border-box;
   margin-bottom: 50px;
   .input {
     border-radius: 1.5px;
@@ -15,7 +15,6 @@
     padding: 20px;
     &::placeholder {
       font-family: AvenirNext-Medium;
-      font-size: 12px;
       font-weight: 500;
       font-style: normal;
       font-stretch: normal;
@@ -23,6 +22,9 @@
       letter-spacing: 0.03px;
       color: #99abc3;
     }
+  }
+  .text_area {
+    font-size: 15px;
   }
   #upload-container {
     padding: 5%;
@@ -42,6 +44,6 @@
     display: flex;
     flex-direction: column;
     grid-row: 2 / span 3;
-    height: 85%;
+    height: 98%;
   }
 }

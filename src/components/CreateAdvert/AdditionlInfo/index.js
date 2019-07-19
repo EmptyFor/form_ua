@@ -44,7 +44,7 @@ export class AdditionlInfo extends Component {
 
                 <div className="fifth_position grid_right_column">
                     <p className="subtitle">Ліцензія (до 5 видів):</p>
-                    <Select type="checkbox" width='auto' placeholder='Оберіть зі списку' icon={images.cc} id='ca_form_select_5' />
+                    <Select type="multiply" width='auto' placeholder='Оберіть зі списку' icon={images.cc} id='ca_form_select_5' />
                 </div>
 
                 <div className="sixth_position grid_left_column">
@@ -54,27 +54,29 @@ export class AdditionlInfo extends Component {
 
                 <div className="seventh_position grid_left_column">
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
-                    <Input placeholder="Введіть у форматі ДД/ММ/РРРР" width="100%" className="input" />
+                    <Input type="text" placeholder="Введіть у форматі ДД/ММ/РРРР" width="100%" className="input" />
                 </div>
 
                 <div className="eith_position grid_left_column">
-                    <p className="subtitle">Є платником ПДВ?<span>*</span></p>
-                    <Radiobutton options={['A', 'B']} id='PDV_radio' />
+                    <div className="first_radio">
+                        <p className="subtitle">Є платником ПДВ?<span>*</span></p>
+                        <Radiobutton options={['Так', 'Ні']} id='PDV_radio' />
+                    </div>
+
+                    <div className="second_radio">
+                        <p className="subtitle">Вела господарську діяльність?</p>
+                        <Radiobutton options={['Так', 'Ні']} id='Economic_activity_radio' />
+                    </div>
+
+                    <div className="third_radio">
+                        <p className="subtitle">Без обтяжень та заборгованостей?</p>
+                        <Radiobutton options={['Так', 'Ні']} id='has_owed_radio' />
+                    </div>
                 </div>
 
                 <div className="nineth_position grid_left_column">
-                    <p className="subtitle">Вела господарську діяльність?</p>
-                    <Radiobutton options={['C', 'D']} id='Economic_activity_radio' />
-                </div>
-
-                <div className="tenth_position grid_left_column">
-                    <p className="subtitle">Без обтяжень та заборгованостей?</p>
-                    <Radiobutton options={['E', 'F']} id='has_owed_radio' />
-                </div>
-
-                <div className="eleventh_position grid_left_column">
-                    <p className="subtitle">Організаційно правова форма:<span>*</span></p>
-                    <Select />
+                    <p className="subtitle">Статутний капітал:</p>
+                    <Input type="money" placeholder="Введіть суму в гривнях" width="100%" className="input" />
                 </div>
 
             </div>

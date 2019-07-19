@@ -41,7 +41,7 @@ export class Form extends Component {
                     </div>
 
                     <Link className='links' style={{ gridColumn: 'span 3' }}>
-                        <Button className='extendet_search '
+                        <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 

@@ -28,12 +28,12 @@ export class GeneralInfo extends Component {
 
                 <div className="second_position grid_right_column">
                     <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
-                    <Input className="input" placeholder="Введіть восьмизначний код" />
+                    <Input type="EDRPOY" className="input" placeholder="Введіть восьмизначний код" />
                 </div>
 
                 <div className="third_position grid_right_column">
                     <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
-                    <Input className="input" placeholder="Ведіть ціну в гривнях" />
+                    <Input type="money" className="input" placeholder="Ведіть ціну в гривнях" />
                 </div>
 
                 <div className="forth_position grid_left_column">

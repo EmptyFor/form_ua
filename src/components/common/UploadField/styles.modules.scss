@@ -13,14 +13,17 @@
   letter-spacing: 0.03px;
   text-align: center;
   color: #99abc3;
+  img {
+    width: 51px;
+    margin-bottom: 20px;
+    pointer-events: none;
+  }
   .upload_info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    img {
-      width: 51px;
-      margin-bottom: 20px;
-    }
+    position: initial;
+    pointer-events: none;
   }
   label {
     position: absolute;
@@ -29,6 +32,7 @@
     font-weight: 100;
     color: #fff;
     padding: 2%;
+    pointer-events: all;
     background-color: #1ccee9;
     border-radius: 20px;
     width: 30%;
