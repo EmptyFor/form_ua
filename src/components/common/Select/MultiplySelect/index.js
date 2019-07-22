@@ -12,6 +12,7 @@ export class MultiplySelect extends Component {
         isOpen: false,
         togleClass: 'close',
         placeholder: [this.props.placeholder],
+        selectedItems: [],
         style: {
             arrow: {
                 transform: '',
@@ -114,6 +115,7 @@ export class MultiplySelect extends Component {
             togleClass: 'close'
         })
         this.closeSelectStyle()
+        this.props.getData(this.selectedItems)
     }
 
     //Togle Select List Items
@@ -206,6 +208,7 @@ export class MultiplySelect extends Component {
     pushToSelectedItems(e) {
         let item = e.target.getAttribute('name')
         this.selectedItems.push(item)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     //Remove Selected Items
@@ -214,11 +217,19 @@ export class MultiplySelect extends Component {
         let item = e.target.getAttribute('name')
         let index = this.selectedItems.indexOf(item)
         this.selectedItems.splice(index, 1)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     render() {
         return (
-            <div id={this.props.id} className="common_select" style={this.state.style.select} tabindex="0" onBlur={this.closeSelectList}>
+            <div id={this.props.id}
+                value={[this.state.selectedItems]}
+                className="common_select"
+                name={this.props.name}
+                style={this.state.style.select}
+                tabIndex="0"
+                onBlur={this.closeSelectList}>
+
                 <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
@@ -232,7 +243,7 @@ export class MultiplySelect extends Component {
                         viewBox="0 0 9 5"
                         onClick={this.rotateArrow}>
 
-                        <path fill="#1ADDEF" fill-rule="evenodd" d="M4.375 5L8.75 0H0z">
+                        <path fill="#1ADDEF" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
 
                         </path>
                     </svg>
@@ -244,9 +255,14 @@ export class MultiplySelect extends Component {
 
                     {
                         this.selectItems.map((item, index) => {
-                            return <div value='true' name={item} onClick={this.togleSelectListItems.bind(this)} id={`${index}`} className="list_item" >
+                            return <div value='true'
+                                name={item}
+                                id={index}
+                                key={index}
+                                className="list_item"
+                                onClick={this.togleSelectListItems.bind(this)} >
                                 {item}
-                                <div id={`${index}`} value={false} className="drop_multiply_box"></div>
+                                <div id={index} value={false} className="drop_multiply_box"></div>
                             </div>
                         })
 

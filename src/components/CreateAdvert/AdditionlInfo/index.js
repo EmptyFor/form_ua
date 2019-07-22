@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import * as actions from '../../store/actions/';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../../store/actions/advert'
 import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
@@ -11,7 +11,31 @@ import styles from './style.modules.scss';
 
 export class AdditionlInfo extends Component {
 
-    static propTypes = {}
+    state = {
+        legalForm: '',
+        mainEconomicActivityType: '',
+        additionalEconomicActivityType: [],
+        taxationForm: '',
+        license: [],
+        location: '',
+        registrationDate: '',
+        isPDVPayer: Boolean,
+        broughtEconomicActivity: Boolean,
+        hasDebt: Boolean,
+        shareCapital: '',
+    }
+
+    sendAdditionlInfoData(e) {
+        const { legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital } = this.state
+
+        let name = e.currentTarget.name
+        let value = e.currentTarget.value
+
+        this.setState({
+            [name]: value
+        })
+
+    }
 
     render() {
 
@@ -24,59 +48,135 @@ export class AdditionlInfo extends Component {
 
                 <div className="first_position grid_right_column">
                     <p className="subtitle">Організаційно правова форма:<span>*</span></p>
-                    <Select type="common" width='auto' placeholder='Оберіть зі списку' icon={images.house} id='ca_form_select_1' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="legalForm"
+                        type="common"
+                        width='auto'
+                        placeholder='Оберіть зі списку'
+                        icon={images.house}
+                        id='ca_form_select_1'
+                    />
                 </div>
 
                 <div className="second_position grid_right_column">
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
-                    <Select type="common" width='auto' placeholder='Оберіть зі списку' icon={images.portfolio} id='ca_form_select_2' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="mainEconomicActivityType"
+                        type="common"
+                        width='auto'
+                        placeholder='Оберіть зі списку'
+                        icon={images.portfolio}
+                        id='ca_form_select_2'
+                    />
                 </div>
 
                 <div className="third_position grid_right_column">
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
-                    <Select type="multiply" width='auto' placeholder='Оберіть зі списку' icon={images.plus} id='ca_form_select_3' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="additionalEconomicActivityType"
+                        type="multiply" width='auto'
+                        placeholder='Оберіть зі списку'
+                        icon={images.plus}
+                        id='ca_form_select_3'
+                    />
                 </div>
 
                 <div className="forth_position grid_right_column">
                     <p className="subtitle">Форма оподаткування:<span>*</span></p>
-                    <Select type="common" width='auto' placeholder='Оберіть зі списку' icon={images.lable} id='ca_form_select_4' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="taxationForm"
+                        type="common"
+                        width='auto'
+                        placeholder='Оберіть зі списку'
+                        icon={images.lable}
+                        id='ca_form_select_4'
+                    />
                 </div>
 
                 <div className="fifth_position grid_right_column">
                     <p className="subtitle">Ліцензія (до 5 видів):</p>
-                    <Select type="multiply" width='auto' placeholder='Оберіть зі списку' icon={images.cc} id='ca_form_select_5' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="license"
+                        type="multiply"
+                        width='auto'
+                        placeholder='Оберіть зі списку'
+                        icon={images.cc}
+                        id='ca_form_select_5'
+                    />
                 </div>
 
                 <div className="sixth_position grid_left_column">
                     <p className="subtitle">Місце знаходження/реєстрації:<span>*</span></p>
-                    <Select type="common" width='auto' placeholder='Вибріть місто/населений пункт' icon={images.mapPoint} id='ca_form_select_6' />
+                    <Select
+                        getData={this.sendAdditionlInfoData}
+                        name="location"
+                        type="common"
+                        width='auto'
+                        placeholder='Вибріть місто/населений пункт'
+                        icon={images.mapPoint}
+                        id='ca_form_select_6'
+                    />
                 </div>
 
                 <div className="seventh_position grid_left_column">
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
-                    <Input type="text" placeholder="Введіть у форматі ДД/ММ/РРРР" width="100%" className="input" />
+                    <Input
+                        getData={this.sendAdditionlInfoData}
+                        name="registrationDate"
+                        type="text"
+                        placeholder="Введіть у форматі ДД/ММ/РРРР"
+                        width="100%"
+                        className="input"
+                    />
                 </div>
 
                 <div className="eith_position grid_left_column">
                     <div className="first_radio">
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
-                        <Radiobutton options={['Так', 'Ні']} id='PDV_radio' />
+                        <Radiobutton
+                            getData={this.sendAdditionlInfoData}
+                            name="isPDVPayer"
+                            options={['Так', 'Ні']}
+                            id='PDV_radio'
+                        />
                     </div>
 
                     <div className="second_radio">
                         <p className="subtitle">Вела господарську діяльність?</p>
-                        <Radiobutton options={['Так', 'Ні']} id='Economic_activity_radio' />
+                        <Radiobutton
+                            getData={this.sendAdditionlInfoData}
+                            name="broughtEconomicActivity"
+                            options={['Так', 'Ні']}
+                            id='Economic_activity_radio'
+                        />
                     </div>
 
                     <div className="third_radio">
                         <p className="subtitle">Без обтяжень та заборгованостей?</p>
-                        <Radiobutton options={['Так', 'Ні']} id='has_owed_radio' />
+                        <Radiobutton
+                            getData={this.sendAdditionlInfoData}
+                            name="hasDebt"
+                            options={['Так', 'Ні']}
+                            id='has_owed_radio'
+                        />
                     </div>
                 </div>
 
                 <div className="nineth_position grid_left_column">
                     <p className="subtitle">Статутний капітал:</p>
-                    <Input type="money" placeholder="Введіть суму в гривнях" width="100%" className="input" />
+                    <Input
+                        getData={this.sendAdditionlInfoData}
+                        name="shareCapital"
+                        type="money"
+                        placeholder="Введіть суму в гривнях"
+                        width="100%"
+                        className="input"
+                    />
                 </div>
 
             </div>
@@ -85,8 +185,17 @@ export class AdditionlInfo extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        legalForm: state.advert.legalForm,
+        mainEconomicActivityType: state.advert.mainEconomicActivityType,
+        additionalEconomicActivityType: state.advert.additionalEconomicActivityType,
+        taxationForm: state.advert.taxationForm,
+        license: state.advert.license,
+        location: state.advert.location,
+        registrationDate: state.advert.registrationDate,
+        isPDVPayer: state.advert.isPDVPayer,
+    }),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )(AdditionlInfo);

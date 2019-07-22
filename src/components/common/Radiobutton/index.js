@@ -19,10 +19,10 @@ export class Radiobutton extends Component {
 
     radiobuttons = this.props.options.map((item, index) => {
         return (
-            <label class="container" id={`${this.props.id}_${index}`}>
+            <label className="container" id={`${this.props.id}_${index}`} key={`${this.props.id}_${index}`} name={this.props.name}>
                 <span>{item}</span>
                 <input type="radio" name={this.props.id} value={item} onClick={this.selectRadio}></input>
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
             </label>
         )
     })

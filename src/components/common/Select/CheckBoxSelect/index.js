@@ -17,6 +17,7 @@ export class CheckBoxSelect extends Component {
         isOpen: false,
         togleClass: 'close',
         placeholder: this.props.placeholder,
+        selectedItems: [],
         style: {
             arrow: {
                 transform: '',
@@ -118,7 +119,7 @@ export class CheckBoxSelect extends Component {
 
     //Togle Select List Items
 
-    togleSelectListItems (e) {
+    togleSelectListItems(e) {
         let value = e.target.getAttribute('value')
         this.togleActiveClass(e, value)
         this.fillSelectedItemsArray(e, value)
@@ -141,28 +142,37 @@ export class CheckBoxSelect extends Component {
 
     //Fill selectedItems Array
 
-    fillSelectedItemsArray (e, value) {
+    fillSelectedItemsArray(e, value) {
         value === 'true' ? this.pushToSelectedItems(e) : this.removeFromSelectedItems(e)
     }
 
     //Push Selected Items
 
-    pushToSelectedItems (e) {
+    pushToSelectedItems(e) {
         let item = e.target.getAttribute('name')
         this.selectedItems.push(item)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     //Remove Selected Items
 
-    removeFromSelectedItems (e) {
+    removeFromSelectedItems(e) {
         let item = e.target.getAttribute('name')
         let index = this.selectedItems.indexOf(item)
         this.selectedItems.splice(index, 1)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     render() {
         return (
-            <div id={this.props.id} className="common_select" style={this.state.style.select} tabIndex="0" onBlur={this.closeSelectList}>
+            <div id={this.props.id}
+                className="common_select"
+                name={this.props.name}
+                value={this.state.selectedItems}
+                style={this.state.style.select}
+                tabIndex="0"
+                onBlur={this.closeSelectList}>
+                    
                 <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
