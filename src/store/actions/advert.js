@@ -22,10 +22,10 @@ export const setAdditionalInfo = (legalForm, mainEconomicActivityType, additiona
     shareCapital,
 });
 
-export const setOwnerInfo = (ownerName, phoneNumber) => ({
+export const setOwnerInfo = (ownerName, phoneNumbers) => ({
     type: types.OWNER_INFO,
     ownerName,
-    phoneNumber
+    phoneNumbers
 });
 
 export const setOrganizationName = (payload) => ({

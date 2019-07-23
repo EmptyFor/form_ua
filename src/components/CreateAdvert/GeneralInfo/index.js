@@ -30,6 +30,7 @@ export class GeneralInfo extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className="general_info" >
                 <div className="title" >

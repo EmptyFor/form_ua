@@ -52,13 +52,6 @@ export class Input extends Component {
         };
     }
 
-    //Send data
-
-    sendData = (e) => {
-        let value = e.currentTarget.value.replace(/\D/g, '')
-        this.props.getData(value)
-    }
-
     render() {
 
         const { type, className, placeholder, width, autocorrect, autocapitalize, pattern, minlength, name, id, required } = this.props
@@ -110,12 +103,31 @@ export class Input extends Component {
                 id={id}
                 required={required}
                 mask="99 - 99 - 99 - 99"
-                maskChar=""
+                maskChar="_"
                 value={this.state.value}
                 onChange={this.onChange}
                 onBlur={this.props.getData}
                 onClick={this.onClick}
                 beforeMaskedValueChange={this.beforeMaskedValueChange} />
+        }
+        else if (this.props.type === 'date') {
+            return <InputMask className={`common-input ${className}`}
+                placeholder={placeholder}
+                style={{ width: width }}
+                autoCorrect={autocorrect}
+                autoCapitalize={autocapitalize}
+                pattern={pattern}
+                minLength={minlength}
+                name={name}
+                id={id}
+                required={required}
+                mask="99/99/9999"
+                maskChar=""
+                value={this.state.value}
+                onChange={this.onChange}
+                onBlur={this.props.getData}
+                onClick={this.onClick}
+                 />
         }
         else {
             return <input type={type}

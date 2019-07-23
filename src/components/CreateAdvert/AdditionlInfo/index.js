@@ -10,6 +10,10 @@ import { Radiobutton } from '../../common/Radiobutton';
 import styles from './style.modules.scss';
 
 export class AdditionlInfo extends Component {
+    constructor() {
+        super()
+        this.sendAdditionlInfoData = this.sendAdditionlInfoData.bind(this)
+    }
 
     state = {
         legalForm: '',
@@ -19,26 +23,40 @@ export class AdditionlInfo extends Component {
         license: [],
         location: '',
         registrationDate: '',
-        isPDVPayer: Boolean,
-        broughtEconomicActivity: Boolean,
-        hasDebt: Boolean,
+        isPDVPayer: '',
+        broughtEconomicActivity: '',
+        hasDebt: '',
         shareCapital: '',
     }
 
     sendAdditionlInfoData(e) {
         const { legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital } = this.state
 
-        let name = e.currentTarget.name
-        let value = e.currentTarget.value
+        let name = e.target.getAttribute('name')
+        let value = e.target.getAttribute('value') || e.target.value
+ 
+        name === 'additionalEconomicActivityType' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
+        name === 'shareCapital' ? value = value.replace(/\D/g, '') : void 0
 
         this.setState({
             [name]: value
         })
 
+
+        legalForm && 
+        mainEconomicActivityType && 
+        additionalEconomicActivityType.length <= 10 &&
+        taxationForm &&
+        license.length <=5 &&
+        location &&
+        registrationDate.length === 10 &&
+        isPDVPayer ?
+        this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
+        void 0
     }
 
     render() {
-
+        console.log(this.props)
         return (
             <div className="additionl_info" >
                 <div className="title" >
@@ -128,7 +146,7 @@ export class AdditionlInfo extends Component {
                     <Input
                         getData={this.sendAdditionlInfoData}
                         name="registrationDate"
-                        type="text"
+                        type="date"
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
                         width="100%"
                         className="input"
@@ -142,7 +160,7 @@ export class AdditionlInfo extends Component {
                             getData={this.sendAdditionlInfoData}
                             name="isPDVPayer"
                             options={['Так', 'Ні']}
-                            id='PDV_radio'
+                            id='isPDVPayer'
                         />
                     </div>
 
@@ -152,7 +170,7 @@ export class AdditionlInfo extends Component {
                             getData={this.sendAdditionlInfoData}
                             name="broughtEconomicActivity"
                             options={['Так', 'Ні']}
-                            id='Economic_activity_radio'
+                            id='broughtEconomicActivity'
                         />
                     </div>
 
@@ -162,7 +180,7 @@ export class AdditionlInfo extends Component {
                             getData={this.sendAdditionlInfoData}
                             name="hasDebt"
                             options={['Так', 'Ні']}
-                            id='has_owed_radio'
+                            id='hasDebt'
                         />
                     </div>
                 </div>
@@ -194,6 +212,9 @@ export default connect(
         location: state.advert.location,
         registrationDate: state.advert.registrationDate,
         isPDVPayer: state.advert.isPDVPayer,
+        broughtEconomicActivity: state.advert.broughtEconomicActivity,
+        hasDebt: state.advert.hasDebt,
+        shareCapital: state.advert.shareCapital
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

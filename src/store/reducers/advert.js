@@ -18,7 +18,7 @@ const initState = {
     hasDebt: '',
     shareCapital: '',
     ownerName: '',
-    phoneNumber: [],
+    phoneNumbers: [],
 }
 
 export default (state = initState, action) => {
@@ -49,7 +49,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 ownerName: action.ownerName,
-                phoneNumber: action.ownerName
+                phoneNumbers: action.phoneNumbers
             }
         case types.ORGANIZATION_NAME:
             return {
@@ -134,7 +134,7 @@ export default (state = initState, action) => {
         case types.PHONE_NUMBER:
             return {
                 ...state,
-                phoneNumber: action.payload
+                phoneNumbers: action.payload
             };
         default:
             return state

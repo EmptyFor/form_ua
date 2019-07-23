@@ -8,16 +8,14 @@ import styles from './style.modules.scss';
 
 export class CheckBoxSelect extends Component {
 
-    static propTypes = {
-        token: PropTypes.string,
-        error: PropTypes.string,
-        authActions: PropTypes.object,
-    }
+    selectValue = React.createRef()
+    selectArea = React.createRef()
+
     state = {
         isOpen: false,
         togleClass: 'close',
         placeholder: this.props.placeholder,
-        selectedItems: [],
+        value: [],
         style: {
             arrow: {
                 transform: '',
@@ -49,6 +47,7 @@ export class CheckBoxSelect extends Component {
     ]
 
     selectedItems = []
+    value = []
 
     //Togle isOpen state
 
@@ -61,9 +60,10 @@ export class CheckBoxSelect extends Component {
     //Togle Open & Close Styles
 
     openSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'open',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px 20px 0px 0px',
                     borderBottom: 'none',
@@ -76,15 +76,16 @@ export class CheckBoxSelect extends Component {
                 },
                 border: {
                     display: 'block'
-                }
+                },
             }
-        })
+        }))
     }
 
     closeSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'close',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px',
                     borderBottom: 'solid 1px #b1a7c8',
@@ -97,9 +98,9 @@ export class CheckBoxSelect extends Component {
                 },
                 border: {
                     display: 'none'
-                }
+                },
             }
-        })
+        }))
     }
 
     //Togle Select List
@@ -123,7 +124,6 @@ export class CheckBoxSelect extends Component {
         let value = e.target.getAttribute('value')
         this.togleActiveClass(e, value)
         this.fillSelectedItemsArray(e, value)
-        console.log(this.selectedItems)
     }
 
     //Toggle Active Class
@@ -172,7 +172,7 @@ export class CheckBoxSelect extends Component {
                 style={this.state.style.select}
                 tabIndex="0"
                 onBlur={this.closeSelectList}>
-                    
+
                 <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>

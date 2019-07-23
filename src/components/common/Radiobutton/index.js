@@ -6,20 +6,27 @@ import styles from './style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Radiobutton extends Component {
 
+    value = ''
 
     selectRadio = () => {
         let radio = document.getElementById(this.props.id).getElementsByTagName('input')
-        console.log(radio)
         for (let i = 0; i < radio.length; i++) {
             if (radio[i].checked === true) {
-                console.log(radio[i].value)
+                this.value = radio[i].value
             }
         }
     }
 
     radiobuttons = this.props.options.map((item, index) => {
         return (
-            <label className="container" id={`${this.props.id}_${index}`} key={`${this.props.id}_${index}`} name={this.props.name}>
+            <label
+                className="container"
+                id={`${this.props.id}_${index}`}
+                key={`${this.props.id}_${index}`}
+                name={this.props.name}
+                value={this.value}
+                onChange={this.props.getData}
+            >
                 <span>{item}</span>
                 <input type="radio" name={this.props.id} value={item} onClick={this.selectRadio}></input>
                 <span className="checkmark"></span>
