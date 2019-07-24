@@ -62,8 +62,22 @@
             height: 20px;
             line-height: 20px;
             background-color: #1ccee9;
-            text-align: center
+            text-align: center;
+            font-weight: bold;
+            color: white;
         }
     }
 
+}
+
+.pagination_count{
+    width: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+        span{
+            cursor: pointer;
+        }
+    
 }

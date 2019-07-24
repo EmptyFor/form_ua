@@ -223,7 +223,6 @@ class Header extends Component {
     console.log(e)
   }
   render() {
-    console.log(links)
     return (
       <header className={`menu ${this.props.className}`}>
         <div className={styles.language} id="language">
@@ -236,16 +235,28 @@ class Header extends Component {
         </Link>
 
         <div className={styles.right_side}>
+<<<<<<< HEAD
           {
             this.props.hide_ca_button !== true &&
             <Link className={styles.create_advert} to={links.createAdvert}>
               <CreateAdvertBtn />
             </Link>
+=======
+          {this.props.fix === false ?
+            <Link className={styles.create_advert} to={links.createAdvert}>
+              <CreateAdvertBtn onClick={this.handleClick} />
+            </Link>
+            :
+            <div></div>
+
+>>>>>>> ce341cd18eeaf8abb768b7bd5495ac23d22396fc
           }
           <div className={styles.profile}>
-            <p>
-              Profile
+            <Link to={links.profile}>
+              <p>
+                Profile
             </p>
+            </Link>
           </div>
         </div>
       </header>

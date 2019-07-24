@@ -7,6 +7,7 @@ export default {
     registrationTwice:'/registration_twice_step',
     search:'/extended_search',
     profile:'/profile',
-    detail:'/details_info'
+    detail:'/details_info',
+    profile:'/profile'
   }
   

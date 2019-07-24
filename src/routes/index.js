@@ -11,7 +11,7 @@ import { MainTemplate } from '../components/themes';
 import { RegistrationTwice } from '../components/Registration/TwicePage';
 import Search from '../components/Search';
 import Registration from '../components/Registration';
-
+import Profile from '../components/Profile'
 
 
 class Routes extends PureComponent {
@@ -27,6 +27,7 @@ class Routes extends PureComponent {
           <Provider>
             <MainTemplate>
               <Route exact path={links.home} component={MainPage} />
+              <Route exact path={links.profile} component={Profile} />
               <Route exact path={links.createAdvert} component={CreateAdvert} />
               <Route exact path={links.registrationFirst} component={RegistrationFirst} />
               <Route exact path={links.registrationTwice} component={RegistrationTwice} />

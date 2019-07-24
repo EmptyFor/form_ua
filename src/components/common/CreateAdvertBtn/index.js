@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from './styles.modules.scss'
+import './styles.modules.scss'
 
 export default function CreateAdvertBtn(props) {
-    return <div className="advert">Створити оголошення <span className="adding_advert">+</span></div>
+
+    return <div className={`advert ${props.className}`} onClick={props.onClick} fix={props.fix} >Створити оголошення <span className="adding_advert">+</span></div>
 }
