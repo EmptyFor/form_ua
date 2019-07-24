@@ -5,23 +5,23 @@ import { Footer } from './Footer';
 
 class App extends Component {
 
-  render () {
+  render() {
     // TODO: add app global messages here with other global things
 
     return (
-        <Fragment>
-        { this.props.children }
+      <Fragment>
+        {this.props.children}
 
-        { <Footer /> }
-        </Fragment>
-    //   <Fragment>
-    //     { this.props.children }
-    //   </Fragment>
+        <Footer />
+      </Fragment>
+      //   <Fragment>
+      //     { this.props.children }
+      //   </Fragment>
     )
   }
 }
 
 export default connect(
-  (state) => ({ }),
-  dispatch => ({ })
+  (state) => ({}),
+  dispatch => ({})
 )(App);

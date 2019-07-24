@@ -1,3 +1,7 @@
+.header {
+  background-image: linear-gradient(266deg, #0072f0, #20bdcb);
+}
+
 .ca_bg {
   padding: 10%;
   .form_bg {
@@ -5,11 +9,11 @@
     .form_content_bg {
       background-color: #efeff6;
       padding: 3% 5%;
-      .grid_right_column {
+      .grid_left_column {
         margin-bottom: 25px;
         margin-left: 10px;
       }
-      .grid_left_column {
+      .grid_right_column {
         margin-bottom: 25px;
         margin-left: 60px;
       }

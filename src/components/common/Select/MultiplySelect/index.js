@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
@@ -128,11 +129,8 @@ export class MultiplySelect extends Component {
 
     togleSelectListItems(e) {
         let value = e.target.getAttribute('value')
-        this.setTop()
         this.togleActiveClass(e.target, value)
-        this.fillSelectedItemsArray(e, value)
         this.fillValue(e, value)
-        console.log(this.state.style.selectList)
     }
 
     //Toggle Active Class
@@ -166,7 +164,7 @@ export class MultiplySelect extends Component {
                         <span className="remove_button" id={e.target.id} onClick={this.removeListItem}>✕</span>
                     </p>
                 </div>
-                <br/>
+                <br />
             </Fragment>
         )
     }
@@ -175,6 +173,7 @@ export class MultiplySelect extends Component {
 
     addListItem = (e) => {
         this.value.push(this.cloneListItem(e))
+        this.pushToSelectedItems(e)
 
         this.setState(prevState => ({
             value: this.value,
@@ -195,13 +194,12 @@ export class MultiplySelect extends Component {
     removeListItem = (e) => {
         let index = e.target.getAttribute('id')
         let target = this.selectValue.current.querySelector(`#i_${index}`).getAttribute('value')
-
-        //Remove from selectedItems and value
-
         let i = this.selectedItems.indexOf(target)
 
         this.value.splice(i, 1)
         this.selectedItems.splice(i, 1)
+
+
         if (this.selectedItems.join('') === '') {
             this.setState(prevState => ({
                 style: {
@@ -226,12 +224,6 @@ export class MultiplySelect extends Component {
         this.togleActiveClass(listItem[index])
     }
 
-    //Fill selectedItems Array
-
-    fillSelectedItemsArray(e, value) {
-        value === 'true' ? this.pushToSelectedItems(e) : this.removeFromSelectedItems(e)
-    }
-
     //Push Selected Items
 
     pushToSelectedItems(e) {
@@ -240,20 +232,13 @@ export class MultiplySelect extends Component {
         this.setState({ selectedItems: this.selectedItems })
     }
 
-    //Remove Selected Items
-
-    removeFromSelectedItems(e) {
-        let item = e.target.getAttribute('name')
-        let index = this.selectedItems.indexOf(item)
-        this.selectedItems.splice(index, 1)
-        this.setState({ selectedItems: this.selectedItems })
-    }
-
     //Set top for select list
 
     setTop = () => {
         let h = this.selectArea.current.offsetHeight
         this.top = h + 'px'
+
+        this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
     }
 
     componentDidMount() {
@@ -265,7 +250,10 @@ export class MultiplySelect extends Component {
 
     componentDidUpdate() {
         this.setTop()
-        console.log(this.top)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? console.log(this.props) : void 0
     }
 
     render() {
@@ -282,7 +270,7 @@ export class MultiplySelect extends Component {
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
                     <div id="selectValue" ref={this.selectValue} className="select_value" style={this.state.style.value} >
-                        {this.value}
+                        {this.state.value.map(item => { return item })}
                     </div>
                     <div id="selected_items" className="selected_items" ></div>
                     <svg id="arrow"
@@ -302,7 +290,7 @@ export class MultiplySelect extends Component {
 
                 <div className="border" style={this.state.style.border}></div>
 
-                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{top: this.top}} >
+                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
 
                     {
                         this.selectItems.map((item, index) => {
@@ -326,7 +314,10 @@ export class MultiplySelect extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        clear: state.advert.clear
+    }),
     dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
     })
 )(MultiplySelect);

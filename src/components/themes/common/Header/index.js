@@ -236,9 +236,12 @@ class Header extends Component {
         </Link>
 
         <div className={styles.right_side}>
-          <Link className={styles.create_advert} to={links.createAdvert}>
-            <CreateAdvertBtn />
-          </Link>
+          {
+            this.props.hide_ca_button !== true &&
+            <Link className={styles.create_advert} to={links.createAdvert}>
+              <CreateAdvertBtn />
+            </Link>
+          }
           <div className={styles.profile}>
             <p>
               Profile

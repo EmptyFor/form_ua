@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Input } from '../../common/Input';
 import { bindActionCreators } from 'redux';
+import { Input } from '../../common/Input';
 import * as actions from '../../../store/actions/advert';
 import styles from './style.modules.scss'
 
@@ -61,7 +61,6 @@ export class OwnerInfo extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="owner_info">
                 <div className="title" >
@@ -69,7 +68,7 @@ export class OwnerInfo extends Component {
                     <h1>Дані про власника</h1>
                 </div>
 
-                <div className="first_position grid_right_column">
+                <div className="first_position grid_left_column">
                     <p className="subtitle">ПІБ власника/юридичної особи:<span>*</span></p>
                     <Input
                         placeholder="Введіть прізвище ім’я та по-батькові власника"
@@ -80,7 +79,7 @@ export class OwnerInfo extends Component {
                     />
                 </div>
 
-                <div className="second_position grid_left_column">
+                <div className="second_position grid_right_column">
                     <p className="subtitle">Контактний номер телефону:<span>*</span></p>
                     <Input
                         type='phone'

@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
 import styles from './style.modules.scss';
 
 export class CommonSelect extends Component {
+
+    selectArea = React.createRef()
 
     state = {
         isOpen: false,
         togleClass: 'close',
         value: '',
         style: {
-
+            border: {
+                display: 'none'
+            }
         }
     }
 
@@ -126,7 +130,31 @@ export class CommonSelect extends Component {
                 }
             }
         }));
-        console.log(this.state)
+    }
+
+    //Set top for select list
+
+    setTop = () => {
+        let h = this.selectArea.current.offsetHeight
+        this.top = h + 'px'
+
+        this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
+    }
+
+    componentDidMount() {
+        window.onload = this.setTop
+        window.onresize = function () {
+            this.setTop()
+        }.bind(this)
+    }
+
+    componentDidUpdate() {
+        this.setTop()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // console.log(nextProps)
+        nextProps.clear ? console.log(this.props) : void 0
     }
 
     render() {
@@ -140,7 +168,7 @@ export class CommonSelect extends Component {
                 onBlur={this.closeSelectList}
                 onClick={this.togleSelectList}>
 
-                <div id="selectArea" className="select_area" >
+                <div id="selectArea" className="select_area" ref={this.selectArea}>
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
                     <div id="selectValue" className="select_value" style={this.state.style.value} >{this.state.value}</div>
@@ -160,17 +188,15 @@ export class CommonSelect extends Component {
                     </svg>
                 </div>
 
+                <div className="border" style={this.state.style.border}></div>
 
-
-                <div id="select_list" className={`select_list ${this.state.togleClass}`} >
+                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
 
                     {
                         this.selectItems.map((item, index) => {
                             return <div value='false' onClick={this.setSelectValue} id={index} key={index} className="list_item" >{item}</div>
                         })
                     }
-
-
 
                 </div>
             </div>
@@ -179,7 +205,10 @@ export class CommonSelect extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        clear: state.advert.clear
+    }),
     dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
     })
 )(CommonSelect);

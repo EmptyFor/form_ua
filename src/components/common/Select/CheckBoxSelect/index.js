@@ -163,6 +163,26 @@ export class CheckBoxSelect extends Component {
         this.setState({ selectedItems: this.selectedItems })
     }
 
+    //Set top for select list
+
+    setTop = () => {
+        let h = this.selectArea.current.offsetHeight
+        this.top = h + 'px'
+
+        this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
+    }
+
+    componentDidMount() {
+        window.onload = this.setTop
+        window.onresize = function () {
+            this.setTop()
+        }.bind(this)
+    }
+
+    componentDidUpdate() {
+        this.setTop()
+    }
+
     render() {
         return (
             <div id={this.props.id}
@@ -173,7 +193,7 @@ export class CheckBoxSelect extends Component {
                 tabIndex="0"
                 onBlur={this.closeSelectList}>
 
-                <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
+                <div id="selectArea" className="select_area" onClick={this.togleSelectList} ref={this.selectArea} >
                     <img className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
                     <div id="selected_items" className="selected_items" ></div>
@@ -192,9 +212,9 @@ export class CheckBoxSelect extends Component {
                     </svg>
                 </div>
 
-                <div className="border" style={this.state.style.border}></div>
+                <div className="border" style={this.state.style.border} style={{ top: this.top }}></div>
 
-                <div id="select_list" className={`select_list ${this.state.togleClass}`} >
+                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
 
                     {
                         this.selectItems.map((item, index) => {

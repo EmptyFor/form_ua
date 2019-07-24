@@ -16,11 +16,15 @@ export class FormFooter extends Component {
         this.setState(prevState => ({test: !prevState.test}))
     }
 
+    clearAllFields = () => {
+        this.props.actions.clearAllInfo(true)
+    }
+
     render() {
         console.log(this.props)
         return (
             <div className="form_footer" >
-                <Button className="clear_btn grey_btn" text="Очистити дані" width="20%" />
+                <Button className="clear_btn grey_btn" text="Очистити дані" width="20%" onClick={this.clearAllFields} />
                 <Button className="publish_btn" text="Опублікувати" width="20%" onClick={this.handleClick} />
             </div>
         );
@@ -46,6 +50,7 @@ export default connect(
         shareCapital: state.advert.shareCapital,
         ownerName: state.advert.ownerName,
         phoneNumbers: state.advert.phoneNumbers,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

@@ -1,6 +1,7 @@
 import React, { Component, Fragment, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 import InputMask from 'react-input-mask';
 import styles from '../Input/style.modules.scss';
@@ -9,6 +10,8 @@ import styles from '../Input/style.modules.scss';
 
 
 export class Input extends Component {
+
+    inputRef = React.createRef()
 
     state = {
         value: '',
@@ -52,19 +55,32 @@ export class Input extends Component {
         };
     }
 
-    render() {
+    clearInput = () => {
+        this.inputRef.current.value = ""
+        this.setState({value: ""})
+        try {
+            this.inputRef.current.setInputValue('')
+        }
+        catch {
+            void 0
+        }
+    }
 
-        const { type, className, placeholder, width, autocorrect, autocapitalize, pattern, minlength, name, id, required } = this.props
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.clear)
+        nextProps.clear ? this.clearInput() : void 0
+    }
+
+    render() {
+        console.log(this.inputRef)
+        const { type, className, placeholder, width, name, id, required } = this.props
 
         if (this.props.type === 'phone') {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width }}
-                autoCorrect={autocorrect}
-                autoCapitalize={autocapitalize}
-                pattern={pattern}
-                minLength={minlength}
                 name={name}
+                ref={this.inputRef}
                 id={id}
                 required={required}
                 mask="+ 38 (099) 999 - 99 - 99"
@@ -80,11 +96,8 @@ export class Input extends Component {
                 className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width }}
-                autoCorrect={autocorrect}
-                autoCapitalize={autocapitalize}
-                pattern={pattern}
-                minLength={minlength}
                 name={name}
+                ref={this.inputRef}
                 onChange={this.moneyInput}
                 onBlur={this.props.getData}
                 id={id}
@@ -95,11 +108,8 @@ export class Input extends Component {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width }}
-                autoCorrect={autocorrect}
-                autoCapitalize={autocapitalize}
-                pattern={pattern}
-                minLength={minlength}
                 name={name}
+                ref={this.inputRef}
                 id={id}
                 required={required}
                 mask="99 - 99 - 99 - 99"
@@ -114,11 +124,8 @@ export class Input extends Component {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width }}
-                autoCorrect={autocorrect}
-                autoCapitalize={autocapitalize}
-                pattern={pattern}
-                minLength={minlength}
                 name={name}
+                ref={this.inputRef}
                 id={id}
                 required={required}
                 mask="99/99/9999"
@@ -127,18 +134,15 @@ export class Input extends Component {
                 onChange={this.onChange}
                 onBlur={this.props.getData}
                 onClick={this.onClick}
-                 />
+            />
         }
         else {
             return <input type={type}
                 className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width }}
-                autoCorrect={autocorrect}
-                autoCapitalize={autocapitalize}
-                pattern={pattern}
-                minLength={minlength}
                 name={name}
+                ref={this.inputRef}
                 onBlur={this.props.getData}
                 id={id}
                 required={required}
@@ -154,9 +158,9 @@ export class Input extends Component {
 
 export default connect(
     (state) => ({
-
+        clear: state.advert.clear
     }),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )(Input);

@@ -3,11 +3,11 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
+import styles from './style.modules.scss';
 import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { Radiobutton } from '../../common/Radiobutton';
-import styles from './style.modules.scss';
 
 export class AdditionlInfo extends Component {
     constructor() {
@@ -53,10 +53,11 @@ export class AdditionlInfo extends Component {
         isPDVPayer ?
         this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
         void 0
+    
+        this.props.actions.clearAllInfo(false)
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="additionl_info" >
                 <div className="title" >
@@ -64,7 +65,7 @@ export class AdditionlInfo extends Component {
                     <h1>Положення згідно законодавства</h1>
                 </div>
 
-                <div className="first_position grid_right_column">
+                <div className="first_position grid_left_column">
                     <p className="subtitle">Організаційно правова форма:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -77,7 +78,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="second_position grid_right_column">
+                <div className="second_position grid_left_column">
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -90,7 +91,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="third_position grid_right_column">
+                <div className="third_position grid_left_column">
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -102,7 +103,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="forth_position grid_right_column">
+                <div className="forth_position grid_left_column">
                     <p className="subtitle">Форма оподаткування:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -115,7 +116,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="fifth_position grid_right_column">
+                <div className="fifth_position grid_left_column">
                     <p className="subtitle">Ліцензія (до 5 видів):</p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -128,7 +129,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="sixth_position grid_left_column">
+                <div className="sixth_position grid_right_column">
                     <p className="subtitle">Місце знаходження/реєстрації:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -141,7 +142,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="seventh_position grid_left_column">
+                <div className="seventh_position grid_right_column">
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
                     <Input
                         getData={this.sendAdditionlInfoData}
@@ -153,7 +154,7 @@ export class AdditionlInfo extends Component {
                     />
                 </div>
 
-                <div className="eith_position grid_left_column">
+                <div className="eith_position grid_right_column">
                     <div className="first_radio">
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
                         <Radiobutton
@@ -185,7 +186,7 @@ export class AdditionlInfo extends Component {
                     </div>
                 </div>
 
-                <div className="nineth_position grid_left_column">
+                <div className="nineth_position grid_right_column">
                     <p className="subtitle">Статутний капітал:</p>
                     <Input
                         getData={this.sendAdditionlInfoData}

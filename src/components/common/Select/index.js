@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
@@ -29,7 +29,10 @@ export class Select extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        clear: state.advert.clear
+    }),
     dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
     })
 )(Select);
