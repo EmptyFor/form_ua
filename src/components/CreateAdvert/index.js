@@ -3,13 +3,12 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
+import FormHeader from './FormHeader';
 import GeneralInfo from './GeneralInfo';
-import StatutInfo from './StatutInfo';
+import AdditionlInfo from './AdditionlInfo';
 import OwnerInfo from './OwnerInfo';
-import styles from '../CreateAdvert/style.modules.scss'
-import { Modal } from '../common/Modal';
-import { Select } from 'antd';
-const { Option } = Select;
+import FormFooter from './FormFooter';
+import styles from '../CreateAdvert/style.modules.scss';
 export class CreateAdvert extends Component {
 
     //  <GeneralInfo />
@@ -22,15 +21,16 @@ export class CreateAdvert extends Component {
 
         return (
             <Fragment>
-                <div className="bg">
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Select defaultValue="lucy" style={{ width: 120 }}>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="lucy">Jack</Option>
-                            <Option value="lucy">Hitler</Option>
-                        </Select>
+                <div className="ca_bg">
+                    <div className="form_bg">
+                        <FormHeader />
+                        <div className="form_content_bg">
+                            <GeneralInfo />
+                            <AdditionlInfo />
+                            <OwnerInfo />
+                        </div>
+                        <FormFooter />
                     </div>
-
                 </div>
             </Fragment>
         );

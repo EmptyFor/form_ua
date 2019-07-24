@@ -3,10 +3,14 @@
   border-radius: 1.5px;
   border: solid 0.5px rgba(177, 167, 200, 0.19);
   background-color: #ffffff;
-  padding: 4% 3%;
+  padding: 10px 15px;
+  height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: AvenirNext-Medium;
   &::placeholder {
     font-family: AvenirNext-Medium;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;

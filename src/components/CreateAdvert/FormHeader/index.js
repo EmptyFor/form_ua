@@ -3,17 +3,17 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
-import styles from './style.modules.scss'
+import styles from './style.modules.scss';
 
-export class StatutInfo extends Component {
+export class FormHeader extends Component {
 
     static propTypes = {}
 
     render() {
 
         return (
-            <div>
-
+            <div className="form_header" >
+                <h1>Створити оголошення про продаж</h1>
             </div>
         );
     }
@@ -24,4 +24,4 @@ export default connect(
     dispatch => ({
         // actions: bindActionCreators(actions, dispatch)
     })
-)(StatutInfo);
+)(FormHeader);

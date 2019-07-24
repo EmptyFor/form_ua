@@ -1,0 +1,54 @@
+.additionl_info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(40px, auto);
+  grid-gap: 1em;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+  .input {
+    padding: 10px 20px;
+  }
+  .first_position {
+    grid-row-start: 2;
+  }
+  .second_position {
+    grid-row-start: 3;
+  }
+  .third_position {
+    grid-row-start: 4;
+  }
+  .forth_position {
+    grid-row-start: 5;
+  }
+  .fifth_position {
+    grid-row-start: 6;
+  }
+  .sixth_position {
+    grid-row-start: 2;
+  }
+  .seventh_position {
+    grid-row-start: 3;
+  }
+  .eith_position {
+    grid-row: 4 / span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .first_radio {
+      display: flex;
+      justify-content: space-between;
+    }
+    .second_radio {
+      display: flex;
+      justify-content: space-between;
+    }
+    .third_radio {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .nineth_position {
+    grid-column-start: 2;
+    grid-row-start: 6;
+  }
+}

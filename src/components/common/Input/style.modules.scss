@@ -2,4 +2,20 @@
   padding: 5px;
   border-radius: 20px;
   border: solid 0.5px #b1a7c8;
+  box-sizing: border-box;
+  font-family: AvenirNext-Medium;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.67;
+  letter-spacing: 0.08px;
+  color: #28252f;
 }
+
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   /* display: none; <- Crashes Chrome on hover */
+//   -webkit-appearance: none;
+//   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+// }
