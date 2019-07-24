@@ -20,7 +20,7 @@ export class MainPage extends Component {
         return (
             <div className="bg">
                 <img className="image_bg" src={triangle_bg}></img>
-                <Header />
+                <Header fix={false}/>
                 <Form />
                 <Info />
             </div>

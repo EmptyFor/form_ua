@@ -1,0 +1,63 @@
+body {
+  background-color: #efeff6;
+}
+.profile_wrapper {
+  width: 87%;
+  min-height: 100vh;
+  margin: 0 auto;
+  margin-block-start: 7%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .profile_list {
+    width: 60.8%;
+    min-height: 100%;
+    border: 1px solid black;
+    background-color: #fff;
+  }
+  .profile_info {
+    width: 30%;
+    height: 30vh;
+    border: 1px solid black;
+    background-color: #fff;
+    .info_head {
+      height: 7.5vh;
+      padding: 0 9%;
+    }
+  }
+  .profile_info_main_contain {
+    height: 78%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 8% 10%;
+    flex-direction: column;
+    
+    span{
+        margin-block-end:8%;
+        font-size: 20px
+    }
+}
+}
+.profile_list_header {
+  height: 7.5%;
+  border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+  font-size: 20px;
+  font-weight: 600;
+  align-items: center;
+  letter-spacing: 0.09px;
+  color: #99abc3;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.profile_create_advert_btn {
+  border-radius: 17.5px;
+  border: solid 2px #99abc3;
+  color: black;
+  margin-block-start: 0;
+  .adding_advert {
+    background: rgb(0, 217, 255);
+    font-size: 18px;
+    color: white;
+  }
+}
