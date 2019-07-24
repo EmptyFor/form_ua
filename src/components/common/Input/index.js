@@ -18,8 +18,8 @@ export class Input extends Component {
 
     moneyInput = (e) => {
         let isValid = /\D/g
-
         e.target.value = e.target.value.replace(isValid, '')
+        this.moneyInputValue = e.target.value
 
         let out = e.target.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         e.target.value = out
@@ -38,7 +38,6 @@ export class Input extends Component {
         var selection = newState.selection;
         var cursorPosition = selection ? selection.start : null;
 
-        // keep minus if entered by user
         if (value.endsWith('-') && userInput !== '-' && !this.state.value.endsWith('-')) {
             if (cursorPosition === value.length) {
                 cursorPosition--;
@@ -64,7 +63,7 @@ export class Input extends Component {
                 autoCorrect={autocorrect}
                 autoCapitalize={autocapitalize}
                 pattern={pattern}
-                minlength={minlength}
+                minLength={minlength}
                 name={name}
                 id={id}
                 required={required}
@@ -73,6 +72,7 @@ export class Input extends Component {
                 value={this.state.value}
                 onChange={this.onChange}
                 onClick={this.onClick}
+                onBlur={this.props.getData}
                 beforeMaskedValueChange={this.beforeMaskedValueChange} />
         }
         else if (this.props.type === 'money') {
@@ -83,9 +83,10 @@ export class Input extends Component {
                 autoCorrect={autocorrect}
                 autoCapitalize={autocapitalize}
                 pattern={pattern}
-                minlength={minlength}
+                minLength={minlength}
                 name={name}
                 onChange={this.moneyInput}
+                onBlur={this.props.getData}
                 id={id}
                 required={required}
             ></input>
@@ -97,16 +98,36 @@ export class Input extends Component {
                 autoCorrect={autocorrect}
                 autoCapitalize={autocapitalize}
                 pattern={pattern}
-                minlength={minlength}
+                minLength={minlength}
                 name={name}
                 id={id}
                 required={required}
                 mask="99 - 99 - 99 - 99"
+                maskChar="_"
+                value={this.state.value}
+                onChange={this.onChange}
+                onBlur={this.props.getData}
+                onClick={this.onClick}
+                beforeMaskedValueChange={this.beforeMaskedValueChange} />
+        }
+        else if (this.props.type === 'date') {
+            return <InputMask className={`common-input ${className}`}
+                placeholder={placeholder}
+                style={{ width: width }}
+                autoCorrect={autocorrect}
+                autoCapitalize={autocapitalize}
+                pattern={pattern}
+                minLength={minlength}
+                name={name}
+                id={id}
+                required={required}
+                mask="99/99/9999"
                 maskChar=""
                 value={this.state.value}
                 onChange={this.onChange}
+                onBlur={this.props.getData}
                 onClick={this.onClick}
-                beforeMaskedValueChange={this.beforeMaskedValueChange} />
+                 />
         }
         else {
             return <input type={type}
@@ -116,8 +137,9 @@ export class Input extends Component {
                 autoCorrect={autocorrect}
                 autoCapitalize={autocapitalize}
                 pattern={pattern}
-                minlength={minlength}
+                minLength={minlength}
                 name={name}
+                onBlur={this.props.getData}
                 id={id}
                 required={required}
             ></input>

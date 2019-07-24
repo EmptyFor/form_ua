@@ -8,12 +8,11 @@ import GeneralInfo from './GeneralInfo';
 import AdditionlInfo from './AdditionlInfo';
 import OwnerInfo from './OwnerInfo';
 import FormFooter from './FormFooter';
-import styles from '../CreateAdvert/style.modules.scss';
+import '../CreateAdvert/style.modules.scss';
+
 export class CreateAdvert extends Component {
 
-    //  <GeneralInfo />
-    // <StatutInfo />
-    // <OwnerInfo />)
+    
 
     static propTypes = {}
 

@@ -8,10 +8,15 @@ import styles from './style.modules.scss';
 
 export class MultiplySelect extends Component {
 
+    selectValue = React.createRef()
+    selectArea = React.createRef()
+
+    top
+
     state = {
         isOpen: false,
         togleClass: 'close',
-        placeholder: [this.props.placeholder],
+        value: [],
         style: {
             arrow: {
                 transform: '',
@@ -25,6 +30,9 @@ export class MultiplySelect extends Component {
             },
             border: {
                 display: 'none'
+            },
+            selectList: {
+                top: ''
             }
         }
     }
@@ -41,9 +49,7 @@ export class MultiplySelect extends Component {
         "Концерн",
         "Кооператив",
     ]
-
-    placeholderItems = []
-
+    value = []
     selectedItems = []
 
     //Togle isOpen state
@@ -57,9 +63,10 @@ export class MultiplySelect extends Component {
     //Togle Open & Close Styles
 
     openSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'open',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px 20px 0px 0px',
                     borderBottom: 'none',
@@ -72,15 +79,16 @@ export class MultiplySelect extends Component {
                 },
                 border: {
                     display: 'block'
-                }
+                },
             }
-        })
+        }))
     }
 
     closeSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'close',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px',
                     borderBottom: 'solid 1px #b1a7c8',
@@ -93,16 +101,15 @@ export class MultiplySelect extends Component {
                 },
                 border: {
                     display: 'none'
-                }
+                },
             }
-        })
+        }))
     }
 
     //Togle Select List
 
     togleSelectList = (e) => {
-        console.log(e.target)
-        if (e.target.getAttribute('id') === 'selectPlaceholder') {
+        if (e.target === this.selectArea.current || e.target === this.selectValue.current) {
             this.togleIsOpenState()
             this.state.isOpen ? this.closeSelectStyle() : this.openSelectStyle()
         }
@@ -114,16 +121,18 @@ export class MultiplySelect extends Component {
             togleClass: 'close'
         })
         this.closeSelectStyle()
+        this.props.getData(e)
     }
 
     //Togle Select List Items
 
     togleSelectListItems(e) {
         let value = e.target.getAttribute('value')
+        this.setTop()
         this.togleActiveClass(e.target, value)
         this.fillSelectedItemsArray(e, value)
-        this.fillPlaceholder(e, value)
-        console.log(this.selectedItems)
+        this.fillValue(e, value)
+        console.log(this.state.style.selectList)
     }
 
     //Toggle Active Class
@@ -140,54 +149,76 @@ export class MultiplySelect extends Component {
         this.closeSelectList(e)
     }
 
-    //Fill Placeholder
+    //Fill Value
 
-    fillPlaceholder = (e, value) => {
+    fillValue = (e, value) => {
         value === 'true' ? this.addListItem(e) : this.removeListItem(e)
     }
 
     //Create Element 
 
     cloneListItem = (e) => {
-        let name = e.target.getAttribute('name')
         return (
-            <Fragment>
-                <div className="selected_item" id={e.target.id}>
+            <Fragment key={`f_${e.target.id}`}>
+                <div className="selected_item" id={`i_${e.target.id}`} value={e.target.getAttribute('name')}>
                     <p>
-                        {name}
+                        {e.target.getAttribute('name')}
                         <span className="remove_button" id={e.target.id} onClick={this.removeListItem}>✕</span>
                     </p>
                 </div>
-                <br />
+                <br/>
             </Fragment>
         )
     }
 
-    //Push to placeholder
+    //Push to value
 
     addListItem = (e) => {
-        let id = e.target.getAttribute('id')
-        this.placeholderItems[id] = this.cloneListItem(e)
-        this.setState({
-            placeholder: this.placeholderItems
-        })
-        console.log(this.placeholderItems[1])
+        this.value.push(this.cloneListItem(e))
+
+        this.setState(prevState => ({
+            value: this.value,
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "none"
+                },
+                value: {
+                    display: "inline-block"
+                }
+            }
+        }))
     }
 
-    //Remove from placeholder
+    //Remove from value
 
     removeListItem = (e) => {
         let index = e.target.getAttribute('id')
+        let target = this.selectValue.current.querySelector(`#i_${index}`).getAttribute('value')
 
-        this.placeholderItems[index] = ''
-        this.setState({
-            placeholder: this.placeholderItems
-        })
+        //Remove from selectedItems and value
 
-        //Remove from selectedItems
-        let i = e.target.parentNode.childNodes[0]
+        let i = this.selectedItems.indexOf(target)
+
+        this.value.splice(i, 1)
         this.selectedItems.splice(i, 1)
-        this.placeholderItems.join('') === '' ? this.setState({ placeholder: this.props.placeholder }) : void 0
+        if (this.selectedItems.join('') === '') {
+            this.setState(prevState => ({
+                style: {
+                    ...prevState.style,
+                    placeholder: {
+                        display: "inline-block"
+                    },
+                    value: {
+                        display: "none"
+                    }
+                }
+            }))
+        }
+
+        this.setState({
+            value: this.value
+        })
 
         //Remove styles
         let select = document.getElementById(this.props.id)
@@ -206,6 +237,7 @@ export class MultiplySelect extends Component {
     pushToSelectedItems(e) {
         let item = e.target.getAttribute('name')
         this.selectedItems.push(item)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     //Remove Selected Items
@@ -214,14 +246,44 @@ export class MultiplySelect extends Component {
         let item = e.target.getAttribute('name')
         let index = this.selectedItems.indexOf(item)
         this.selectedItems.splice(index, 1)
+        this.setState({ selectedItems: this.selectedItems })
+    }
+
+    //Set top for select list
+
+    setTop = () => {
+        let h = this.selectArea.current.offsetHeight
+        this.top = h + 'px'
+    }
+
+    componentDidMount() {
+        window.onload = this.setTop
+        window.onresize = function () {
+            this.setTop()
+        }.bind(this)
+    }
+
+    componentDidUpdate() {
+        this.setTop()
+        console.log(this.top)
     }
 
     render() {
         return (
-            <div id={this.props.id} className="common_select" style={this.state.style.select} tabindex="0" onBlur={this.closeSelectList}>
-                <div id="selectArea" className="select_area" onClick={this.togleSelectList}  >
+            <div id={this.props.id}
+                value={[this.state.selectedItems]}
+                className="common_select"
+                name={this.props.name}
+                style={this.state.style.select}
+                tabIndex="0"
+                onBlur={this.closeSelectList}>
+
+                <div id="selectArea" ref={this.selectArea} className="select_area" onClick={this.togleSelectList}  >
                     <img className="select_icon" src={this.props.icon}></img>
-                    <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
+                    <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
+                    <div id="selectValue" ref={this.selectValue} className="select_value" style={this.state.style.value} >
+                        {this.value}
+                    </div>
                     <div id="selected_items" className="selected_items" ></div>
                     <svg id="arrow"
                         className="arrow"
@@ -232,7 +294,7 @@ export class MultiplySelect extends Component {
                         viewBox="0 0 9 5"
                         onClick={this.rotateArrow}>
 
-                        <path fill="#1ADDEF" fill-rule="evenodd" d="M4.375 5L8.75 0H0z">
+                        <path fill="#1ADDEF" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
 
                         </path>
                     </svg>
@@ -240,13 +302,18 @@ export class MultiplySelect extends Component {
 
                 <div className="border" style={this.state.style.border}></div>
 
-                <div id="select_list" className={`select_list ${this.state.togleClass}`} >
+                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{top: this.top}} >
 
                     {
                         this.selectItems.map((item, index) => {
-                            return <div value='true' name={item} onClick={this.togleSelectListItems.bind(this)} id={`${index}`} className="list_item" >
+                            return <div value='true'
+                                name={item}
+                                id={index}
+                                key={index}
+                                className="list_item"
+                                onClick={this.togleSelectListItems.bind(this)} >
                                 {item}
-                                <div id={`${index}`} value={false} className="drop_multiply_box"></div>
+                                <div id={index} value={false} className="drop_multiply_box"></div>
                             </div>
                         })
 

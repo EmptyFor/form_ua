@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as actions from '../../../store/actions/advert'
 import styles from './styles.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
@@ -19,8 +20,6 @@ export class UloadField extends Component {
         }
     }
 
-    dropZone = document.getElementById('upload-container')
-
     handleDrag = (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -37,7 +36,6 @@ export class UloadField extends Component {
             })
         }
         // console.log(e.dataTransfer)
-        console.log(1)
     }
 
     handleDragOut = (e) => {
@@ -62,7 +60,7 @@ export class UloadField extends Component {
             e.dataTransfer.clearData()
             this.dragCounter = 0
             this.previewFile(file)
-            console.log(this.state)
+            this.props.actions.setDocumentPhoto(this.state.image.src)
         }
     }
 
@@ -76,7 +74,6 @@ export class UloadField extends Component {
 
         reader.onloadend = function () {
             this.state.image.src = reader.result;
-            console.log(this.state)
             img.style.width = '100%'
             uploadContainer.style.padding = '0'
             uploadInfo.style.display = 'none'
@@ -114,7 +111,7 @@ export class UloadField extends Component {
                 <div className="upload_info" ref={this.uploadInfoRef}>
                     <input id="file-input" type="file" name="file" multiple></input>
                     <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
-                    <label for="file-input">Завантажити</label>
+                    <label htmlFor="file-input">Завантажити</label>
                 </div>
             </form>
         );
@@ -128,9 +125,9 @@ export class UloadField extends Component {
 
 export default connect(
     (state) => ({
-
+        documentPhoto: state.advert.documentPhoto
     }),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )(UloadField);

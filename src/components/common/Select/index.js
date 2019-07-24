@@ -15,15 +15,15 @@ export class Select extends Component {
 
         const { width, placeholder, icon, id, type } = this.props
 
-        if (type == 'multiply') {
-            return <MultiplySelect width={width} placeholder={placeholder} icon={icon} id={id} />
+        if (type === 'multiply') {
+            return <MultiplySelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
         }
 
-        else if (type == 'checkbox') {
-            return <CheckBoxSelect width={width} placeholder={placeholder} icon={icon} id={id} />
+        else if (type === 'checkbox') {
+            return <CheckBoxSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
         }
         else {
-            return <CommonSelect width={width} placeholder={placeholder} icon={icon} id={id} />
+            return <CommonSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
         }
     }
 }

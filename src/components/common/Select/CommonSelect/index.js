@@ -8,20 +8,12 @@ import styles from './style.modules.scss';
 
 export class CommonSelect extends Component {
 
-    static propTypes = {
-        token: PropTypes.string,
-        error: PropTypes.string,
-        authActions: PropTypes.object,
-    }
     state = {
         isOpen: false,
         togleClass: 'close',
-        placeholder: this.props.placeholder,
+        value: '',
         style: {
-            arrow: {
-                transform: '',
-                transition: ''
-            },
+
         }
     }
 
@@ -38,7 +30,7 @@ export class CommonSelect extends Component {
         "Кооператив",
     ]
 
-    selectedItem
+    selectedItem = ''
 
     //Togle isOpen state
 
@@ -51,9 +43,10 @@ export class CommonSelect extends Component {
     //Togle Open & Close Styles
 
     openSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'open',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px 20px 0px 0px',
                     borderBottom: 'none',
@@ -66,15 +59,16 @@ export class CommonSelect extends Component {
                 },
                 border: {
                     display: 'block'
-                }
+                },
             }
-        })
+        }))
     }
 
     closeSelectStyle = () => {
-        this.setState({
+        this.setState(prevState => ({
             togleClass: 'close',
             style: {
+                ...prevState.style,
                 select: {
                     borderRadius: '20px',
                     borderBottom: 'solid 1px #b1a7c8',
@@ -87,9 +81,9 @@ export class CommonSelect extends Component {
                 },
                 border: {
                     display: 'none'
-                }
+                },
             }
-        })
+        }))
     }
 
     //Togle Select List
@@ -105,6 +99,7 @@ export class CommonSelect extends Component {
             togleClass: 'close'
         })
         this.closeSelectStyle()
+        this.props.getData(e)
     }
 
     //Togle Select List Items
@@ -113,28 +108,43 @@ export class CommonSelect extends Component {
         let value = e.target.getAttribute('value')
         this.togleActiveClass(e, value)
         this.fillSelectedItemsArray(e, value)
-        console.log(this.selectedItems)
     }
 
     // Common select
 
-    setPlaceholder = (e) => {
-        this.setState({
-            placeholder: e.target.innerText
-        })
-        this.selectedItem = e.target.innerText
-        console.log(this.selectedItem)
+    setSelectValue = (e) => {
+        let value = e.target.innerText
+        this.setState(prevState => ({
+            value: value,
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "none"
+                },
+                value: {
+                    display: "inline-block"
+                }
+            }
+        }));
+        console.log(this.state)
     }
-
-
 
     render() {
         return (
-            <div id={this.props.id} className="common_select" style={this.state.style.select} tabindex="0" onBlur={this.closeSelectList} onClick={this.togleSelectList}>
+            <div id={this.props.id}
+                name={this.props.name}
+                className="common_select"
+                value={this.state.value}
+                style={this.state.style.select}
+                tabIndex="0"
+                onBlur={this.closeSelectList}
+                onClick={this.togleSelectList}>
+
                 <div id="selectArea" className="select_area" >
                     <img className="select_icon" src={this.props.icon}></img>
-                    <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
-                    <div id="selected_items" className="selected_items" ></div>
+                    <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
+                    <div id="selectValue" className="select_value" style={this.state.style.value} >{this.state.value}</div>
+                    <div id="selectedItems" className="selected_items" ></div>
                     <svg id="arrow"
                         className="arrow"
                         style={this.state.style.arrow}
@@ -144,7 +154,7 @@ export class CommonSelect extends Component {
                         viewBox="0 0 9 5"
                         onClick={this.rotateArrow}>
 
-                        <path fill="#1ADDEF" fill-rule="evenodd" d="M4.375 5L8.75 0H0z">
+                        <path fill="#1ADDEF" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
 
                         </path>
                     </svg>
@@ -156,7 +166,7 @@ export class CommonSelect extends Component {
 
                     {
                         this.selectItems.map((item, index) => {
-                            return <div value='false' onClick={this.setPlaceholder} id={index} className="list_item" >{item}</div>
+                            return <div value='false' onClick={this.setSelectValue} id={index} key={index} className="list_item" >{item}</div>
                         })
                     }
 
