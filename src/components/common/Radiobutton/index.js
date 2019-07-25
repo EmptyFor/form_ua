@@ -27,12 +27,24 @@ export class Radiobutton extends Component {
                 value={this.value}
                 onChange={this.props.getData}
             >
-                <span>{item}</span>
+                <span className="check_color">{item}</span>
                 <input type="radio" name={this.props.id} value={item} onClick={this.selectRadio}></input>
                 <span className="checkmark"></span>
             </label>
         )
     })
+
+    clearValue = () => {
+        let checkMar = document.getElementById(this.props.id).getElementsByTagName('input')
+
+        checkMar[0].checked = false
+        checkMar[1].checked = false
+        this.value = ""
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
+    }
 
     render() {
         return (

@@ -1,6 +1,7 @@
 export const GENERAL_INFO = 'GENERAL_INFO';
 export const ADDITIONAL_INFO = 'ADDITIONAL_INFO';
 export const OWNER_INFO = 'OWNER_INFO';
+export const CLEAR_FORM = 'CLEAR_FORM';
 
 export const ORGANIZATION_NAME = 'ORGANIZATION_NAME';
 export const EDRPOY_CODE = 'EDRPOY_CODE';

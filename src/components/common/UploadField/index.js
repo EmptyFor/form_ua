@@ -12,6 +12,14 @@ export class UloadField extends Component {
     imageRef = React.createRef()
     uploadInfoRef = React.createRef()
 
+    initialState = {
+        drag: false,
+        dragoverClass: '',
+        image: {
+            src: ulpoad_img
+        }
+    }
+
     state = {
         drag: false,
         dragoverClass: '',
@@ -73,7 +81,7 @@ export class UloadField extends Component {
         let uploadContainer = document.getElementById('upload-container')
 
         reader.onloadend = function () {
-            this.state.image.src = reader.result;
+            this.setState({image:{src:reader.result}})
             img.style.width = '100%'
             uploadContainer.style.padding = '0'
             uploadInfo.style.display = 'none'
@@ -85,6 +93,7 @@ export class UloadField extends Component {
         } else {
             this.state.image.src = "";
         }
+        this.props.actions.clearAllInfo(false)
     }
 
     //Init handle func
@@ -104,6 +113,24 @@ export class UloadField extends Component {
         div.removeEventListener('drop', this.handleDrop)
     }
 
+    clearValue = () => {
+        let uploadContainer = document.getElementById('upload-container')
+        let img = this.imageRef.current
+        let uploadInfo = this.uploadInfoRef.current
+        this.setState({
+            image: {
+                src: ulpoad_img
+            }
+        })
+        img.style.width = '51px'
+        uploadContainer.style.padding = '5%'
+        uploadInfo.style.display = 'flex'
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
+    }
+
     render() {
         return (
             <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} >
@@ -118,14 +145,10 @@ export class UloadField extends Component {
     }
 }
 
-
-
-
-
-
 export default connect(
     (state) => ({
-        documentPhoto: state.advert.documentPhoto
+        documentPhoto: state.advert.documentPhoto,
+        // clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

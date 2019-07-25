@@ -27,10 +27,19 @@ export class GeneralInfo extends Component {
         if (organisationName.length > 0 && EDRPOYCode.length === 8 && purchasePrice.length > 0) {
             this.props.actions.setGeneralInfo(organisationName, EDRPOYCode, purchasePrice)
         }
+
+        this.props.actions.clearAllInfo(false)
+    }
+
+    clearValue = () => {
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="general_info" >
                 <div className="title" >
@@ -38,24 +47,44 @@ export class GeneralInfo extends Component {
                     <h1>Загальна інформація</h1>
                 </div>
 
-                <div className="first_position grid_right_column">
+                <div className="first_position grid_left_column">
                     <p className="subtitle">Назва організації:<span>*</span></p>
-                    <TextArea getData={this.sendGeneralInfoData} name="organisationName" className="text_area" placeholder="Введіть назву організації" />
+                    <TextArea
+                        getData={this.sendGeneralInfoData}
+                        name="organisationName"
+                        className="text_area"
+                        placeholder="Введіть назву організації"
+                        clear={this.props.clear}
+                    />
                 </div>
 
-                <div className="second_position grid_right_column">
+                <div className="second_position grid_left_column">
                     <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
-                    <Input getData={this.sendGeneralInfoData} name="EDRPOYCode" type="EDRPOY" className="input" placeholder="Введіть восьмизначний код" />
+                    <Input
+                        getData={this.sendGeneralInfoData}
+                        name="EDRPOYCode"
+                        type="EDRPOY"
+                        className="input"
+                        placeholder="Введіть восьмизначний код"
+                        clear={this.props.clear}
+                    />
                 </div>
 
-                <div className="third_position grid_right_column">
+                <div className="third_position grid_left_column">
                     <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
-                    <Input getData={this.sendGeneralInfoData} name="purchasePrice" type="money" className="input" placeholder="Ведіть ціну в гривнях" />
+                    <Input
+                        getData={this.sendGeneralInfoData}
+                        name="purchasePrice"
+                        type="money"
+                        className="input"
+                        placeholder="Ведіть ціну в гривнях"
+                        clear={this.props.clear}
+                    />
                 </div>
 
-                <div className="forth_position grid_left_column">
+                <div className="forth_position grid_right_column">
                     <p className="subtitle">Фото документу який засвідчує право власності:<span>*</span></p>
-                    <UploadField />
+                    <UploadField clear={this.props.clear} />
                     <br />
 
                 </div>
@@ -69,7 +98,8 @@ export default connect(
         organisationName: state.advert.organisationName,
         EDRPOYCode: state.advert.EDRPOYCode,
         purchasePrice: state.advert.purchasePrice,
-        documentPhoto: state.advert.documentPhoto
+        documentPhoto: state.advert.documentPhotoб,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

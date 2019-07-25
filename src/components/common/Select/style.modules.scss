@@ -1,6 +1,6 @@
 .common_select {
   height: auto;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 30px;
   border: 1px solid #b1a7c8;
   background-color: #fff;
   display: flex;
@@ -8,7 +8,6 @@
   justify-content: center;
   position: relative;
   z-index: 2;
-  transition: 0.5s;
   cursor: pointer;
   &:hover {
     border-color: #d2fbff !important;
@@ -93,7 +92,7 @@
     bottom: 0;
     left: 5%;
     width: 90%;
-    height: 1px;
+    height: 2px;
     background-color: #b1a7c8;
   }
   .select_list {
@@ -111,6 +110,7 @@
     max-height: 270px;
     padding: 10px 10px 20px 20px;
     overflow-y: scroll;
+    scroll-padding: 20px;
     .list_item {
       width: 100%;
       padding: 5px 0px;

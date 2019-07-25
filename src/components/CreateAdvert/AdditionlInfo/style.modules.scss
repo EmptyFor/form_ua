@@ -1,12 +1,15 @@
 .additionl_info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 50%);
   grid-template-rows: minmax(40px, auto);
   grid-gap: 1em;
   box-sizing: border-box;
   margin-bottom: 50px;
   .input {
     padding: 10px 20px;
+  }
+  .common_select {
+    padding: 4px 0px;
   }
   .first_position {
     grid-row-start: 2;

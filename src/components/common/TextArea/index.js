@@ -8,6 +8,12 @@ import styles from './styles.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class TeatArea extends Component {
 
+    textareaRef = React.createRef()
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.textareaRef.current.value = "" : void 0
+    }
+
     render() {
         return (
             <textarea
@@ -23,15 +29,11 @@ export class TeatArea extends Component {
 
 
 
-
-
-
 export default connect(
     (state) => ({
-        organisationName: state.advert.organisationName
+        // clear: state.advert.clear
     }),
     dispatch => ({
-        // setOrganizationName: setOrganizationName,
-        actions: bindActionCreators(actions, dispatch)
+        // actions: bindActionCreators(actions, dispatch)
     })
 )(TeatArea);

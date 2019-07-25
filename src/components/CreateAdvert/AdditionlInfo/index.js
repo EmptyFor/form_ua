@@ -3,11 +3,11 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
+import styles from './style.modules.scss';
 import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { Radiobutton } from '../../common/Radiobutton';
-import styles from './style.modules.scss';
 
 export class AdditionlInfo extends Component {
     constructor() {
@@ -34,7 +34,7 @@ export class AdditionlInfo extends Component {
 
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
- 
+
         name === 'additionalEconomicActivityType' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'shareCapital' ? value = value.replace(/\D/g, '') : void 0
 
@@ -43,20 +43,29 @@ export class AdditionlInfo extends Component {
         })
 
 
-        legalForm && 
-        mainEconomicActivityType && 
-        additionalEconomicActivityType.length <= 10 &&
-        taxationForm &&
-        license.length <=5 &&
-        location &&
-        registrationDate.length === 10 &&
-        isPDVPayer ?
-        this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
-        void 0
+        legalForm &&
+            mainEconomicActivityType &&
+            additionalEconomicActivityType.length <= 10 &&
+            taxationForm &&
+            license.length <= 5 &&
+            location &&
+            registrationDate.length === 10 &&
+            isPDVPayer ?
+            this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
+            void 0
+
+        this.props.actions.clearAllInfo(false)
+    }
+
+    clearValue = () => {
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="additionl_info" >
                 <div className="title" >
@@ -64,7 +73,7 @@ export class AdditionlInfo extends Component {
                     <h1>Положення згідно законодавства</h1>
                 </div>
 
-                <div className="first_position grid_right_column">
+                <div className="first_position grid_left_column">
                     <p className="subtitle">Організаційно правова форма:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -74,10 +83,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.house}
                         id='ca_form_select_1'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="second_position grid_right_column">
+                <div className="second_position grid_left_column">
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -87,10 +97,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.portfolio}
                         id='ca_form_select_2'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="third_position grid_right_column">
+                <div className="third_position grid_left_column">
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -99,10 +110,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
                         id='ca_form_select_3'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="forth_position grid_right_column">
+                <div className="forth_position grid_left_column">
                     <p className="subtitle">Форма оподаткування:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -112,10 +124,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.lable}
                         id='ca_form_select_4'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="fifth_position grid_right_column">
+                <div className="fifth_position grid_left_column">
                     <p className="subtitle">Ліцензія (до 5 видів):</p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -125,10 +138,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.cc}
                         id='ca_form_select_5'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="sixth_position grid_left_column">
+                <div className="sixth_position grid_right_column">
                     <p className="subtitle">Місце знаходження/реєстрації:<span>*</span></p>
                     <Select
                         getData={this.sendAdditionlInfoData}
@@ -138,10 +152,11 @@ export class AdditionlInfo extends Component {
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}
                         id='ca_form_select_6'
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="seventh_position grid_left_column">
+                <div className="seventh_position grid_right_column">
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
                     <Input
                         getData={this.sendAdditionlInfoData}
@@ -150,10 +165,11 @@ export class AdditionlInfo extends Component {
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
                         width="100%"
                         className="input"
+                        clear={this.props.clear}
                     />
                 </div>
 
-                <div className="eith_position grid_left_column">
+                <div className="eith_position grid_right_column">
                     <div className="first_radio">
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
                         <Radiobutton
@@ -161,6 +177,7 @@ export class AdditionlInfo extends Component {
                             name="isPDVPayer"
                             options={['Так', 'Ні']}
                             id='isPDVPayer'
+                            clear={this.props.clear}
                         />
                     </div>
 
@@ -171,6 +188,7 @@ export class AdditionlInfo extends Component {
                             name="broughtEconomicActivity"
                             options={['Так', 'Ні']}
                             id='broughtEconomicActivity'
+                            clear={this.props.clear}
                         />
                     </div>
 
@@ -181,11 +199,12 @@ export class AdditionlInfo extends Component {
                             name="hasDebt"
                             options={['Так', 'Ні']}
                             id='hasDebt'
+                            clear={this.props.clear}
                         />
                     </div>
                 </div>
 
-                <div className="nineth_position grid_left_column">
+                <div className="nineth_position grid_right_column">
                     <p className="subtitle">Статутний капітал:</p>
                     <Input
                         getData={this.sendAdditionlInfoData}
@@ -194,6 +213,7 @@ export class AdditionlInfo extends Component {
                         placeholder="Введіть суму в гривнях"
                         width="100%"
                         className="input"
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -214,7 +234,8 @@ export default connect(
         isPDVPayer: state.advert.isPDVPayer,
         broughtEconomicActivity: state.advert.broughtEconomicActivity,
         hasDebt: state.advert.hasDebt,
-        shareCapital: state.advert.shareCapital
+        shareCapital: state.advert.shareCapital,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

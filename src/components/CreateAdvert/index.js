@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
+import Header from '../themes/common/Header'
 import FormHeader from './FormHeader';
 import GeneralInfo from './GeneralInfo';
 import AdditionlInfo from './AdditionlInfo';
@@ -12,19 +13,17 @@ import '../CreateAdvert/style.modules.scss';
 
 export class CreateAdvert extends Component {
 
-    
-
-    static propTypes = {}
 
     render() {
 
         return (
             <Fragment>
+                <Header className="header" hide_ca_button={true} />
                 <div className="ca_bg">
                     <div className="form_bg">
                         <FormHeader />
                         <div className="form_content_bg">
-                            <GeneralInfo />
+                            <GeneralInfo  />
                             <AdditionlInfo />
                             <OwnerInfo />
                         </div>

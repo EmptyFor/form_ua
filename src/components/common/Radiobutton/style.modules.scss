@@ -7,6 +7,7 @@
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
+    color: #99abc3;
     font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -37,6 +38,9 @@
     .checkmark {
       background-color: rgb(211, 214, 213);
     }
+    .container {
+      color: #28252f;
+    }
   }
 
   /* When the radio button is checked, add a blue background */
@@ -44,11 +48,14 @@
     .checkmark {
       background-color: #1addef;
     }
+    .container {
+      color: #28252f;
+    }
   }
 
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkmark:after {
-    content: '˥';
+    content: "˥";
     position: absolute;
     display: none;
   }

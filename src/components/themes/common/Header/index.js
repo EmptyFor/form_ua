@@ -235,13 +235,11 @@ class Header extends Component {
         </Link>
 
         <div className={styles.right_side}>
-          {this.props.fix === false ?
+          {
+            this.props.hide_ca_button !== true &&
             <Link className={styles.create_advert} to={links.createAdvert}>
-              <CreateAdvertBtn onClick={this.handleClick} />
+              <CreateAdvertBtn />
             </Link>
-            :
-            <div></div>
-
           }
           <div className={styles.profile}>
             <Link to={links.profile}>

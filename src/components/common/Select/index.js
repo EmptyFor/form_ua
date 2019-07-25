@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
@@ -16,20 +16,47 @@ export class Select extends Component {
         const { width, placeholder, icon, id, type } = this.props
 
         if (type === 'multiply') {
-            return <MultiplySelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <MultiplySelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
 
         else if (type === 'checkbox') {
-            return <CheckBoxSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <CheckBoxSelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
         else {
-            return <CommonSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <CommonSelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
     }
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        // clear: state.advert.clear
+    }),
     dispatch => ({
+        // actions: bindActionCreators(actions, dispatch)
     })
 )(Select);
