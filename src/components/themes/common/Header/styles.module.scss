@@ -38,7 +38,7 @@ header {
   .right_side {
     display: flex;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-end;
     grid-row: span 1;
     grid-column: span 1;
     grid-column-start: 3;
@@ -50,6 +50,7 @@ header {
   }
   .profile {
     margin-left: 5%;
+    margin-right: 20%;
     display: flex;
     align-items: center;
   }

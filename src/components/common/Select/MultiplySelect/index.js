@@ -25,7 +25,7 @@ export class MultiplySelect extends Component {
             },
             select: {
                 gridColumn: this.props.gridColumn,
-                borderRadius: '20px',
+                borderRadius: '30px',
                 transition: '0.5s',
                 zIndex: 1,
             },
@@ -69,7 +69,7 @@ export class MultiplySelect extends Component {
             style: {
                 ...prevState.style,
                 select: {
-                    borderRadius: '20px 20px 0px 0px',
+                    borderRadius: '30px 30px 0px 0px',
                     borderBottom: 'none',
                     borderColor: '#d2fbff',
                     zIndex: 9999
@@ -91,7 +91,7 @@ export class MultiplySelect extends Component {
             style: {
                 ...prevState.style,
                 select: {
-                    borderRadius: '20px',
+                    borderRadius: '30px',
                     borderBottom: 'solid 1px #b1a7c8',
                     borderColor: '#b1a7c8',
                     zIndex: 1
