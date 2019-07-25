@@ -31,6 +31,14 @@ export class GeneralInfo extends Component {
         this.props.actions.clearAllInfo(false)
     }
 
+    clearValue = () => {
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
+    }
+
     render() {
         return (
             <div className="general_info" >
@@ -46,6 +54,7 @@ export class GeneralInfo extends Component {
                         name="organisationName"
                         className="text_area"
                         placeholder="Введіть назву організації"
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -57,6 +66,7 @@ export class GeneralInfo extends Component {
                         type="EDRPOY"
                         className="input"
                         placeholder="Введіть восьмизначний код"
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -68,12 +78,13 @@ export class GeneralInfo extends Component {
                         type="money"
                         className="input"
                         placeholder="Ведіть ціну в гривнях"
+                        clear={this.props.clear}
                     />
                 </div>
 
                 <div className="forth_position grid_right_column">
                     <p className="subtitle">Фото документу який засвідчує право власності:<span>*</span></p>
-                    <UploadField />
+                    <UploadField clear={this.props.clear} />
                     <br />
 
                 </div>
@@ -87,7 +98,8 @@ export default connect(
         organisationName: state.advert.organisationName,
         EDRPOYCode: state.advert.EDRPOYCode,
         purchasePrice: state.advert.purchasePrice,
-        documentPhoto: state.advert.documentPhoto
+        documentPhoto: state.advert.documentPhotoб,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

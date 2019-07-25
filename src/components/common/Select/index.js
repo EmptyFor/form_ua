@@ -16,23 +16,47 @@ export class Select extends Component {
         const { width, placeholder, icon, id, type } = this.props
 
         if (type === 'multiply') {
-            return <MultiplySelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <MultiplySelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
 
         else if (type === 'checkbox') {
-            return <CheckBoxSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <CheckBoxSelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
         else {
-            return <CommonSelect width={width} placeholder={placeholder} icon={icon} id={id} getData={this.props.getData} name={this.props.name} />
+            return <CommonSelect
+                width={width}
+                placeholder={placeholder}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
         }
     }
 }
 
 export default connect(
     (state) => ({
-        clear: state.advert.clear
+        // clear: state.advert.clear
     }),
     dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
+        // actions: bindActionCreators(actions, dispatch)
     })
 )(Select);

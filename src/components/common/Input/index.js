@@ -67,12 +67,11 @@ export class Input extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.clear)
         nextProps.clear ? this.clearInput() : void 0
     }
 
     render() {
-        console.log(this.inputRef)
+        console.log(123)
         const { type, className, placeholder, width, name, id, required } = this.props
 
         if (this.props.type === 'phone') {
@@ -158,9 +157,9 @@ export class Input extends Component {
 
 export default connect(
     (state) => ({
-        clear: state.advert.clear
+        // clear: state.advert.clear
     }),
     dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
+        // actions: bindActionCreators(actions, dispatch)
     })
 )(Input);

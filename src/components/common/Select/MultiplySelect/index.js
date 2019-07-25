@@ -214,6 +214,7 @@ export class MultiplySelect extends Component {
             }))
         }
 
+
         this.setState({
             value: this.value
         })
@@ -252,8 +253,41 @@ export class MultiplySelect extends Component {
         this.setTop()
     }
 
+    clearValue = () => {
+
+        //Clear styles
+        let select = document.getElementById(this.props.id)
+        let listItem = select.childNodes[2].childNodes
+
+        for (let i = 0; i < listItem.length; i++) {
+            let value = listItem[i].getAttribute('value')
+            let checkBoxClasses = listItem[i].childNodes[1].classList
+            
+            value === 'false' ? listItem[i].setAttribute('value', true) : void 0
+            value === 'false' ? listItem[i].classList.remove('active') : void 0
+            value === 'false' ? checkBoxClasses.remove('select') : void 0
+        }
+
+        //Clear Value
+        this.value = []
+        this.selectedItems = []
+        this.setState(prevState => ({
+            value: [],
+            selectedItems: [],
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "inline-block"
+                },
+                value: {
+                    display: "none"
+                }
+            }
+        }))
+    }
+
     componentWillReceiveProps(nextProps) {
-        nextProps.clear ? console.log(this.props) : void 0
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {

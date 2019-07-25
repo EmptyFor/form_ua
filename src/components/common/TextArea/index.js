@@ -29,14 +29,11 @@ export class TeatArea extends Component {
 
 
 
-
-
-
 export default connect(
     (state) => ({
-        clear: state.advert.clear
+        // clear: state.advert.clear
     }),
     dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
+        // actions: bindActionCreators(actions, dispatch)
     })
 )(TeatArea);

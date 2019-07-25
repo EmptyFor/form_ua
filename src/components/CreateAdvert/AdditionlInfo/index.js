@@ -34,7 +34,7 @@ export class AdditionlInfo extends Component {
 
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
- 
+
         name === 'additionalEconomicActivityType' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'shareCapital' ? value = value.replace(/\D/g, '') : void 0
 
@@ -43,18 +43,26 @@ export class AdditionlInfo extends Component {
         })
 
 
-        legalForm && 
-        mainEconomicActivityType && 
-        additionalEconomicActivityType.length <= 10 &&
-        taxationForm &&
-        license.length <=5 &&
-        location &&
-        registrationDate.length === 10 &&
-        isPDVPayer ?
-        this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
-        void 0
-    
+        legalForm &&
+            mainEconomicActivityType &&
+            additionalEconomicActivityType.length <= 10 &&
+            taxationForm &&
+            license.length <= 5 &&
+            location &&
+            registrationDate.length === 10 &&
+            isPDVPayer ?
+            this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
+            void 0
+
         this.props.actions.clearAllInfo(false)
+    }
+
+    clearValue = () => {
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
@@ -75,6 +83,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.house}
                         id='ca_form_select_1'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -88,6 +97,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.portfolio}
                         id='ca_form_select_2'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -100,6 +110,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
                         id='ca_form_select_3'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -113,6 +124,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.lable}
                         id='ca_form_select_4'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -126,6 +138,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Оберіть зі списку'
                         icon={images.cc}
                         id='ca_form_select_5'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -139,6 +152,7 @@ export class AdditionlInfo extends Component {
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}
                         id='ca_form_select_6'
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -151,6 +165,7 @@ export class AdditionlInfo extends Component {
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
                         width="100%"
                         className="input"
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -162,6 +177,7 @@ export class AdditionlInfo extends Component {
                             name="isPDVPayer"
                             options={['Так', 'Ні']}
                             id='isPDVPayer'
+                            clear={this.props.clear}
                         />
                     </div>
 
@@ -172,6 +188,7 @@ export class AdditionlInfo extends Component {
                             name="broughtEconomicActivity"
                             options={['Так', 'Ні']}
                             id='broughtEconomicActivity'
+                            clear={this.props.clear}
                         />
                     </div>
 
@@ -182,6 +199,7 @@ export class AdditionlInfo extends Component {
                             name="hasDebt"
                             options={['Так', 'Ні']}
                             id='hasDebt'
+                            clear={this.props.clear}
                         />
                     </div>
                 </div>
@@ -195,6 +213,7 @@ export class AdditionlInfo extends Component {
                         placeholder="Введіть суму в гривнях"
                         width="100%"
                         className="input"
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -215,7 +234,8 @@ export default connect(
         isPDVPayer: state.advert.isPDVPayer,
         broughtEconomicActivity: state.advert.broughtEconomicActivity,
         hasDebt: state.advert.hasDebt,
-        shareCapital: state.advert.shareCapital
+        shareCapital: state.advert.shareCapital,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

@@ -22,30 +22,36 @@ export class OwnerInfo extends Component {
     //Append phone input
 
     appendPhoneInput = () => {
-        this.phoneInputArr.push(
-            <Input
-                type='phone'
-                placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _"
-                width="100%"
-                className="input"
-                name="phoneNumbers"
-                id={this.phoneInputArr.length+1}
-                key={`ca_phone_input_${this.phoneInputArr.length+1}`}
-                getData={this.sendOwnerInfoData}
-            />)
-        this.setState({
-            input: this.phoneInputArr
-        })
+        let lastInput = document.getElementById(`ca_phone_input_${this.phoneInputArr.length}`)
+        if (lastInput.value.length === 24) {
+            this.phoneInputArr.push(
+                <Input
+                    type='phone'
+                    placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _"
+                    width="100%"
+                    className="input"
+                    name="phoneNumbers"
+                    id={`ca_phone_input_${this.phoneInputArr.length + 1}`}
+                    key={`ca_phone_input_${this.phoneInputArr.length + 1}`}
+                    getData={this.sendOwnerInfoData}
+                    clear={this.props.clear}
+                />)
+            this.setState({
+                input: this.phoneInputArr
+            })
+        }
     }
 
     //Send data to redux store
 
     sendOwnerInfoData = (e) => {
-        const {ownerName, phoneNumbers} = this.state
+        const { ownerName, phoneNumbers } = this.state
 
         let name = e.target.name
         let value = e.target.value
-        let id = e.target.id
+        let id = e.target.id.replace('ca_phone_input_', "")
+
+        this.props.actions.clearAllInfo(false)
 
         if (name === 'phoneNumbers' && value.length === 24) {
             this.phoneNumbers[id] = value
@@ -56,11 +62,33 @@ export class OwnerInfo extends Component {
             this.setState({ ownerName: value })
         }
 
+        console.log(phoneNumbers[0].length)
+
         ownerName && phoneNumbers[0].length == 24 ? this.props.actions.setOwnerInfo(ownerName, phoneNumbers) : void 0
 
     }
 
+    clearPhoneNumbers = () => {
+        this.phoneInputArr = []
+        this.phoneNumbers = [""]
+        this.setState({
+            input: this.phoneInputArr,
+            phoneNumbers: this.phoneNumbers
+        })
+    }
+
+    clearValue = () => {
+        this.clearPhoneNumbers()
+        // const { ownerName, phoneNumbers } = this.state
+        // this.props.actions.setOwnerInfo(ownerName, phoneNumbers)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className="owner_info">
                 <div className="title" >
@@ -76,6 +104,7 @@ export class OwnerInfo extends Component {
                         className="input"
                         name="ownerName"
                         getData={this.sendOwnerInfoData}
+                        clear={this.props.clear}
                     />
                 </div>
 
@@ -86,14 +115,11 @@ export class OwnerInfo extends Component {
                         placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _"
                         width="100%"
                         className="input"
-                        autocorrect="off"
-                        autocapitalize="off"
-                        pattern="^\+\d{2} \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-                        minlength="19"
                         name="phoneNumbers"
-                        id={0}
+                        id="ca_phone_input_0"
                         key="ca_phone_input_0"
                         getData={this.sendOwnerInfoData}
+                        clear={this.props.clear}
                     />
                     {this.state.input.map(item => { return item })}
                     <label className="append_phone" onClick={this.appendPhoneInput}>
@@ -109,7 +135,8 @@ export class OwnerInfo extends Component {
 export default connect(
     (state) => ({
         ownerName: state.advert.ownerName,
-        phoneNumbers: state.advert.phoneNumbers
+        phoneNumbers: state.advert.phoneNumbers,
+        clear: state.advert.clear
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

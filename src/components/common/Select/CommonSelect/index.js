@@ -152,9 +152,23 @@ export class CommonSelect extends Component {
         this.setTop()
     }
 
+    clearVlaue = () => {
+        this.setState(prevState => ({
+            value: "",
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "inline-block"
+                },
+                value: {
+                    display: "none"
+                }
+            }
+        }))
+    }
+
     componentWillReceiveProps(nextProps) {
-        // console.log(nextProps)
-        nextProps.clear ? console.log(this.props) : void 0
+        nextProps.clear ? this.clearVlaue() : void 0
     }
 
     render() {
