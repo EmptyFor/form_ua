@@ -13,7 +13,7 @@ body {
   margin-block-end: 3%;
 
   .details_list {
-    width: 70.8%;
+    width: 68.8%;
     min-height: 100%;
     background-color: white;
   }
@@ -67,6 +67,7 @@ body {
           font-weight: 700;
           word-spacing: 4px;
           line-height: 1.67;
+          margin-block-start: -2%;
           letter-spacing: 0.14px;
           text-transform: uppercase;
         }

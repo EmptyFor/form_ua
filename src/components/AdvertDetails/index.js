@@ -97,7 +97,7 @@ export class AdvertDetails extends Component {
                             </div>
                             <div className="details_main_info_footer">
                                 <label className="details_labels_list ">Власник / Юридична особа</label>
-                                <span className="details_values_list"> Павлів Василь Ігорович</span>
+                                <span className="details_values_list" style={{paddingLeft:'2%'}}> Павлів Василь Ігорович</span>
                             </div>
                         </div>
                     </div>
