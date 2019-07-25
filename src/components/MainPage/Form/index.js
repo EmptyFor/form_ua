@@ -40,13 +40,13 @@ export class Form extends Component {
                         <Input type="checkbox" />
                     </div>
 
-                    <Link className='links' style={{ gridColumn: 'span 3' }}>
+                    <Link className='common_btn_link' style={{ gridColumn: 'span 3' }}>
                         <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 
 
-                    <Link to={links.search} className='links' style={{ gridColumn: 'span 2' }}>
+                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
                         <Button className='find'
                             text='Знайти' />
                     </Link>

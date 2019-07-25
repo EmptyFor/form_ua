@@ -54,7 +54,7 @@ export class RegistrationFirst extends Component {
                     <form>
                         <Input name='login' value={login} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30' />
                         <Input name='phone' value={phone} onChange={this.handleChange} type='tel' placeholder="+38(0_ _) - _ _ _ - _ _ - _ _" maxLength='13' />
-                        <Link to={links.registrationTwice}><Button width='92%' back={disabledColor} onClick={this.handleClick} text='Далі' disabled={!isOk} /></Link>
+                        <Link to={links.registrationTwice} className="common_btn_link"><Button width='92%' back={disabledColor} onClick={this.handleClick} text='Далі' disabled={!isOk} /></Link>
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links.login}> Увійти >></Link></div>
                 </div>
