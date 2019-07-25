@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from '../SearchResult/style.modules.scss';
 import Advert from '../../common/Advert';
 import { Link } from 'react-router-dom';
+import links from '../../../config/links';
 
 const mockData = [
     {
@@ -230,182 +231,7 @@ const mockData = [
         price: '12 000',
         about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
     },
-    {
-        name: 'TWICE PAGE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'Конституційно-правова агенція твого міста',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'TWICE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'TWICE',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'TWICE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'TWICE',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'THIRD PAGE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'Конституційно-правова агенція твого міста',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'THIRD',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'THIRD',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'THIRD',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'THIRD',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FOUR PAGE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'Конституційно-правова агенція твого міста',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FOUR',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FOUR',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FOUR',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FOUR',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FIVE PAGE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'Конституційно-правова агенція твого міста',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FIVE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-    {
-        name: 'FIVE',
-        isPDF: true,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
+
 ];
 
 const pageStep = 4;
@@ -435,6 +261,7 @@ class SearchResult extends Component {
         } else {
             this.setState({ disPrev: true, colorPrev: '#aeaeae', disNext: false, colorNext: '#1ccee9' })
         }
+        console.log(this.state.currentPage)
     }
 
     nextPage = e => {
@@ -459,7 +286,7 @@ class SearchResult extends Component {
         return (
             data.map((item, i) => {
                 return (
-                    <Link to="/" key={i}>
+                    <Link to={links.details} key={i}>
                         <Advert
                             orgName={item.name}
                             isPdf={item.isPDF}
@@ -491,7 +318,7 @@ class SearchResult extends Component {
                         currentPage === pagesLength - 2 ? <div className="pagination_count" >
                             <span onClick={this.getCurrentPageNumber} > 1 </span>
                             <span> . . . </span>
-                            <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                            <span className='pagination_current'> {currentPage} </span>
                             <span onClick={this.getCurrentPageNumber} > {currentPage + 1} </span>
                             <span onClick={this.getCurrentPageNumber} > {currentPage + 2} </span>
                         </div>
@@ -499,7 +326,7 @@ class SearchResult extends Component {
                                 <span onClick={this.getCurrentPageNumber} > 1 </span>
                                 <span> . . . </span>
                                 <span onClick={this.getCurrentPageNumber} > {currentPage - 1} </span>
-                                <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                                <span className='pagination_current'> {currentPage} </span>
                                 <span onClick={this.getCurrentPageNumber} > {currentPage + 1} </span>
 
                             </div>
@@ -508,24 +335,24 @@ class SearchResult extends Component {
                                     <span> . . . </span>
                                     <span onClick={this.getCurrentPageNumber} > {currentPage - 2} </span>
                                     <span onClick={this.getCurrentPageNumber} > {currentPage - 1} </span>
-                                    <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                                    <span className='pagination_current'> {currentPage} </span>
                                 </div>
                                     : currentPage < pagesLength - 2 && currentPage >= 3 ? <div className="pagination_count">
                                         <span onClick={this.getCurrentPageNumber} > {currentPage - 1} </span>
-                                        <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                                        <span className='pagination_current'> {currentPage} </span>
                                         <span onClick={this.getCurrentPageNumber} > {currentPage + 1} </span>
                                         <span>. . .</span>
                                         <span onClick={this.getCurrentPageNumber} > {pagesLength} </span>
                                     </div>
                                         : currentPage === 2 ? <div className="pagination_count">
                                             <span onClick={this.getCurrentPageNumber} > {currentPage - 1} </span>
-                                            <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                                            <span className='pagination_current'> {currentPage} </span>
                                             <span onClick={this.getCurrentPageNumber} > {currentPage + 1} </span>
                                             <span>. . .</span>
                                             <span onClick={this.getCurrentPageNumber} > {pagesLength} </span>
                                         </div>
                                             : currentPage === 1 ? <div className="pagination_count">
-                                                <span onClick={this.getCurrentPageNumber} className='pagination_current'> {currentPage} </span>
+                                                <span className='pagination_current'> {currentPage} </span>
                                                 <span onClick={this.getCurrentPageNumber} > {currentPage + 1} </span>
                                                 <span onClick={this.getCurrentPageNumber} > {currentPage + 2} </span>
                                                 <span>. . .</span>
