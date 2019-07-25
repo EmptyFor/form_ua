@@ -27,7 +27,7 @@ export class Radiobutton extends Component {
                 value={this.value}
                 onChange={this.props.getData}
             >
-                <span className="check_color">{item}</span>
+                <span className="text">{item}</span>
                 <input type="radio" name={this.props.id} value={item} onClick={this.selectRadio}></input>
                 <span className="checkmark"></span>
             </label>

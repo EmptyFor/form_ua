@@ -1,0 +1,1 @@
+export const MAIN_PAGE_FORM = 'MAIN_PAGE_FORM';

@@ -71,9 +71,7 @@ export class Input extends Component {
     }
 
     render() {
-        console.log(123)
         const { type, className, placeholder, width, name, id, required } = this.props
-
         if (this.props.type === 'phone') {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
