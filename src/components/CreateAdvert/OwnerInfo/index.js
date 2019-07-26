@@ -102,6 +102,7 @@ export class OwnerInfo extends Component {
                         width="100%"
                         className="input"
                         name="ownerName"
+                        required={true}
                         getData={this.setOwnerInfoData}
                         clear={this.props.clear}
                     />

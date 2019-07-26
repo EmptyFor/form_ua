@@ -19,6 +19,7 @@ export class Select extends Component {
             return <MultiplySelect
                 width={width}
                 placeholder={placeholder}
+                required={this.props.required}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -31,6 +32,7 @@ export class Select extends Component {
             return <CheckBoxSelect
                 width={width}
                 placeholder={placeholder}
+                required={this.props.required}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -42,6 +44,7 @@ export class Select extends Component {
             return <CommonSelect
                 width={width}
                 placeholder={placeholder}
+                required={this.props.required}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}

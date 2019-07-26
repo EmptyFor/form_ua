@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../themes/common/Header';
-import { Form } from './Form';
+import Form  from './Form';
 import Info from './Info';
 import Footer from '../Footer';
 // import { bindActionCreators } from 'redux';

@@ -11,11 +11,7 @@
   line-height: 1.67;
   letter-spacing: 0.08px;
   color: #28252f;
+  &:hover {
+    border-color: #1ccee9!important;
+  }
 }
-
-// input::-webkit-outer-spin-button,
-// input::-webkit-inner-spin-button {
-//   /* display: none; <- Crashes Chrome on hover */
-//   -webkit-appearance: none;
-//   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-// }

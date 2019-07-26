@@ -5,6 +5,8 @@ const initState = {
     organisationName: '',
     EDRPOYCode: '',
     purchasePrice: '',
+    purchasePriceFrom: '',
+    purchasePriceTo: '',
     documentPhoto: '',
     legalForm: '',
     mainEconomicActivityType: '',
@@ -30,7 +32,10 @@ export default (state = initState, action) => {
                 legalForm: action.legalForm,
                 mainEconomicActivityType: action.mainEconomicActivityType,
                 location: action.location,
-                taxationForm: action.taxationForm
+                taxationForm: action.taxationForm,
+                purchasePriceFrom: action.purchasePriceFrom,
+                purchasePriceTo: action.purchasePriceTo,
+                isPDVPayer: action.isPDVPayer
             }
         default:
             return state

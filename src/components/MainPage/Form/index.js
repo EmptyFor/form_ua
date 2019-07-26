@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import * as actions from '../../../store/actions/search';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
@@ -15,25 +14,46 @@ import { images } from '../../../assets/images/images'
 export class Form extends Component {
 
     state = {
+        link: links.search,
         legalForm: '',
         mainEconomicActivityType: '',
         location: '',
-        taxationForm: ''
+        taxationForm: '',
+        purchasePriceFrom: '',
+        purchasePriceTo: '',
+        isPDVPayer: ''
     }
 
     setSearchData = (e) => {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
-        
+
+        name === 'purchasePriceFrom' || name === 'purchasePriceTo' ? value = value.replace(/\D/g, '') : void 0
+        name === 'isPDVPayer' && value.length !== 0 ? value = true : void 0
+
         this.setState({
             [name]: value
         })
-        console.log('...search')
+        console.log(name)
+    }
+
+    sendSearchData = () => {
+        const { legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer } = this.state
+
+        if (legalForm &&
+            mainEconomicActivityType &&
+            location &&
+            taxationForm &&
+            purchasePriceFrom.length > 0 &&
+            purchasePriceTo > 0 &&
+            isPDVPayer) {
+            this.props.actions.setMainPageFormInfo(legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer)
+        }
     }
 
     render() {
-        const { legalForm, mainEconomicActivityType, location, taxationForm } = this.state
-        this.props.actions.setSearchData(legalForm, mainEconomicActivityType, location, taxationForm)
+        console.log(this.props)
+        this.sendSearchData()
 
         return (
 
@@ -48,6 +68,7 @@ export class Form extends Component {
                         width='auto'
                         placeholder='Організаційно правова форма'
                         icon={images.house} id='mp_form_select_1'
+                        name="legalForm"
                         getData={this.setSearchData}
                     />
                     <Select
@@ -56,6 +77,7 @@ export class Form extends Component {
                         placeholder='Оновний вид господарської діяльності (КВЕДи)'
                         icon={images.portfolio}
                         id='mp_form_select_2'
+                        name="mainEconomicActivityType"
                         getData={this.setSearchData}
                     />
                     <Select
@@ -64,6 +86,7 @@ export class Form extends Component {
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}
                         id='mp_form_select_3'
+                        name="location"
                         getData={this.setSearchData}
                     />
                     <Select
@@ -72,36 +95,40 @@ export class Form extends Component {
                         placeholder='Форма оподаткування'
                         icon={images.lable}
                         id='mp_form_select_4'
+                        name="taxationForm"
                         getData={this.setSearchData}
                     />
 
                     <p className="price">Ціна</p>
                     <Input
-                        getData={this.setAdditionlInfoData}
+                        getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
                         placeholder='від (₴)'
                         width="100%"
                         className='price_from'
+                        name="purchasePriceFrom"
                         clear={this.props.clear}
                     />
                     <Input
-                        getData={this.setAdditionlInfoData}
+                        getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
                         placeholder='до (₴)'
                         width="100%"
                         className='price_to'
+                        name="purchasePriceTo"
                         clear={this.props.clear}
                     />
 
                     <div className="is_PDV_payer">
                         {/* <p>Є платником ПДВ</p> */}
                         <Radiobutton
-                            getData={this.setAdditionlInfoData}
+                            getData={this.setSearchData}
                             name="isPDVPayer"
                             options={['Є платником ПДВ']}
                             id='isPDVPayer'
+                            name="isPDVPayer"
                             clear={this.props.clear}
                         />
                     </div>
@@ -112,7 +139,7 @@ export class Form extends Component {
                     </Link>
 
 
-                    <Link to={links.search} className='links' style={{ gridColumn: 'span 2' }}>
+                    <Link to={this.state.link} className='links' style={{ gridColumn: 'span 2' }}>
                         <Button className='find'
                             text='Знайти' />
                     </Link>
@@ -128,7 +155,10 @@ export default connect(
         legalForm: state.search.legalForm,
         mainEconomicActivityType: state.search.mainEconomicActivityType,
         location: state.search.location,
-        taxationForm: state.search.taxationForm
+        taxationForm: state.search.taxationForm,
+        purchasePriceFrom: state.search.purchasePriceFrom,
+        purchasePriceTo: state.search.purchasePriceTo,
+        isPDVPayer: state.search.isPDVPayer
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

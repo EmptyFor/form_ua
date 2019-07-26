@@ -10,8 +10,10 @@
   z-index: 2;
   cursor: pointer;
   &:hover {
-    border-color: #d2fbff !important;
-    transition: 0.5s;
+    border-color: #1ccee9 !important;
+  }
+  &:focus {
+    border-color: #1ccee9 !important;
   }
   .open {
     display: block;
@@ -100,7 +102,7 @@
     box-sizing: border-box;
     align-self: flex-start;
     background-color: #fff;
-    border: solid 1px #d2fbff;
+    border: solid 1px #1ccee9;
     border-radius: 0px 0px 20px 20px;
     border-top: none;
     width: calc(100% + 2px);
