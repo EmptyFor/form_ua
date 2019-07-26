@@ -1,5 +1,5 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { setToken, removeToken } from '../helpers';
+import { all, put, takeLatest } from 'redux-saga/effects';
+import { removeToken } from '../helpers';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
 import fetchSome from '../helpers/fetchJSON'

@@ -1,19 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import styles from '../Button/style.modules.scss';
+// import { bindActionCreators } from 'redux';
+import '../Button/style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 
-export const Button = props => ({
+export const Button = () => ({
 
-//    const handleDisabled = e => {
-        
-//     }
     render() {
-        
-           
-        
+
         return (
             <button className={`common_btn ${this.props.className}`}
                 type="button"
@@ -36,8 +31,8 @@ export const Button = props => ({
 
 
 export default connect(
-    (state) => ({}),
-    dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
-    })
+    // (state) => ({}),
+    // dispatch => ({
+    //     // actions: bindActionCreators(actions, dispatch)
+    // })
 )(Button);

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
 import { Input } from '../common/LogForm/Input';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 import { Button } from '../common/Button';
 import * as actions from '../../store/actions/authorise';
-import * as regexps from '../../core/constants/regexp';
+// import * as regexps from '../../core/constants/regexp';
 import logo_login from '../../assets/images/logolog.png'
 
 export class Login extends Component {
@@ -63,7 +63,7 @@ export class Login extends Component {
     return (
 
       <div className="login_page">
-      <img src={logo_login}></img>
+      <img alt="" src={logo_login}></img>
       <div className='login_modal_form' style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
           <form ref='logForm' >

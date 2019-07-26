@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
-import styles from './styles.modules.scss';
+import './styles.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
 export class UloadField extends Component {

@@ -9,6 +9,5 @@ export default {
     details:'/details',
     profile:'/profile',
     detail:'/details_info',
-    profile:'/profile'
   }
   

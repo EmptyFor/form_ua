@@ -10,7 +10,6 @@ import { RegistrationFirst } from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
 import { RegistrationTwice } from '../components/Registration/TwicePage';
 import Search from '../components/Search';
-import Registration from '../components/Registration';
 import Profile from '../components/Profile'
 import AdvertDetails from '../components/AdvertDetails';
 

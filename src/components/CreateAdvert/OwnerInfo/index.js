@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Input } from '../../common/Input';
 import * as actions from '../../../store/actions/advert';
-import styles from './style.modules.scss'
+import './style.modules.scss'
 
 export class OwnerInfo extends Component {
 
@@ -64,7 +64,7 @@ export class OwnerInfo extends Component {
 
         console.log(phoneNumbers[0].length)
 
-        ownerName && phoneNumbers[0].length == 24 ? this.props.actions.setOwnerInfo(ownerName, phoneNumbers) : void 0
+        ownerName && phoneNumbers[0].length === 24 ? this.props.actions.setOwnerInfo(ownerName, phoneNumbers) : void 0
 
     }
 

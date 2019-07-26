@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import styles from './style.modules.scss';
-import { runInThisContext } from 'vm';
+import './style.modules.scss';
+
 class Advert extends Component {
 
     state = {
@@ -22,7 +22,7 @@ class Advert extends Component {
                 <div className="left_side_advert">
                     <h1>{this.props.orgName}</h1>
                     <div className="minor_info_advert">
-                        <span className="ispdf_advert" isPdf={this.props.isPdf}>{this.state.text}</span>
+                        <span className="ispdf_advert" ispdf={this.props.ispdf}>{this.state.text}</span>
                         <span className="circle_advert"></span>
                         <span className="date_advert">{this.props.createDate}</span>
                         <span className="circle_advert"></span>
@@ -32,7 +32,7 @@ class Advert extends Component {
                 </div>
                 <div className="right_side_advert">
                     <span className="fullprice_advert">{this.props.fullPrice}</span>
-                    <span className="image_document_advert">{this.props.image}</span>
+                    <span className="image_document_advert"><img alt="" style={{ height: '100%', width: '100%' }} src={this.props.image}></img></span>
                 </div>
 
             </div>
