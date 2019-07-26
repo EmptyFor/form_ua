@@ -95,6 +95,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="legalForm"
                         type="common"
+                        required={true}
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.house}
@@ -109,6 +110,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="mainEconomicActivityType"
                         type="common"
+                        required={true}
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.portfolio}
@@ -136,6 +138,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="taxationForm"
                         type="common"
+                        required={true}
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.lable}
@@ -164,6 +167,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="location"
                         type="common"
+                        required={true}
                         width='auto'
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}
@@ -178,6 +182,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="registrationDate"
                         type="date"
+                        required={true}
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
                         width="100%"
                         className="input"
@@ -190,6 +195,7 @@ export class AdditionlInfo extends Component {
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
+                            required={true}
                             name="isPDVPayer"
                             options={['Так', 'Ні']}
                             id='isPDVPayer'

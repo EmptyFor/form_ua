@@ -15,6 +15,14 @@ export class Input extends Component {
 
     state = {
         value: '',
+        borderColor: 'none'
+    }
+
+    //Simple input check
+
+    checkInputValue = (e) => {
+        let value = e.target.value
+        this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
     }
 
     //Money Input
@@ -26,14 +34,21 @@ export class Input extends Component {
 
         let out = e.target.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         e.target.value = out
+        this.checkInputValue(e)
     }
 
     //Input with Mask
 
-    onChange = (event) => {
+    onChange = (e) => {
+        let name = e.target.name
+        let value = e.target.value
         this.setState({
-            value: event.target.value
+            value: value
         });
+        console.log(name)
+        name === 'EDRPOYCode' && value.length === 17 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
+        name === 'registrationDate' && value.length === 10 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
+        name === 'phoneNumbers' && value.length === 24 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
     }
 
     beforeMaskedValueChange = (newState, oldState, userInput) => {
@@ -57,13 +72,21 @@ export class Input extends Component {
 
     clearInput = () => {
         this.inputRef.current.value = ""
-        this.setState({value: ""})
+        this.setState({ value: "" })
         try {
             this.inputRef.current.setInputValue('')
         }
         catch {
             void 0
         }
+    }
+
+    setErrorBorder = () => {
+        this.setState({ borderColor: 'red' })
+    }
+
+    unsetErrorBorder = () => {
+        this.setState({ borderColor: 'unset' })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -75,7 +98,7 @@ export class Input extends Component {
         if (this.props.type === 'phone') {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
-                style={{ width: width }}
+                style={{ width: width, borderColor: this.state.borderColor }}
                 name={name}
                 ref={this.inputRef}
                 id={id}
@@ -92,7 +115,7 @@ export class Input extends Component {
             return <input type={type}
                 className={`common-input ${className}`}
                 placeholder={placeholder}
-                style={{ width: width }}
+                style={{ width: width, borderColor: this.state.borderColor }}
                 name={name}
                 ref={this.inputRef}
                 onChange={this.moneyInput}
@@ -104,13 +127,13 @@ export class Input extends Component {
         else if (this.props.type === 'EDRPOY') {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
-                style={{ width: width }}
+                style={{ width: width, borderColor: this.state.borderColor }}
                 name={name}
                 ref={this.inputRef}
                 id={id}
                 required={required}
                 mask="99 - 99 - 99 - 99"
-                maskChar="_"
+                maskChar=""
                 value={this.state.value}
                 onChange={this.onChange}
                 onBlur={this.props.getData}
@@ -120,7 +143,7 @@ export class Input extends Component {
         else if (this.props.type === 'date') {
             return <InputMask className={`common-input ${className}`}
                 placeholder={placeholder}
-                style={{ width: width }}
+                style={{ width: width, borderColor: this.state.borderColor }}
                 name={name}
                 ref={this.inputRef}
                 id={id}
@@ -137,9 +160,10 @@ export class Input extends Component {
             return <input type={type}
                 className={`common-input ${className}`}
                 placeholder={placeholder}
-                style={{ width: width }}
+                style={{ width: width, borderColor: this.state.borderColor }}
                 name={name}
                 ref={this.inputRef}
+                onChange={this.checkInputValue}
                 onBlur={this.props.getData}
                 id={id}
                 required={required}

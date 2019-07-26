@@ -86,16 +86,89 @@ export class MultiplySelect extends Component {
     }
 
     closeSelectStyle = () => {
+        let value = this.state.value
         this.setState(prevState => ({
+            isOpen: false,
             togleClass: 'close',
             style: {
                 ...prevState.style,
                 select: {
                     borderRadius: '30px',
                     borderBottom: 'solid 1px #b1a7c8',
-                    borderColor: '#b1a7c8',
+                    borderColor: '',
                     zIndex: 1
                 },
+            }
+        }))
+        if (this.props.required) {
+            if (value.length > 0) {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '#1ccee9',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+            else {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: 'tomato',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+        }
+        else {
+            if (value.length > 0) {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '#1ccee9',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+            else {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+        }
+        this.setState(prevState => ({
+            isOpen: false,
+            togleClass: 'close',
+            style: {
+                ...prevState.style,
                 arrow: {
                     transform: 'rotate(0deg)',
                     transition: '0.5s'
@@ -262,7 +335,7 @@ export class MultiplySelect extends Component {
         for (let i = 0; i < listItem.length; i++) {
             let value = listItem[i].getAttribute('value')
             let checkBoxClasses = listItem[i].childNodes[1].classList
-            
+
             value === 'false' ? listItem[i].setAttribute('value', true) : void 0
             value === 'false' ? listItem[i].classList.remove('active') : void 0
             value === 'false' ? checkBoxClasses.remove('select') : void 0

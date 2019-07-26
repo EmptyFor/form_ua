@@ -18,4 +18,13 @@
     letter-spacing: 0.03px;
     color: #99abc3;
   }
+  &:hover {
+    border-color: #1ccee9 !important;
+  }
+}
+
+textarea {
+  &:not(:placeholder-shown) {
+    border-color: #1ccee9;
+  }
 }

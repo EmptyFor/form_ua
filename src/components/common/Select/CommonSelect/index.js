@@ -8,6 +8,7 @@ import './style.modules.scss';
 
 export class CommonSelect extends Component {
 
+    selectRef = React.createRef()
     selectArea = React.createRef()
 
     state = {
@@ -54,7 +55,7 @@ export class CommonSelect extends Component {
                 select: {
                     borderRadius: '30px 30px 0px 0px',
                     borderBottom: 'none',
-                    borderColor: '#d2fbff',
+                    borderColor: '#1ccee9',
                     zIndex: 9999
                 },
                 arrow: {
@@ -69,16 +70,89 @@ export class CommonSelect extends Component {
     }
 
     closeSelectStyle = () => {
+        let value = this.state.value
         this.setState(prevState => ({
+            isOpen: false,
             togleClass: 'close',
             style: {
                 ...prevState.style,
                 select: {
                     borderRadius: '30px',
                     borderBottom: 'solid 1px #b1a7c8',
-                    borderColor: '#b1a7c8',
+                    borderColor: '',
                     zIndex: 1
                 },
+            }
+        }))
+        if (this.props.required) {
+            if (value.length > 0) {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '#1ccee9',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+            else {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: 'tomato',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+        }
+        else {
+            if (value.length > 0) {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '#1ccee9',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+            else {
+                this.setState(prevState => ({
+                    isOpen: false,
+                    togleClass: 'close',
+                    style: {
+                        ...prevState.style,
+                        select: {
+                            borderRadius: '30px',
+                            borderBottom: 'solid 1px #b1a7c8',
+                            borderColor: '',
+                            zIndex: 1
+                        },
+                    }
+                }))
+            }
+        }
+        this.setState(prevState => ({
+            isOpen: false,
+            togleClass: 'close',
+            style: {
+                ...prevState.style,
                 arrow: {
                     transform: 'rotate(0deg)',
                     transition: '0.5s'
@@ -127,7 +201,20 @@ export class CommonSelect extends Component {
                 },
                 value: {
                     display: "inline-block"
-                }
+                },
+                select: {
+                    borderRadius: '30px',
+                    borderBottom: 'solid 1px #b1a7c8',
+                    borderColor: '#1ccee9',
+                    zIndex: 1
+                },
+                arrow: {
+                    transform: 'rotate(0deg)',
+                    transition: '0.5s'
+                },
+                border: {
+                    display: 'none'
+                },
             }
         }));
     }
@@ -179,6 +266,7 @@ export class CommonSelect extends Component {
                 value={this.state.value}
                 style={this.state.style.select}
                 tabIndex="0"
+                ref={this.selectRef}
                 onBlur={this.closeSelectList}
                 onClick={this.togleSelectList}>
 
