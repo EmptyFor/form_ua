@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import left_image from '../../../assets/images/rectangle-16@3x.png'
-import styles from '../Info/style.modules.scss';
+import '../Info/style.modules.scss';
 import CreateAdvertBtn from '../../common/CreateAdvertBtn';
 import description_img_1 from '../../../assets/images/icon-1@2x.png';
 import description_img_2 from '../../../assets/images/icon-2@2x.png';
@@ -15,7 +15,7 @@ export class Info extends Component {
 
             <div className='grid' >
                 <div className="left_img">
-                    <img src={left_image}></img>
+                    <img alt="" src={left_image}></img>
                 </div>
 
                 <div className="right_create_advert">
@@ -40,7 +40,7 @@ export class Info extends Component {
 
                 <div className="left_description">
                     <div className="description">
-                        <img src={description_img_1}></img>
+                        <img alt="" src={description_img_1}></img>
                         <div className="text">
                             <h1>
                                 Знайди бажане за декілька хвилин
@@ -56,7 +56,7 @@ export class Info extends Component {
 
                 <div className="right_description">
                     <div className="description">
-                        <img src={description_img_2}></img>
+                        <img alt="" src={description_img_2}></img>
                         <div className="text">
                             <h1>
                                 Вирішуй всі питання без проблем
@@ -78,8 +78,8 @@ export class Info extends Component {
         }
         
         export default connect(
-    (state) => ({}),
-    dispatch => ({
-                    // actions: bindActionCreators(actions, dispatch)
-                })
+    // (state) => ({}),
+    // dispatch => ({
+    //                 // actions: bindActionCreators(actions, dispatch)
+    //             })
 )(Info);

@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/search';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+// import { bindActionCreators } from 'redux';
 import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
@@ -133,13 +133,13 @@ export class Form extends Component {
                         />
                     </div>
 
-                    <Link className='links' style={{ gridColumn: 'span 3' }}>
+                    <Link className='common_btn_link' style={{ gridColumn: 'span 3' }}>
                         <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 
 
-                    <Link to={this.state.link} className='links' style={{ gridColumn: 'span 2' }}>
+                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
                         <Button className='find'
                             text='Знайти' />
                     </Link>

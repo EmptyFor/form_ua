@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import styles from './style.modules.scss';
+// import { bindActionCreators } from 'redux';
+import './style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Radiobutton extends Component {
 

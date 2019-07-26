@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/advert';
-import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import * as actions from '../../../store/actions/advert';
+// import { bindActionCreators } from 'redux';
+// import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 import { CheckBoxSelect } from './CheckBoxSelect';
 import { MultiplySelect } from './MultiplySelect';
 import { CommonSelect } from './CommonSelect';

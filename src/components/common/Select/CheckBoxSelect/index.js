@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import { bindActionCreators } from 'redux';
+// import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 
 export class CheckBoxSelect extends Component {
 
@@ -194,7 +194,7 @@ export class CheckBoxSelect extends Component {
                 onBlur={this.closeSelectList}>
 
                 <div id="selectArea" className="select_area" onClick={this.togleSelectList} ref={this.selectArea} >
-                    <img className="select_icon" src={this.props.icon}></img>
+                    <img alt="" className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="placeholder">{this.state.placeholder}</div>
                     <div id="selected_items" className="selected_items" ></div>
                     <svg id="arrow"
@@ -212,7 +212,7 @@ export class CheckBoxSelect extends Component {
                     </svg>
                 </div>
 
-                <div className="border" style={this.state.style.border} style={{ top: this.top }}></div>
+                <div className="border" style={{ top: this.top, border:this.state.style.border }}></div>
 
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
 

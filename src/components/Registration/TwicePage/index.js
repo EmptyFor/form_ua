@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
-import * as actions from '../../../store/actions/registration'
+// import * as actions from '../../../store/actions/registration'
 import logo_login from '../../../assets/images/logolog.png'
 
 export class RegistrationTwice extends Component {
@@ -25,7 +25,7 @@ export class RegistrationTwice extends Component {
     }
 
     handleSubmit = e => {
-        const { email, password, confPassword, validConfPass, validPass } = this.state
+        const { password, confPassword } = this.state
         if (password !== confPassword) {
             this.setState({ password: '', confPassword: '', validPass: false, validConfPass: false, borderColor: 'red', visibility: 'visible' })
         } else {
@@ -35,7 +35,7 @@ export class RegistrationTwice extends Component {
     }
 
     handleChange = e => {
-        const { password, confPassword } = this.state
+        // const { password, confPassword } = this.state
         const name = e.target.name;
         const value = e.target.value;
         this.setState({ [name]: value });
@@ -63,7 +63,7 @@ export class RegistrationTwice extends Component {
         console.log(this.props);
         return (
             <div className="login_page">
-                <img src={logo_login}></img>
+                <img alt="" src={logo_login}></img>
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
                     <form className='reg_form'>

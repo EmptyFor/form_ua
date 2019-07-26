@@ -11,14 +11,14 @@ body {
   justify-content: space-between;
   .profile_list {
     width: 60.8%;
-    min-height: 100%;
-    border: 1px solid black;
+    height: auto;
+    min-height: 113vh;
     background-color: #fff;
+    margin-block-end: 5%;
   }
   .profile_info {
     width: 30%;
-    height: 30vh;
-    border: 1px solid black;
+    height: 27vh;
     background-color: #fff;
     .info_head {
       height: 7.5vh;
@@ -26,17 +26,17 @@ body {
     }
   }
   .profile_info_main_contain {
-    height: 78%;
+    height: 48%;
     display: flex;
     justify-content: flex-start;
     padding: 8% 10%;
     flex-direction: column;
-    
-    span{
-        margin-block-end:8%;
-        font-size: 20px
+
+    span {
+      margin-block-end: 8%;
+      font-size: 20px;
     }
-}
+  }
 }
 .profile_list_header {
   height: 7.5%;
@@ -58,6 +58,36 @@ body {
   .adding_advert {
     background: rgb(0, 217, 255);
     font-size: 18px;
+    color: white;
+  }
+}
+.results_header_counter {
+            margin-inline-start: 1%;
+            color: #fc4445;
+        }
+.pagination_div {
+  position: relative;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  button {
+    width: 140px;
+    background-color: inherit;
+    outline: none;
+    border: none;
+  }
+
+  .pagination_current {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background-color: #1ccee9;
+    text-align: center;
+    font-weight: bold;
     color: white;
   }
 }

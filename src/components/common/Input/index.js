@@ -1,10 +1,10 @@
-import React, { Component, Fragment, lazy } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/advert';
-import { bindActionCreators } from 'redux';
+// import * as actions from '../../../store/actions/advert';
+// import { bindActionCreators } from 'redux';
 import InputMask from 'react-input-mask';
-import styles from '../Input/style.modules.scss';
+import '../Input/style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 
 

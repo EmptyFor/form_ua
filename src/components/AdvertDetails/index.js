@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useLayoutEffect } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../store/actions/authorise';
@@ -59,7 +59,7 @@ export class AdvertDetails extends Component {
             if (index === 3) {
                 return (<div className="details_body_item_list" key={index}>
                     <label className="details_labels_list">{`${labels[index]} :`}</label>
-                    <span className="details_values_list"><span className="place_advert" >{Object.values(item)}</span></span>
+                    <span className="details_values_list"><span className="place_advert_detail" >{Object.values(item)}</span></span>
                 </div>)
             }
             if(index === 10) {
@@ -90,7 +90,7 @@ export class AdvertDetails extends Component {
                                     <span className="details_main_info_head_contain_title">Конституційна Правова агенція твого міста</span>
                                     <span className="details_main_info_head_contain_price">11 500 грн</span>
                                 </div>
-                                <div className="details_main_info_head_image"><img style={{ height: '100%', width: '100%' }} src={document}></img></div>
+                                <div className="details_main_info_head_image"><img alt="" style={{ height: '100%', width: '100%' }} src={document}></img></div>
                             </div>
                             <div className="details_main_info_body">
                                 {this.renderDetailsBodyList()}
@@ -116,9 +116,9 @@ export class AdvertDetails extends Component {
 }
 
 export default connect(
-    ({ }) => ({
-    }),
-    dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
-    })
+    // ({ }) => ({
+    // }),
+    // dispatch => ({
+    //     actions: bindActionCreators(actions, dispatch)
+    // })
 )(AdvertDetails);

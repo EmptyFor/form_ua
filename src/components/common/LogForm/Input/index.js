@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import { bindActionCreators } from 'redux';
+// import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
-import styles from '../Input/style.modules.scss';
+import '../Input/style.modules.scss';
 
 export class Input extends Component {
 
@@ -35,7 +35,7 @@ export class Input extends Component {
 
     return (
       <Fragment>
-        <input style={this.props.style} maxLength={this.props.maxLength} type={this.props.type} value={this.props.value} className={this.props.className} validation={this.props.validation} onChange={this.props.onChange} placeholder={this.props.placeholder} value={this.props.value} defaultValue={this.props.defValue} onKeyPress={this.props.onKeyPress} pattern={this.props.pattern} name={this.props.name} className="form_input"></input>
+        <input style={this.props.style} maxLength={this.props.maxLength} type={this.props.type} value={this.props.value} className={`form_input ${this.props.className}`} validation={this.props.validation} onChange={this.props.onChange} placeholder={this.props.placeholder} defaultValue={this.props.defValue} onKeyPress={this.props.onKeyPress} pattern={this.props.pattern} name={this.props.name} ></input>
         <label visiblelabel={this.props.visiblelabel} style={{ visibility:visibillity }}>{this.props.label}</label>
       </Fragment>);
   }

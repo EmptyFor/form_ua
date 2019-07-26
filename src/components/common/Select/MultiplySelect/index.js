@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 
 export class MultiplySelect extends Component {
 
@@ -374,7 +374,7 @@ export class MultiplySelect extends Component {
                 onBlur={this.closeSelectList}>
 
                 <div id="selectArea" ref={this.selectArea} className="select_area" onClick={this.togleSelectList}  >
-                    <img className="select_icon" src={this.props.icon}></img>
+                    <img alt="" className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
                     <div id="selectValue" ref={this.selectValue} className="select_value" style={this.state.style.value} >
                         {this.state.value.map(item => { return item })}

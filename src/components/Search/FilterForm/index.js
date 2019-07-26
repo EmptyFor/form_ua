@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
@@ -6,7 +6,7 @@ import { Input } from '../../common/Input';
 import house_select_icon from '../../../../src/assets/images/house_select_icon.png'
 
 // import { bindActionCreators } from 'redux';
-import styles from '../FilterForm/style.modules.scss';
+import '../FilterForm/style.modules.scss';
 class FilterForm extends Component {
 
   render() {

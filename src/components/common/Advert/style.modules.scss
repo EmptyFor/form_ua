@@ -1,6 +1,6 @@
 .common_advert {
     // width: 100%;
-    height: 200px;
+    height: 24vh;
     border-bottom: 1px solid rgba(177, 167, 200, 0.47);
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@
             }
 
             .place_advert {
-                padding: 3px 16px;
+                padding: 3px 16px !important;
                 font-size: 15px;
                 letter-spacing: 0.07px;
                 border-radius: 9.5px;
@@ -70,9 +70,11 @@
         }
 
         .image_document_advert {
-            // width: 102px;
-            height: 70%;
-            border: 1px solid black
+            width: 100%;
+            height: 80%;
+            padding: 2%;
+            background: linear-gradient(#e66465, #9198e5);
+            overflow: hidden;
         }
     }
 }

@@ -1,18 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateAdvertBtn from '../../../common/CreateAdvertBtn';
-// import { bindActionCreators } from 'redux';
-// import { Row, Dropdown, Menu } from 'antd';
-// import cn from 'classnames';
-// import { map } from 'lodash';
-// import { logout } from '../../../../store/actions/authorize';
-// import { updateContract } from '../../../../store/actions/user';
-// import logo from '../../../../assets/images/logo.png';
-// import navigation from '../../../../config/navigation';
-// import links from '../../../../config/links';
-// import groups from '../../../../core/constants/groups';
+
 import styles from './styles.module.scss';
 import main_logo from '../../../../assets/images/logo@2x.png'
 import links from '../../../../config/links';
@@ -231,7 +222,7 @@ class Header extends Component {
           </p>
         </div>
         <Link className={styles.main_logo} to={links.login}>
-          <img src={main_logo} onClick={this.handleClick}></img>
+          <img src={main_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 
         <div className={styles.right_side}>
@@ -255,8 +246,8 @@ class Header extends Component {
 }
 
 export default connect(
-  (state) => ({}),
-  dispatch => ({
-    // actions: bindActionCreators(actions, dispatch)
-  })
+  // (state) => ({}),
+  // dispatch => ({
+  //   // actions: bindActionCreators(actions, dispatch)
+  // })
 )(Header);

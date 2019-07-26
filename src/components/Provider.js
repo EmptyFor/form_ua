@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 // // import * as userActions from '../store/actions/user';
 // import { Loader } from './common';
-import links from '../config/links';
+// import links from '../config/links';
 
 class Provider extends Component {
   // static propTypes = {

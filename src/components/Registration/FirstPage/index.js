@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
-import styles from './style.modules.scss';
+import './style.modules.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../../src/store/actions/registration';
@@ -21,7 +21,7 @@ export class RegistrationFirst extends Component {
     };
 
     handleClick = e => {
-        const { login, phone } = this.state;
+        // const { login, phone } = this.state;
         console.log(this.props)
     }
 
@@ -48,13 +48,13 @@ export class RegistrationFirst extends Component {
         return (
 
             <div className="login_page">
-                <img src={logo_login}></img>
+                <img alt="" src={logo_login}></img>
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
                     <form>
                         <Input name='login' value={login} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30' />
                         <Input name='phone' value={phone} onChange={this.handleChange} type='tel' placeholder="+38(0_ _) - _ _ _ - _ _ - _ _" maxLength='13' />
-                        <Link to={links.registrationTwice}><Button width='92%' back={disabledColor} onClick={this.handleClick} text='Далі' disabled={!isOk} /></Link>
+                        <Link to={links.registrationTwice} className="common_btn_link"><Button width='92%' back={disabledColor} onClick={this.handleClick} text='Далі' disabled={!isOk} /></Link>
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links.login}> Увійти >></Link></div>
                 </div>
