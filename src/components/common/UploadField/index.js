@@ -68,7 +68,6 @@ export class UloadField extends Component {
             e.dataTransfer.clearData()
             this.dragCounter = 0
             this.previewFile(file)
-            this.props.actions.setDocumentPhoto(this.state.image.src)
         }
     }
 
@@ -86,6 +85,7 @@ export class UloadField extends Component {
             uploadContainer.style.padding = '0'
             uploadInfo.style.display = 'none'
             img.src = this.state.image.src
+            this.props.actions.setDocumentPhoto(this.state.image.src)
         }.bind(this)
 
         if (file[0]) {
@@ -122,6 +122,7 @@ export class UloadField extends Component {
                 src: ulpoad_img
             }
         })
+        this.props.actions.setDocumentPhoto('')
         img.style.width = '51px'
         uploadContainer.style.padding = '5%'
         uploadInfo.style.display = 'flex'

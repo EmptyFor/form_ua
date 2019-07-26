@@ -12,7 +12,7 @@ import { Radiobutton } from '../../common/Radiobutton';
 export class AdditionlInfo extends Component {
     constructor() {
         super()
-        this.sendAdditionlInfoData = this.sendAdditionlInfoData.bind(this)
+        this.setAdditionlInfoData = this.setAdditionlInfoData.bind(this)
     }
 
     state = {
@@ -29,9 +29,7 @@ export class AdditionlInfo extends Component {
         shareCapital: '',
     }
 
-    sendAdditionlInfoData(e) {
-        const { legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital } = this.state
-
+    setAdditionlInfoData(e) {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
 
@@ -41,24 +39,41 @@ export class AdditionlInfo extends Component {
         this.setState({
             [name]: value
         })
+    }
 
-
-        legalForm &&
-            mainEconomicActivityType &&
-            additionalEconomicActivityType.length <= 10 &&
-            taxationForm &&
-            license.length <= 5 &&
-            location &&
-            registrationDate.length === 10 &&
-            isPDVPayer ?
-            this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
-            void 0
-
-        this.props.actions.clearAllInfo(false)
+    sendAdditionlInfoData() {
+        const { legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital } = this.state
+        if (this.props.clear) {
+            this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital)
+        }
+        else {
+            legalForm &&
+                mainEconomicActivityType &&
+                additionalEconomicActivityType.length <= 10 &&
+                taxationForm &&
+                license.length <= 5 &&
+                location &&
+                registrationDate.length === 10 &&
+                isPDVPayer ?
+                this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
+                void 0
+        }
     }
 
     clearValue = () => {
-
+        this.setState({
+            legalForm: '',
+            mainEconomicActivityType: '',
+            additionalEconomicActivityType: [],
+            taxationForm: '',
+            license: [],
+            location: '',
+            registrationDate: '',
+            isPDVPayer: '',
+            broughtEconomicActivity: '',
+            hasDebt: '',
+            shareCapital: '',
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -66,6 +81,7 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
+        this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >
                 <div className="title" >
@@ -76,7 +92,7 @@ export class AdditionlInfo extends Component {
                 <div className="first_position grid_left_column">
                     <p className="subtitle">Організаційно правова форма:<span>*</span></p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="legalForm"
                         type="common"
                         width='auto'
@@ -90,7 +106,7 @@ export class AdditionlInfo extends Component {
                 <div className="second_position grid_left_column">
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="mainEconomicActivityType"
                         type="common"
                         width='auto'
@@ -104,7 +120,7 @@ export class AdditionlInfo extends Component {
                 <div className="third_position grid_left_column">
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="additionalEconomicActivityType"
                         type="multiply" width='auto'
                         placeholder='Оберіть зі списку'
@@ -117,7 +133,7 @@ export class AdditionlInfo extends Component {
                 <div className="forth_position grid_left_column">
                     <p className="subtitle">Форма оподаткування:<span>*</span></p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="taxationForm"
                         type="common"
                         width='auto'
@@ -131,7 +147,7 @@ export class AdditionlInfo extends Component {
                 <div className="fifth_position grid_left_column">
                     <p className="subtitle">Ліцензія (до 5 видів):</p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="license"
                         type="multiply"
                         width='auto'
@@ -145,7 +161,7 @@ export class AdditionlInfo extends Component {
                 <div className="sixth_position grid_right_column">
                     <p className="subtitle">Місце знаходження/реєстрації:<span>*</span></p>
                     <Select
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="location"
                         type="common"
                         width='auto'
@@ -159,7 +175,7 @@ export class AdditionlInfo extends Component {
                 <div className="seventh_position grid_right_column">
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
                     <Input
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="registrationDate"
                         type="date"
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
@@ -173,7 +189,7 @@ export class AdditionlInfo extends Component {
                     <div className="first_radio">
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
                         <Radiobutton
-                            getData={this.sendAdditionlInfoData}
+                            getData={this.setAdditionlInfoData}
                             name="isPDVPayer"
                             options={['Так', 'Ні']}
                             id='isPDVPayer'
@@ -184,7 +200,7 @@ export class AdditionlInfo extends Component {
                     <div className="second_radio">
                         <p className="subtitle">Вела господарську діяльність?</p>
                         <Radiobutton
-                            getData={this.sendAdditionlInfoData}
+                            getData={this.setAdditionlInfoData}
                             name="broughtEconomicActivity"
                             options={['Так', 'Ні']}
                             id='broughtEconomicActivity'
@@ -195,7 +211,7 @@ export class AdditionlInfo extends Component {
                     <div className="third_radio">
                         <p className="subtitle">Без обтяжень та заборгованостей?</p>
                         <Radiobutton
-                            getData={this.sendAdditionlInfoData}
+                            getData={this.setAdditionlInfoData}
                             name="hasDebt"
                             options={['Так', 'Ні']}
                             id='hasDebt'
@@ -207,7 +223,7 @@ export class AdditionlInfo extends Component {
                 <div className="nineth_position grid_right_column">
                     <p className="subtitle">Статутний капітал:</p>
                     <Input
-                        getData={this.sendAdditionlInfoData}
+                        getData={this.setAdditionlInfoData}
                         name="shareCapital"
                         type="money"
                         placeholder="Введіть суму в гривнях"

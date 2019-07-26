@@ -16,23 +16,33 @@ export class GeneralInfo extends Component {
         purchasePrice: ''
     }
 
-    sendGeneralInfoData = (e) => {
-        const { organisationName, EDRPOYCode, purchasePrice } = this.state
-
+    setGeneralInfoData = (e) => {
         let name = e.currentTarget.name
         let value = e.currentTarget.value
-
         name === 'EDRPOYCode' || name === 'purchasePrice' ? this.setState({ [name]: value.replace(/\D/g, '') }) : this.setState({ [name]: value })
+    }
 
-        if (organisationName.length > 0 && EDRPOYCode.length === 8 && purchasePrice.length > 0) {
+    sendGeneralInfoData = () => {
+        const { organisationName, EDRPOYCode, purchasePrice } = this.state
+
+        if (this.props.clear) {
             this.props.actions.setGeneralInfo(organisationName, EDRPOYCode, purchasePrice)
         }
-
-        this.props.actions.clearAllInfo(false)
+        else {
+            organisationName.length > 0 &&
+                EDRPOYCode.length === 8 &&
+                purchasePrice.length > 0 ?
+                this.props.actions.setGeneralInfo(organisationName, EDRPOYCode, purchasePrice) :
+                void 0
+        }
     }
 
     clearValue = () => {
-
+        this.setState({
+            organisationName: '',
+            EDRPOYCode: '',
+            purchasePrice: ''
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -40,6 +50,7 @@ export class GeneralInfo extends Component {
     }
 
     render() {
+        this.sendGeneralInfoData()
         return (
             <div className="general_info" >
                 <div className="title" >
@@ -50,7 +61,7 @@ export class GeneralInfo extends Component {
                 <div className="first_position grid_left_column">
                     <p className="subtitle">Назва організації:<span>*</span></p>
                     <TextArea
-                        getData={this.sendGeneralInfoData}
+                        getData={this.setGeneralInfoData}
                         name="organisationName"
                         className="text_area"
                         placeholder="Введіть назву організації"
@@ -61,7 +72,7 @@ export class GeneralInfo extends Component {
                 <div className="second_position grid_left_column">
                     <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
                     <Input
-                        getData={this.sendGeneralInfoData}
+                        getData={this.setGeneralInfoData}
                         name="EDRPOYCode"
                         type="EDRPOY"
                         className="input"
@@ -73,7 +84,7 @@ export class GeneralInfo extends Component {
                 <div className="third_position grid_left_column">
                     <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
                     <Input
-                        getData={this.sendGeneralInfoData}
+                        getData={this.setGeneralInfoData}
                         name="purchasePrice"
                         type="money"
                         className="input"

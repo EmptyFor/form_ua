@@ -7,17 +7,33 @@ import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
+import { Radiobutton } from '../../common/Radiobutton';
 import links from '../../../config/links';
 import { images } from '../../../assets/images/images'
-// import globalStyle from '../../../assets/styles/global.styles.scss'
-// import { Select } from 'antd';
-// const { Option } = Select;
 
 export class Form extends Component {
 
+    state = {
+        legalForm: '',
+        mainEconomicActivityType: '',
+        location: '',
+        taxationForm: ''
+    }
 
+    setSearchData = (e) => {
+        let name = e.target.getAttribute('name')
+        let value = e.target.getAttribute('value') || e.target.value
+        
+        this.setState({
+            [name]: value
+        })
+        console.log('...search')
+    }
 
     render() {
+        const { legalForm, mainEconomicActivityType, location, taxationForm } = this.state
+        this.props.actions.setSearchData(legalForm, mainEconomicActivityType, location, taxationForm)
+
         return (
 
             <div className='wrapp' >
@@ -26,18 +42,67 @@ export class Form extends Component {
 
                 <div className='search_form grid'>
 
-                    <Select type="multiply" width='auto' placeholder='Організаційно правова форма' icon={images.house} id='mp_form_select_1' />
-                    <Select type="common" width='auto' placeholder='Організаційно правова форма' icon={images.portfolio} id='mp_form_select_2' />
-                    <Select type="checkbox" width='auto' placeholder='Організаційно правова форма' icon={images.mapPoint} id='mp_form_select_3' />
-                    <Select type="checkbox" width='auto' placeholder='Організаційно правова форма' icon={images.lable} id='mp_form_select_4' />
+                    <Select
+                        type="common"
+                        width='auto'
+                        placeholder='Організаційно правова форма'
+                        icon={images.house} id='mp_form_select_1'
+                        getData={this.setSearchData}
+                    />
+                    <Select
+                        type="common"
+                        width='auto'
+                        placeholder='Оновний вид господарської діяльності (КВЕДи)'
+                        icon={images.portfolio}
+                        id='mp_form_select_2'
+                        getData={this.setSearchData}
+                    />
+                    <Select
+                        type="common"
+                        width='auto'
+                        placeholder='Вибріть місто/населений пункт'
+                        icon={images.mapPoint}
+                        id='mp_form_select_3'
+                        getData={this.setSearchData}
+                    />
+                    <Select
+                        type="common"
+                        width='auto'
+                        placeholder='Форма оподаткування'
+                        icon={images.lable}
+                        id='mp_form_select_4'
+                        getData={this.setSearchData}
+                    />
 
                     <p className="price">Ціна</p>
-                    <Input className='price_from' placeholder='від (₴)' />
-                    <Input className='price_to' placeholder='до (₴)' />
+                    <Input
+                        getData={this.setAdditionlInfoData}
+                        name="registrationDate"
+                        type="money"
+                        placeholder='від (₴)'
+                        width="100%"
+                        className='price_from'
+                        clear={this.props.clear}
+                    />
+                    <Input
+                        getData={this.setAdditionlInfoData}
+                        name="registrationDate"
+                        type="money"
+                        placeholder='до (₴)'
+                        width="100%"
+                        className='price_to'
+                        clear={this.props.clear}
+                    />
 
                     <div className="is_PDV_payer">
-                        <p>Є платником ПДВ</p>
-                        <Input type="checkbox" />
+                        {/* <p>Є платником ПДВ</p> */}
+                        <Radiobutton
+                            getData={this.setAdditionlInfoData}
+                            name="isPDVPayer"
+                            options={['Є платником ПДВ']}
+                            id='isPDVPayer'
+                            clear={this.props.clear}
+                        />
                     </div>
 
                     <Link className='common_btn_link' style={{ gridColumn: 'span 3' }}>
@@ -58,8 +123,13 @@ export class Form extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        legalForm: state.search.legalForm,
+        mainEconomicActivityType: state.search.mainEconomicActivityType,
+        location: state.search.location,
+        taxationForm: state.search.taxationForm
+    }),
     dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )(Form);
