@@ -19,7 +19,7 @@ class Advert extends Component {
 
         return (
             <div className="common_advert" key = {this.props.key}>
-                <div className="left_side_advert">
+                <div className="left_side_advert" advId={this.props.advId}>
                     <h1>{this.props.orgName}</h1>
                     <div className="minor_info_advert">
                         <span className="ispdf_advert" ispdf={this.props.ispdf}>{this.state.text}</span>
