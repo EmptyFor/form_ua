@@ -3,7 +3,7 @@ body {
 }
 .profile_wrapper {
   width: 87%;
-  min-height: 125vh;
+  max-height: 125vh;
   margin: 0 auto;
   margin-block-start: 7%;
   display: flex;
@@ -12,7 +12,7 @@ body {
   .profile_list {
     width: 65.8%;
     height: auto;
-    min-height: 113vh;
+    min-height: 116.5vh;
     background-color: #fff;
     margin-block-end: 5%;
   }
@@ -21,7 +21,7 @@ body {
     height: 27vh;
     background-color: #fff;
     .info_head {
-      height: 7.5vh;
+      height: 8.7vh;
       padding: 0 9%;
     }
   }

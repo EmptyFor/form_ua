@@ -215,7 +215,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <header className={`menu ${this.props.className}`}>
+      <header className={`menu ${this.props.className}`} fix={this.props.fix}>
         <div className={styles.language} id="language">
           <p>
             Language
@@ -226,12 +226,7 @@ class Header extends Component {
         </Link>
 
         <div className={styles.right_side}>
-          {
-            this.props.hide_ca_button !== true &&
-            <Link className={styles.create_advert} to={links.createAdvert}>
-              <CreateAdvertBtn />
-            </Link>
-          }
+          { !this.props.fix ? <CreateAdvertBtn className={styles.create_advert}/> : null}
           <div className={styles.profile}>
             <Link to={links.profile}>
               <p>

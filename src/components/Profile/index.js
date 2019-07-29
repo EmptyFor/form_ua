@@ -19,7 +19,7 @@ const mockData = [
     date: '10/02/2019',
     city: 'Львів',
     price: '12 000',
-    createdAt: '2019-07-29 7:04',
+    createdAt: '2019-07-29 7:10',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
   },
   {
@@ -58,15 +58,15 @@ const mockData = [
     createdAt: '2014-06-29 11:57',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
   },
-  // {
-  //   name: 'FIRST',
-  //   isPDF: true,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
+  {
+    name: 'FIRST',
+    isPDF: true,
+    date: '10/02/2019',
+    city: 'Львів',
+    price: '12 000',
+    createdAt: '2014-02-11 11:57',
+    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
+  },
   // {
   //   name: 'TWICE PAGE',
   //   isPDF: false,
@@ -225,13 +225,15 @@ export class Profile extends Component {
     this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
   }
 
+  handleClickInfo = e => {
+  }
+
   renderAdverts = () => {
     let range = this.state.currentPage * pageStep;
     const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-
+    
     return (
       data.map((item, i) => {
-
         let dateResult;
         let dateRange = Math.ceil((new Date() - new Date(item.createdAt)) / 1000);
         if (dateRange > 0 && dateRange < 60) {
@@ -254,11 +256,11 @@ export class Profile extends Component {
         } else {
           dateResult = `${new Date(item.createdAt).getDate()} / ${new Date(item.createdAt).getMonth() < 10 ? `0${new Date(item.createdAt).getMonth()}` : new Date(item.createdAt).getMonth()} / ${new Date(item.createdAt).getFullYear()}`
         }
-        console.log(item)
         return (
           <div className="profile_advert_hover" key={i}>
-            <Link to={links.details} >
+            <Link to={links.details}>
               <Advert
+              onClick = {this.handleClickInfo}
                 orgName={item.name}
                 ispdf={item.isPDF + ''}
                 createDate={`від ${item.date}`}
@@ -266,27 +268,23 @@ export class Profile extends Component {
                 fullPrice={`${item.price} $`}
                 about={item.about}
                 image={document}
-                actionBar={true}
               />
             </Link>
             <div className="advert_action_bar">
-
               <div className="advert_action_bar_time">{`${dateResult}`}</div>
-
               <div className="advert_action_bar_actions">
                 <span>Видалити</span>
                 <span>Деактивувати</span>
                 <span>Редагувати</span>
               </div>
             </div>
-
           </div>
         )
       }))
   }
   render() {
     const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-
+    console.log('render')
     let dynamicWidth = 3.4 * this.numersOfPages.length + "%";
     let paginationPageCounter = this.numersOfPages.map((item, index) => {
       if (this.state.currentPage === item) {

@@ -18,7 +18,7 @@ export class CreateAdvert extends Component {
 
         return (
             <Fragment>
-                <Header className="header" hide_ca_button={true} />
+                <Header className="header" fix={true} />
                 <div className="ca_bg">
                     <div className="form_bg">
                         <FormHeader />
