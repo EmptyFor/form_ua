@@ -46,9 +46,11 @@ export class Input extends Component {
             value: value
         });
         console.log(name)
-        name === 'EDRPOYCode' && value.length === 17 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
-        name === 'registrationDate' && value.length === 10 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
-        name === 'phoneNumbers' && value.length === 24 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
+        this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
+        
+        // name === 'EDRPOYCode' && value.length === 17 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
+        // name === 'registrationDate' && value.length === 10 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
+        // name === 'phoneNumbers' && value.length === 24 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
     }
 
     beforeMaskedValueChange = (newState, oldState, userInput) => {

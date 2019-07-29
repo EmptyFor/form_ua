@@ -7,7 +7,6 @@
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    color: #99abc3;
     font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -21,7 +20,10 @@
     opacity: 0;
     cursor: pointer;
   }
-
+  .text {
+    font-family: AvenirNext-Medium;
+    color: #99abc3;
+  }
   /* Create a custom radio button */
   .checkmark {
     position: relative;
@@ -38,7 +40,7 @@
     .checkmark {
       background-color: rgb(211, 214, 213);
     }
-    .container {
+    .text {
       color: #28252f;
     }
   }
@@ -48,7 +50,10 @@
     .checkmark {
       background-color: #1addef;
     }
-    .container {
+  }
+
+  .container input:checked ~ {
+    .text {
       color: #28252f;
     }
   }
