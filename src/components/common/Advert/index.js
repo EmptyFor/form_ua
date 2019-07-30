@@ -18,7 +18,7 @@ class Advert extends Component {
     render() {
 
         return (
-            <div className="common_advert" key = {this.props.key}>
+            <div className="common_advert" onClick={this.props.onClick} key = {this.props.key}>
                 <div className="left_side_advert">
                     <h1>{this.props.orgName}</h1>
                     <div className="minor_info_advert">

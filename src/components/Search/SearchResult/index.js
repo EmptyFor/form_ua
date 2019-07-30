@@ -560,6 +560,7 @@ class SearchResult extends Component {
                             about={item.about}
                             image={document}
                         />
+                        <div className='line'></div>
                     </Link>
                 )
             }))

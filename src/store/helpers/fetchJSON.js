@@ -1,4 +1,4 @@
-export const fetchSome = (url, options = {}) =>
+export const fetchSome = (url, options) =>
     new Promise((resolve, reject) => {
         let status;
         return fetch(url, options)

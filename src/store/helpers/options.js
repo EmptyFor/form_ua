@@ -1,27 +1,25 @@
 export const headers = {
-    "Accept": "application/json",
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
     // token: null || this.props.token
 }
 export const options = {
     GET: {
         ...headers,
-        body: null || JSON.stringify() ,
+        body: null,
         method: 'GET'
     },
     POST: {
         ...headers,
-        body: JSON.stringify({}) || null ,
         method: 'POST'
     },
     PUT: {
-        ...headers,
-        body: JSON.stringify({}) || null ,
+        headers,
         method: 'PUT'
     },
     DELETE: {
-        ...headers,
-        body: JSON.stringify({}) || null ,
+        headers,
+        body: null,
         method: 'DELETE'
     },
 

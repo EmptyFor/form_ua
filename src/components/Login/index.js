@@ -55,7 +55,6 @@ export class Login extends Component {
   render() {
     // const { token, error, authActions } = this.props;
     const { email, password, message, borderColor, visibility } = this.state
-    console.log(this.props)
     // if (token) {
     //   return <Redirect to={links.home} />
     // }
