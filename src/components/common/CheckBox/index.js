@@ -32,6 +32,7 @@ export class CheckBox extends Component {
                     onChange={this.props.getData}
                 >
                     <input type="checkbox" name={this.props.id} onClick={this.selectCheckBox}></input>
+                    <span className="text">{this.props.text}</span>
                     <span className="checkmark"></span>
                 </label>
             </div>

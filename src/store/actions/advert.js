@@ -1,10 +1,10 @@
 import * as types from '../types/advert';
 
-export const setGeneralInfo = (organisationName, EDRPOYCode, purchasePrice, documentPhoto) => ({
+export const setGeneralInfo = (name, code, price) => ({
     type: types.GENERAL_INFO,
-    organisationName,
-    EDRPOYCode,
-    purchasePrice,
+    name,
+    code,
+    price,
 });
 
 export const setDocumentPhoto = (payload) => ({
@@ -12,28 +12,53 @@ export const setDocumentPhoto = (payload) => ({
     payload
 });
 
-export const setAdditionalInfo = (legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital ) => ({
+export const setAdditionalInfo = (legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital) => ({
     type: types.ADDITIONAL_INFO,
-    legalForm,
-    mainEconomicActivityType,
-    additionalEconomicActivityType,
-    taxationForm,
+    legal_form,
+    type_activity,
+    extra_type_activity,
+    tax_form,
     license,
     location,
-    registrationDate,
-    isPDVPayer,
-    broughtEconomicActivity,
-    hasDebt,
-    shareCapital,
+    registered_at,
+    pda,
+    have_activity,
+    no_debt,
+    capital,
 });
 
-export const setOwnerInfo = (ownerName, phoneNumbers) => ({
+export const setOwnerInfo = (owner_data, tel) => ({
     type: types.OWNER_INFO,
-    ownerName,
-    phoneNumbers
+    owner_data,
+    tel
 });
+
+export const setAdvertData = (name, code, price, image, legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) => ({
+    type: types.SEND_ADVERT_DATA,
+    name,
+    code,
+    price,
+    legal_form,
+    type_activity,
+    extra_type_activity,
+    tax_form,
+    license,
+    location,
+    registered_at,
+    pda,
+    have_activity,
+    no_debt,
+    capital,
+    owner_data,
+    tel
+})
 
 export const clearAllInfo = (clear) => ({
     type: types.CLEAR_FORM,
     clear
 })
+
+export const setError = (error) => ({
+    type: types.SET_ERROR,
+    error
+});

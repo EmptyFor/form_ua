@@ -16,26 +16,26 @@ export class AdditionlInfo extends Component {
     }
 
     state = {
-        legalForm: '',
-        mainEconomicActivityType: '',
-        additionalEconomicActivityType: [],
-        taxationForm: '',
+        legal_form: '',
+        type_activity: '',
+        extra_type_activity: [],
+        tax_form: '',
         license: [],
         location: '',
-        registrationDate: '',
-        isPDVPayer: '',
-        broughtEconomicActivity: '',
-        hasDebt: '',
-        shareCapital: '',
+        registered_at: '',
+        pda: '',
+        have_activity: '',
+        no_debt: '',
+        capital: '',
     }
 
     setAdditionlInfoData(e) {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
 
-        name === 'additionalEconomicActivityType' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
-        name === 'shareCapital' ? value = value.replace(/\D/g, '') : void 0
-        name === 'isPDVPayer' || name === 'broughtEconomicActivity' || name === 'hasDebt' ? value === "Так" ? value = true : value = false : void 0
+        name === 'extra_type_activity' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
+        name === 'capital' ? value = value.replace(/\D/g, '') : void 0
+        name === 'pda' || name === 'have_activity' || name === 'no_debt' ? value === "Так" ? value = true : value = false : void 0
 
         this.setState({
             [name]: value
@@ -43,37 +43,37 @@ export class AdditionlInfo extends Component {
     }
 
     sendAdditionlInfoData() {
-        const { legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital } = this.state
+        const { legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital } = this.state
         if (this.props.clear) {
-            this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital)
+            this.props.actions.setAdditionalInfo(legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital)
         }
         else {
-            legalForm &&
-                mainEconomicActivityType &&
-                additionalEconomicActivityType.length <= 10 &&
-                taxationForm &&
+            legal_form &&
+            type_activity &&
+            extra_type_activity.length <= 10 &&
+            tax_form &&
                 license.length <= 5 &&
                 location &&
-                registrationDate.length === 10 &&
-                isPDVPayer ?
-                this.props.actions.setAdditionalInfo(legalForm, mainEconomicActivityType, additionalEconomicActivityType, taxationForm, license, location, registrationDate, isPDVPayer, broughtEconomicActivity, hasDebt, shareCapital) :
+                registered_at.length === 10 &&
+                pda ?
+                this.props.actions.setAdditionalInfo(legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital) :
                 void 0
         }
     }
 
     clearValue = () => {
         this.setState({
-            legalForm: '',
-            mainEconomicActivityType: '',
-            additionalEconomicActivityType: [],
-            taxationForm: '',
+            legal_form: '',
+            type_activity: '',
+            extra_type_activity: [],
+            tax_form: '',
             license: [],
             location: '',
-            registrationDate: '',
-            isPDVPayer: '',
-            broughtEconomicActivity: '',
-            hasDebt: '',
-            shareCapital: '',
+            registered_at: '',
+            pda: '',
+            have_activity: '',
+            no_debt: '',
+            capital: '',
         })
     }
 
@@ -94,7 +94,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Організаційно правова форма:<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="legalForm"
+                        name="legal_form"
                         type="common"
                         width='auto'
                         placeholder='Оберіть зі списку'
@@ -108,7 +108,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="mainEconomicActivityType"
+                        name="type_activity"
                         type="common"
                         width='auto'
                         placeholder='Оберіть зі списку'
@@ -122,7 +122,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="additionalEconomicActivityType"
+                        name="extra_type_activity"
                         type="multiply" width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
@@ -135,7 +135,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Форма оподаткування:<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="taxationForm"
+                        name="tax_form"
                         type="common"
                         width='auto'
                         placeholder='Оберіть зі списку'
@@ -177,7 +177,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
                     <Input
                         getData={this.setAdditionlInfoData}
-                        name="registrationDate"
+                        name="registered_at"
                         type="date"
                         placeholder="Введіть у форматі ДД/ММ/РРРР"
                         width="100%"
@@ -191,9 +191,9 @@ export class AdditionlInfo extends Component {
                         <p className="subtitle">Є платником ПДВ?<span>*</span></p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
-                            name="isPDVPayer"
+                            name="pda"
                             options={['Так', 'Ні']}
-                            id='isPDVPayer'
+                            id='pda'
                             clear={this.props.clear}
                         />
                     </div>
@@ -202,9 +202,9 @@ export class AdditionlInfo extends Component {
                         <p className="subtitle">Вела господарську діяльність?</p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
-                            name="broughtEconomicActivity"
+                            name="have_activity"
                             options={['Так', 'Ні']}
-                            id='broughtEconomicActivity'
+                            id='have_activity'
                             clear={this.props.clear}
                         />
                     </div>
@@ -213,9 +213,9 @@ export class AdditionlInfo extends Component {
                         <p className="subtitle">Без обтяжень та заборгованостей?</p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
-                            name="hasDebt"
+                            name="no_debt"
                             options={['Так', 'Ні']}
-                            id='hasDebt'
+                            id='no_debt'
                             clear={this.props.clear}
                         />
                     </div>
@@ -225,7 +225,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Статутний капітал:</p>
                     <Input
                         getData={this.setAdditionlInfoData}
-                        name="shareCapital"
+                        name="capital"
                         type="money"
                         placeholder="Введіть суму в гривнях"
                         width="100%"
@@ -241,17 +241,17 @@ export class AdditionlInfo extends Component {
 
 export default connect(
     (state) => ({
-        legalForm: state.advert.legalForm,
-        mainEconomicActivityType: state.advert.mainEconomicActivityType,
-        additionalEconomicActivityType: state.advert.additionalEconomicActivityType,
-        taxationForm: state.advert.taxationForm,
+        legal_form: state.advert.legal_form,
+        type_activity: state.advert.type_activity,
+        extra_type_activity: state.advert.extra_type_activity,
+        tax_form: state.advert.tax_form,
         license: state.advert.license,
         location: state.advert.location,
-        registrationDate: state.advert.registrationDate,
-        isPDVPayer: state.advert.isPDVPayer,
-        broughtEconomicActivity: state.advert.broughtEconomicActivity,
-        hasDebt: state.advert.hasDebt,
-        shareCapital: state.advert.shareCapital,
+        registered_at: state.advert.registered_at,
+        pda: state.advert.pda,
+        have_activity: state.advert.have_activity,
+        no_debt: state.advert.no_debt,
+        capital: state.advert.capital,
         clear: state.advert.clear
     }),
     dispatch => ({

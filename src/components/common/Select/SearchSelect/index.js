@@ -165,6 +165,7 @@ export class SearchSelect extends Component {
     //Togle Select List
 
     togleSelectList = (e) => {
+        console.log(e.target)
         e.target.getAttribute('id') !== 'searchInput' ? this.togleIsOpenState() : void 0
         this.state.isOpen && e.target.getAttribute('id') !== 'searchInput' ? this.closeSelectStyle() : this.openSelectStyle()
     }
@@ -294,7 +295,7 @@ export class SearchSelect extends Component {
                         viewBox="0 0 9 5"
                         onClick={this.rotateArrow}>
 
-                        <path fill="#1ADDEF" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
+                        <path fill="#99abc3" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
 
                         </path>
                     </svg>
@@ -316,6 +317,7 @@ export class SearchSelect extends Component {
                         {
                             city.Regions.map((item, index) => {
                                 return <div value='false' id={index} key={index} className="list_item" >
+
                                     <p className="region">{item.Name}</p>
                                     {/* {console.log(item.Cities[0])} */}
                                     {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}

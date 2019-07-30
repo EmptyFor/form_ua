@@ -13,7 +13,10 @@ export class FormFooter extends Component {
     }
 
     handleClick = () => {
+        const {name, code, price, image, legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital, owner_data, tel} = this.props
+
         this.setState(prevState => ({test: !prevState.test}))
+        this.props.actions.setAdvertData(name, code, price, image, legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
     }
 
     clearAllFields = () => {
@@ -33,23 +36,23 @@ export class FormFooter extends Component {
 
 export default connect(
     (state) => ({
-        organisationName: state.advert.organisationName,
-        EDRPOYCode: state.advert.EDRPOYCode,
-        purchasePrice: state.advert.purchasePrice,
-        documentPhoto: state.advert.documentPhoto,
-        legalForm: state.advert.legalForm,
-        mainEconomicActivityType: state.advert.mainEconomicActivityType,
-        additionalEconomicActivityType: state.advert.additionalEconomicActivityType,
-        taxationForm: state.advert.taxationForm,
+        name: state.advert.name,
+        code: state.advert.code,
+        price: state.advert.price,
+        image: state.advert.image,
+        legal_form: state.advert.legal_form,
+        type_activity: state.advert.type_activity,
+        extra_type_activity: state.advert.extra_type_activity,
+        tax_form: state.advert.tax_form,
         license: state.advert.license,
         location: state.advert.location,
-        registrationDate: state.advert.registrationDate,
-        isPDVPayer: state.advert.isPDVPayer,
-        broughtEconomicActivity: state.advert.broughtEconomicActivity,
-        hasDebt: state.advert.hasDebt,
-        shareCapital: state.advert.shareCapital,
-        ownerName: state.advert.ownerName,
-        phoneNumbers: state.advert.phoneNumbers,
+        registered_at: state.advert.registered_at,
+        pda: state.advert.pda,
+        have_activity: state.advert.have_activity,
+        no_debt: state.advert.no_debt,
+        capital: state.advert.capital,
+        owner_data: state.advert.owner_data,
+        tel: state.advert.tel,
         clear: state.advert.clear
     }),
     dispatch => ({

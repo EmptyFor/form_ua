@@ -148,7 +148,7 @@ export class UloadField extends Component {
 
 export default connect(
     (state) => ({
-        documentPhoto: state.advert.documentPhoto,
+        image: state.advert.image,
         // clear: state.advert.clear
     }),
     dispatch => ({

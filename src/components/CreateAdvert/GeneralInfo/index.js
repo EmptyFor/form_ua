@@ -11,37 +11,37 @@ import UploadField from '../../common/UploadField';
 export class GeneralInfo extends Component {
 
     state = {
-        organisationName: '',
-        EDRPOYCode: '',
-        purchasePrice: ''
+        name: '',
+        code: '',
+        price: ''
     }
 
     setGeneralInfoData = (e) => {
         let name = e.currentTarget.name
         let value = e.currentTarget.value
-        name === 'EDRPOYCode' || name === 'purchasePrice' ? this.setState({ [name]: value.replace(/\D/g, '') }) : this.setState({ [name]: value })
+        name === 'code' || name === 'price' ? this.setState({ [name]: value.replace(/\D/g, '') }) : this.setState({ [name]: value })
     }
 
     sendGeneralInfoData = () => {
-        const { organisationName, EDRPOYCode, purchasePrice } = this.state
+        const { name, code, price } = this.state
 
         if (this.props.clear) {
-            this.props.actions.setGeneralInfo(organisationName, EDRPOYCode, purchasePrice)
+            this.props.actions.setGeneralInfo(name, code, price)
         }
         else {
-            organisationName.length > 0 &&
-                EDRPOYCode.length === 8 &&
-                purchasePrice.length > 0 ?
-                this.props.actions.setGeneralInfo(organisationName, EDRPOYCode, purchasePrice) :
+            name.length > 0 &&
+            code.length === 8 &&
+            price.length > 0 ?
+                this.props.actions.setGeneralInfo(name, code, price) :
                 void 0
         }
     }
 
     clearValue = () => {
         this.setState({
-            organisationName: '',
-            EDRPOYCode: '',
-            purchasePrice: ''
+            name: '',
+            code: '',
+            price: ''
         })
     }
 
@@ -62,7 +62,7 @@ export class GeneralInfo extends Component {
                     <p className="subtitle">Назва організації:<span>*</span></p>
                     <TextArea
                         getData={this.setGeneralInfoData}
-                        name="organisationName"
+                        name="name"
                         className="text_area"
                         placeholder="Введіть назву організації"
                         clear={this.props.clear}
@@ -73,7 +73,7 @@ export class GeneralInfo extends Component {
                     <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
                     <Input
                         getData={this.setGeneralInfoData}
-                        name="EDRPOYCode"
+                        name="code"
                         type="EDRPOY"
                         className="input"
                         placeholder="Введіть восьмизначний код"
@@ -85,7 +85,7 @@ export class GeneralInfo extends Component {
                     <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
                     <Input
                         getData={this.setGeneralInfoData}
-                        name="purchasePrice"
+                        name="price"
                         type="money"
                         className="input"
                         placeholder="Ведіть ціну в гривнях"
@@ -106,10 +106,10 @@ export class GeneralInfo extends Component {
 
 export default connect(
     (state) => ({
-        organisationName: state.advert.organisationName,
-        EDRPOYCode: state.advert.EDRPOYCode,
-        purchasePrice: state.advert.purchasePrice,
-        documentPhoto: state.advert.documentPhotoб,
+        name: state.advert.name,
+        code: state.advert.code,
+        price: state.advert.price,
+        image: state.advert.image,
         clear: state.advert.clear
     }),
     dispatch => ({
