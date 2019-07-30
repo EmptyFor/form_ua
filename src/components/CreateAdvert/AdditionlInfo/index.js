@@ -36,6 +36,12 @@ export class AdditionlInfo extends Component {
         name === 'extra_type_activity' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'capital' ? value = value.replace(/\D/g, '') : void 0
         name === 'pda' || name === 'have_activity' || name === 'no_debt' ? value === "Так" ? value = true : value = false : void 0
+        
+        if (name === 'location') {
+            value === undefined ? value = "" : void 0
+            value = value.split(',')
+            value = {region: value[0], town: value[1]}
+        }
 
         this.setState({
             [name]: value
