@@ -6,6 +6,7 @@ import SearchResult from '../Search/SearchResult/index'
 // import { wrap } from 'module';
 import './style.modules.scss'
 import Header from '../themes/common/Header';
+
 class Search extends Component {
 
   render() {

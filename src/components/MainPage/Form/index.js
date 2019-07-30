@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import * as actions from'../../../store/actions/advert';
+import * as actions from'../../../store/actions/search';
 import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
@@ -35,7 +35,6 @@ export class Form extends Component {
         this.setState({
             [name]: value
         })
-        console.log(name)
     }
 
     sendSearchData = () => {
@@ -82,7 +81,7 @@ export class Form extends Component {
                         getData={this.setSearchData}
                     />
                     <Select
-                        type="common"
+                        type="search"
                         width='auto'
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}

@@ -8,7 +8,7 @@ header {
   grid-gap: 1%;
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, .2) !important;
-  z-index: 1;
+  z-index: 99999;
   a {
     text-decoration: none;
     outline: none;

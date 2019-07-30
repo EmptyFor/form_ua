@@ -1,9 +1,7 @@
 .filter_form {
-    width: 26.18%;
-    height: 100vh;
+    min-height: 100vh;
     text-align: center;
     float: left;
-    background-color: #ffffff;
 }
 
 .filter_header {
@@ -16,23 +14,22 @@
     line-height: 2.7;
     letter-spacing: 0.09px;
     color: #99abc3;
+    background-color: #fff;
     text-align: start;
     padding-left: 7%
 }
 
 .filter_inputs {
-    padding: 7% 0%;
-    height: 40%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
+    padding: 10% 7%;
+    display: grid;
+    grid-auto-columns: repeat(1, 100%);
+    grid-template-rows: repeat(40px, auto);
+    grid-gap: 25px;
+    background-color: #fff;
     border-bottom: 1px solid rgba(177, 167, 200, 0.47);
 
     .common_select {
-        width: 86% !important;
-        height: 5%;
-        z-index: 0;
+        box-sizing: border-box;
     }
 }
 
@@ -47,6 +44,7 @@
     font-weight: 500;
     letter-spacing: 0.06px;
     color: #707488;
+    background-color: #fff;
     border-bottom: 1px solid rgba(177, 167, 200, 0.47);
 
     span {
@@ -72,6 +70,7 @@
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    background-color: #fff;
 
     .filter_bottom_inputs {
         width: 86%;
@@ -86,8 +85,9 @@
 
         .common-input {
             width: 30%;
-            height: 30px;
-            text-align: center;
+            height: 40px;
+            padding: 0px 15px;
+            margin: 0px 10px;
             border:  1px solid #b1a7c8;
         }
     }

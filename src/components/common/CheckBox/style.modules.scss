@@ -1,0 +1,88 @@
+.common_checkbox {
+  display: flex;
+  .container {
+    display: flex;
+    width: auto;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .text {
+    font-family: AvenirNext-Medium;
+    color: #99abc3;
+  }
+  /* Create a custom radio button */
+  .checkmark {
+    position: relative;
+    margin-left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #f0f1f5;
+    border: 1px solid #b1a7c8;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ {
+    .checkmark {
+      background-color: rgb(211, 214, 213);
+    }
+    .text {
+      color: #28252f;
+    }
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .container input:checked ~ {
+    .checkmark {
+      background-color: #1addef;
+      border: none;
+      height: 17px;
+      width: 17px;
+    }
+  }
+
+  .container input:checked ~ {
+    .text {
+      color: #28252f;
+    }
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "˥";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .container .checkmark:after {
+    position: absolute;
+    bottom: 0px;
+    left: 7px;
+    font-size: 30px;
+    font-weight: 400;
+    border-radius: 50%;
+    transform: rotate(-143deg) scale(-1, 1);
+    color: white;
+  }
+}
