@@ -210,10 +210,10 @@ import links from '../../../../config/links';
 
 class Header extends Component {
 
-  handleClick = e => {
-    console.log(e)
+  handleClick = () => {
   }
   render() {
+    const { token } = this.props
     return (
       <header className={`menu ${this.props.className}`} fix={this.props.fix}>
         <div className={styles.language} id="language">
@@ -228,11 +228,11 @@ class Header extends Component {
         <div className={styles.right_side}>
           { !this.props.fix ? <CreateAdvertBtn className={styles.create_advert}/> : null}
           <div className={styles.profile}>
-            <Link to={links.profile}>
-              <p>
-                Profile
-            </p>
-            </Link>
+            {
+              token ? <Link to={links.profile}><p>Profile</p></Link> : <Link to={links.login}><p>Увійти</p></Link>
+            }
+            
+            
           </div>
         </div>
       </header>
@@ -241,7 +241,9 @@ class Header extends Component {
 }
 
 export default connect(
-  // (state) => ({}),
+  (state) => ({
+    token: state.auth.token
+  }),
   // dispatch => ({
   //   // actions: bindActionCreators(actions, dispatch)
   // })

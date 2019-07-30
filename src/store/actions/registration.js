@@ -5,10 +5,17 @@ export const firstPage = (login, phone) => ({
     login,
     phone
 });
-export const twicePage = (email, password) => ({
+
+export const twicePage = (login, phone, email, password) => ({
     type: types.TWICE_PAGE_DATA,
     email,
-    password
+    password,
+    login,
+    phone
+});
+export const confirmReg = (data) => ({
+    type: types.CONFIRM_REGISTRATION,
+    data
 });
 
 export const setError = (error) => ({

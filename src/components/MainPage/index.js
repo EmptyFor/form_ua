@@ -14,8 +14,7 @@ export class MainPage extends Component {
     static propTypes = {}
 
     render() {
-        // const { } = this.props;
-        console.log(this.props)
+        // const {  } = this.props;
         return (
             <div className="bg">
                 <img className="image_bg" alt="" src={triangle_bg}></img>
@@ -28,7 +27,9 @@ export class MainPage extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        token: state.auth.token
+    }),
     dispatch => ({
         // actions: bindActionCreators(actions, dispatch)
     })

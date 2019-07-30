@@ -20,11 +20,7 @@ export default (state = initState, action) => {
         ...state,
         error: action.error
       };
-    // case types.RESET_ERROR:
-    //   return {
-    //     ...state,
-    //     error: ''
-    //   };
+    
     case types.LOGOUT:
       return {
         ...initState,
