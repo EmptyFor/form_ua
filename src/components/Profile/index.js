@@ -231,7 +231,7 @@ export class Profile extends Component {
   renderAdverts = () => {
     let range = this.state.currentPage * pageStep;
     const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-    
+
     return (
       data.map((item, i) => {
         let dateResult;
@@ -260,7 +260,7 @@ export class Profile extends Component {
           <div className="profile_advert_hover" key={i}>
             <Link to={links.details}>
               <Advert
-              onClick = {this.handleClickInfo}
+                onClick={this.handleClickInfo}
                 orgName={item.name}
                 ispdf={item.isPDF + ''}
                 createDate={`від ${item.date}`}
@@ -284,7 +284,7 @@ export class Profile extends Component {
   }
   render() {
     const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-    console.log('render')
+    console.log(this.props)
     let dynamicWidth = 3.4 * this.numersOfPages.length + "%";
     let paginationPageCounter = this.numersOfPages.map((item, index) => {
       if (this.state.currentPage === item) {
@@ -333,8 +333,9 @@ export class Profile extends Component {
 }
 
 export default connect(
-  // ({ }) => ({
-  // }),
+  ( state ) => ({
+    user: state.auth.user
+  }),
   // dispatch => ({
   //   actions: bindActionCreators(actions, dispatch)
   // })
