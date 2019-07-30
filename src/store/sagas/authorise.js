@@ -1,5 +1,5 @@
 import { all, put, takeLatest, call } from 'redux-saga/effects';
-import { setToken, removeToken } from '../helpers/localStorage';
+import { setToken, removeToken, setInfo } from '../helpers/localStorage';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
 // import fetchSome from '../helpers/fetchJSON'
@@ -14,15 +14,21 @@ export function* authorise(email, password) {
   }
 
   try {
-    const { auth_token } = yield axios.post(`${baseURL}ru/api/v1/log_in`, { user })
+    const { data } = yield axios.post(`${baseURL}ru/api/v1/log_in`, { user })
       .then(response => {
-        console.log(response)
-        return response.data.user;
+        return response;
       })
+
+    const { id } = data.user
+    const { auth_token } = data.user
+
+    yield put(actions.setUserId(id));
     yield put(actions.setAuthData(auth_token));
+    yield setInfo(id);
     yield setToken(auth_token);
+
   } catch (error) {
-    yield put(actions.setError(error.response.status));
+    yield put(actions.setError(error.message));
   }
 }
 

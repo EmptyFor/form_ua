@@ -5,6 +5,7 @@ import { getToken } from '../helpers/localStorage';
 const initState = {
   token: getToken() || null,
   error: '',
+  user:''
 };
 
 export default (state = initState, action) => {
@@ -13,6 +14,12 @@ export default (state = initState, action) => {
       return {
         ...state,
         token: action.token,
+        error: ''
+      };
+      case types.SET_USER_DATA:
+      return {
+        ...state,
+        user: action.user,
         error: ''
       };
     case types.SET_ERROR:
