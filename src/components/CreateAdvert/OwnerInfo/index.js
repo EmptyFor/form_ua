@@ -85,6 +85,7 @@ export class OwnerInfo extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearValue() : void 0
+        this.props.actions.clearAllInfo(false)
     }
 
     render() {

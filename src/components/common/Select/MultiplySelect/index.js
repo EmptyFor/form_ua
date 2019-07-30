@@ -94,8 +94,7 @@ export class MultiplySelect extends Component {
                 ...prevState.style,
                 select: {
                     borderRadius: '30px',
-                    borderBottom: 'solid 1px #b1a7c8',
-                    borderColor: '',
+                    border: 'solid 1px #b1a7c8',
                     zIndex: 1
                 },
             }
@@ -109,8 +108,7 @@ export class MultiplySelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            borderBottom: 'solid 1px #b1a7c8',
-                            borderColor: '#1ccee9',
+                            border: 'solid 1px #b1a7c8',
                             zIndex: 1
                         },
                     }
@@ -124,7 +122,7 @@ export class MultiplySelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            borderBottom: 'solid 1px #b1a7c8',
+                            border: 'solid 1px #b1a7c8',
                             borderColor: 'tomato',
                             zIndex: 1
                         },
@@ -141,7 +139,7 @@ export class MultiplySelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            borderBottom: 'solid 1px #b1a7c8',
+                            border: 'solid 1px #b1a7c8',
                             borderColor: '#1ccee9',
                             zIndex: 1
                         },
@@ -156,7 +154,7 @@ export class MultiplySelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            borderBottom: 'solid 1px #b1a7c8',
+                            border: 'solid 1px #b1a7c8',
                             borderColor: '',
                             zIndex: 1
                         },
@@ -294,7 +292,7 @@ export class MultiplySelect extends Component {
 
         //Remove styles
         let select = document.getElementById(this.props.id)
-        let listItem = select.childNodes[2].childNodes
+        let listItem = select.childNodes[2].childNodes[0].childNodes
         this.togleActiveClass(listItem[index])
     }
 
@@ -399,20 +397,22 @@ export class MultiplySelect extends Component {
 
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
 
-                    {
-                        this.selectItems.map((item, index) => {
-                            return <div value='true'
-                                name={item}
-                                id={index}
-                                key={index}
-                                className="list_item"
-                                onClick={this.togleSelectListItems.bind(this)} >
-                                {item}
-                                <div id={index} value={false} className="drop_multiply_box"></div>
-                            </div>
-                        })
+                    <div className="select_list_items">
+                        {
+                            this.selectItems.map((item, index) => {
+                                return <div value='true'
+                                    name={item}
+                                    id={index}
+                                    key={index}
+                                    className="sub_list_item"
+                                    onClick={this.togleSelectListItems.bind(this)} >
+                                    {item}
+                                    <div id={index} value={false} className="drop_multiply_box"></div>
+                                </div>
+                            })
 
-                    }
+                        }
+                    </div>
 
                 </div>
             </div>

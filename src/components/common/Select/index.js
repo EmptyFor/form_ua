@@ -8,6 +8,7 @@ import './style.modules.scss';
 import { CheckBoxSelect } from './CheckBoxSelect';
 import { MultiplySelect } from './MultiplySelect';
 import { CommonSelect } from './CommonSelect';
+import { SearchSelect } from './SearchSelect';
 
 export class Select extends Component {
 
@@ -30,6 +31,18 @@ export class Select extends Component {
 
         else if (type === 'checkbox') {
             return <CheckBoxSelect
+                width={width}
+                placeholder={placeholder}
+                required={this.props.required}
+                icon={icon}
+                id={id}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
+        }
+        else if (type === 'search') {
+            return <SearchSelect
                 width={width}
                 placeholder={placeholder}
                 required={this.props.required}

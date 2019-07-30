@@ -35,7 +35,16 @@ export default (state = initState, action) => {
                 taxationForm: action.taxationForm,
                 purchasePriceFrom: action.purchasePriceFrom,
                 purchasePriceTo: action.purchasePriceTo,
-                isPDVPayer: action.isPDVPayer
+                isPDVPayer: action.isPDVPayer,
+                additionalEconomicActivityType: action.additionalEconomicActivityType,
+                license: action.license,
+                broughtEconomicActivity: action.broughtEconomicActivity,
+                hasDebt: action.hasDebt
+            }
+        case types.CLEAR_FORM:
+            return {
+                ...state,
+                clear: action.clear
             }
         default:
             return state

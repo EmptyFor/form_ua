@@ -1,6 +1,6 @@
 .general_info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 50%);
   grid-template-rows: minmax(40px, auto);
   grid-gap: 1em;
   box-sizing: border-box;

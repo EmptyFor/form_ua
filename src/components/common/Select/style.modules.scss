@@ -94,8 +94,9 @@
     bottom: 0;
     left: 5%;
     width: 90%;
-    height: 2px;
+    height: 1px;
     background-color: #b1a7c8;
+    z-index: 3;
   }
   .select_list {
     position: absolute;
@@ -109,16 +110,56 @@
     top: 40px;
     margin-left: -1px;
     margin-top: -1px;
-    max-height: 270px;
     padding: 10px 10px 20px 20px;
-    overflow-y: scroll;
     scroll-padding: 20px;
+    .search_input {
+      box-sizing: border-box;
+      // background-image: url("searchicon.png");
+      width: 100%;
+      background-position: 14px 12px;
+      background-repeat: no-repeat;
+      font-size: 16px;
+      padding: 0px 20px 5px 0px;
+      margin-bottom: 10px;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+    .select_list_items {
+      overflow-y: scroll;
+      max-height: 260px;
+      margin-bottom: 5px;
+      &::-webkit-scrollbar {
+        width: 17px;
+      }
+      &::-webkit-scrollbar-thumb {
+        height: 6px;
+        border: 7px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        background-color: #c9d3e0;
+      }
+    }
     .list_item {
       width: 100%;
-      padding: 5px 0px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
+      align-items: space-between;
+      .region {
+        color: #99abc3;
+        padding: 5px;
+      }
+      &::before {
+        position: absolute;
+        background-color: #b1a7c8;
+        height: 100px;
+        width: 30%;
+      }
+    }
+    .sub_list_item {
+      padding: 5px 10px;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
       .drop_multiply_box {
         width: 15px;
         height: 15px;
@@ -159,21 +200,6 @@
     }
     .active {
       font-weight: 900;
-    }
-    &::before {
-      position: absolute;
-      background-color: #b1a7c8;
-      height: 100px;
-      width: 30%;
-    }
-    &::-webkit-scrollbar {
-      width: 17px;
-    }
-    &::-webkit-scrollbar-thumb {
-      height: 6px;
-      border: 7px solid rgba(0, 0, 0, 0);
-      background-clip: padding-box;
-      background-color: #c9d3e0;
     }
   }
 }

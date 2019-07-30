@@ -35,6 +35,7 @@ export class AdditionlInfo extends Component {
 
         name === 'additionalEconomicActivityType' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'shareCapital' ? value = value.replace(/\D/g, '') : void 0
+        name === 'isPDVPayer' || name === 'broughtEconomicActivity' || name === 'hasDebt' ? value === "Так" ? value = true : value = false : void 0
 
         this.setState({
             [name]: value
@@ -77,7 +78,7 @@ export class AdditionlInfo extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        nextProps.clear ? this.clearValue() : void 0
+        // nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
@@ -163,7 +164,7 @@ export class AdditionlInfo extends Component {
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="location"
-                        type="common"
+                        type="search"
                         width='auto'
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}

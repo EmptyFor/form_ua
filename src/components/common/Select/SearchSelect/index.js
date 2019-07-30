@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
+import city from '../../../../assets/db/city';
 import './style.modules.scss';
 
-export class CommonSelect extends Component {
+export class SearchSelect extends Component {
 
     selectRef = React.createRef()
     selectArea = React.createRef()
+    selectListRef = React.createRef()
 
     state = {
         isOpen: false,
@@ -79,6 +81,7 @@ export class CommonSelect extends Component {
                 select: {
                     borderRadius: '30px',
                     border: 'solid 1px #b1a7c8',
+                    borderColor: '',
                     zIndex: 1
                 },
             }
@@ -92,7 +95,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #b1a7c8',
+                            border: 'solid 1px #1ccee9',
                             zIndex: 1
                         },
                     }
@@ -106,8 +109,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #b1a7c8',
-                            borderColor: 'tomato',
+                            border: 'solid 1px tomato',
                             zIndex: 1
                         },
                     }
@@ -123,8 +125,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #b1a7c8',
-                            borderColor: '#1ccee9',
+                            border: 'solid 1px #1ccee9',
                             zIndex: 1
                         },
                     }
@@ -138,8 +139,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            borderBottom: 'solid 1px #b1a7c8',
-                            borderColor: '',
+                            border: 'solid 1px #b1a7c8',
                             zIndex: 1
                         },
                     }
@@ -164,17 +164,17 @@ export class CommonSelect extends Component {
 
     //Togle Select List
 
-    togleSelectList = () => {
-        this.togleIsOpenState()
-        this.state.isOpen ? this.closeSelectStyle() : this.openSelectStyle()
+    togleSelectList = (e) => {
+        e.target.getAttribute('id') !== 'searchInput' ? this.togleIsOpenState() : void 0
+        this.state.isOpen && e.target.getAttribute('id') !== 'searchInput' ? this.closeSelectStyle() : this.openSelectStyle()
     }
 
     closeSelectList = (e) => {
-        this.setState({
-            isOpen: false,
-            togleClass: 'close'
-        })
-        this.closeSelectStyle()
+        // this.setState({
+        //     isOpen: false,
+        //     togleClass: 'close'
+        // })
+        // this.closeSelectStyle()
         this.props.getData(e)
     }
 
@@ -186,7 +186,19 @@ export class CommonSelect extends Component {
         this.fillSelectedItemsArray(e, value)
     }
 
-    // Common select
+    // Search select
+
+    search = () => {
+        let input = document.getElementById('searchInput')
+        let filter = input.value.toUpperCase()
+        let selectList = this.selectListRef.current
+        let selectListItems = selectList.getElementsByTagName('div')
+
+        for (let i = 0; i < selectListItems.length; i++) {
+            let txtValue = selectListItems[i].innerText
+            txtValue.toUpperCase().indexOf(filter) > -1 ? selectListItems[i].style.display = "" : selectListItems[i].style.display = "none"
+        }
+    }
 
     setSelectValue = (e) => {
         let value = e.target.innerText
@@ -288,18 +300,30 @@ export class CommonSelect extends Component {
                     </svg>
                 </div>
 
-                <div className="border" style={this.state.style.border}></div>
+                {/* <div className="border" style={this.state.style.border}></div> */}
 
                 <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
+                    <input
+                        type="text"
+                        placeholder="Пошук..."
+                        id="searchInput"
+                        key="searchInput"
+                        onKeyUp={this.search}
+                        className="search_input"
+                    />
 
-                    <div className="select_list_items">
+                    <div className="select_list_items" ref={this.selectListRef}>
                         {
-                            this.selectItems.map((item, index) => {
-                                return <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item}</div>
+                            city.Regions.map((item, index) => {
+                                return <div value='false' id={index} key={index} className="list_item" >
+                                    <p className="region">{item.Name}</p>
+                                    {/* {console.log(item.Cities[0])} */}
+                                    {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
+
+                                </div>
                             })
                         }
                     </div>
-
                 </div>
             </div>
         );
@@ -313,4 +337,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(CommonSelect);
+)(SearchSelect);
