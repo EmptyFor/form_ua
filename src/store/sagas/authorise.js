@@ -45,6 +45,5 @@ export default function* () {
   yield all([
     yield takeLatest(types.LOGIN, ({ email, password }) => authorise(email, password)),
     yield takeLatest(types.LOGOUT, logout),
-
   ])
 }

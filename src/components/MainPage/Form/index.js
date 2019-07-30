@@ -8,7 +8,7 @@ import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
-import { Radiobutton } from '../../common/Radiobutton';
+import { CheckBox } from '../../common/CheckBox';
 import links from '../../../config/links';
 import { images } from '../../../assets/images/images'
 
@@ -122,13 +122,12 @@ export class Form extends Component {
                     />
 
                     <div className="is_PDV_payer">
-                        {/* <p>Є платником ПДВ</p> */}
-                        <Radiobutton
+                        <CheckBox
                             getData={this.setSearchData}
                             name="isPDVPayer"
-                            options={['Є платником ПДВ']}
                             id='isPDVPayer'
                             name="isPDVPayer"
+                            text="Є платником ПДВ"
                             clear={this.props.clear}
                         />
                     </div>

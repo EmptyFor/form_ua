@@ -2,23 +2,23 @@ import * as types from '../types/advert';
 // import { stat } from 'fs';
 
 const initState = {
-    organisationName: '',
-    EDRPOYCode: '',
-    purchasePrice: '',
-    documentPhoto: '',
-    legalForm: '',
-    mainEconomicActivityType: '',
-    additionalEconomicActivityType: [],
-    taxationForm: '',
+    name: '',
+    code: '',
+    price: '',
+    image: '',
+    legal_form: '',
+    type_activity: '',
+    extra_type_activity: [],
+    tax_form: '',
     license: [],
     location: '',
-    registrationDate: '',
-    isPDVPayer: '',
-    broughtEconomicActivity: '',
-    hasDebt: '',
-    shareCapital: '',
-    ownerName: '',
-    phoneNumbers: [],
+    registered_at: '',
+    pda: '',
+    have_activity: '',
+    no_debt: '',
+    capital: '',
+    owner_data: '',
+    tel: [],
     clear: false
 }
 
@@ -27,35 +27,35 @@ export default (state = initState, action) => {
         case types.GENERAL_INFO:
             return {
                 ...state,
-                organisationName: action.organisationName,
-                EDRPOYCode: action.EDRPOYCode,
-                purchasePrice: action.purchasePrice,
+                name: action.name,
+                code: action.code,
+                price: action.price,
             };
         case types.DOCUMENT_PHOTO:
             return {
                 ...state,
-                documentPhoto: action.payload
+                image: action.payload
             };
         case types.ADDITIONAL_INFO:
             return {
                 ...state,
-                legalForm: action.legalForm,
-                mainEconomicActivityType: action.mainEconomicActivityType,
-                additionalEconomicActivityType: action.additionalEconomicActivityType,
-                taxationForm: action.taxationForm,
+                legal_form: action.legal_form,
+                type_activity: action.type_activity,
+                extra_type_activity: action.extra_type_activity,
+                tax_form: action.tax_form,
                 license: action.license,
                 location: action.location,
-                registrationDate: action.registrationDate,
-                isPDVPayer: action.isPDVPayer,
-                broughtEconomicActivity: action.broughtEconomicActivity,
-                hasDebt: action.hasDebt,
-                shareCapital: action.shareCapital,
+                registered_at: action.registered_at,
+                pda: action.pda,
+                have_activity: action.have_activity,
+                no_debt: action.no_debt,
+                capital: action.capital,
             };
         case types.OWNER_INFO:
             return {
                 ...state,
-                ownerName: action.ownerName,
-                phoneNumbers: action.phoneNumbers
+                owner_data: action.owner_data,
+                tel: action.tel
             }
         case types.CLEAR_FORM:
             return {

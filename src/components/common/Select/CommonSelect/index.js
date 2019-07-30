@@ -282,7 +282,7 @@ export class CommonSelect extends Component {
                         viewBox="0 0 9 5"
                         onClick={this.rotateArrow}>
 
-                        <path fill="#1ADDEF" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
+                        <path fill="#99abc3" fillRule="evenodd" d="M4.375 5L8.75 0H0z">
 
                         </path>
                     </svg>
