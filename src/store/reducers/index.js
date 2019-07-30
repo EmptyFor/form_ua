@@ -8,5 +8,5 @@ export default combineReducers({
   advert,
   auth: authorise,
   search,
-  registration
+  reg:registration
 });

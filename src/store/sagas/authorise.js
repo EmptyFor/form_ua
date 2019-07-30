@@ -1,9 +1,9 @@
 import { all, put, takeLatest, call } from 'redux-saga/effects';
-import { removeToken } from '../helpers';
+import { setToken, removeToken } from '../helpers/localStorage';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
-import fetchSome from '../helpers/fetchJSON'
-import { options } from '../helpers/options'
+// import fetchSome from '../helpers/fetchJSON'
+// import { options } from '../helpers/options'
 import { baseURL } from '../../core/constants/baseURL'
 import axios from 'axios'
 
@@ -12,16 +12,17 @@ export function* authorise(email, password) {
     email: email,
     password: password
   }
-  // 'https://jsonplaceholder.typicode.com/users',
-  // chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+
   try {
-    const { token } = yield axios.post(`${baseURL}ru/api/v1/log_in`, { user })
+    const { auth_token } = yield axios.post(`${baseURL}ru/api/v1/log_in`, { user })
       .then(response => {
-         return response.data;
+        console.log(response)
+        return response.data.user;
       })
+    yield put(actions.setAuthData(auth_token));
+    yield setToken(auth_token);
   } catch (error) {
-    yield put(actions.setError(error.message));
-    // yield removeToken();
+    yield put(actions.setError(error.response.status));
   }
 }
 

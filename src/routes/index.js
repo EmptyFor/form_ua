@@ -6,9 +6,9 @@ import App from '../components/App';
 import MainPage from '../components/MainPage';
 import CreateAdvert from '../components/CreateAdvert';
 import Provider from '../components/Provider';
-import { RegistrationFirst } from '../components/Registration/FirstPage';
+import RegistrationFirst from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
-import { RegistrationTwice } from '../components/Registration/TwicePage';
+import RegistrationTwice from '../components/Registration/TwicePage';
 import Search from '../components/Search';
 import Profile from '../components/Profile'
 import AdvertDetails from '../components/AdvertDetails';

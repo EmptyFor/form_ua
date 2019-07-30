@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
 import './style.modules.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
-// import * as actions from '../../../store/actions/registration'
+import * as actions from '../../../store/actions/registration'
 import logo_login from '../../../assets/images/logolog.png'
+import { Redirect } from 'react-router-dom';
 
 export class RegistrationTwice extends Component {
 
@@ -24,18 +25,18 @@ export class RegistrationTwice extends Component {
 
     }
 
-    handleSubmit = e => {
-        const { password, confPassword } = this.state
+    handleSubmit = () => {
+        const { password, confPassword, email } = this.state;
+        const { login, phone } = this.props;
         if (password !== confPassword) {
             this.setState({ password: '', confPassword: '', validPass: false, validConfPass: false, borderColor: 'red', visibility: 'visible' })
         } else {
             this.setState({ borderColor: '', visibility: 'hidden' })
-            //action
         }
+        this.props.actions.twicePage(login, phone, email, password)
     }
 
     handleChange = e => {
-        // const { password, confPassword } = this.state
         const name = e.target.name;
         const value = e.target.value;
         this.setState({ [name]: value });
@@ -51,8 +52,6 @@ export class RegistrationTwice extends Component {
         if (regexps.log_pass.test(this.state.confPassword)) {
             this.setState({ validConfPass: true });
         }
-
-
     }
 
     render() {
@@ -60,7 +59,15 @@ export class RegistrationTwice extends Component {
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
-        console.log(this.props);
+
+        // if (this.props.login.length === 0 || this.props.phone.length === 0) {
+        //     return <Redirect to={links.registrationFirst} />
+        // }
+        if(this.props.confirm){
+            console.log(this.props.confirm)
+            return <Redirect to={links.login} />
+        }
+
         return (
             <div className="login_page">
                 <img alt="" src={logo_login}></img>
@@ -85,8 +92,12 @@ export class RegistrationTwice extends Component {
 }
 
 export default connect(
-    (state) => ({}),
-    // dispatch => ({
-    //     actions: bindActionCreators(actions, dispatch)
-    // })
+    (state) => ({
+        login: state.reg.login,
+        phone: state.reg.phone,
+        confirm:  state.reg.confirm
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actions, dispatch)
+    })
 )(RegistrationTwice);
