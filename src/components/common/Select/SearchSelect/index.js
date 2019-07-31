@@ -202,9 +202,10 @@ export class SearchSelect extends Component {
     }
 
     setSelectValue = (e) => {
-        let value = e.target.innerText
+        let region = e.target.parentNode.getElementsByClassName('region')[0].innerText
+        let town = e.target.innerText
         this.setState(prevState => ({
-            value: value,
+            value: `${region}, ${town}`,
             style: {
                 ...prevState.style,
                 placeholder: {
@@ -252,7 +253,7 @@ export class SearchSelect extends Component {
 
     clearVlaue = () => {
         this.setState(prevState => ({
-            value: "",
+            value: '',
             style: {
                 ...prevState.style,
                 placeholder: {
@@ -319,7 +320,7 @@ export class SearchSelect extends Component {
                                 return <div value='false' id={index} key={index} className="list_item" >
 
                                     <p className="region">{item.Name}</p>
-                                    {/* {console.log(item.Cities[0])} */}
+
                                     {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
 
                                 </div>

@@ -64,7 +64,7 @@ export class RegistrationTwice extends Component {
     }
 
     render() {
-        const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor, confirmation } = this.state
+        const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
 
@@ -83,6 +83,7 @@ export class RegistrationTwice extends Component {
                         <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
                         <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
+                        {visibility === 'hidden' ? <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label> : null}
                         <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
                         <Button width='92%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
 
