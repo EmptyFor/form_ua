@@ -1,9 +1,8 @@
 import * as types from '../types/user';
-// import { getToken } from '../helpers/localStorage';
 
 
 const initState = {
-    user: null,
+    user: {},
     error: ''
 };
 

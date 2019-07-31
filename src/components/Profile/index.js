@@ -11,6 +11,7 @@ import './style.modules.scss';
 import CreateAdvertBtn from '../common/CreateAdvertBtn';
 import Advert from '../common/Advert';
 import document from '../../assets/images/spa.jpg'
+import { Redirect } from 'react-router-dom';
 
 const mockData = [
   {
@@ -225,9 +226,6 @@ export class Profile extends Component {
     this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
   }
 
-  handleClickInfo = e => {
-  }
-
   renderAdverts = () => {
     let range = this.state.currentPage * pageStep;
     const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
@@ -284,8 +282,13 @@ export class Profile extends Component {
   }
   render() {
     const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-    console.log(this.props)
-    let dynamicWidth = 3.4 * this.numersOfPages.length + "%";
+    const { user,token } = this.props;
+
+    if(!token){
+      return <Redirect to={links.login} />
+    }
+
+    let dynamicWidth = 3 * this.numersOfPages.length + "%";
     let paginationPageCounter = this.numersOfPages.map((item, index) => {
       if (this.state.currentPage === item) {
         return <span className="pagination_current" key={index} > {item} </span>
@@ -299,7 +302,7 @@ export class Profile extends Component {
     this.renderCountPagination();
     return (
       <Fragment>
-        <Header className='menu_fix' fix={true} />
+        <Header className='menu_fix' fix={'true'} />
         <div className="profile_wrapper">
           <div className="profile_list" >
             <div className='profile_list_header'><span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${mockData.length})`}</label></span><span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div>
@@ -321,9 +324,9 @@ export class Profile extends Component {
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
-              <span style={{ fontWeight: 'bold', fontSize: '25px' }}>Name Profile</span>
-              <span style={{ marginBlockEnd: '5%' }}>number</span>
-              <span style={{ marginBlockEnd: '5%' }}>email</span>
+              <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{user.first_name}</span>
+              <span style={{ marginBlockEnd: '5%' }}>{user.phone}</span>
+              <span style={{ marginBlockEnd: '5%' }}>{user.email}</span>
             </div>
           </div>
         </div>
@@ -333,8 +336,9 @@ export class Profile extends Component {
 }
 
 export default connect(
-  ( state ) => ({
-    user: state.auth.user
+  (state) => ({
+    user: state.usr.user,
+    token: state.auth.token
   }),
   // dispatch => ({
   //   actions: bindActionCreators(actions, dispatch)

@@ -22,8 +22,17 @@ export class RegistrationTwice extends Component {
         validConfPass: false,
         visibility: 'hidden',
         borderColor: '',
-
+        confirmation: false
     }
+
+    // componentDidMount = () => {
+    //     let { confirm } = this.props
+    //     if (confirm) {
+    //         this.setState({ confirmation: this.state.confirmation = true })
+    //     } else {
+    //         this.setState({ confirmation: this.state.confirmation = false })
+    //     }
+    // }
 
     handleSubmit = () => {
         const { password, confPassword, email } = this.state;
@@ -55,18 +64,15 @@ export class RegistrationTwice extends Component {
     }
 
     render() {
-        const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
+        const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor, confirmation } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
+
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
 
-        // if (this.props.login.length === 0 || this.props.phone.length === 0) {
-        //     return <Redirect to={links.registrationFirst} />
+        // if (confirmation) {
+        //     return <Redirect to={links.login} />
         // }
-        if(this.props.confirm){
-            console.log(this.props.confirm)
-            return <Redirect to={links.login} />
-        }
 
         return (
             <div className="login_page">
@@ -95,7 +101,7 @@ export default connect(
     (state) => ({
         login: state.reg.login,
         phone: state.reg.phone,
-        confirm:  state.reg.confirm
+        confirm: state.reg.confirm
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

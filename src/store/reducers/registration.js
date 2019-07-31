@@ -20,7 +20,7 @@ export default (state = initState, action) => {
       };
     case types.CONFIRM_REGISTRATION:
       return {
-        confirm: action.data
+        confirm: action.status
       }
     case types.SET_ERROR:
       return {

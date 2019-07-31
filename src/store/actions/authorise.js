@@ -6,11 +6,6 @@ export const login = (email, password) => ({
     password
 });
 
-export const setUserId = (id) => ({
-    type:types.SET_USER_DATA,
-    id
-});
-
 export const setAuthData = (token) => ({
     type: types.SET_AUTH_DATA,
     token
