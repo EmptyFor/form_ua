@@ -13,9 +13,9 @@ export const twicePage = (login, phone, email, password) => ({
     login,
     phone
 });
-export const confirmReg = (data) => ({
+export const confirmReg = (status) => ({
     type: types.CONFIRM_REGISTRATION,
-    data
+    status
 });
 
 export const setError = (error) => ({

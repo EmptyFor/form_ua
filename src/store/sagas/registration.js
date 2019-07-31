@@ -14,13 +14,13 @@ export function* registrationSaga(login, phone, email, password) {
         email: email,
         password: password
     }
-    console.log('user', user)
     try {
-        const data = yield axios.post(`${baseURL}/ru/api/v1/users`, { user })
+        const status = yield axios.post(`${baseURL}/ru/api/v1/users`, { user })
             .then(response => {
-                return response.data;
+                return response.status;
             })
-        yield put(actions.confirmReg(data))
+       
+        yield put(actions.confirmReg(status))
 
     } catch (error) {
         yield put(actions.setError(error.message));

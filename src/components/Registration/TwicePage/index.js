@@ -22,8 +22,17 @@ export class RegistrationTwice extends Component {
         validConfPass: false,
         visibility: 'hidden',
         borderColor: '',
-
+        confirmation: false
     }
+
+    // componentDidMount = () => {
+    //     let { confirm } = this.props
+    //     if (confirm) {
+    //         this.setState({ confirmation: this.state.confirmation = true })
+    //     } else {
+    //         this.setState({ confirmation: this.state.confirmation = false })
+    //     }
+    // }
 
     handleSubmit = () => {
         const { password, confPassword, email } = this.state;
@@ -58,15 +67,12 @@ export class RegistrationTwice extends Component {
         const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         let disabledColor = '';
+
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
 
-        // if (this.props.login.length === 0 || this.props.phone.length === 0) {
-        //     return <Redirect to={links.registrationFirst} />
+        // if (confirmation) {
+        //     return <Redirect to={links.login} />
         // }
-        if(this.props.confirm){
-            console.log(this.props.confirm)
-            return <Redirect to={links.login} />
-        }
 
         return (
             <div className="login_page">
@@ -77,6 +83,7 @@ export class RegistrationTwice extends Component {
                         <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
                         <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
+                        {visibility === 'hidden' ? <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label> : null}
                         <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
                         <Button width='92%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
 
@@ -95,7 +102,7 @@ export default connect(
     (state) => ({
         login: state.reg.login,
         phone: state.reg.phone,
-        confirm:  state.reg.confirm
+        confirm: state.reg.confirm
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

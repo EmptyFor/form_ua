@@ -569,7 +569,7 @@ class SearchResult extends Component {
     render() {
         const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
         this.renderCountPagination()
-        let dynamicWidth = 3.4 * this.numersOfPages.length + "%"
+        let dynamicWidth = 3 * this.numersOfPages.length + "%"
         let paginationPageCounter = this.numersOfPages.map((item, index) => {
             if (this.state.currentPage === item) {
                 return <span className="pagination_current" key={index} > {item} </span>

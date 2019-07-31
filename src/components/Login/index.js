@@ -26,20 +26,21 @@ export class Login extends Component {
 
   }
 
-
+  
   handleSubmit = e => {
-    const { email, password, validMail, validPass } = this.state;
+    const { email, password } = this.state;
     if (email.length === 0 || password.length === 0) {
       this.setState({ message: 'Заповніть будь ласка поля', borderColor: 'red', visibility: 'visible' })
     } else {
       this.props.actions.login(email, password);
-      console.log(this.props.error)
       this.setState({ borderColor: '', visibility: 'hidden' })
     }
   }
 
-  checkErr = () => {
-      return this.setState({ borderColor: 'red', visibility: 'visible', message: 'Неправильно введений логін або пароль' })
+  handleEnter = e => {
+    if(e.key === 'Enter'){
+      return this.handleSubmit()
+    }
   }
 
   handleChange = e => {
@@ -50,8 +51,14 @@ export class Login extends Component {
 
 
   render() {
-    const { email, password, message, borderColor, visibility } = this.state;
+    const { email, password, borderColor, message , visibility } = this.state;
     const { token, error } = this.props;
+    // console.log(this.props)
+    // let formClassName = ''
+
+    // if(error){
+    //   formClassName = 'error';
+    // }
 
     if (token) {
       return <Redirect to={links.home} />
@@ -60,9 +67,9 @@ export class Login extends Component {
 
       <div className="login_page">
         <img alt="" src={logo_login}></img>
-        <div className='login_modal_form' style={{ borderColor: borderColor }}>
+        <div className={`login_modal_form`} style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
-          <form ref='logForm' >
+          <form ref='logForm' onKeyPress = {this.handleEnter} >
             <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть e-mail' visibleLabel={false} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
             <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" />
             <label style={{ visibility: visibility }}>{message}</label>

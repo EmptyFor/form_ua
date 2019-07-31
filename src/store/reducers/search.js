@@ -1,5 +1,5 @@
 import * as types from '../types/search';
-import { stat } from 'fs';
+// import { stat } from 'fs';
 
 const initState = {
     price_from: 0,
