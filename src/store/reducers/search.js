@@ -2,25 +2,19 @@ import * as types from '../types/search';
 import { stat } from 'fs';
 
 const initState = {
-    organisationName: '',
-    EDRPOYCode: '',
-    purchasePrice: '',
-    purchasePriceFrom: '',
-    purchasePriceTo: '',
-    documentPhoto: '',
-    legalForm: '',
-    mainEconomicActivityType: '',
-    additionalEconomicActivityType: [],
-    taxationForm: '',
+    price_from: 0,
+    price_to: 0,
+    legal_form: '',
+    kved_name: '',
+    extra_kved_name: [],
+    tax_form: '',
     license: [],
-    location: '',
-    registrationDate: '',
-    isPDVPayer: '',
-    broughtEconomicActivity: '',
-    hasDebt: '',
-    shareCapital: '',
-    ownerName: '',
-    phoneNumbers: [],
+    city: '',
+    region: '',
+    registered_at: '',
+    pda: false,
+    have_activity: false,
+    no_debt: false,
     clear: false
 }
 
@@ -29,17 +23,18 @@ export default (state = initState, action) => {
         case types.MAIN_PAGE_FORM:
             return {
                 ...state,
-                legalForm: action.legalForm,
-                mainEconomicActivityType: action.mainEconomicActivityType,
-                location: action.location,
-                taxationForm: action.taxationForm,
-                purchasePriceFrom: action.purchasePriceFrom,
-                purchasePriceTo: action.purchasePriceTo,
-                isPDVPayer: action.isPDVPayer,
-                additionalEconomicActivityType: action.additionalEconomicActivityType,
+                legal_form: action.legal_form,
+                kved_name: action.kved_name,
+                city: action.city,
+                region: action.region,
+                tax_form: action.tax_form,
+                price_from: action.price_from,
+                price_to: action.price_to,
+                pda: action.pda,
+                extra_kved_name: action.extra_kved_name,
                 license: action.license,
-                broughtEconomicActivity: action.broughtEconomicActivity,
-                hasDebt: action.hasDebt
+                have_activity: action.have_activity,
+                no_debt: action.no_debt
             }
         case types.CLEAR_FORM:
             return {

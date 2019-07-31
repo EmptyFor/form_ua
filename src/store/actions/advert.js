@@ -12,14 +12,15 @@ export const setDocumentPhoto = (payload) => ({
     payload
 });
 
-export const setAdditionalInfo = (legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital) => ({
+export const setAdditionalInfo = (legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) => ({
     type: types.ADDITIONAL_INFO,
     legal_form,
-    type_activity,
-    extra_type_activity,
+    kved_name,
+    extra_kved_name,
     tax_form,
     license,
-    location,
+    city,
+    region,
     registered_at,
     pda,
     have_activity,
@@ -33,17 +34,19 @@ export const setOwnerInfo = (owner_data, tel) => ({
     tel
 });
 
-export const setAdvertData = (name, code, price, image, legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) => ({
+export const setAdvertData = (name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) => ({
     type: types.SEND_ADVERT_DATA,
     name,
     code,
     price,
+    image,
     legal_form,
-    type_activity,
-    extra_type_activity,
+    kved_name,
+    extra_kved_name,
     tax_form,
     license,
-    location,
+    city,
+    region,
     registered_at,
     pda,
     have_activity,

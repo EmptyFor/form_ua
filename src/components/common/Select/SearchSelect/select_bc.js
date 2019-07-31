@@ -13,7 +13,6 @@ export class SearchSelect extends Component {
     selectRef = React.createRef()
     selectArea = React.createRef()
     selectListRef = React.createRef()
-    searchInputCodeRef = React.createRef()
 
     state = {
         isOpen: false,
@@ -160,11 +159,11 @@ export class SearchSelect extends Component {
     }
 
     closeSelectList = (e) => {
-        // this.setState({
-        //     isOpen: false,
-        //     togleClass: 'close'
-        // })
-        // this.closeSelectStyle()
+        this.setState({
+            isOpen: false,
+            togleClass: 'close'
+        })
+        this.closeSelectStyle()
         this.props.getData(e)
     }
 
@@ -220,40 +219,6 @@ export class SearchSelect extends Component {
         }));
     }
 
-    kvedCodeFilter = () => {
-        try {
-            let value = this.searchInputCodeRef.current.value
-            let numValue = this.searchInputCodeRef.current.value.replace(/\D/g, '')
-            let kvedArr = kved.sections[0]
-            let sectionCodeId = value[0].toUpperCase()
-            let divisionsCodeId = numValue[0] + numValue[1]
-            let groupCodeId = `${divisionsCodeId}.${numValue[2]}`
-            let classCodeId = groupCodeId + numValue[3]
-
-            let section = kvedArr.filter(item => {
-                return item.sectionCode === sectionCodeId
-            })
-
-            let divisions = section[0].divisions.filter(item => {
-                return item.divisionCode === divisionsCodeId
-            })
-
-            let group = divisions[0].groups.filter(item => {
-                return item.groupCode === groupCodeId
-            })
-
-            let classes = group[0].classes.filter(item => {
-                return item.classCode === classCodeId
-            })
-
-            console.log(classes)
-            
-        }
-        catch {
-            console.log('Error')
-        }
-    }
-
     //Set top for select list
 
     setTop = () => {
@@ -294,6 +259,7 @@ export class SearchSelect extends Component {
     }
 
     render() {
+        console.log(kved.sections[0])
         return (
             <div id={this.props.id}
                 name={this.props.name}
@@ -327,72 +293,45 @@ export class SearchSelect extends Component {
 
                 {/* <div className="border" style={this.state.style.border}></div> */}
 
-                {
-                    this.props.searchType === 'location' &&
-                    <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
-                        <input
-                            type="text"
-                            placeholder="Пошук..."
-                            id="searchInput"
-                            key="searchInput"
-                            onKeyUp={this.search}
-                            className="search_input"
+                <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
+                    <input
+                        type="text"
+                        placeholder="Пошук..."
+                        id="searchInput"
+                        key="searchInput"
+                        onKeyUp={this.search}
+                        className="search_input"
 
-                        />
-                        <div className="select_list_items" ref={this.selectListRef}>
-                            {
-                                city.Regions.map((item, index) => {
-                                    return <div value='false' id={index} key={index} className="list_item" >
+                    />
 
-                                        <p className="region">{item.Name}</p>
+                    <div className="select_list_items" ref={this.selectListRef}>
+                        {
+                            this.props.searchType === 'location' &&
+                            city.Regions.map((item, index) => {
+                                return <div value='false' id={index} key={index} className="list_item" >
 
-                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
+                                    <p className="region">{item.Name}</p>
 
-                                    </div>
-                                })
-                            }
-                        </div>
+                                    {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
+
+                                </div>
+                            })
+                        }
+
+                        {
+                            this.props.searchType === 'kved' &&
+                            city.Regions.map((item, index) => {
+                                return <div value='false' id={index} key={index} className="list_item" >
+
+                                    <p className="region">{item.Name}</p>
+
+                                    {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
+
+                                </div>
+                            })
+                        }
                     </div>
-                }
-                {
-                    this.props.searchType === 'kved' &&
-                    <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
-                        <div className="input_field">
-                            <input
-                                type="text"
-                                placeholder="Код"
-                                id="searchInput"
-                                key="searchInputCode"
-                                ref={this.searchInputCodeRef}
-                                onKeyUp={this.kvedCodeFilter}
-                                className="search_input code"
-
-                            />
-                            <input
-                                type="text"
-                                placeholder="КВЕД"
-                                id="searchInput"
-                                key="searchInputKved"
-                                onKeyUp={this.search}
-                                className="search_input kved"
-
-                            />
-                        </div>
-                        <div className="select_list_items" ref={this.selectListRef}>
-                            {
-                                city.Regions.map((item, index) => {
-                                    return <div value='false' id={index} key={index} className="list_item" >
-
-                                        <p className="region">{item.Name}</p>
-
-                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
-
-                                    </div>
-                                })
-                            }
-                        </div>
-                    </div>
-                }
+                </div>
             </div>
         );
     }

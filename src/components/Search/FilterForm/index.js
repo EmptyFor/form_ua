@@ -11,25 +11,32 @@ import '../FilterForm/style.modules.scss';
 class FilterForm extends Component {
 
   state = {
-    additionalEconomicActivityType: "",
-    broughtEconomicActivity: Boolean,
-    hasDebt: Boolean,
-    isPDVPayer: Boolean,
-    legalForm: "",
-    license: "",
-    location: "",
-    mainEconomicActivityType: "",
-    purchasePriceFrom: "",
-    taxationForm: ""
+    legal_form: '',
+    kved_name: '',
+    city: '',
+    region: '',
+    tax_form: '',
+    price_from: 0,
+    price_to: 0,
+    pda: false,
+    extra_kved_name: [],
+    license: [],
+    have_activity: false,
+    no_debt: false
   }
 
   setSearchData = (e) => {
     let name = e.target.getAttribute('name')
     let value = e.target.getAttribute('value') || e.target.value || e.target.checked
 
-    value !== undefined ? name === 'additionalEconomicActivityType' || name === 'license' ? value = value.split(',') : void 0 : void 0
-    name === 'isPDVPayer' || name === 'broughtEconomicActivity' || name === 'hasDebt' ? value = e.target.checked : void 0
+    value !== undefined ? name === 'extra_kved_name' || name === 'license' ? value = value.split(',') : void 0 : void 0
+    name === 'pda' || name === 'have_activity' || name === 'no_debt' ? value = e.target.checked : void 0
     name === 'purchasePriceFrom' || name === 'purchasePriceTo' ? value = value.replace(/\D/g, '') : void 0
+    if (name === 'location') {
+      value === undefined ? value = "" : void 0
+      value = value.split(',')
+      this.setState({ region: value[0], city: value[1] })
+    }
 
     this.setState({
       [name]: value
@@ -37,9 +44,9 @@ class FilterForm extends Component {
   }
 
   sendSearchData = () => {
-    const { legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer, additionalEconomicActivityType, license, broughtEconomicActivity, hasDebt } = this.state
+    const { legal_form, kved_name, city, region, tax_form, purchasePriceFrom, purchasePriceTo, pda, extra_kved_name, license, have_activity, no_debt } = this.state
 
-    this.props.actions.setMainPageFormInfo(legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer, additionalEconomicActivityType, license, broughtEconomicActivity, hasDebt)
+    this.props.actions.setMainPageFormInfo(legal_form, kved_name, city, region, tax_form, purchasePriceFrom, purchasePriceTo, pda, extra_kved_name, license, have_activity, no_debt)
   }
 
   clearAllFields = () => {
@@ -59,7 +66,7 @@ class FilterForm extends Component {
         <div className="filter_inputs">
           <Select
             getData={this.setSearchData}
-            name="legalForm"
+            name="legal_form"
             type="common"
             width='auto'
             placeholder='Оберіть зі списку'
@@ -69,7 +76,7 @@ class FilterForm extends Component {
           />
           <Select
             getData={this.setSearchData}
-            name="mainEconomicActivityType"
+            name="kved_name"
             type="common"
             width='auto'
             placeholder='Оберіть зі списку'
@@ -79,7 +86,7 @@ class FilterForm extends Component {
           />
           <Select
             getData={this.setSearchData}
-            name="additionalEconomicActivityType"
+            name="extra_kved_name"
             type="multiply" width='auto'
             placeholder='Додаткові види'
             icon={images.plus}
@@ -98,7 +105,7 @@ class FilterForm extends Component {
           />
           <Select
             getData={this.setSearchData}
-            name="taxationForm"
+            name="tax_form"
             type="common"
             width='auto'
             placeholder='Форма оподаткування'
@@ -123,8 +130,8 @@ class FilterForm extends Component {
             <label>Є платником ПДВ?</label>
             <CheckBox
               getData={this.setSearchData}
-              name="isPDVPayer"
-              id='isPDVPayer'
+              name="pda"
+              id='pda'
               clear={this.props.clear}
             />
           </span>
@@ -132,8 +139,8 @@ class FilterForm extends Component {
             <label>Ведення господарської діяльності</label>
             <CheckBox
               getData={this.setSearchData}
-              name="broughtEconomicActivity"
-              id='broughtEconomicActivity'
+              name="have_activity"
+              id='have_activity'
               clear={this.props.clear}
             />
           </span>
@@ -141,8 +148,8 @@ class FilterForm extends Component {
             <label>Наявність заборгованостей/обтяжень</label>
             <CheckBox
               getData={this.setSearchData}
-              name="hasDebt"
-              id='hasDebt'
+              name="no_debt"
+              id='no_debt'
               clear={this.props.clear}
             />
           </span>
@@ -193,17 +200,18 @@ class FilterForm extends Component {
 
 export default connect(
   (state) => ({
-    legalForm: state.search.legalForm,
-    mainEconomicActivityType: state.search.mainEconomicActivityType,
-    location: state.search.location,
-    taxationForm: state.search.taxationForm,
-    purchasePriceFrom: state.search.purchasePriceFrom,
-    purchasePriceTo: state.search.purchasePriceTo,
-    isPDVPayer: state.search.isPDVPayer,
-    additionalEconomicActivityType: state.search.additionalEconomicActivityType,
+    legal_form: state.search.legal_form,
+    kved_name: state.search.kved_name,
+    city: state.search.city,
+    region: state.search.region,
+    tax_form: state.search.tax_form,
+    price_from: state.search.price_from,
+    price_to: state.search.price_to,
+    pda: state.search.pda,
+    extra_kved_name: state.search.extra_kved_name,
     license: state.search.license,
-    broughtEconomicActivity: state.search.broughtEconomicActivity,
-    hasDebt: state.search.hasDebt,
+    have_activity: state.search.have_activity,
+    no_debt: state.search.no_debt,
     clear: state.search.clear
   }),
   dispatch => ({
