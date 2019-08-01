@@ -9,13 +9,14 @@ import links from '../../../../config/links';
 import * as actions from '../../../../store/actions/user'
 import { logout } from '../../../../store/actions/authorise'
 import { bindActionCreators } from 'redux';
-import { getInfo } from '../../../../store/helpers/localStorage'
+import { getInfo, getToken } from '../../../../store/helpers/localStorage'
 
 class Header extends Component {
 
   constructor(props){
     super(props)
-    this.token = props.token;
+    this.token = getToken();
+    this.id = getInfo()
   }
 
   state = {
@@ -23,8 +24,8 @@ class Header extends Component {
   }
 
   componentDidMount = () => {
-    if(this.  token){
-      this.props.actions.getUserId(getInfo())
+    if(this.token){
+      this.props.actions.getUserId(this.id)
     }
   }
 
@@ -50,7 +51,7 @@ class Header extends Component {
   render() {
     const { user } = this.props;
     const { isOpen } = this.state;
-    console.log(user)
+
     return (
       <header className={`menu ${this.props.className}`} fix={this.props.fix}>
         <div className={styles.language} id="language">
@@ -66,7 +67,7 @@ class Header extends Component {
           {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
           <div className={styles.profile}>
             {
-              this.token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+              this.props.token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
             }
 
             {isOpen ? <div className={styles.profile_dropdown}>

@@ -13,7 +13,7 @@ class Search extends Component {
 
     return (
       <Fragment>
-        <Header className ='menu_fix' fix={false} />
+        <Header className ='menu_fix' fix={'true'} />
         <div className='short_wrapp' >
           <FilterForm />
           <SearchResult />

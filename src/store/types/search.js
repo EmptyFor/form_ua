@@ -1,2 +1,5 @@
 export const MAIN_PAGE_FORM = 'MAIN_PAGE_FORM';
 export const CLEAR_FORM = 'CLEAR_FORM';
+export const POST_CURRENT_PAGE = 'POST_CURRENT_PAGE';
+export const GET_SEARCH_POSTS = 'GET_SEARCH_POSTS';
+export const SET_ERROR = 'SEARCH_SET_ERROR';
