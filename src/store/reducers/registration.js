@@ -7,7 +7,7 @@ const initState = {
   phone: '',
   email: '',
   password: '',
-  confirm: ''
+  data: ''
 };
 
 export default (state = initState, action) => {
@@ -20,7 +20,7 @@ export default (state = initState, action) => {
       };
     case types.CONFIRM_REGISTRATION:
       return {
-        confirm: action.status
+        data: action.data
       }
     case types.SET_ERROR:
       return {

@@ -14,7 +14,6 @@ import logo_login from '../../assets/images/logolog.png'
 
 export class Login extends Component {
 
-
   state = {
     email: '',
     password: '',
@@ -22,11 +21,10 @@ export class Login extends Component {
     validPass: true,
     message: 'Заповніть будь ласка всі поля',
     borderColor: '',
-    visibility: 'hidden'
-
+    visibility: 'hidden',
   }
 
-  
+
   handleSubmit = e => {
     const { email, password } = this.state;
     if (email.length === 0 || password.length === 0) {
@@ -38,7 +36,7 @@ export class Login extends Component {
   }
 
   handleEnter = e => {
-    if(e.key === 'Enter'){
+    if (e.key === 'Enter') {
       return this.handleSubmit()
     }
   }
@@ -51,14 +49,12 @@ export class Login extends Component {
 
 
   render() {
-    const { email, password, borderColor, message , visibility } = this.state;
+    const { email, password, borderColor, message, visibility } = this.state;
     const { token, error } = this.props;
-    // console.log(this.props)
-    // let formClassName = ''
-
-    // if(error){
-    //   formClassName = 'error';
-    // }
+    let errClass = '';
+    if (error) {
+      errClass = 'error'
+    }
 
     if (token) {
       return <Redirect to={links.home} />
@@ -67,12 +63,12 @@ export class Login extends Component {
 
       <div className="login_page">
         <img alt="" src={logo_login}></img>
-        <div className={`login_modal_form`} style={{ borderColor: borderColor }}>
+        <div className={`login_modal_form ${errClass}`} style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
-          <form ref='logForm' onKeyPress = {this.handleEnter} >
+          <form ref='logForm' onKeyPress={this.handleEnter} >
             <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть e-mail' visibleLabel={false} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
             <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" />
-            <label style={{ visibility: visibility }}>{message}</label>
+            {error ?<label className="err_label">Неправильно введений логін або пароль!</label> : <label style={{ visibility: visibility }}>{message}</label> }
             <Button width='92%' text='Увійти' onClick={this.handleSubmit} />
           </form>
           <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.registrationFirst}>Зареєструватися >></Link></div>

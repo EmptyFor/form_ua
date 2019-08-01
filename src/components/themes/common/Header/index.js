@@ -13,12 +13,17 @@ import { getInfo } from '../../../../store/helpers/localStorage'
 
 class Header extends Component {
 
+  constructor(props){
+    super(props)
+    this.token = props.token;
+  }
+
   state = {
     isOpen: false,
   }
 
   componentDidMount = () => {
-    if(this.props.token){
+    if(this.  token){
       this.props.actions.getUserId(getInfo())
     }
   }
@@ -43,8 +48,9 @@ class Header extends Component {
 
 
   render() {
-    const { user, token } = this.props;
+    const { user } = this.props;
     const { isOpen } = this.state;
+    console.log(user)
     return (
       <header className={`menu ${this.props.className}`} fix={this.props.fix}>
         <div className={styles.language} id="language">
@@ -60,7 +66,7 @@ class Header extends Component {
           {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
           <div className={styles.profile}>
             {
-              token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+              this.token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
             }
 
             {isOpen ? <div className={styles.profile_dropdown}>

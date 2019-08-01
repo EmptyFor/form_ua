@@ -94,7 +94,13 @@
 
 .error {
   border-color: red;
+
   input{
     border-color: red
+  }
+
+  .err_label{
+    color: red;
+    font-weight: 600;
   }
 }

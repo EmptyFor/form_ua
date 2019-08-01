@@ -26,7 +26,6 @@ export function* authorise(email, password) {
     yield setToken(auth_token);
     yield setInfo(id);
     yield put(actions.setAuthData(auth_token));
-   
 
   } catch (error) {
     yield put(actions.setError(error.message));

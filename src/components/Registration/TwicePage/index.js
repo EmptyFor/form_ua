@@ -10,6 +10,8 @@ import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../store/actions/registration'
 import logo_login from '../../../assets/images/logolog.png'
 import { Redirect } from 'react-router-dom';
+import { setInfo,setToken } from '../../../store/helpers/localStorage'
+import { setAuthData } from '../../../store/actions/authorise'
 
 export class RegistrationTwice extends Component {
 
@@ -22,17 +24,11 @@ export class RegistrationTwice extends Component {
         validConfPass: false,
         visibility: 'hidden',
         borderColor: '',
-        confirmation: false
     }
 
-    // componentDidMount = () => {
-    //     let { confirm } = this.props
-    //     if (confirm) {
-    //         this.setState({ confirmation: this.state.confirmation = true })
-    //     } else {
-    //         this.setState({ confirmation: this.state.confirmation = false })
-    //     }
-    // }
+    componentWillMount = () => {
+
+    }
 
     handleSubmit = () => {
         const { password, confPassword, email } = this.state;
@@ -66,13 +62,27 @@ export class RegistrationTwice extends Component {
     render() {
         const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
+        const { login, phone } = this.props;
+        
         let disabledColor = '';
+        console.log(this.props)
+        if (login !== undefined && phone !== undefined) {
+            if ((login.length || phone.length) === 0) {
+                return <Redirect to={links.registrationFirst} />
+            }
+        }
 
+        if(this.props.data){
+            const { id, auth_token } = this.props.data.user
+            if(auth_token){
+                setToken(auth_token);
+                setAuthData(auth_token);
+                setInfo(id);
+                // return <Redirect to={links.profile} />
+            }
+        }
+        
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
-
-        // if (confirmation) {
-        //     return <Redirect to={links.login} />
-        // }
 
         return (
             <div className="login_page">
@@ -83,7 +93,7 @@ export class RegistrationTwice extends Component {
                         <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
                         <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
-                        {visibility === 'hidden' ? <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label> : null}
+                        <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label>
                         <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
                         <Button width='92%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
 
@@ -102,7 +112,7 @@ export default connect(
     (state) => ({
         login: state.reg.login,
         phone: state.reg.phone,
-        confirm: state.reg.confirm
+        data: state.reg.data
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

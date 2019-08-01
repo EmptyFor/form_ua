@@ -15,12 +15,12 @@ export function* registrationSaga(login, phone, email, password) {
         password: password
     }
     try {
-        const status = yield axios.post(`${baseURL}/ru/api/v1/users`, { user })
+        const { data }  = yield axios.post(`${baseURL}/ru/api/v1/users`, { user })
             .then(response => {
-                return response.status;
+                return response.data;
             })
        
-        yield put(actions.confirmReg(status))
+        yield put(actions.confirmReg(data))
 
     } catch (error) {
         yield put(actions.setError(error.message));
