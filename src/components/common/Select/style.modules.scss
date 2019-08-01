@@ -124,6 +124,16 @@
     margin-top: -1px;
     padding: 10px 10px 20px 20px;
     scroll-padding: 20px;
+    .input_field {
+      display: flex;
+      .code {
+        width: 20%;
+        margin-right: 6%;
+      }
+      .kved {
+        width: 70%;
+      }
+    }
     .select_list_items {
       overflow-y: scroll;
       max-height: 260px;

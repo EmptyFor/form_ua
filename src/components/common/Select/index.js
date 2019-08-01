@@ -48,6 +48,7 @@ export class Select extends Component {
                 required={this.props.required}
                 icon={icon}
                 id={id}
+                searchType={this.props.searchType}
                 getData={this.props.getData}
                 name={this.props.name}
                 clear={this.props.clear}

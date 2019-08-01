@@ -67,7 +67,8 @@ export class UloadField extends Component {
             let file = e.dataTransfer.files
             e.dataTransfer.clearData()
             this.dragCounter = 0
-            this.previewFile(file)
+            this.previewFile(file[0])
+            this.sendFiles(file[0])
         }
     }
 
@@ -80,70 +81,95 @@ export class UloadField extends Component {
         let uploadContainer = document.getElementById('upload-container')
 
         reader.onloadend = function () {
-            this.setState({image:{src:reader.result}})
+            this.setState({ image: { src: reader.result } })
             img.style.width = '100%'
             uploadContainer.style.padding = '0'
             uploadInfo.style.display = 'none'
             img.src = this.state.image.src
-            this.props.actions.setDocumentPhoto(this.state.image.src)
         }.bind(this)
 
-        if (file[0]) {
-            reader.readAsDataURL(file[0]); //reads the data as a URL
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
         } else {
             this.state.image.src = "";
         }
         this.props.actions.clearAllInfo(false)
     }
 
-    //Init handle func
-    componentDidMount() {
-        this.dragCounter = 0
-        let div = this.dropRef.current
-        div.addEventListener('dragenter', this.handleDragIn)
-        div.addEventListener('dragleave', this.handleDragOut)
-        div.addEventListener('dragover', this.handleDrag)
-        div.addEventListener('drop', this.handleDrop)
-    }
-    componentWillUnmount() {
-        let div = this.dropRef.current
-        div.removeEventListener('dragenter', this.handleDragIn)
-        div.removeEventListener('dragleave', this.handleDragOut)
-        div.removeEventListener('dragover', this.handleDrag)
-        div.removeEventListener('drop', this.handleDrop)
+    //Send Form Data
+
+    onInputChange = (e) => {
+        let files = e.target.files[0]
+        this.previewFile(files)
+        this.sendFiles(files)
     }
 
-    clearValue = () => {
-        let uploadContainer = document.getElementById('upload-container')
-        let img = this.imageRef.current
-        let uploadInfo = this.uploadInfoRef.current
-        this.setState({
-            image: {
-                src: ulpoad_img
-            }
-        })
-        this.props.actions.setDocumentPhoto('')
-        img.style.width = '51px'
-        uploadContainer.style.padding = '5%'
-        uploadInfo.style.display = 'flex'
+    sendFiles = (file) => {
+    let maxFileSize = 5242880000;
+    let Data = new FormData();
+
+    if (file.size <= maxFileSize && file.type === "image/png" || file.type === "image/jpeg") {
+        Data.set('image', file)
+        this.props.actions.setDocumentPhoto(Data.get('image'))
     }
 
-    componentWillReceiveProps(nextProps) {
-        nextProps.clear ? this.clearValue() : void 0
-    }
+    // console.log(file)
 
-    render() {
-        return (
-            <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} >
-                <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
-                <div className="upload_info" ref={this.uploadInfoRef}>
-                    <input id="file-input" type="file" name="file" multiple></input>
-                    <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
-                    <label htmlFor="file-input">Завантажити</label>
-                </div>
-            </form>
-        );
-    }
+    // if ((file[0].size <= maxFileSize) && ((file[0].type == 'image/png') || (file[0].type == 'image/jpeg'))) {
+    //     Data.append('images[]', file[0]);
+
+    //     console.log(file)
+    // }
+};
+
+//Init handle func
+componentDidMount() {
+    this.dragCounter = 0
+    let div = this.dropRef.current
+    div.addEventListener('dragenter', this.handleDragIn)
+    div.addEventListener('dragleave', this.handleDragOut)
+    div.addEventListener('dragover', this.handleDrag)
+    div.addEventListener('drop', this.handleDrop)
+}
+componentWillUnmount() {
+    let div = this.dropRef.current
+    div.removeEventListener('dragenter', this.handleDragIn)
+    div.removeEventListener('dragleave', this.handleDragOut)
+    div.removeEventListener('dragover', this.handleDrag)
+    div.removeEventListener('drop', this.handleDrop)
+}
+
+clearValue = () => {
+    let uploadContainer = document.getElementById('upload-container')
+    let img = this.imageRef.current
+    let uploadInfo = this.uploadInfoRef.current
+    this.setState({
+        image: {
+            src: ulpoad_img
+        }
+    })
+    this.props.actions.setDocumentPhoto('')
+    img.style.width = '51px'
+    uploadContainer.style.padding = '5%'
+    uploadInfo.style.display = 'flex'
+}
+
+componentWillReceiveProps(nextProps) {
+    nextProps.clear ? this.clearValue() : void 0
+}
+
+render() {
+    return (
+        <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} >
+            <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
+            <div className="upload_info" ref={this.uploadInfoRef}>
+                <input id="file-input" type="file" name="file" onChange={this.onInputChange} multiple></input>
+                <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
+                <label htmlFor="file-input">Завантажити</label>
+            </div>
+        </form>
+    );
+}
 }
 
 export default connect(

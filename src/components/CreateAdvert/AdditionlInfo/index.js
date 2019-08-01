@@ -17,30 +17,31 @@ export class AdditionlInfo extends Component {
 
     state = {
         legal_form: '',
-        type_activity: '',
-        extra_type_activity: [],
+        kved_name: '',
+        extra_kved_name: [],
         tax_form: '',
         license: [],
-        location: '',
+        city: '',
+        region: '',
         registered_at: '',
         pda: '',
         have_activity: '',
         no_debt: '',
-        capital: '',
+        capital: 0
     }
 
     setAdditionlInfoData(e) {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
 
-        name === 'extra_type_activity' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
+        name === 'extra_kved_name' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'capital' ? value = value.replace(/\D/g, '') : void 0
         name === 'pda' || name === 'have_activity' || name === 'no_debt' ? value === "Так" ? value = true : value = false : void 0
         
         if (name === 'location') {
             value === undefined ? value = "" : void 0
             value = value.split(',')
-            value = {region: value[0], town: value[1]}
+            this.setState({region: value[0], city: value[1]})
         }
 
         this.setState({
@@ -49,20 +50,21 @@ export class AdditionlInfo extends Component {
     }
 
     sendAdditionlInfoData() {
-        const { legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital } = this.state
+        const { legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital } = this.state
         if (this.props.clear) {
-            this.props.actions.setAdditionalInfo(legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital)
+            this.props.actions.setAdditionalInfo(legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital)
         }
         else {
             legal_form &&
-            type_activity &&
-            extra_type_activity.length <= 10 &&
+            kved_name &&
+            extra_kved_name.length <= 10 &&
             tax_form &&
                 license.length <= 5 &&
-                location &&
+                city &&
+                region &&
                 registered_at.length === 10 &&
                 pda ?
-                this.props.actions.setAdditionalInfo(legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital) :
+                this.props.actions.setAdditionalInfo(legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) :
                 void 0
         }
     }
@@ -70,11 +72,12 @@ export class AdditionlInfo extends Component {
     clearValue = () => {
         this.setState({
             legal_form: '',
-            type_activity: '',
-            extra_type_activity: [],
+            kved_name: '',
+            extra_kved_name: [],
             tax_form: '',
             license: [],
-            location: '',
+            city: '',
+            region: '',
             registered_at: '',
             pda: '',
             have_activity: '',
@@ -114,8 +117,9 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="type_activity"
-                        type="common"
+                        name="kved_name"
+                        type="search"
+                        searchType="kved"
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.portfolio}
@@ -128,7 +132,7 @@ export class AdditionlInfo extends Component {
                     <p className="subtitle">Додаткові види (до 10 видів):</p>
                     <Select
                         getData={this.setAdditionlInfoData}
-                        name="extra_type_activity"
+                        name="extra_kved_name"
                         type="multiply" width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
@@ -171,6 +175,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="location"
                         type="search"
+                        searchType="location"
                         width='auto'
                         placeholder='Вибріть місто/населений пункт'
                         icon={images.mapPoint}
@@ -248,11 +253,12 @@ export class AdditionlInfo extends Component {
 export default connect(
     (state) => ({
         legal_form: state.advert.legal_form,
-        type_activity: state.advert.type_activity,
-        extra_type_activity: state.advert.extra_type_activity,
+        kved_name: state.advert.kved_name,
+        extra_kved_name: state.advert.extra_kved_name,
         tax_form: state.advert.tax_form,
         license: state.advert.license,
-        location: state.advert.location,
+        city: state.advert.city,
+        region: state.advert.region,
         registered_at: state.advert.registered_at,
         pda: state.advert.pda,
         have_activity: state.advert.have_activity,

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import * as actions from'../../../store/actions/search';
+import * as actions from '../../../store/actions/search';
 import '../Form/style.modules.scss';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
@@ -16,21 +16,27 @@ export class Form extends Component {
 
     state = {
         link: links.search,
-        legalForm: '',
-        mainEconomicActivityType: '',
-        location: '',
-        taxationForm: '',
-        purchasePriceFrom: '',
-        purchasePriceTo: '',
-        isPDVPayer: ''
+        legal_form: '',
+        kved_name: '',
+        city: '',
+        region: '',
+        tax_form: '',
+        price_from: 0,
+        price_to: 0,
+        pda: false
     }
 
     setSearchData = (e) => {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
 
-        name === 'purchasePriceFrom' || name === 'purchasePriceTo' ? value = value.replace(/\D/g, '') : void 0
-        name === 'isPDVPayer' && value.length !== 0 ? value = true : void 0
+        name === 'price_from' || name === 'price_to' ? value = value.replace(/\D/g, '') : void 0
+        name === 'pda' ? value = e.target.checked : void 0
+        if (name === 'location') {
+            value === undefined ? value = "" : void 0
+            value = value.split(',')
+            this.setState({ region: value[0], city: value[1] })
+        }
 
         this.setState({
             [name]: value
@@ -38,16 +44,17 @@ export class Form extends Component {
     }
 
     sendSearchData = () => {
-        const { legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer } = this.state
+        const { legal_form, kved_name, city, region, tax_form, price_from, price_to, pda } = this.state
 
-        if (legalForm &&
-            mainEconomicActivityType &&
-            location &&
-            taxationForm &&
-            purchasePriceFrom.length > 0 &&
-            purchasePriceTo > 0 &&
-            isPDVPayer) {
-            this.props.actions.setMainPageFormInfo(legalForm, mainEconomicActivityType, location, taxationForm, purchasePriceFrom, purchasePriceTo, isPDVPayer)
+        if (legal_form &&
+            kved_name &&
+            city &&
+            region &&
+            tax_form &&
+            price_from.length > 0 &&
+            price_to > 0
+        ) {
+            this.props.actions.setMainPageFormInfo(legal_form, kved_name, city, region, tax_form, price_from, price_to, pda)
         }
     }
 
@@ -68,7 +75,7 @@ export class Form extends Component {
                         width='auto'
                         placeholder='Організаційно правова форма'
                         icon={images.house} id='mp_form_select_1'
-                        name="legalForm"
+                        name="legal_form"
                         getData={this.setSearchData}
                     />
                     <Select
@@ -77,7 +84,7 @@ export class Form extends Component {
                         placeholder='Оновний вид господарської діяльності (КВЕДи)'
                         icon={images.portfolio}
                         id='mp_form_select_2'
-                        name="mainEconomicActivityType"
+                        name="kved_name"
                         getData={this.setSearchData}
                     />
                     <Select
@@ -95,7 +102,7 @@ export class Form extends Component {
                         placeholder='Форма оподаткування'
                         icon={images.lable}
                         id='mp_form_select_4'
-                        name="taxationForm"
+                        name="tax_form"
                         getData={this.setSearchData}
                     />
 
@@ -107,7 +114,7 @@ export class Form extends Component {
                         placeholder='від (₴)'
                         width="100%"
                         className='price_from'
-                        name="purchasePriceFrom"
+                        name="price_from"
                         clear={this.props.clear}
                     />
                     <Input
@@ -117,16 +124,15 @@ export class Form extends Component {
                         placeholder='до (₴)'
                         width="100%"
                         className='price_to'
-                        name="purchasePriceTo"
+                        name="price_to"
                         clear={this.props.clear}
                     />
 
                     <div className="is_PDV_payer">
                         <CheckBox
                             getData={this.setSearchData}
-                            name="isPDVPayer"
-                            id='isPDVPayer'
-                            name="isPDVPayer"
+                            name="pda"
+                            id='pda'
                             text="Є платником ПДВ"
                             clear={this.props.clear}
                         />
@@ -151,13 +157,14 @@ export class Form extends Component {
 
 export default connect(
     (state) => ({
-        legalForm: state.search.legalForm,
-        mainEconomicActivityType: state.search.mainEconomicActivityType,
-        location: state.search.location,
-        taxationForm: state.search.taxationForm,
-        purchasePriceFrom: state.search.purchasePriceFrom,
-        purchasePriceTo: state.search.purchasePriceTo,
-        isPDVPayer: state.search.isPDVPayer
+        legal_form: state.search.legal_form,
+        kved_name: state.search.kved_name,
+        city: state.search.city,
+        region: state.search.region,
+        tax_form: state.search.tax_form,
+        price_from: state.search.price_from,
+        price_to: state.search.price_to,
+        pda: state.search.pda
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
