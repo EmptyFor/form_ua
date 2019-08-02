@@ -30,7 +30,7 @@ export function* advert(name, code, price, image, legal_form, type_activity, ext
     }
 
     try {
-        yield axios({ method: 'post', url:`${baseURL}/ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
+        yield axios({ method: 'post', url:`${baseURL}ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
             .then(response => {
                 return console.log(response.data.data.posts);
             })
