@@ -178,7 +178,7 @@ class SearchResult extends Component {
 
 export default connect(
     (state) => ({
-        data:state.sch.data
+        data:state.search.data
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
