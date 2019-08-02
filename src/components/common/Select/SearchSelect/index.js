@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
 import city from '../../../../assets/db/city';
 import kved from '../../../../assets/db/kved';
+import kvedArr from '../../../../assets/db/kvedArr';
 import './style.modules.scss';
 
 export class SearchSelect extends Component {
@@ -14,11 +15,13 @@ export class SearchSelect extends Component {
     selectArea = React.createRef()
     selectListRef = React.createRef()
     searchInputCodeRef = React.createRef()
+    searchInputNameRef = React.createRef()
 
     state = {
         isOpen: false,
         togleClass: 'close',
         value: '',
+        selectListItems: [],
         style: {
             border: {
                 display: 'none'
@@ -27,6 +30,7 @@ export class SearchSelect extends Component {
     }
 
     selectedItem = ''
+    selectListItems = []
 
     //Togle isOpen state
 
@@ -154,7 +158,6 @@ export class SearchSelect extends Component {
     //Togle Select List
 
     togleSelectList = (e) => {
-        console.log(e.target)
         e.target.getAttribute('id') !== 'searchInput' ? this.togleIsOpenState() : void 0
         this.state.isOpen && e.target.getAttribute('id') !== 'searchInput' ? this.closeSelectStyle() : this.openSelectStyle()
     }
@@ -190,7 +193,7 @@ export class SearchSelect extends Component {
         }
     }
 
-    setSelectValue = (e) => {
+    setLocationValue = (e) => {
         let region = e.target.parentNode.getElementsByClassName('region')[0].innerText
         let town = e.target.innerText
         this.setState(prevState => ({
@@ -219,38 +222,52 @@ export class SearchSelect extends Component {
             }
         }));
     }
+    
+    setKvedValue = (e) => {
+        let value = e.target.innerText
+        this.setState(prevState => ({
+            value: value,
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "none"
+                },
+                value: {
+                    display: "inline-block"
+                },
+                select: {
+                    borderRadius: '30px',
+                    borderBottom: 'solid 1px #b1a7c8',
+                    borderColor: '#1ccee9',
+                    zIndex: 1
+                },
+                arrow: {
+                    transform: 'rotate(0deg)',
+                    transition: '0.5s'
+                },
+                border: {
+                    display: 'none'
+                },
+            }
+        }));
+    }
 
-    kvedCodeFilter = () => {
+    kvedFilter = () => {
+        let value = this.searchInputNameRef.current.value
         try {
-            let value = this.searchInputCodeRef.current.value
-            let numValue = this.searchInputCodeRef.current.value.replace(/\D/g, '')
-            let kvedArr = kved.sections[0]
-            let sectionCodeId = value[0].toUpperCase()
-            let divisionsCodeId = numValue[0] + numValue[1]
-            let groupCodeId = `${divisionsCodeId}.${numValue[2]}`
-            let classCodeId = groupCodeId + numValue[3]
+            let kved = kvedArr.sections
+            let found = []
+            let foundItems = []
 
-            let section = kvedArr.filter(item => {
-                return item.sectionCode === sectionCodeId
+            found = kved.filter(item => {
+                let str = item.code + item.name
+                return str.search(value) > 0
             })
-
-            let divisions = section[0].divisions.filter(item => {
-                return item.divisionCode === divisionsCodeId
-            })
-
-            let group = divisions[0].groups.filter(item => {
-                return item.groupCode === groupCodeId
-            })
-
-            let classes = group[0].classes.filter(item => {
-                return item.classCode === classCodeId
-            })
-
-            console.log(classes)
-            
+            foundItems = found.map(item => { return item.code + ' ' + item.name})
+            this.setState({ selectListItems: foundItems })
         }
         catch {
-            console.log('Error')
+
         }
     }
 
@@ -346,7 +363,7 @@ export class SearchSelect extends Component {
 
                                         <p className="region">{item.Name}</p>
 
-                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
+                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setLocationValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
 
                                     </div>
                                 })
@@ -360,35 +377,18 @@ export class SearchSelect extends Component {
                         <div className="input_field">
                             <input
                                 type="text"
-                                placeholder="Код"
-                                id="searchInput"
-                                key="searchInputCode"
-                                ref={this.searchInputCodeRef}
-                                onKeyUp={this.kvedCodeFilter}
-                                className="search_input code"
-
-                            />
-                            <input
-                                type="text"
-                                placeholder="КВЕД"
+                                placeholder="Пошук..."
                                 id="searchInput"
                                 key="searchInputKved"
-                                onKeyUp={this.search}
-                                className="search_input kved"
+                                ref={this.searchInputNameRef}
+                                onKeyUp={this.kvedFilter}
+                                className="search_input"
 
                             />
                         </div>
                         <div className="select_list_items" ref={this.selectListRef}>
                             {
-                                city.Regions.map((item, index) => {
-                                    return <div value='false' id={index} key={index} className="list_item" >
-
-                                        <p className="region">{item.Name}</p>
-
-                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
-
-                                    </div>
-                                })
+                                this.state.selectListItems.map((item, index) => <div value='false' onClick={this.setKvedValue} id={index} key={index} className="sub_list_item" >{item}</div>)
                             }
                         </div>
                     </div>
