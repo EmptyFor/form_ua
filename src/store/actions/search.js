@@ -36,3 +36,18 @@ export const clearAllInfo = (clear) => ({
     type: types.CLEAR_FORM,
     clear
 })
+
+export const postCurrentPage = (current_page) => ({
+    type: types.POST_CURRENT_PAGE,
+    current_page
+})
+
+export const getPagePosts = (data) =>({
+    type: types.GET_SEARCH_POSTS,
+    data
+}) 
+
+export const setError = (error) => ({
+    type: types.SET_ERROR,
+    error
+});

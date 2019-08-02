@@ -32,13 +32,13 @@ export class RegistrationTwice extends Component {
 
     handleSubmit = () => {
         const { password, confPassword, email } = this.state;
-        const { login, phone } = this.props;
+        const { first_name, phone } = this.props;
         if (password !== confPassword) {
             this.setState({ password: '', confPassword: '', validPass: false, validConfPass: false, borderColor: 'red', visibility: 'visible' })
         } else {
             this.setState({ borderColor: '', visibility: 'hidden' })
         }
-        this.props.actions.twicePage(login, phone, email, password)
+        this.props.actions.twicePage(first_name, phone, email, password)
     }
 
     handleChange = e => {
@@ -62,12 +62,11 @@ export class RegistrationTwice extends Component {
     render() {
         const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
-        const { login, phone } = this.props;
+        const { first_name, phone } = this.props;
         
         let disabledColor = '';
-        console.log(this.props)
-        if (login !== undefined && phone !== undefined) {
-            if ((login.length || phone.length) === 0) {
+        if (first_name !== undefined && phone !== undefined) {
+            if ((first_name.length || phone.length) === 0) {
                 return <Redirect to={links.registrationFirst} />
             }
         }
@@ -75,10 +74,10 @@ export class RegistrationTwice extends Component {
         if(this.props.data){
             const { id, auth_token } = this.props.data.user
             if(auth_token){
-                setToken(auth_token);
-                setAuthData(auth_token);
                 setInfo(id);
-                // return <Redirect to={links.profile} />
+                setAuthData(auth_token);
+                setToken(auth_token);
+                return <Redirect to={links.profile} />
             }
         }
         
@@ -110,9 +109,10 @@ export class RegistrationTwice extends Component {
 
 export default connect(
     (state) => ({
-        login: state.reg.login,
+        first_name: state.reg.first_name,
         phone: state.reg.phone,
-        data: state.reg.data
+        data: state.reg.data,
+        
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

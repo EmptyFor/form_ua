@@ -3,7 +3,7 @@ import * as types from '../types/registration';
 
 
 const initState = {
-  login: '',
+  first_name: '',
   phone: '',
   email: '',
   password: '',
@@ -15,7 +15,7 @@ export default (state = initState, action) => {
     case types.FIRST_PAGE_DATA:
       return {
         ...state,
-        login: action.login,
+        first_name: action.first_name,
         phone: action.phone
       };
     case types.CONFIRM_REGISTRATION:

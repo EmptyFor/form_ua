@@ -15,7 +15,8 @@ const initState = {
     pda: false,
     have_activity: false,
     no_debt: false,
-    clear: false
+    clear: false,
+    data: []
 }
 
 export default (state = initState, action) => {
@@ -41,6 +42,15 @@ export default (state = initState, action) => {
                 ...state,
                 clear: action.clear
             }
+        case types.GET_SEARCH_POSTS:
+            return {
+                data: action.data
+            }
+        case types.SET_ERROR:
+            return {
+                ...state,
+                error: action.error
+            };
         default:
             return state
     }

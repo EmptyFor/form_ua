@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
 import './style.modules.scss';
@@ -14,15 +14,15 @@ import logo_login from '../../../assets/images/logolog.png'
 export class RegistrationFirst extends Component {
 
     state = {
-        login: '',
+        first_name: '',
         phone: '',
         validLogin: false,
         validPhone: false,
     };
 
     handleSubmit = () => {
-        const { login, phone } = this.state;
-        this.props.actions.firstPage(login, phone)
+        const { first_name, phone } = this.state;
+        this.props.actions.firstPage(first_name, phone)
     }
 
     handleChange = e => {
@@ -38,9 +38,9 @@ export class RegistrationFirst extends Component {
     };
 
     render() {
-        const { login, phone, validLogin, validPhone } = this.state;
+        const { first_name, phone, validLogin, validPhone } = this.state;
 
-        const isOk = login.length > 0 && validLogin && phone.length > 0 && validPhone;
+        const isOk = first_name.length > 0 && validLogin && phone.length > 0 && validPhone;
         let disabledColor = '';
         !isOk ? disabledColor = '#aeaeae' : disabledColor = '';
 
@@ -51,8 +51,8 @@ export class RegistrationFirst extends Component {
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
                     <form>
-                        <Input name='login' value={login} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30' />
-                        <Input name='phone' value={phone} onChange={this.handleChange} type='tel' placeholder="+38(0_ _) - _ _ _ - _ _ - _ _" maxLength='13' />
+                        <Input name='first_name' value={first_name} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30' />
+                        <Input type='phone' placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _" name='phone' value={phone} onChange={this.handleChange} maxLength='13' />
                         <Link to={links.registrationTwice} className="common_btn_link"><Button width='92%' back={disabledColor} onClick={this.handleSubmit} text='Далі' disabled={!isOk} /></Link>
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links.login}> Увійти >></Link></div>

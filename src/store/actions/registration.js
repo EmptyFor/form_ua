@@ -1,16 +1,16 @@
 import * as types from '../types/registration';
 
-export const firstPage = (login, phone) => ({
+export const firstPage = (first_name, phone) => ({
     type: types.FIRST_PAGE_DATA,
-    login,
+    first_name,
     phone
 });
 
-export const twicePage = (login, phone, email, password) => ({
+export const twicePage = (first_name, phone, email, password) => ({
     type: types.TWICE_PAGE_DATA,
     email,
     password,
-    login,
+    first_name,
     phone
 });
 export const confirmReg = (data) => ({

@@ -13,11 +13,12 @@ import Advert from '../common/Advert';
 import document from '../../assets/images/spa.jpg'
 import { Redirect } from 'react-router-dom';
 import triangle_bg from '../../assets/images/triangle_bg.png'
-// import { getToken } from '../../store/helpers/localStorage'
+import { getToken } from '../../store/helpers/localStorage'
 
 const mockData = [
   {
     name: 'FIRST PAGE',
+    id: '1',
     isPDF: false,
     date: '10/02/2019',
     city: 'Львів',
@@ -27,6 +28,7 @@ const mockData = [
   },
   {
     name: 'Конституційно-правова агенція твого міста',
+    id: '2',
     isPDF: true,
     date: '10/02/2019',
     city: 'Львів',
@@ -36,6 +38,7 @@ const mockData = [
   },
   {
     name: 'FIRST',
+    id: '3',
     isPDF: false,
     date: '10/02/2019',
     city: 'Львів',
@@ -45,6 +48,7 @@ const mockData = [
   },
   {
     name: 'FIRST',
+    id: '4',
     isPDF: true,
     date: '10/02/2019',
     city: 'Львів',
@@ -54,6 +58,7 @@ const mockData = [
   },
   {
     name: 'FIRST',
+    id: '5',
     isPDF: false,
     date: '10/02/2019',
     city: 'Львів',
@@ -63,6 +68,7 @@ const mockData = [
   },
   {
     name: 'FIRST',
+    id: '6',
     isPDF: true,
     date: '10/02/2019',
     city: 'Львів',
@@ -162,10 +168,14 @@ export class Profile extends Component {
     colorPrev: '#aeaeae'
   }
 
-  constructor(props){
-    super(props)
-    this.token = props.token;
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.token = getToken();
+  // }
+
+  // componentDidUpdate = () => {
+    
+  // }
 
   componentWillMount = () => {
     if (pagesLength === 1) {
@@ -183,15 +193,16 @@ export class Profile extends Component {
   }
 
   handleDeleteAdvert = (e) => {
-    console.log(e)
+    console.log(e.currentTarget)
   }
 
   handleDisActivateAdvert = (e) => {
-    
+    // console.log(this.refs)
   }
 
   handleEditAdvert = (e) => {
-    
+    // console.log(this.refs)
+
   }
 
   renderCountPagination = () => {
@@ -248,7 +259,7 @@ export class Profile extends Component {
   renderAdverts = () => {
     let range = this.state.currentPage * pageStep;
     const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-    
+
     return (
       data.map((item, i) => {
         let dateResult;
@@ -274,7 +285,7 @@ export class Profile extends Component {
           dateResult = `${new Date(item.createdAt).getDate()} / ${new Date(item.createdAt).getMonth() < 10 ? `0${new Date(item.createdAt).getMonth()}` : new Date(item.createdAt).getMonth()} / ${new Date(item.createdAt).getFullYear()}`
         }
         return (
-          <div className="profile_advert_hover" key={i}>
+          <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
             <Link to={links.details}>
               <Advert
                 onClick={this.handleClickInfo}
@@ -289,7 +300,7 @@ export class Profile extends Component {
             </Link>
             <div className="advert_action_bar">
               <div className="advert_action_bar_time">{`${dateResult}`}</div>
-              <div className="advert_action_bar_actions">
+              <div className="advert_action_bar_actions" >
                 <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}>Видалити</span>
                 <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}>Деактивувати</span>
                 <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}>Редагувати</span>
@@ -301,9 +312,9 @@ export class Profile extends Component {
   }
   render() {
     const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-    const { user } = this.props;
-    console.log(this.props)
-    if(!this.token){
+    const { user,token } = this.props;
+
+    if (!getToken()) {
       return <Redirect to={links.login} />
     }
 
@@ -323,7 +334,7 @@ export class Profile extends Component {
       <Fragment>
         <Header className='menu_fix' fix={'true'} />
         <div className="profile_wrapper">
-        <img className="image_bg" alt="" src={triangle_bg}></img>
+          <img className="image_bg" alt="" src={triangle_bg}></img>
           <div className="profile_list" >
             <div className='profile_list_header'><span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${mockData.length})`}</label></span><span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div>
             {this.renderAdverts()}
