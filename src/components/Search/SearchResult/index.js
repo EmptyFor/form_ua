@@ -7,10 +7,10 @@ import Advert from '../../common/Advert';
 import { Link } from 'react-router-dom';
 import links from '../../../config/links';
 import document from '../../../assets/images/spa.jpg'
+import nodata from '../../../assets/images/nodata.png'
 
 
-
-const mockData = [
+const data = [
     {
         name: 'FIVE PAGE',
         isPDF: false,
@@ -22,7 +22,7 @@ const mockData = [
 ];
 
 const pageStep = 5;
-const pagesLength = Math.ceil(mockData.length / pageStep);
+const pagesLength = Math.ceil(data.length / pageStep);
 
 class SearchResult extends Component {
 
@@ -45,7 +45,7 @@ class SearchResult extends Component {
 
     componentWillMount = () => {
         this.props.actions.postCurrentPage(this.state.currentPage)
-        if (pagesLength === 1) {
+        if (pagesLength <= 1) {
             this.setState({ visiblePagination: 'hidden' })
         } else {
             this.setState({ visiblePagination: 'visibility' })
@@ -113,27 +113,37 @@ class SearchResult extends Component {
     renderAdverts = () => {
         let range = this.state.currentPage * pageStep;
         // const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-        return (
-            mockData.map((item, i) => {
-                return (
-                    <Link to={links.details} key={i}>
-                        <Advert
-                            orgName={item.name}
-                            ispdf={item.isPDF + ''}
-                            createDate={`від ${item.date}`}
-                            cityPlace={item.city}
-                            fullPrice={`${item.price} $`}
-                            about={item.about}
-                            image={document}
-                        />
-                        <div className='line'></div>
-                    </Link>
+       
+            if(data.length === 0 ){
+                return <img className="search_adverts_nodata_img" src = {nodata}></img>
+            }else{
+                return(
+                    data.map((item, i) => {
+                        return (
+                            <Link to={links.details} key={i}>
+                                <Advert
+                                    orgName={item.name}
+                                    ispdf={item.isPDF + ''}
+                                    createDate={`від ${item.date}`}
+                                    cityPlace={item.city}
+                                    fullPrice={`${item.price} $`}
+                                    about={item.about}
+                                    image={document}
+                                />
+                                <div className='line'></div>
+                            </Link>
+                        )
+                    })
+                
                 )
-            }))
+            }
+               
+           
     }
 
     render() {
         const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
+        console.log(this.props.data)
         this.renderCountPagination()
         let dynamicWidth = 3 * this.numersOfPages.length + "%"
         let paginationPageCounter = this.numersOfPages.map((item, index) => {
@@ -148,7 +158,7 @@ class SearchResult extends Component {
 
         return (
             <div className='results_list'>
-                <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>{`(${mockData.length})`}</span></div>
+                <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>{`(${data.length})`}</span></div>
                 {this.renderAdverts()}
 
                 <div className="pagination_div" style={{ visibility: visiblePagination }}>
@@ -167,7 +177,9 @@ class SearchResult extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        data:state.sch.data
+    }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
