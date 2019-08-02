@@ -12,6 +12,8 @@ import CreateAdvertBtn from '../common/CreateAdvertBtn';
 import Advert from '../common/Advert';
 import document from '../../assets/images/spa.jpg'
 import { Redirect } from 'react-router-dom';
+import triangle_bg from '../../assets/images/triangle_bg.png'
+// import { getToken } from '../../store/helpers/localStorage'
 
 const mockData = [
   {
@@ -160,6 +162,11 @@ export class Profile extends Component {
     colorPrev: '#aeaeae'
   }
 
+  constructor(props){
+    super(props)
+    this.token = props.token;
+  }
+
   componentWillMount = () => {
     if (pagesLength === 1) {
       this.setState({ visiblePagination: 'hidden' })
@@ -173,6 +180,18 @@ export class Profile extends Component {
         this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
       }
     }
+  }
+
+  handleDeleteAdvert = (e) => {
+    console.log(e)
+  }
+
+  handleDisActivateAdvert = (e) => {
+    
+  }
+
+  handleEditAdvert = (e) => {
+    
   }
 
   renderCountPagination = () => {
@@ -229,7 +248,7 @@ export class Profile extends Component {
   renderAdverts = () => {
     let range = this.state.currentPage * pageStep;
     const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-
+    
     return (
       data.map((item, i) => {
         let dateResult;
@@ -271,9 +290,9 @@ export class Profile extends Component {
             <div className="advert_action_bar">
               <div className="advert_action_bar_time">{`${dateResult}`}</div>
               <div className="advert_action_bar_actions">
-                <span>Видалити</span>
-                <span>Деактивувати</span>
-                <span>Редагувати</span>
+                <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}>Видалити</span>
+                <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}>Деактивувати</span>
+                <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}>Редагувати</span>
               </div>
             </div>
           </div>
@@ -282,9 +301,9 @@ export class Profile extends Component {
   }
   render() {
     const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-    const { user,token } = this.props;
-
-    if(!token){
+    const { user } = this.props;
+    console.log(this.props)
+    if(!this.token){
       return <Redirect to={links.login} />
     }
 
@@ -304,6 +323,7 @@ export class Profile extends Component {
       <Fragment>
         <Header className='menu_fix' fix={'true'} />
         <div className="profile_wrapper">
+        <img className="image_bg" alt="" src={triangle_bg}></img>
           <div className="profile_list" >
             <div className='profile_list_header'><span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${mockData.length})`}</label></span><span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div>
             {this.renderAdverts()}
@@ -324,7 +344,7 @@ export class Profile extends Component {
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
-              <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{user.first_name}</span>
+              <span style={{ fontWeight: 'bold', fontSize: '35px' }}>{user.first_name}</span>
               <span style={{ marginBlockEnd: '5%' }}>{user.phone}</span>
               <span style={{ marginBlockEnd: '5%' }}>{user.email}</span>
             </div>

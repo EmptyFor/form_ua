@@ -1,5 +1,13 @@
 body {
-  background-color: #efeff6;
+  background-image: linear-gradient(to top, rgba(111, 134, 214, 0.16), rgba(72, 198, 239, 0));
+  .image_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125vh;
+    z-index: -1;
+}
 }
 .profile_wrapper {
   width: 87%;
@@ -116,6 +124,7 @@ body {
     user-select: none;
     flex-direction: row;
     justify-content: space-around;
+    font-weight: 600
   }
 }
 .profile_advert_hover:hover {
@@ -131,4 +140,19 @@ body {
   span {
     cursor: pointer;
   }
+}
+
+.profile_advert_action_delete:hover{
+  color: #fc4445;
+
+}
+
+.profile_advert_action_disactivate:hover{
+  color: rgb(255, 197, 36);
+
+}
+
+.profile_advert_action_edit:hover{
+  color: rgb(26, 143, 253);
+
 }
