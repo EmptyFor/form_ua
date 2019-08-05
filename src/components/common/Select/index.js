@@ -21,6 +21,7 @@ export class Select extends Component {
                 width={width}
                 placeholder={placeholder}
                 required={this.props.required}
+                itemList={this.props.itemList}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -34,6 +35,7 @@ export class Select extends Component {
                 width={width}
                 placeholder={placeholder}
                 required={this.props.required}
+                itemList={this.props.itemList}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -46,6 +48,7 @@ export class Select extends Component {
                 width={width}
                 placeholder={placeholder}
                 required={this.props.required}
+                itemList={this.props.itemList}
                 icon={icon}
                 id={id}
                 searchType={this.props.searchType}
@@ -59,6 +62,7 @@ export class Select extends Component {
                 width={width}
                 placeholder={placeholder}
                 required={this.props.required}
+                itemList={this.props.itemList}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}

@@ -23,16 +23,34 @@ export class CommonSelect extends Component {
     }
 
     selectItems = [
-        "Aкціонерне товариство",
-        "Aсоціація",
-        "Благодійна асоціація",
-        "Виробничий підрозділ",
-        "Гаражний кооператив",
-        "Господарські товариства",
-        "Громадська організація",
-        "Житлово-будівельний кооператив",
-        "Концерн",
-        "Кооператив",
+        'Приватне акціонерне товариство',
+        'Публічне акціонерне товариство',
+        'Товариство з обмеженою відповідальністю',
+        'Приватне підприємство',
+        'Асоціація',
+        'Благодійна організація',
+        'Виробничий кооператив',
+        'Гаражний кооператив',
+        'Громадська організація',
+        'Житлово-будівельний кооператив',
+        'Консорціум',
+        'Концерн',
+        'Кооперативний банк',
+        'Корпорація',
+        'Кредитна спілка',
+        'Обслуговуючий кооператив',
+        'Підприємство споживчої кооперації',
+        'Політична партія',
+        'Садівниче товариство',
+        'Сільськогосподарський виробничий кооператив',
+        'Сільськогосподарський обслуговуючий кооператив',
+        'Споживче товариство',
+        'Споживчий кооператив',
+        'Товариство з додатковою відповідальністю',
+        'Товарна біржа',
+        'Фермерське господарство',
+        'Фондова біржа',
+        'Холдингова компанія'
     ]
 
     selectedItem = ''
@@ -189,8 +207,10 @@ export class CommonSelect extends Component {
     // Common select
 
     setSelectValue = (e) => {
-        let value = e.target.innerText
+        let item = e.target.innerText
+        let value = this.props.itemList[e.target.getAttribute('id')].value
         this.setState(prevState => ({
+            item: item,
             value: value,
             style: {
                 ...prevState.style,
@@ -276,7 +296,7 @@ export class CommonSelect extends Component {
                 <div id="selectArea" className="select_area" ref={this.selectArea}>
                     <img alt="" className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
-                    <div id="selectValue" className="select_value" style={this.state.style.value} >{this.state.value}</div>
+                    <div id="selectValue" className="select_value" style={this.state.style.value} >{this.state.item}</div>
                     <div id="selectedItems" className="selected_items" ></div>
                     <svg id="arrow"
                         className="arrow"
@@ -299,8 +319,8 @@ export class CommonSelect extends Component {
 
                     <div className="select_list_items">
                         {
-                            this.selectItems.map((item, index) => {
-                                return <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item}</div>
+                            this.props.itemList.map((item, index) => {
+                                return <div value='false' onClick={this.setSelectValue} id={index} key={index} className="sub_list_item" >{item.name}</div>
                             })
                         }
                     </div>

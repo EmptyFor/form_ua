@@ -21,7 +21,7 @@ export class FormFooter extends Component {
 
         console.log(data)
 
-        // this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
+        this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
     }
 
     clearAllFields = () => {

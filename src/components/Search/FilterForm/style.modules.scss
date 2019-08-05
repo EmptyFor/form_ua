@@ -29,6 +29,9 @@
 
     .common_select {
         box-sizing: border-box;
+        .select_area {
+            max-width: 300px;
+        }
     }
 }
 

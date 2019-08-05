@@ -24,6 +24,7 @@
     "react-text-mask": "^5.4.3",
     "redux-saga": "^1.0.3"
   },
+  "homepage": "http://firm-ua.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
