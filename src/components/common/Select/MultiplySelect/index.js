@@ -410,7 +410,6 @@ export class MultiplySelect extends Component {
                                     <div id={index} value={false} className="drop_multiply_box"></div>
                                 </div>
                             })
-
                         }
                     </div>
 

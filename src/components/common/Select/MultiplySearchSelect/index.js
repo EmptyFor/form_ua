@@ -1,35 +1,60 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
-import city from '../../../../assets/db/city';
-import kved from '../../../../assets/db/kved';
 import kvedArr from '../../../../assets/db/kvedArr';
+// import { Redirect } from 'react-router-dom';
+// import links from '../../config/links';
 import './style.modules.scss';
 
-export class SearchSelect extends Component {
+export class MultiplySearchSelect extends Component {
 
-    selectRef = React.createRef()
+    selectValue = React.createRef()
     selectArea = React.createRef()
-    selectListRef = React.createRef()
     searchInputNameRef = React.createRef()
+
+    top
 
     state = {
         isOpen: false,
         togleClass: 'close',
-        value: '',
+        value: [],
         selectListItems: [],
         style: {
+            arrow: {
+                transform: '',
+                transition: ''
+            },
+            select: {
+                gridColumn: this.props.gridColumn,
+                borderRadius: '30px',
+                transition: '0.5s',
+                zIndex: 1,
+            },
             border: {
                 display: 'none'
+            },
+            selectList: {
+                top: ''
             }
         }
     }
 
-    selectedItem = ''
-    selectListItems = []
+    selectItems = [
+        "Aкціонерне товариство",
+        "Aсоціація",
+        "Благодійна асоціація",
+        "Виробничий підрозділ",
+        "Гаражний кооператив",
+        "Господарські товариства",
+        "Громадська організація",
+        "Житлово-будівельний кооператив",
+        "Концерн",
+        "Кооператив",
+    ]
+    value = []
+    selectedItems = []
 
     //Togle isOpen state
 
@@ -49,7 +74,7 @@ export class SearchSelect extends Component {
                 select: {
                     borderRadius: '30px 30px 0px 0px',
                     borderBottom: 'none',
-                    borderColor: '#1ccee9',
+                    borderColor: '#d2fbff',
                     zIndex: 9999
                 },
                 arrow: {
@@ -73,7 +98,6 @@ export class SearchSelect extends Component {
                 select: {
                     borderRadius: '30px',
                     border: 'solid 1px #b1a7c8',
-                    borderColor: '',
                     zIndex: 1
                 },
             }
@@ -87,7 +111,7 @@ export class SearchSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #1ccee9',
+                            border: 'solid 1px #b1a7c8',
                             zIndex: 1
                         },
                     }
@@ -101,7 +125,8 @@ export class SearchSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px tomato',
+                            border: 'solid 1px #b1a7c8',
+                            borderColor: 'tomato',
                             zIndex: 1
                         },
                     }
@@ -117,7 +142,8 @@ export class SearchSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #1ccee9',
+                            border: 'solid 1px #b1a7c8',
+                            borderColor: '#1ccee9',
                             zIndex: 1
                         },
                     }
@@ -132,6 +158,7 @@ export class SearchSelect extends Component {
                         select: {
                             borderRadius: '30px',
                             border: 'solid 1px #b1a7c8',
+                            borderColor: '',
                             zIndex: 1
                         },
                     }
@@ -157,8 +184,10 @@ export class SearchSelect extends Component {
     //Togle Select List
 
     togleSelectList = (e) => {
-        e.target.getAttribute('id') !== 'searchInput' ? this.togleIsOpenState() : void 0
-        this.state.isOpen && e.target.getAttribute('id') !== 'searchInput' ? this.closeSelectStyle() : this.openSelectStyle()
+        if (e.target === this.selectArea.current || e.target === this.selectValue.current) {
+            this.togleIsOpenState()
+            this.state.isOpen ? this.closeSelectStyle() : this.openSelectStyle()
+        }
     }
 
     closeSelectList = (e) => {
@@ -174,29 +203,56 @@ export class SearchSelect extends Component {
 
     togleSelectListItems(e) {
         let value = e.target.getAttribute('value')
-        this.togleActiveClass(e, value)
-        this.fillSelectedItemsArray(e, value)
+        this.togleActiveClass(e.target, value)
+        this.fillValue(e, value)
     }
 
-    // Search select
+    //Toggle Active Class
 
-    search = () => {
-        let input = this.searchInputNameRef.current
-        let filter = input.value.toUpperCase()
-        let selectList = this.selectListRef.current
-        let selectListItems = selectList.getElementsByTagName('div')
-
-        for (let i = 0; i < selectListItems.length; i++) {
-            let txtValue = selectListItems[i].innerText
-            txtValue.toUpperCase().indexOf(filter) > -1 ? selectListItems[i].style.display = "" : selectListItems[i].style.display = "none"
+    togleActiveClass = (e, value) => {
+        let checkBoxClasses
+        try{checkBoxClasses = e.childNodes[1].classList
+        value === 'true' ? e.setAttribute('value', false) : e.setAttribute('value', true)
+        value === 'true' ? e.classList.add('active') : e.classList.remove('active')
+        value === 'true' ? checkBoxClasses.add('select') : checkBoxClasses.remove('select')
         }
+        catch {}
     }
 
-    setLocationValue = (e) => {
-        let region = e.target.parentNode.getElementsByClassName('region')[0].innerText
-        let town = e.target.innerText
+    handleClick = (e) => {
+        this.closeSelectList(e)
+    }
+
+    //Fill Value
+
+    fillValue = (e, value) => {
+        value === 'true' ? this.addListItem(e) : this.removeListItem(e)
+    }
+
+    //Create Element 
+
+    cloneListItem = (e) => {
+        return (
+            <Fragment key={`f_${e.target.id}`}>
+                <div className="selected_item" id={`i_${e.target.id}`} value={e.target.getAttribute('name')}>
+                    <p>
+                        {e.target.getAttribute('name')}
+                        <span className="remove_button" id={e.target.id} onClick={this.removeListItem}>✕</span>
+                    </p>
+                </div>
+                <br />
+            </Fragment>
+        )
+    }
+
+    //Push to value
+
+    addListItem = (e) => {
+        this.value.push(this.cloneListItem(e))
+        this.pushToSelectedItems(e)
+
         this.setState(prevState => ({
-            value: `${region}, ${town}`,
+            value: this.value,
             style: {
                 ...prevState.style,
                 placeholder: {
@@ -204,22 +260,53 @@ export class SearchSelect extends Component {
                 },
                 value: {
                     display: "inline-block"
-                },
-                select: {
-                    borderRadius: '30px',
-                    borderBottom: 'solid 1px #b1a7c8',
-                    borderColor: '#1ccee9',
-                    zIndex: 1
-                },
-                arrow: {
-                    transform: 'rotate(0deg)',
-                    transition: '0.5s'
-                },
-                border: {
-                    display: 'none'
-                },
+                }
             }
-        }));
+        }))
+    }
+
+    //Remove from value
+
+    removeListItem = (e) => {
+        let index = e.target.getAttribute('id')
+        let target = this.selectValue.current.querySelector(`#i_${index}`).getAttribute('value')
+        let i = this.selectedItems.indexOf(target)
+
+        this.value.splice(i, 1)
+        this.selectedItems.splice(i, 1)
+
+
+        if (this.selectedItems.join('') === '') {
+            this.setState(prevState => ({
+                style: {
+                    ...prevState.style,
+                    placeholder: {
+                        display: "inline-block"
+                    },
+                    value: {
+                        display: "none"
+                    }
+                }
+            }))
+        }
+
+
+        this.setState({
+            value: this.value
+        })
+
+        //Remove styles
+        let select = document.getElementById(this.props.id)
+        let listItem = select.childNodes[1].childNodes[1].childNodes
+        this.togleActiveClass(listItem[index])
+    }
+
+    //Push Selected Items
+
+    pushToSelectedItems(e) {
+        let item = e.target.getAttribute('name').replace(/,/g, '')
+        this.selectedItems.push(item)
+        this.setState({ selectedItems: this.selectedItems })
     }
 
     setKvedValue = (e) => {
@@ -260,7 +347,6 @@ export class SearchSelect extends Component {
 
             found = kved.filter(item => {
                 let str = (item.code + item.name).toUpperCase().replace(/\s/, '')
-                // console.log(str)
                 return str.search(value) > 0
             })
             foundItems = found.map(item => { return item.code + ' ' + item.name })
@@ -291,9 +377,27 @@ export class SearchSelect extends Component {
         this.setTop()
     }
 
-    clearVlaue = () => {
+    clearValue = () => {
+
+        //Clear styles
+        let select = document.getElementById(this.props.id)
+        let listItem = select.childNodes[2].childNodes
+
+        for (let i = 0; i < listItem.length; i++) {
+            let value = listItem[i].getAttribute('value')
+            let checkBoxClasses = listItem[i].childNodes[1].classList
+
+            value === 'false' ? listItem[i].setAttribute('value', true) : void 0
+            value === 'false' ? listItem[i].classList.remove('active') : void 0
+            value === 'false' ? checkBoxClasses.remove('select') : void 0
+        }
+
+        //Clear Value
+        this.value = []
+        this.selectedItems = []
         this.setState(prevState => ({
-            value: '',
+            value: [],
+            selectedItems: [],
             style: {
                 ...prevState.style,
                 placeholder: {
@@ -307,26 +411,26 @@ export class SearchSelect extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        nextProps.clear ? this.clearVlaue() : void 0
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
         return (
             <div id={this.props.id}
-                name={this.props.name}
+                value={[this.state.selectedItems]}
                 className="common_select"
-                value={this.state.value}
+                name={this.props.name}
                 style={this.state.style.select}
-                // tabIndex="0"
-                ref={this.selectRef}
-                onBlur={this.closeSelectList}
-                onClick={this.togleSelectList}>
+                tabIndex="0"
+                onBlur={this.closeSelectList}>
 
-                <div id="selectArea" className="select_area" ref={this.selectArea}>
+                <div id="selectArea" ref={this.selectArea} className="select_area" onClick={this.togleSelectList}  >
                     <img alt="" className="select_icon" src={this.props.icon}></img>
                     <div id="selectPlaceholder" className="select_value placeholder" style={this.state.style.placeholder}>{this.props.placeholder}</div>
-                    <div id="selectValue" className="select_value" style={this.state.style.value} >{this.state.value}</div>
-                    <div id="selectedItems" className="selected_items" ></div>
+                    <div id="selectValue" ref={this.selectValue} className="select_value" style={this.state.style.value} >
+                        {this.state.value.map(item => { return item })}
+                    </div>
+                    <div id="selected_items" className="selected_items" ></div>
                     <svg id="arrow"
                         className="arrow"
                         style={this.state.style.arrow}
@@ -345,35 +449,6 @@ export class SearchSelect extends Component {
                 {/* <div className="border" style={this.state.style.border}></div> */}
 
                 {
-                    this.props.searchType === 'location' &&
-                    <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
-                        <input
-                            type="text"
-                            placeholder="Пошук..."
-                            id="searchInput"
-                            key="searchInput"
-                            ref={this.searchInputNameRef}
-                            onKeyUp={this.search}
-                            className="search_input"
-
-                        />
-                        <div className="select_list_items" ref={this.selectListRef}>
-                            {
-                                city.Regions.map((item, index) => {
-                                    return <div value='false' id={index} key={index} className="list_item" >
-
-                                        <p className="region">{item.Name}</p>
-
-                                        {item.Cities.map((item, index) => <div value='false' onClick={this.setLocationValue} id={index} key={index} className="sub_list_item" >{item.Name}</div>)}
-
-                                    </div>
-                                })
-                            }
-                        </div>
-                    </div>
-                }
-                {
-                    this.props.searchType === 'kved' &&
                     <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
                         <div className="input_field">
                             <input
@@ -391,11 +466,22 @@ export class SearchSelect extends Component {
                         </div>
                         <div className="select_list_items" ref={this.selectListRef}>
                             {
-                                this.state.selectListItems.map((item, index) => <div value='false' onClick={this.setKvedValue} id={index} key={index} className="sub_list_item" >{item}</div>)
+                                this.state.selectListItems.map((item, index) => {
+                                    return <div value='true'
+                                        name={item}
+                                        id={index}
+                                        key={index}
+                                        className="sub_list_item"
+                                        onClick={this.togleSelectListItems.bind(this)} >
+                                        {item}
+                                        <div id={index} value={false} className="drop_multiply_box"></div>
+                                    </div>
+                                })
                             }
                         </div>
                     </div>
                 }
+
             </div>
         );
     }
@@ -408,4 +494,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(SearchSelect);
+)(MultiplySearchSelect);

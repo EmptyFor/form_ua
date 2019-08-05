@@ -226,6 +226,7 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
+        console.log(this.state)
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >
@@ -269,7 +270,7 @@ export class AdditionlInfo extends Component {
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="extra_kved_name"
-                        type="multiply" width='auto'
+                        type="multiply search" width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
                         id='ca_form_select_3'
