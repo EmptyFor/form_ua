@@ -13,15 +13,15 @@ export class FormFooter extends Component {
     }
 
     handleClick = () => {
-        const { name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel } = this.props
+        const { name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel } = this.props
 
         this.setState(prevState => ({ test: !prevState.test }))
 
-        let data = [name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
+        let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
 
         console.log(data)
 
-        this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
+        this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
     }
 
     clearAllFields = () => {
@@ -46,6 +46,7 @@ export default connect(
         price: state.advert.price,
         image: state.advert.image,
         legal_form: state.advert.legal_form,
+        kved_code: state.advert.kved_code,
         kved_name: state.advert.kved_name,
         extra_kved_name: state.advert.extra_kved_name,
         tax_form: state.advert.tax_form,

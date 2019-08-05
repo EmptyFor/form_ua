@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../common/Button';
+import legalForm from '../../../assets/db/legalForm';
+import taxForm from '../../../assets/db/taxForm';
+import license from '../../../assets/db/license';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { CheckBox } from '../../common/CheckBox';
@@ -24,141 +27,6 @@ class FilterForm extends Component {
     have_activity: false,
     no_debt: false
   }
-
-  legalForm = [
-    {
-      name: 'Приватне акціонерне товариство',
-      value: 'private_joint_stock_company'
-    },
-    {
-      name: 'Публічне акціонерне товариство',
-      value: 'public_company'
-    },
-    {
-      name: 'Товариство з обмеженою відповідальністю',
-      value: 'limited_liability_company'
-    },
-    {
-      name: 'Приватне підприємство',
-      value: 'private_enterprise'
-    },
-    {
-      name: 'Асоціація',
-      value: 'association'
-    },
-    {
-      name: 'Благодійна організація',
-      value: 'charitable_organization'
-    },
-    {
-      name: 'Виробничий кооператив',
-      value: 'manufacturing_cooperation'
-    },
-    {
-      name: 'Гаражний кооператив',
-      value: 'garage_cooperative'
-    },
-    {
-      name: 'Громадська організація',
-      value: 'public_organization'
-    },
-    {
-      name: 'Житлово-будівельний кооператив',
-      value: "housing_and_building_cooperatives"
-    },
-    {
-      name: 'Консорціум',
-      value: 'consortium'
-    },
-    {
-      name: 'Концерн',
-      value: 'concern'
-    },
-    {
-      name: 'Кооперативний банк',
-      value: 'cooperative_bank'
-    },
-    {
-      name: 'Корпорація',
-      value: 'corporation'
-    },
-    {
-      name: 'Кредитна спілка',
-      value: 'credit_union'
-    },
-    {
-      name: 'Обслуговуючий кооператив',
-      value: 'service_cooperative'
-    },
-    {
-      name: 'Підприємство споживчої кооперації',
-      value: 'enterprise_of_consumer_cooperation'
-    },
-    {
-      name: 'Політична партія',
-      value: 'political_party'
-    },
-    {
-      name: 'Садівниче товариство',
-      value: 'saddoviche_society'
-    },
-    {
-      name: 'Сільськогосподарський виробничий кооператив',
-      value: 'agricultural_production_cooperation'
-    },
-    {
-      name: 'Сільськогосподарський обслуговуючий кооператив',
-      value: 'agricultural_service_cooperative'
-    },
-    {
-      name: 'Споживче товариство',
-      value: 'consumer_company'
-    },
-    {
-      name: 'Споживчий кооператив',
-      value: 'consumer_cooperation'
-    },
-    {
-      name: 'Товариство з додатковою відповідальністю',
-      value: 'company_with_additional_liability'
-    },
-    {
-      name: 'Товарна біржа',
-      value: 'commodity_exchange'
-    },
-    {
-      name: 'Фермерське господарство',
-      value: 'farming_household'
-    },
-    {
-      name: 'Фондова біржа',
-      value: 'stock_exchange'
-    },
-
-    {
-      name: 'Холдингова компанія',
-      value: 'holding_company'
-    }
-  ]
-
-  taxForm = [
-    {
-      name: 'Загальна система',
-      value: 'general_system'
-    },
-    {
-      name: 'Єдиний податок перша група',
-      value: 'the_only_tax_is_the_first_group'
-    },
-    {
-      name: 'Єдиний податок друга група',
-      value: 'the_only_tax_is_the_second_group'
-    },
-    {
-      name: 'Єдиний податок третя група',
-      value: 'the_only_tax_is_the_third_group'
-    }
-  ]
 
   setSearchData = (e) => {
     let name = e.target.getAttribute('name')
@@ -202,7 +70,7 @@ class FilterForm extends Component {
           <Select
             getData={this.setSearchData}
             name="legal_form"
-            itemList={this.legalForm}
+            itemList={legalForm}
             type="common"
             width='auto'
             placeholder='Оберіть зі списку'
@@ -224,7 +92,7 @@ class FilterForm extends Component {
           <Select
             getData={this.setSearchData}
             name="extra_kved_name"
-            type="multiply" width='auto'
+            type="multiply search" width='auto'
             placeholder='Додаткові види'
             icon={images.plus}
             id='ca_form_select_3'
@@ -245,7 +113,7 @@ class FilterForm extends Component {
             getData={this.setSearchData}
             name="tax_form"
             type="common"
-            itemList={this.taxForm}
+            itemList={taxForm}
             width='auto'
             placeholder='Форма оподаткування'
             icon={images.lable}
@@ -256,6 +124,7 @@ class FilterForm extends Component {
             getData={this.setSearchData}
             name="license"
             type="multiply"
+            itemList={license}
             width='auto'
             placeholder='Ліцензія'
             icon={images.cc}

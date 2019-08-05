@@ -317,7 +317,7 @@ export class SearchSelect extends Component {
                 className="common_select"
                 value={this.state.value}
                 style={this.state.style.select}
-                // tabIndex="0"
+                tabIndex="0"
                 ref={this.selectRef}
                 onBlur={this.closeSelectList}
                 onClick={this.togleSelectList}>

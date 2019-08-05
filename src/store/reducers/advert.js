@@ -7,6 +7,7 @@ const initState = {
     price: 0,
     image: '',
     legal_form: '',
+    kved_code: '',
     kved_name: '',
     extra_kved_name: [],
     tax_form: '',
@@ -41,6 +42,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 legal_form: action.legal_form,
+                kved_code: action.kved_code,
                 kved_name: action.kved_name,
                 extra_kved_name: action.extra_kved_name,
                 tax_form: action.tax_form,

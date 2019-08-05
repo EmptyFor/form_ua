@@ -52,6 +52,7 @@ export class MultiplySelect extends Component {
     ]
     value = []
     selectedItems = []
+    selectedItemsIndex = []
 
     //Togle isOpen state
 
@@ -266,9 +267,11 @@ export class MultiplySelect extends Component {
         let index = e.target.getAttribute('id')
         let target = this.selectValue.current.querySelector(`#i_${index}`).getAttribute('value')
         let i = this.selectedItems.indexOf(target)
+        let value_i = this.selectedItemsIndex.indexOf(index)
 
         this.value.splice(i, 1)
         this.selectedItems.splice(i, 1)
+        this.selectedItemsIndex.splice(value_i, 1)
 
 
         if (this.selectedItems.join('') === '') {
@@ -287,7 +290,8 @@ export class MultiplySelect extends Component {
 
 
         this.setState({
-            value: this.value
+            value: this.value,
+            selectedItemsIndex: this.selectedItemsIndex
         })
 
         //Remove styles
@@ -301,7 +305,8 @@ export class MultiplySelect extends Component {
     pushToSelectedItems(e) {
         let item = e.target.getAttribute('name')
         this.selectedItems.push(item)
-        this.setState({ selectedItems: this.selectedItems })
+        this.selectedItemsIndex.push(e.target.getAttribute('id'))
+        this.setState({ selectedItems: this.selectedItems, selectedItemsIndex: this.selectedItemsIndex })
     }
 
     //Set top for select list
@@ -364,7 +369,7 @@ export class MultiplySelect extends Component {
     render() {
         return (
             <div id={this.props.id}
-                value={[this.state.selectedItems]}
+                value={[this.state.selectedItemsIndex]}
                 className="common_select"
                 name={this.props.name}
                 style={this.state.style.select}
@@ -399,7 +404,7 @@ export class MultiplySelect extends Component {
 
                     <div className="select_list_items">
                         {
-                            this.selectItems.map((item, index) => {
+                            this.props.itemList.map((item, index) => {
                                 return <div value='true'
                                     name={item}
                                     id={index}
@@ -410,6 +415,7 @@ export class MultiplySelect extends Component {
                                     <div id={index} value={false} className="drop_multiply_box"></div>
                                 </div>
                             })
+
                         }
                     </div>
 
