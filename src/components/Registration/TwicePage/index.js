@@ -27,7 +27,7 @@ export class RegistrationTwice extends Component {
     }
 
     componentWillMount = () => {
-
+console.log(this.props)
     }
 
     handleSubmit = () => {

@@ -9,7 +9,7 @@ import user from './user'
 export default combineReducers({
   advert,
   auth: authorise,
-  search,
+   search,
   usr: user,
   reg:registration
 });

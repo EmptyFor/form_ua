@@ -1,25 +1,48 @@
 .common_advert {
-  height: 24vh;
+  height: 27vh;
   display: flex;
   flex-direction: row;
   padding: 2.2% 4.7% 1.6% 4.9%;
-
-  a:hover {
-    box-shadow: .5px 2px 10px #6b6b6b;
-  }
+  cursor: pointer;
 
   .left_side_advert {
     display: flex;
+    width: 75%;
     flex-direction: column;
     padding-right: 5%;
 
     h1 {
       font-family: AvenirNext;
-      font-size: 30px;
+      font-size: 38px;
       font-weight: bold;
       letter-spacing: 0.1px;
       color: #28252f;
       margin-block-end: 10px;
+    }
+
+    .ispda_advert,
+    .date_advert {
+      color: black;
+      font-size: 18px;
+    }
+
+    .ispda_advert {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .ispda_confirmation {
+      color: white;
+      position: relative;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 15px;
+      background-color: #b1a7c8;
+
     }
 
     .minor_info_advert {
@@ -28,21 +51,21 @@
       margin-block-end: 3%;
       font-size: 20px;
 
-
       span {
         margin-inline-end: 1%;
       }
 
       .circle_advert::after {
-        content: "\2219";
-        font-size: 30px;
+        content: "";
+        color: black;
+        font-size: 0px;
       }
 
       .place_advert {
         padding: 3px 16px !important;
-        font-size: 15px;
+        font-size: 22px;
         letter-spacing: 0.07px;
-        border-radius: 9.5px;
+        border-radius: 12.5px;
         background-color: #ffab2a;
         color: white;
       }
@@ -50,14 +73,14 @@
 
     p {
       font-family: AvenirNext;
-      font-size: 18px;
+      font-size: 22px;
       letter-spacing: 0.07px;
       color: #28252f;
     }
   }
 
   .right_side_advert {
-    width: 30%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +96,8 @@
     .image_document_advert {
       width: 100%;
       height: 80%;
-      padding: 8%;
+      padding: 12%;
+      margin-block-start: 8%;
       background: linear-gradient(#888888, #a3a3a3);
       overflow: hidden;
     }

@@ -17,7 +17,8 @@ const initState = {
     have_activity: false,
     no_debt: false,
     clear: false,
-    data: []
+    data: [],
+    info:[],
 }
 
 export default (state = initState, action) => {
@@ -47,6 +48,10 @@ export default (state = initState, action) => {
         case types.GET_SEARCH_POSTS:
             return {
                 data: action.data
+            }
+            case types.SET_ADVERT_DETAILS:
+            return {
+                info: action.info
             }
         case types.SET_ERROR:
             return {

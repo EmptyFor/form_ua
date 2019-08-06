@@ -13,7 +13,9 @@
   a:link {
     color: #28252f;
   }
-
+  .common_advert:hover{
+    box-shadow: 0.5px 1.2px 10px #6b6b6b;
+  }
   .results_list_header {
     height: 5%;
     display: flex;
@@ -22,14 +24,11 @@
     border-bottom: 1px solid rgba(177, 167, 200, 0.47);
     font-size: 20px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2.7;
     letter-spacing: 0.09px;
     color: #99abc3;
 
     .results_list_header {
-      height: 5.5%;
+      height: 10.5%;
       // line-height: 40px;
       border-bottom: 1px solid rgba(177, 167, 200, 0.47);
       font-size: 20px;
@@ -96,9 +95,17 @@
   }
 }
 
-.search_adverts_nodata_img{
+.search_adverts_nodata_img {
   width: 50%;
   height: 20%;
   padding-top: 15%;
-  margin: 0 auto
+  margin: 0 auto;
+}
+.results_preloader {
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 40%;
+  font-size: 50px;
+  transition: 0.6s;
+  opacity: 0.7;
 }

@@ -80,7 +80,7 @@ export class AdvertDetails extends Component {
 
         return (
             <Fragment>
-                <Header className='menu_fix' fix={true} />
+                <Header className='menu_fix' fix="false" />
                 <div className="details_wrapper">
                     <div className="details_list" >
                         <div className='details_list_header'><span>Деталі оголошення </span></div>

@@ -3,7 +3,7 @@ import authoriseSaga from './authorise';
 import registrationSaga from './registration';
 import advertSaga from './advert';
 import userSaga from './user'
-import getCurrentPagePosts from './search'
+import getSearchPostsSaga from './search'
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +11,6 @@ export default function* rootSaga() {
     fork(registrationSaga),
     fork(advertSaga),
     fork(userSaga),
-    fork(getCurrentPagePosts)
+    fork(getSearchPostsSaga)
   ]);
 }
