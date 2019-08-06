@@ -19,7 +19,7 @@ const mockData = [
   {
     name: 'FIRST PAGE',
     id: '1',
-    isPDF: false,
+    ispda: false,
     date: '10/02/2019',
     city: 'Львів',
     price: '12 000',
@@ -29,7 +29,7 @@ const mockData = [
   {
     name: 'Конституційно-правова агенція твого міста',
     id: '2',
-    isPDF: true,
+    ispda: true,
     date: '10/02/2019',
     city: 'Львів',
     price: '12 000',
@@ -39,9 +39,9 @@ const mockData = [
   {
     name: 'FIRST',
     id: '3',
-    isPDF: false,
+    ispda: false,
     date: '10/02/2019',
-    city: 'Львів',
+    city: 'Дніпродзержинськ',
     price: '12 000',
     createdAt: '2019-07-26 11:57',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
@@ -49,9 +49,9 @@ const mockData = [
   {
     name: 'FIRST',
     id: '4',
-    isPDF: true,
+    ispda: true,
     date: '10/02/2019',
-    city: 'Львів',
+    city: 'Рівне',
     price: '12 000',
     createdAt: '2019-06-29 11:57',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
@@ -59,9 +59,9 @@ const mockData = [
   {
     name: 'FIRST',
     id: '5',
-    isPDF: false,
+    ispda: false,
     date: '10/02/2019',
-    city: 'Львів',
+    city: 'Київ',
     price: '12 000',
     createdAt: '2014-06-29 11:57',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
@@ -69,9 +69,9 @@ const mockData = [
   {
     name: 'FIRST',
     id: '6',
-    isPDF: true,
+    ispda: true,
     date: '10/02/2019',
-    city: 'Львів',
+    city: `Кам'янець - Подільськ`,
     price: '12 000',
     createdAt: '2014-02-11 11:57',
     about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
@@ -167,15 +167,6 @@ export class Profile extends Component {
     colorNext: '#1ccee9',
     colorPrev: '#aeaeae'
   }
-
-  // constructor(props) {
-  //   super(props)
-  //   this.token = getToken();
-  // }
-
-  // componentDidUpdate = () => {
-    
-  // }
 
   componentWillMount = () => {
     if (pagesLength === 1) {
@@ -290,7 +281,7 @@ export class Profile extends Component {
               <Advert
                 onClick={this.handleClickInfo}
                 orgName={item.name}
-                ispdf={item.isPDF + ''}
+                ispda={item.ispda}
                 createDate={`від ${item.date}`}
                 cityPlace={item.city}
                 fullPrice={`${item.price} $`}

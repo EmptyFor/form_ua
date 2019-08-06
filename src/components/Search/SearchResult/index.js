@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/search';
@@ -10,7 +10,7 @@ import document from '../../../assets/images/spa.jpg'
 import nodata from '../../../assets/images/nodata.png'
 
 
-const data = [
+const vata = [
     {
         name: 'FIVE PAGE',
         isPDF: false,
@@ -22,7 +22,7 @@ const data = [
 ];
 
 const pageStep = 5;
-const pagesLength = Math.ceil(data.length / pageStep);
+const pagesLength = Math.ceil(vata.length / pageStep);
 
 class SearchResult extends Component {
 
@@ -38,9 +38,9 @@ class SearchResult extends Component {
         colorPrev: '#aeaeae'
     }
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        
+
     }
 
     componentWillMount = () => {
@@ -56,7 +56,7 @@ class SearchResult extends Component {
             } else {
                 this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
             }
-        }        
+        }
     }
 
     renderCountPagination = () => {
@@ -110,41 +110,39 @@ class SearchResult extends Component {
         this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
     }
 
-    renderAdverts = () => {
-        let range = this.state.currentPage * pageStep;
-        // const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
-       
-            if(data.length === 0 ){
-                return <img className="search_adverts_nodata_img" src = {nodata}></img>
-            }else{
-                return(
-                    data.map((item, i) => {
-                        return (
-                            <Link to={links.details} key={i}>
-                                <Advert
-                                    orgName={item.name}
-                                    ispdf={item.isPDF + ''}
-                                    createDate={`від ${item.date}`}
-                                    cityPlace={item.city}
-                                    fullPrice={`${item.price} $`}
-                                    about={item.about}
-                                    image={document}
-                                />
-                                <div className='line'></div>
-                            </Link>
-                        )
-                    })
-                
-                )
-            }
-               
-           
+    renderAdverts = (posts) => {
+        if (posts.length === 0) {
+            return <img className="search_adverts_nodata_img" src={nodata}></img>
+        } else {
+            return (
+                posts.map((item, i) => {
+                    return (
+                        // <Link to={links.details} >
+                        <Fragment key={i}>
+                            <Advert
+                                advertid={item.id}
+                                orgName={`${item.name}`}
+                                ispda={`${item.pda + ''}`}
+                                createDate={`від ${item.registered_at}`}
+                                cityPlace={`${item.city}`}
+                                fullPrice={`${item.price} $`}
+                                about={`${item.owner_data}`}
+                                image={`${item.image.url}`}
+                            />
+                            <div className='line'></div>
+                            </Fragment>
+                        // </Link>
+                    )
+                })
+
+            )
+        }
     }
 
     render() {
         const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-        console.log(this.props.data)
-        this.renderCountPagination()
+        const { data } = this.props.data
+
         let dynamicWidth = 3 * this.numersOfPages.length + "%"
         let paginationPageCounter = this.numersOfPages.map((item, index) => {
             if (this.state.currentPage === item) {
@@ -156,10 +154,17 @@ class SearchResult extends Component {
             return <span onClick={this.getCurrentPageNumber} key={index} > {item} </span>
         })
 
+        
+        this.renderCountPagination()
+        
+
         return (
             <div className='results_list'>
-                <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>{`(${data.length})`}</span></div>
-                {this.renderAdverts()}
+                {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
+                {`(${data.posts.length})`}
+                </span></div> : null}
+
+                {data ? this.renderAdverts(data.posts) : <p className="results_preloader">Зачекайте...</p>}
 
                 <div className="pagination_div" style={{ visibility: visiblePagination }}>
                     <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
@@ -178,7 +183,7 @@ class SearchResult extends Component {
 
 export default connect(
     (state) => ({
-        data:state.search.data
+        data: state.search.data
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
