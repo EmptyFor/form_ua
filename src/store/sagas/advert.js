@@ -7,7 +7,7 @@ import { baseURL } from '../../core/constants/baseURL';
 import { getToken } from '../helpers/localStorage';
 import axios from 'axios'
 
-export function* advert(name, code, price, image, legal_form, type_activity, extra_type_activity, tax_form, license, location, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) {
+export function* advert(name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) {
 
     const data = {
         name,
@@ -15,11 +15,13 @@ export function* advert(name, code, price, image, legal_form, type_activity, ext
         price,
         image,
         legal_form,
-        type_activity,
-        extra_type_activity,
+        kved_code,
+        kved_name,
+        extra_kved_name,
         tax_form,
         license,
-        location,
+        city,
+        region,
         registered_at,
         pda,
         have_activity,
@@ -41,16 +43,19 @@ export function* advert(name, code, price, image, legal_form, type_activity, ext
 }
 
 export default function* () {
-    yield takeLatest(types.SEND_ADVERT_DATA, ({ name,
+    yield takeLatest(types.SEND_ADVERT_DATA, ({
+        name,
         code,
         price,
         image,
         legal_form,
-        type_activity,
-        extra_type_activity,
+        kved_code,
+        kved_name,
+        extra_kved_name,
         tax_form,
         license,
-        location,
+        city,
+        region,
         registered_at,
         pda,
         have_activity,
@@ -59,16 +64,19 @@ export default function* () {
         owner_data,
         tel
     }) =>
-        advert(name,
+        advert(
+            name,
             code,
             price,
             image,
             legal_form,
-            type_activity,
-            extra_type_activity,
+            kved_code,
+            kved_name,
+            extra_kved_name,
             tax_form,
             license,
-            location,
+            city,
+            region,
             registered_at,
             pda,
             have_activity,

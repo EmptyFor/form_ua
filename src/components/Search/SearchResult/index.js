@@ -10,24 +10,10 @@ import document from '../../../assets/images/spa.jpg'
 import nodata from '../../../assets/images/nodata.png'
 
 
-const vata = [
-    {
-        name: 'FIVE PAGE',
-        isPDF: false,
-        date: '10/02/2019',
-        city: 'Львів',
-        price: '12 000',
-        about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-    },
-];
 
 const pageStep = 5;
-const pagesLength = Math.ceil(vata.length / pageStep);
-
+let pagesLength;
 class SearchResult extends Component {
-
-
-    numersOfPages = [];
 
     state = {
         visiblePagination: 'visibility',
@@ -35,51 +21,15 @@ class SearchResult extends Component {
         disPrev: true,
         disNext: false,
         colorNext: '#1ccee9',
-        colorPrev: '#aeaeae'
-    }
-
-    constructor(props) {
-        super(props);
+        colorPrev: '#aeaeae',
 
     }
 
     componentWillMount = () => {
         this.props.actions.postCurrentPage(this.state.currentPage)
-        if (pagesLength <= 1) {
-            this.setState({ visiblePagination: 'hidden' })
-        } else {
-            this.setState({ visiblePagination: 'visibility' })
-            if (pagesLength <= 4) {
-                for (let i = 1; i <= pagesLength; i++) {
-                    this.numersOfPages.push(i)
-                }
-            } else {
-                this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
-            }
-        }
     }
 
-    renderCountPagination = () => {
-        if (pagesLength > 4) {
-            if (this.state.currentPage > 1 && this.state.currentPage < pagesLength - 2) {
-                this.numersOfPages = [this.state.currentPage - 1, this.state.currentPage, this.state.currentPage + 1, '. . .', pagesLength];
-            }
-            if (this.state.currentPage === 1) {
-                this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
-            }
-            if (this.state.currentPage > pagesLength - 3) {
-                if (this.state.currentPage === pagesLength - 2) {
-                    this.numersOfPages = [1, '. . .', this.state.currentPage, this.state.currentPage + 1, pagesLength]
-                }
-                if (this.state.currentPage === pagesLength - 1) {
-                    this.numersOfPages = [1, '. . .', this.state.currentPage - 1, this.state.currentPage, pagesLength]
-                }
-                if (this.state.currentPage === pagesLength) {
-                    this.numersOfPages = [1, '. . .', this.state.currentPage - 2, this.state.currentPage - 1, this.state.currentPage]
-                }
-            }
-        }
-    }
+    // Set and calculate count of pages on pagination
 
     getCurrentPageNumber = e => {
         this.setState({
@@ -94,6 +44,7 @@ class SearchResult extends Component {
         } else {
             this.setState({ disPrev: true, colorPrev: '#aeaeae', disNext: false, colorNext: '#1ccee9' })
         }
+        this.props.actions.postCurrentPage(this.state.currentPage)
     }
 
     nextPage = () => {
@@ -101,6 +52,7 @@ class SearchResult extends Component {
             this.setState({ disNext: true, colorNext: '#aeaeae' })
         }
         this.setState({ currentPage: this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+        this.props.actions.postCurrentPage(this.state.currentPage)
     }
 
     prevPage = () => {
@@ -108,8 +60,11 @@ class SearchResult extends Component {
             this.setState({ disPrev: true, colorPrev: '#aeaeae' })
         }
         this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
+        this.props.actions.postCurrentPage(this.state.currentPage)
     }
 
+
+    //RENDER ALL CONTENT ON PAGE
     renderAdverts = (posts) => {
         if (posts.length === 0) {
             return <img className="search_adverts_nodata_img" src={nodata}></img>
@@ -130,55 +85,99 @@ class SearchResult extends Component {
                                 image={`${item.image.url}`}
                             />
                             <div className='line'></div>
-                            </Fragment>
+                        </Fragment>
                         // </Link>
                     )
                 })
 
             )
         }
+
     }
+    //RENDER ALL CONTENT ON PAGE
+
 
     render() {
-        const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
+        const { disPrev, disNext, colorNext, colorPrev, visiblePagination, currentPage } = this.state;
         const { data } = this.props.data
+        let paginationPageCounter, dynamicWidth;
 
-        let dynamicWidth = 3 * this.numersOfPages.length + "%"
-        let paginationPageCounter = this.numersOfPages.map((item, index) => {
-            if (this.state.currentPage === item) {
-                return <span className="pagination_current" key={index} > {item} </span>
-            }
-            if (item !== +item) {
-                return <span style={{ cursor: 'auto' }} key={index} > {item} </span>
-            }
-            return <span onClick={this.getCurrentPageNumber} key={index} > {item} </span>
-        })
+        console.log(currentPage)
 
-        
-        this.renderCountPagination()
-        
+        if (data) {
+            let numersOfPages = [];
+
+            pagesLength = Math.ceil(data.total / pageStep)
+
+            if (pagesLength >= 1) {
+                if (pagesLength <= 4) {
+                    for (let i = 1; i <= pagesLength; i++) {
+                        numersOfPages.push(i)
+                    }
+                }
+                else {
+                    numersOfPages = [currentPage, currentPage + 1, currentPage + 2, '. . .', pagesLength]
+                    if (pagesLength > 4) {
+                        if (currentPage > 1 && currentPage < pagesLength - 2) {
+                            numersOfPages = [currentPage - 1, currentPage, currentPage + 1, '. . .', pagesLength];
+                        }
+                        if (currentPage === 1) {
+                            numersOfPages = [currentPage, currentPage + 1, currentPage + 2, '. . .', pagesLength]
+                        }
+                        if (currentPage > pagesLength - 3) {
+                            if (currentPage === pagesLength - 2) {
+                                numersOfPages = [1, '. . .', currentPage, currentPage + 1, pagesLength]
+                            }
+                            if (currentPage === pagesLength - 1) {
+                                numersOfPages = [1, '. . .', currentPage - 1, currentPage, pagesLength]
+                            }
+                            if (currentPage === pagesLength) {
+                                numersOfPages = [1, '. . .', currentPage - 2, currentPage - 1, currentPage]
+                            }
+                        }
+                    }
+                }
+            }
+
+            paginationPageCounter = numersOfPages.map((item, index) => {
+                if (currentPage === item) {
+                    return <span className="pagination_current" key={index} > {item} </span>
+                }
+                if (item !== +item) {
+                    return <span style={{ cursor: 'auto' }} key={index} > {item} </span>
+                }
+                return <span onClick={this.getCurrentPageNumber} key={index} > {item} </span>
+            })
+
+            dynamicWidth = 3 * numersOfPages.length + "%"
+        }
 
         return (
-            <div className='results_list'>
-                {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
-                {`(${data.posts.length})`}
-                </span></div> : null}
+            <Fragment>
+                {!data ? <p className="results_preloader">Зачекайте...</p> : <div className='results_list'>
 
-                {data ? this.renderAdverts(data.posts) : <p className="results_preloader">Зачекайте...</p>}
+                    {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
+                        {`(${data.total})`}
+                    </span></div> : null}
 
-                <div className="pagination_div" style={{ visibility: visiblePagination }}>
-                    <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
+                    {this.renderAdverts(data.posts)}
 
-                    {/* Pagination counting */}
-                    <div className="pagination_count" style={{ width: dynamicWidth }}>
-                        {paginationPageCounter}
+                    <div className="pagination_div" style={{ visibility: visiblePagination }}>
+                        <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
+
+                        {/* Pagination counting */}
+                        <div className="pagination_count" style={{ width: dynamicWidth }}>
+                            {paginationPageCounter}
+                        </div>
+                        <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
                     </div>
-                    <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
                 </div>
-            </div>
 
+                }
+            </Fragment>
         )
     }
+
 }
 
 export default connect(

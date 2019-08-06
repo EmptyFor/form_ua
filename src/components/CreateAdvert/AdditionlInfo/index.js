@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
 import './style.modules.scss';
+import legalForm from '../../../assets/db/legalForm';
+import taxForm from '../../../assets/db/taxForm';
+import license from '../../../assets/db/license';
 import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
@@ -14,141 +17,6 @@ export class AdditionlInfo extends Component {
         super()
         this.setAdditionlInfoData = this.setAdditionlInfoData.bind(this)
     }
-
-    legalForm = [
-        {
-            name: 'Приватне акціонерне товариство',
-            value: 'private_joint_stock_company'
-        },
-        {
-            name: 'Публічне акціонерне товариство',
-            value: 'public_company'
-        },
-        {
-            name: 'Товариство з обмеженою відповідальністю',
-            value: 'limited_liability_company'
-        },
-        {
-            name: 'Приватне підприємство',
-            value: 'private_enterprise'
-        },
-        {
-            name: 'Асоціація',
-            value: 'association'
-        },
-        {
-            name: 'Благодійна організація',
-            value: 'charitable_organization'
-        },
-        {
-            name: 'Виробничий кооператив',
-            value: 'manufacturing_cooperation'
-        },
-        {
-            name: 'Гаражний кооператив',
-            value: 'garage_cooperative'
-        },
-        {
-            name: 'Громадська організація',
-            value: 'public_organization'
-        },
-        {
-            name: 'Житлово-будівельний кооператив',
-            value: "housing_and_building_cooperatives"
-        },
-        {
-            name: 'Консорціум',
-            value: 'consortium'
-        },
-        {
-            name: 'Концерн',
-            value: 'concern'
-        },
-        {
-            name: 'Кооперативний банк',
-            value: 'cooperative_bank'
-        },
-        {
-            name: 'Корпорація',
-            value: 'corporation'
-        },
-        {
-            name: 'Кредитна спілка',
-            value: 'credit_union'
-        },
-        {
-            name: 'Обслуговуючий кооператив',
-            value: 'service_cooperative'
-        },
-        {
-            name: 'Підприємство споживчої кооперації',
-            value: 'enterprise_of_consumer_cooperation'
-        },
-        {
-            name: 'Політична партія',
-            value: 'political_party'
-        },
-        {
-            name: 'Садівниче товариство',
-            value: 'saddoviche_society'
-        },
-        {
-            name: 'Сільськогосподарський виробничий кооператив',
-            value: 'agricultural_production_cooperation'
-        },
-        {
-            name: 'Сільськогосподарський обслуговуючий кооператив',
-            value: 'agricultural_service_cooperative'
-        },
-        {
-            name: 'Споживче товариство',
-            value: 'consumer_company'
-        },
-        {
-            name: 'Споживчий кооператив',
-            value: 'consumer_cooperation'
-        },
-        {
-            name: 'Товариство з додатковою відповідальністю',
-            value: 'company_with_additional_liability'
-        },
-        {
-            name: 'Товарна біржа',
-            value: 'commodity_exchange'
-        },
-        {
-            name: 'Фермерське господарство',
-            value: 'farming_household'
-        },
-        {
-            name: 'Фондова біржа',
-            value: 'stock_exchange'
-        },
-
-        {
-            name: 'Холдингова компанія',
-            value: 'holding_company'
-        }
-    ]
-
-    taxForm = [
-        {
-            name: 'Загальна система',
-            value: 'general_system'
-        },
-        {
-            name: 'Єдиний податок перша група',
-            value: 'the_only_tax_is_the_first_group'
-        },
-        {
-            name: 'Єдиний податок друга група',
-            value: 'the_only_tax_is_the_second_group'
-        },
-        {
-            name: 'Єдиний податок третя група',
-            value: 'the_only_tax_is_the_third_group'
-        }
-    ]
 
     state = {
         legal_form: '',
@@ -178,16 +46,23 @@ export class AdditionlInfo extends Component {
             value = value.split(',')
             this.setState({ region: value[0], city: value[1] })
         }
-
-        this.setState({
-            [name]: value
-        })
+        else if (name === 'kved_name' && value !== undefined) {
+            this.setState({
+                kved_code: value.replace(' ', 'splitPoint').split('splitPoint')[0],
+                kved_name: value.replace(' ', 'splitPoint').split('splitPoint')[1]
+            })
+        }
+        else {
+            this.setState({
+                [name]: value
+            })
+        }
     }
 
     sendAdditionlInfoData() {
-        const { legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital } = this.state
+        const { legal_form, kved_name, kved_code, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital } = this.state
         if (this.props.clear) {
-            this.props.actions.setAdditionalInfo(legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital)
+            this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital)
         }
         else {
             legal_form &&
@@ -199,7 +74,7 @@ export class AdditionlInfo extends Component {
                 region &&
                 registered_at.length === 10 &&
                 pda ?
-                this.props.actions.setAdditionalInfo(legal_form, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) :
+                this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) :
                 void 0
         }
     }
@@ -226,6 +101,7 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
+        console.log(this.state)
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >
@@ -240,7 +116,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="legal_form"
                         type="common"
-                        itemList={this.legalForm}
+                        itemList={legalForm}
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.house}
@@ -269,7 +145,7 @@ export class AdditionlInfo extends Component {
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="extra_kved_name"
-                        type="multiply" width='auto'
+                        type="multiply search" width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.plus}
                         id='ca_form_select_3'
@@ -283,7 +159,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="tax_form"
                         type="common"
-                        itemList={this.taxForm}
+                        itemList={taxForm}
                         width='auto'
                         placeholder='Оберіть зі списку'
                         icon={images.lable}
@@ -297,6 +173,7 @@ export class AdditionlInfo extends Component {
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="license"
+                        itemList={license}
                         type="multiply"
                         width='auto'
                         placeholder='Оберіть зі списку'
@@ -390,6 +267,7 @@ export class AdditionlInfo extends Component {
 export default connect(
     (state) => ({
         legal_form: state.advert.legal_form,
+        kved_code: state.advert.kved_code,
         kved_name: state.advert.kved_name,
         extra_kved_name: state.advert.extra_kved_name,
         tax_form: state.advert.tax_form,

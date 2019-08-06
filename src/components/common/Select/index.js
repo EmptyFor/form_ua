@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 // import links from '../../config/links';
 import './style.modules.scss';
+import { MultiplySearchSelect } from './MultiplySearchSelect';
 import { CheckBoxSelect } from './CheckBoxSelect';
 import { MultiplySelect } from './MultiplySelect';
 import { CommonSelect } from './CommonSelect';
@@ -22,6 +23,7 @@ export class Select extends Component {
                 placeholder={placeholder}
                 required={this.props.required}
                 itemList={this.props.itemList}
+                searchType={this.props.searchType}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -52,6 +54,19 @@ export class Select extends Component {
                 icon={icon}
                 id={id}
                 searchType={this.props.searchType}
+                getData={this.props.getData}
+                name={this.props.name}
+                clear={this.props.clear}
+            />
+        }
+        else if (type === 'multiply search') {
+            return <MultiplySearchSelect
+                width={width}
+                placeholder={placeholder}
+                required={this.props.required}
+                itemList={this.props.itemList}
+                icon={icon}
+                id={id}
                 getData={this.props.getData}
                 name={this.props.name}
                 clear={this.props.clear}

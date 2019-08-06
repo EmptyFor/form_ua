@@ -35,7 +35,7 @@ class Advert extends Component {
                     <h1>{this.props.orgName}</h1>
                     <div className="minor_info_advert" advertid={this.props.advertid}>
                         <span className="ispda_advert" ispda={this.props.ispda}>{this.state.text}</span>
-                        {this.props.ispda ? <span className="ispda_confirmation"><span style={{ padding: `25% 30% 0`, transform: `rotate(-133deg) scale(-1, 1)` }}>˥</span></span> : null}
+                        {this.props.ispda ? <span className="ispda_confirmation"><span style={{top:'-10%',left:'37%', position: 'absolute', transform: `rotate(-133deg) scale(-1, 1)` }}>˥</span></span> : null}
                         <span className="circle_advert"></span>
                         <span className="date_advert"> 	{this.props.createDate}</span>
                         <span className="circle_advert"></span>
