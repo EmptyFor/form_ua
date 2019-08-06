@@ -26,11 +26,10 @@ export function* getFoundPagePosts(search_args) {
     const options = {
         headers: { "Authorization": `Bearer ${token}` }
     }
-    console.log(search_args)
     try {
-        const data = axios.get(`${baseURL}/ru/api/v1/posts/${search_args}`, options)
+        const data = yield axios.get(`${baseURL}/ru/api/v1/posts/${search_args}`, options)
             .then(response => {
-                console.log(response)
+                console.log(response.data.data)
                 return response.data;
             })
         yield put(actions.getPagePosts(data))

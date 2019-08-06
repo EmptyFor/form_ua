@@ -103,6 +103,7 @@ class SearchResult extends Component {
         let paginationPageCounter, dynamicWidth;
 
         console.log(currentPage)
+        console.log(data)
 
         if (data) {
             let numersOfPages = [];
