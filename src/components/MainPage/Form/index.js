@@ -19,8 +19,8 @@ import { images } from '../../../assets/images/images'
 export class Form extends Component {
 
     state = {
-        link: links.search,
         legal_form: '',
+        kved_code: '',
         kved_name: '',
         city: '',
         region: '',
@@ -42,13 +42,22 @@ export class Form extends Component {
             this.setState({ region: value[0], city: value[1] })
         }
 
-        this.setState({
-            [name]: value
-        })
+        else if (name === 'kved_name' && value !== undefined) {
+            this.setState({
+                kved_code: value.replace(' ', 'splitPoint').split('splitPoint')[0],
+                kved_name: value.replace(' ', 'splitPoint').split('splitPoint')[1]
+            })
+        }
+
+        else {
+            this.setState({
+                [name]: value
+            })
+        }
     }
 
     sendSearchData = () => {
-        const { legal_form, kved_name, city, region, tax_form, price_from, price_to, pda } = this.state
+        const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda } = this.state
 
         if (legal_form &&
             kved_name &&
@@ -58,14 +67,17 @@ export class Form extends Component {
             price_from.length > 0 &&
             price_to > 0
         ) {
-            this.props.actions.setMainPageFormInfo(legal_form, kved_name, city, region, tax_form, price_from, price_to, pda)
+            this.props.actions.setMainPageFormInfo(legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda)
+            localStorage.setItem('formData', {
+
+            })
+            console.log(this.props)
         }
     }
 
     render() {
-        console.log(this.props)
         this.sendSearchData()
-
+        console.log(this.props)
         return (
 
             <div className='wrapp' >
@@ -153,8 +165,10 @@ export class Form extends Component {
 
 
                     <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
-                        <Button className='find'
-                            text='Знайти' />
+                        <Button
+                            className='find'
+                            text='Знайти'
+                        />
                     </Link>
                 </div>
             </div >

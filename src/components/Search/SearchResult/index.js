@@ -43,7 +43,7 @@ class SearchResult extends Component {
         
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.props.actions.postCurrentPage(this.state.currentPage)
         if (pagesLength <= 1) {
             this.setState({ visiblePagination: 'hidden' })
@@ -178,6 +178,7 @@ class SearchResult extends Component {
 
 export default connect(
     (state) => ({
+        legal_form: state.search.legal_form,
         data:state.search.data
     }),
     dispatch => ({

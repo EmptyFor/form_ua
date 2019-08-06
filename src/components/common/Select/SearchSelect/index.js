@@ -109,7 +109,7 @@ export class SearchSelect extends Component {
             }
         }
         else {
-            if (value.length > 0) {
+            if (value !== undefined && value.length > 0) {
                 this.setState(prevState => ({
                     isOpen: false,
                     togleClass: 'close',
@@ -260,7 +260,6 @@ export class SearchSelect extends Component {
 
             found = kved.filter(item => {
                 let str = (item.code + item.name).toUpperCase().replace(/\s/, '')
-                // console.log(str)
                 return str.search(value) > 0
             })
             foundItems = found.map(item => { return item.code + ' ' + item.name })
@@ -278,6 +277,24 @@ export class SearchSelect extends Component {
         this.top = h + 'px'
 
         this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
+    }
+
+    componentWillMount() {
+        let value = this.props.value
+        if (value !== undefined && value !== ", ") {
+            this.setState(prevState => ({
+                value: value,
+                style: {
+                    ...prevState.style,
+                    placeholder: {
+                        display: "none"
+                    },
+                    value: {
+                        display: "inline-block"
+                    }
+                }
+            }))
+        }
     }
 
     componentDidMount() {

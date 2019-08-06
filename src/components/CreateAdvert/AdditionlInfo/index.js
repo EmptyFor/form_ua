@@ -52,6 +52,18 @@ export class AdditionlInfo extends Component {
                 kved_name: value.replace(' ', 'splitPoint').split('splitPoint')[1]
             })
         }
+        else if (name === 'extra_kved_name' && value !== undefined && value !== '') {
+            let extra_kved_name = []
+            value.map(item => {
+                extra_kved_name.push({
+                    code: item.replace(' ', 'splitPoint').split('splitPoint')[0],
+                    name: item.replace(' ', 'splitPoint').split('splitPoint')[1]
+                })
+            })
+            this.setState({
+                extra_kved_name: extra_kved_name
+            })
+        }
         else {
             this.setState({
                 [name]: value

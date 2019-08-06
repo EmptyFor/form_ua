@@ -17,13 +17,17 @@ export class CheckBox extends Component {
         checkMar[0].checked = false
     }
 
+    componentWillMount() {
+        this.value = this.props.value
+    }
+
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
         return (
-            <div className="common_checkbox" id={this.props.id}>
+            <div className="common_checkbox" id={this.props.id} name={this.props.name}>
                 <label
                     className="container"
                     id={this.props.id}
@@ -31,7 +35,7 @@ export class CheckBox extends Component {
                     name={this.props.name}
                     onChange={this.props.getData}
                 >
-                    <input type="checkbox" name={this.props.id} onClick={this.selectCheckBox}></input>
+                    <input type="checkbox" name={this.props.id} checked={this.value} onClick={this.selectCheckBox}></input>
                     <span className="text">{this.props.text}</span>
                     <span className="checkmark"></span>
                 </label>

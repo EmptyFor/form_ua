@@ -47,7 +47,7 @@ export class Input extends Component {
         });
         console.log(name)
         this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
-        
+
         // name === 'EDRPOYCode' && value.length === 17 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
         // name === 'registrationDate' && value.length === 10 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
         // name === 'phoneNumbers' && value.length === 24 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })
@@ -89,6 +89,13 @@ export class Input extends Component {
 
     unsetErrorBorder = () => {
         this.setState({ borderColor: 'unset' })
+    }
+
+    componentDidMount() {
+        if (this.props.value !== undefined) {
+            this.inputRef.current.value = this.props.value
+        }
+
     }
 
     componentWillReceiveProps(nextProps) {

@@ -23,9 +23,26 @@ export function* getCurrentPagePosts(current_page) {
     }
 }
 
+export function* getFoundPagePosts(search_args) {
+    const token = yield localStorage.getItem('firm-token');
+    const options = {
+        headers: { "Authorization": `Bearer ${token}` }
+    }
+    console.log(search_args)
+    try {
+        const data = axios.get(`${baseURL}/ru/api/v1/posts/${search_args}`, options)
+        .then (response => {
+            console.log(response.data)
+        })
+    }
+    catch (error) {
+        yield put(actions.setError(error.message));
+    }
+}
 
 export default function* () {
     yield all([
         yield takeEvery(types.POST_CURRENT_PAGE, ({ current_page }) => getCurrentPagePosts(current_page)),
+        yield takeEvery(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args))
     ])
 }
