@@ -3,6 +3,7 @@ import * as types from '../types/user';
 
 const initState = {
     user: {},
+    data: {},
     error: ''
 };
 
@@ -10,7 +11,14 @@ export default (state = initState, action) => {
     switch (action.type) {
         case types.GET_USER_INFO:
             return {
-                user: action.data
+                ...state,
+                user: action.user
+            }
+
+        case types.SET_PROFILE_INFO:
+            return {
+                ...state,
+                data: action.data
             }
         case types.SET_ERROR:
             return {

@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
-// import * as actions from '../../store/actions/authorise';
+import * as actions from '../../store/actions/user';
 import Header from '../themes/common/Header';
 import './style.modules.scss';
 import CreateAdvertBtn from '../common/CreateAdvertBtn';
@@ -14,153 +13,22 @@ import document from '../../assets/images/spa.jpg'
 import { Redirect } from 'react-router-dom';
 import triangle_bg from '../../assets/images/triangle_bg.png'
 import { getToken } from '../../store/helpers/localStorage'
+import delete_img from '../../assets/images/delete2.png'
+import deactivate_img from '../../assets/images/deactivate2x.png'
+import edit_img from '../../assets/images/edit2x.png'
 
-const mockData = [
-  {
-    name: 'FIRST PAGE',
-    id: '1',
-    ispda: false,
-    date: '10/02/2019',
-    city: 'Львів',
-    price: '12 000',
-    createdAt: '2019-07-29 7:10',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  {
-    name: 'Конституційно-правова агенція твого міста',
-    id: '2',
-    ispda: true,
-    date: '10/02/2019',
-    city: 'Львів',
-    price: '12 000',
-    createdAt: '2012-07-28 14:35',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  {
-    name: 'FIRST',
-    id: '3',
-    ispda: false,
-    date: '10/02/2019',
-    city: 'Дніпродзержинськ',
-    price: '12 000',
-    createdAt: '2019-07-26 11:57',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  {
-    name: 'FIRST',
-    id: '4',
-    ispda: true,
-    date: '10/02/2019',
-    city: 'Рівне',
-    price: '12 000',
-    createdAt: '2019-06-29 11:57',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  {
-    name: 'FIRST',
-    id: '5',
-    ispda: false,
-    date: '10/02/2019',
-    city: 'Київ',
-    price: '12 000',
-    createdAt: '2014-06-29 11:57',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  {
-    name: 'FIRST',
-    id: '6',
-    ispda: true,
-    date: '10/02/2019',
-    city: `Кам'янець - Подільськ`,
-    price: '12 000',
-    createdAt: '2014-02-11 11:57',
-    about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  },
-  // {
-  //   name: 'TWICE PAGE',
-  //   isPDF: false,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'Конституційно-правова агенція твого міста',
-  //   isPDF: true,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'TWICE',
-  //   isPDF: false,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'TWICE',
-  //   isPDF: true,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'TWICE',
-  //   isPDF: false,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'TWICE',
-  //   isPDF: true,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'THIRD PAGE',
-  //   isPDF: false,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-  // {
-  //   name: 'Конституційно-правова агенція твого міста',
-  //   isPDF: true,
-  //   date: '10/02/2019',
-  //   city: 'Львів',
-  //   price: '12 000',
-  //   createdAt: '',
-  //   about: 'Акціонерне товариство, операції з нерухомим майном, загальна система оподаткування, зовнішньоекономічна діяльність разова імпортна / експортна ліцензія, ведення сільськогосподарської діяльності, без  заборгованостей та обтяжень…'
-  // },
-
-
-];
 
 const pageStep = 3;
-const pagesLength = Math.ceil(mockData.length / pageStep);
+let pagesLength;
 
 export class Profile extends Component {
 
-  numersOfPages = [];
+  constructor(props) {
+    super(props);
+    this.token = getToken()
+  }
 
   state = {
-    visiblePagination: 'visibility',
     currentPage: 1,
     disPrev: true,
     disNext: false,
@@ -168,54 +36,18 @@ export class Profile extends Component {
     colorPrev: '#aeaeae'
   }
 
-  componentWillMount = () => {
-    if (pagesLength === 1) {
-      this.setState({ visiblePagination: 'hidden' })
-    } else {
-      this.setState({ visiblePagination: 'visibility' })
-      if (pagesLength <= 4) {
-        for (let i = 1; i <= pagesLength; i++) {
-          this.numersOfPages.push(i)
-        }
-      } else {
-        this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
-      }
-    }
+  componentDidMount = () => {
+    this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
   handleDeleteAdvert = (e) => {
-    console.log(e.currentTarget)
   }
 
   handleDisActivateAdvert = (e) => {
-    // console.log(this.refs)
   }
 
   handleEditAdvert = (e) => {
-    // console.log(this.refs)
 
-  }
-
-  renderCountPagination = () => {
-    if (pagesLength > 4) {
-      if (this.state.currentPage > 1 && this.state.currentPage < pagesLength - 2) {
-        this.numersOfPages = [this.state.currentPage - 1, this.state.currentPage, this.state.currentPage + 1, '. . .', pagesLength];
-      }
-      if (this.state.currentPage === 1) {
-        this.numersOfPages = [this.state.currentPage, this.state.currentPage + 1, this.state.currentPage + 2, '. . .', pagesLength]
-      }
-      if (this.state.currentPage > pagesLength - 3) {
-        if (this.state.currentPage === pagesLength - 2) {
-          this.numersOfPages = [1, '. . .', this.state.currentPage, this.state.currentPage + 1, pagesLength]
-        }
-        if (this.state.currentPage === pagesLength - 1) {
-          this.numersOfPages = [1, '. . .', this.state.currentPage - 1, this.state.currentPage, pagesLength]
-        }
-        if (this.state.currentPage === pagesLength) {
-          this.numersOfPages = [1, '. . .', this.state.currentPage - 2, this.state.currentPage - 1, this.state.currentPage]
-        }
-      }
-    }
   }
 
   getCurrentPageNumber = e => {
@@ -231,6 +63,8 @@ export class Profile extends Component {
     } else {
       this.setState({ disPrev: true, colorPrev: '#aeaeae', disNext: false, colorNext: '#1ccee9' })
     }
+
+    this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
   nextPage = () => {
@@ -238,6 +72,7 @@ export class Profile extends Component {
       this.setState({ disNext: true, colorNext: '#aeaeae' })
     }
     this.setState({ currentPage: this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+    this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
   prevPage = () => {
@@ -245,103 +80,164 @@ export class Profile extends Component {
       this.setState({ disPrev: true, colorPrev: '#aeaeae' })
     }
     this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
+    this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
-  renderAdverts = () => {
-    let range = this.state.currentPage * pageStep;
-    const data = mockData.filter(item => mockData.indexOf(item) < range && mockData.indexOf(item) >= range - pageStep);
 
-    return (
-      data.map((item, i) => {
-        let dateResult;
-        let dateRange = Math.ceil((new Date() - new Date(item.createdAt)) / 1000);
-        if (dateRange > 0 && dateRange < 60) {
-          dateResult = 'Щойно'
-        } else if (dateRange > 60 && dateRange < 3600) {
-          let range = Math.floor(dateRange / 60);
-          range === 1 || range === 21 || range === 31 || range === 41 || range === 51 ? dateResult = `${range} хвилина тому`
-            : range < 5 || (range > 20 && range < 25) || (range > 30 && range < 35) || (range > 40 && range < 45) || (range > 50 && range < 55) ? dateResult = `${range} хвилини тому`
-              : dateResult = `${range} хвилин тому`
-        } else if (dateRange > 3600 && dateRange < 86400) {
-          let range = Math.floor(dateRange / 3600);
-          range === 1 || range === 21 ? dateResult = `${range} година тому`
-            : range < 5 || range > 20 ? dateResult = `${range} години тому`
-              : dateResult = `${range} годин тому`
-        } else if (dateRange > 86400 && dateRange < 604800) {
-          let range = Math.floor(dateRange / 86400)
-          range === 1 ? dateResult = `${range} день тому` :
-            range < 5 ? dateResult = `${range} дні тому` :
-              dateResult = `${range} днів тому`
-        } else {
-          dateResult = `${new Date(item.createdAt).getDate()} / ${new Date(item.createdAt).getMonth() < 10 ? `0${new Date(item.createdAt).getMonth()}` : new Date(item.createdAt).getMonth()} / ${new Date(item.createdAt).getFullYear()}`
-        }
-        return (
-          <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
-            <Link to={links.details}>
-              <Advert
-                onClick={this.handleClickInfo}
-                orgName={item.name}
-                ispda={item.ispda}
-                createDate={`від ${item.date}`}
-                cityPlace={item.city}
-                fullPrice={`${item.price} $`}
-                about={item.about}
-                image={document}
-              />
-            </Link>
-            <div className="advert_action_bar">
-              <div className="advert_action_bar_time">{`${dateResult}`}</div>
-              <div className="advert_action_bar_actions" >
-                <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}>Видалити</span>
-                <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}>Деактивувати</span>
-                <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}>Редагувати</span>
+
+  renderAdverts = (posts) => {
+    if (!posts) {
+      return <div>Somethink wrong!</div>
+    }
+    if (posts.length === 0) {
+      return <div className="profile_adverts_nodata"> НЕ ЗАРЕЄСТРОВАНО ЖОДНОГО ОГОЛОШЕННЯ </div>
+    } else {
+      return (
+        posts.map((item, i) => {
+          let dateResult, range;
+          let dateRange = Math.ceil((new Date() - new Date(item.created_at)) / 1000);
+          if (dateRange > 0 && dateRange < 60) {
+            dateResult = 'Щойно'
+          } else if (dateRange > 60 && dateRange < 3600) {
+            range = Math.floor(dateRange / 60);
+            range === 1 || range === 21 || range === 31 || range === 41 || range === 51 ? dateResult = `${range} хвилина тому`
+              : range < 5 || (range > 20 && range < 25) || (range > 30 && range < 35) || (range > 40 && range < 45) || (range > 50 && range < 55) ? dateResult = `${range} хвилини тому`
+                : dateResult = `${range} хвилин тому`
+          } else if (dateRange > 3600 && dateRange < 86400) {
+            range = Math.floor(dateRange / 3600);
+            range === 1 || range === 21 ? dateResult = `${range} година тому`
+              : range < 5 || range > 20 ? dateResult = `${range} години тому`
+                : dateResult = `${range} годин тому`
+          } else if (dateRange > 86400 && dateRange < 604800) {
+            range = Math.floor(dateRange / 86400)
+            range === 1 ? dateResult = `${range} день тому` :
+              range < 5 ? dateResult = `${range} дні тому` :
+                dateResult = `${range} днів тому`
+          } else {
+            dateResult = `${new Date(item.created_at).getDate()} / ${new Date(item.created_at).getMonth() < 10 ? `0${new Date(item.created_at).getMonth()}` : new Date(item.created_at).getMonth()} / ${new Date(item.created_at).getFullYear()}`
+          }
+          console.log(item)
+          return (
+            <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
+              <Link to={links.details}>
+                <Advert
+                  onClick={this.handleClickInfo}
+                  orgName={item.name}
+                  ispda={item.ispda}
+                  createDate={`від ${item.date}`}
+                  cityPlace={item.city}
+                  fullPrice={`${item.price} $`}
+                  about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
+                  image={document}
+                />
+              </Link>
+              <div className="advert_action_bar">
+                <div className="advert_action_bar_time">{`${dateResult}`}</div>
+                <div className="advert_action_bar_actions" >
+                  <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}><img src={delete_img} />Видалити</span>
+                  <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}><img src={deactivate_img}/>Деактивувати</span>
+                  <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}><img src={edit_img} />Редагувати</span>
+                </div>
               </div>
             </div>
-          </div>
-        )
-      }))
+          )
+        }))
+    }
   }
-  render() {
-    const { disPrev, disNext, colorNext, colorPrev, visiblePagination } = this.state;
-    const { user,token } = this.props;
 
-    if (!getToken()) {
+
+  render() {
+    const { disPrev, disNext, colorNext, colorPrev, currentPage } = this.state;
+    const { user } = this.props;
+    const { data } = this.props
+    let paginationPageCounter, dynamicWidth;
+
+    const token = localStorage.getItem('firm-token')
+
+    if (!token) {
       return <Redirect to={links.login} />
     }
 
-    let dynamicWidth = 3 * this.numersOfPages.length + "%";
-    let paginationPageCounter = this.numersOfPages.map((item, index) => {
-      if (this.state.currentPage === item) {
-        return <span className="pagination_current" key={index} > {item} </span>
-      }
-      if (item !== +item) {
-        return <span style={{ cursor: 'auto' }} key={index} > {item} </span>
-      }
-      return <span onClick={this.getCurrentPageNumber} key={index} > {item} </span>
-    });
+    if (data) {
+      let numersOfPages = [];
 
-    this.renderCountPagination();
+      pagesLength = Math.ceil(data.total / pageStep)
+
+      if (pagesLength > 1) {
+        if (pagesLength <= 4) {
+          for (let i = 1; i <= pagesLength; i++) {
+            numersOfPages.push(i)
+          }
+        }
+        else {
+          numersOfPages = [currentPage, currentPage + 1, currentPage + 2, '. . .', pagesLength]
+
+          if (pagesLength > 4) {
+            if (currentPage > 1 && currentPage < pagesLength - 2) {
+              numersOfPages = [currentPage - 1, currentPage, currentPage + 1, '. . .', pagesLength];
+            }
+            if (currentPage === 1) {
+              numersOfPages = [currentPage, currentPage + 1, currentPage + 2, '. . .', pagesLength]
+            }
+
+            if (currentPage > pagesLength - 3) {
+              if (currentPage === pagesLength - 2) {
+                numersOfPages = [1, '. . .', currentPage, currentPage + 1, pagesLength]
+              }
+              if (currentPage === pagesLength - 1) {
+                numersOfPages = [1, '. . .', currentPage - 1, currentPage, pagesLength]
+              }
+              if (currentPage === pagesLength) {
+                numersOfPages = [1, '. . .', currentPage - 2, currentPage - 1, currentPage]
+              }
+            }
+          }
+        }
+      }
+
+      paginationPageCounter = numersOfPages.map((item, index) => {
+        if (currentPage === item) {
+          return <span className="pagination_current" key={index} > {item} </span>
+        }
+        if (item !== +item) {
+          return <span style={{ cursor: 'auto' }} key={index} > {item} </span>
+        }
+        return <span onClick={this.getCurrentPageNumber} key={index} > {item} </span>
+      })
+
+      dynamicWidth = 3 * numersOfPages.length + "%"
+    }
+
+
     return (
+
       <Fragment>
         <Header className='menu_fix' fix={'true'} />
+
         <div className="profile_wrapper">
           <img className="image_bg" alt="" src={triangle_bg}></img>
-          <div className="profile_list" >
-            <div className='profile_list_header'><span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${mockData.length})`}</label></span><span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div>
-            {this.renderAdverts()}
-            <div className="pagination_div" style={{ visibility: visiblePagination }}>
-              <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
+          {!data ? <p className="results_preloader">Зачекайте...</p> : <div className="profile_list" >
+            <div>
+              {data ? <div className='profile_list_header'>
+                <span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${data.total})`}</label></span>
+                <span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div> : null}
 
-              {/* Pagination counting */}
-              <div className="pagination_count" style={{ width: dynamicWidth }}>
+              {this.renderAdverts(data.posts)}
+
+            </div>
+            {/* Pagination counting */}
+
+            {pagesLength <= 1 ? null : <div className="pagination_div">
+              <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
+              <div className="pagination_count" style={{ width: dynamicWidth }} >
                 {paginationPageCounter}
               </div>
-
               <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
-            </div>
+            </div>}
 
+          </div>}
 
-          </div>
+          {/* Profile information */}
 
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
@@ -360,9 +256,9 @@ export class Profile extends Component {
 export default connect(
   (state) => ({
     user: state.usr.user,
-    token: state.auth.token
+    data: state.usr.data
   }),
-  // dispatch => ({
-  //   actions: bindActionCreators(actions, dispatch)
-  // })
+  dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+  })
 )(Profile);
