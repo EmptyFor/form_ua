@@ -21,7 +21,23 @@ export class FormFooter extends Component {
 
         console.log(data)
 
-        this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
+        name.length > 0 &&
+            code.length === 8 &&
+            price.length > 0 &&
+            legal_form &&
+            kved_name &&
+            extra_kved_name.length <= 10 &&
+            tax_form &&
+            license.length <= 5 &&
+            city &&
+            region &&
+            registered_at.length === 10 &&
+            pda &&
+            owner_data.length > 0 &&
+            tel[0].length ?
+
+            this.props.actions.setAdvertData(name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel)
+            : console.log('Fill all required fields')
     }
 
     clearAllFields = () => {

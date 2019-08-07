@@ -55,7 +55,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     width: auto;
-    white-space: nowrap;
+    // white-space: nowrap;
     .selected_item {
       display: inline-block;
       flex-direction: row;
@@ -70,7 +70,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       width: auto;
-      white-space: nowrap;
+      // white-space: nowrap;
       .list_item {
         padding: 5px;
       }
