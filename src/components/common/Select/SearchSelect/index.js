@@ -167,6 +167,20 @@ export class SearchSelect extends Component {
         //     togleClass: 'close'
         // })
         // this.closeSelectStyle()
+        let value = this.state.value
+        if (value !== "") {
+            this.setState(prevState => ({
+                style: {
+                    ...prevState.style,
+                    select: {
+                        borderRadius: '30px',
+                        borderBottom: 'solid 1px #b1a7c8',
+                        borderColor: '#1ccee9',
+                        zIndex: 1
+                    }
+                }
+            }))
+        }
         this.props.getData(e)
     }
 

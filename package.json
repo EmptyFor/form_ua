@@ -7,6 +7,7 @@
     "antd": "^3.20.1",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "form-data": "^2.5.0",
     "less": "^3.9.0",
     "lodash": "^4.17.11",
     "material-ui": "^0.20.2",

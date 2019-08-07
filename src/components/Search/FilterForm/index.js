@@ -38,8 +38,8 @@ class FilterForm extends Component {
     kved_name !== undefined ? kved_name.length > 0 ? search_args.push(`?st_kved_name=${kved_name}`) : void 0 : void 0
     city !== undefined ? city.length > 0 ? search_args.push(`?st_city=${city}`) : void 0 : void 0
     tax_form !== undefined ? tax_form.length > 0 ? search_args.push(`?taxform=${tax_form}`) : void 0 : void 0
-    price_from !== false ? price_from >= 0 ? search_args.push(`?over_price=${price_from}`) : void 0 : void 0
-    price_to !== false ? price_to >= 0 ? search_args.push(`?under_price=${price_to}`) : void 0 : void 0
+    price_from !== false ? price_from >= 0 && price_from !== '' ? search_args.push(`?over_price=${price_from}`) : void 0 : void 0
+    price_to !== false ? price_to >= 0 && price_to !== '' ? search_args.push(`?under_price=${price_to}`) : void 0 : void 0
     pda !== undefined ? pda === true ? search_args.push(`?pda_true=${pda}`) : void 0 : void 0
     license !== undefined ? license.length > 0 ? search_args.push(`?st_license=${license}`) : void 0 : void 0
     have_activity !== undefined ? have_activity === true ? search_args.push(`?no_debt_true=${have_activity}`) : void 0 : void 0

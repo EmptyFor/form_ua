@@ -34,6 +34,7 @@ export function* advert(name, code, price, image, legal_form, kved_code, kved_na
     try {
         const response = yield axios({ method: 'post', url: `${baseURL}ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
             .then(response => {
+                console.log(response)
                 return response;
             })
         yield put(actions.getStatusResponse(response, response.status));

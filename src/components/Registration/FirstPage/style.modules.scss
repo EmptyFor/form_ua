@@ -1,5 +1,16 @@
-.common_btn_link{
-    width: 100%;
-    outline: none;
-    text-decoration:none;
-}
+.common_btn_link {
+  width: 100%;
+  outline: none;
+  text-decoration: none;
+}  
+  .user_input {
+    &::after {
+      background-image: url("../../../assets/images/user-silhouette.svg");
+    }
+  }
+  
+  .phone_input {
+    &::after {
+      background-image: url("../../../assets/images/call-answer-3.svg");
+    }
+  }

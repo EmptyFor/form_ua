@@ -68,19 +68,20 @@ export class OwnerInfo extends Component {
 
     }
 
-    clearPhoneNumbers = () => {
+    clearState = () => {
         this.phoneInputArr = []
         this.tel = [""]
         this.setState({
             input: this.phoneInputArr,
-            tel: this.tel
+            tel: this.tel,
+            owner_data: ''
         })
     }
 
     clearValue = () => {
-        this.clearPhoneNumbers()
-        // const { owner_data, tel } = this.state
-        // this.props.actions.setOwnerInfo(owner_data, tel)
+        this.clearState()
+        const { owner_data, tel } = this.state
+        this.props.actions.setOwnerInfo(owner_data, tel)
     }
 
     componentWillReceiveProps(nextProps) {

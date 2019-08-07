@@ -109,7 +109,7 @@ export class AdditionlInfo extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // nextProps.clear ? this.clearValue() : void 0
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {

@@ -72,7 +72,6 @@ class SearchResult extends Component {
         } else {
             return (
                 posts.map((item, i) => {
-                    console.log(item)
                     return (
                         // <Link to={links.details} >
                         <Fragment key={i}>
@@ -84,7 +83,7 @@ class SearchResult extends Component {
                                 cityPlace={`${item.city}`}
                                 fullPrice={`${item.price} $`}
                                 about={`${[item.kved_name, ...item.extra_kved_name].join('; ')}`}
-                                image={`${item.image.url}`}
+                                image={`http://firm-ua.com:3000${item.image.url}`}
                             />
                             <div className='line'></div>
                         </Fragment>

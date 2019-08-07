@@ -1,18 +1,31 @@
-.login_modal_form{
-    .reg_form{
-        padding: 4% 0;
-    }
-    .reg_label{
-        margin-bottom: -8%;
-       padding-top: 5%;
-       
-    }
+.login_modal_form {
+  .reg_form {
+    padding: 4% 0;
+  }
+  .reg_label {
+    margin-bottom: -8%;
+    padding-top: 5%;
+  }
 
-    .information_label{
-        width: 100%;
-        font-size: 15px;
-        color: grey;
-        font-weight: 500;
-        opacity: .7;
-    }
+  .information_label {
+    width: 100%;
+    font-size: 15px;
+    color: grey;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+}
+
+.email_input {
+  &::after {
+    background-image: url("../../../assets/images/at.svg");
+  }
+}
+
+.password_input {
+  &::after {
+    background-image: url("../../../assets/images/lock-1.svg");
+    height: 19px;
+    top: 11px;
+  }
 }

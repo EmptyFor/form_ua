@@ -41,18 +41,6 @@ export class MultiplySearchSelect extends Component {
         }
     }
 
-    selectItems = [
-        "Aкціонерне товариство",
-        "Aсоціація",
-        "Благодійна асоціація",
-        "Виробничий підрозділ",
-        "Гаражний кооператив",
-        "Господарські товариства",
-        "Громадська організація",
-        "Житлово-будівельний кооператив",
-        "Концерн",
-        "Кооператив",
-    ]
     value = []
     selectedItems = []
 
@@ -381,8 +369,7 @@ export class MultiplySearchSelect extends Component {
 
         //Clear styles
         let select = document.getElementById(this.props.id)
-        let listItem = select.childNodes[2].childNodes
-
+        let listItem = select.childNodes[1].childNodes[1]
         for (let i = 0; i < listItem.length; i++) {
             let value = listItem[i].getAttribute('value')
             let checkBoxClasses = listItem[i].childNodes[1].classList

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
+import * as FormData from 'form-data';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
@@ -105,71 +106,72 @@ export class UloadField extends Component {
     }
 
     sendFiles = (file) => {
-    let maxFileSize = 5242880000;
-    let Data = new FormData();
+        let maxFileSize = 5242880000;
+        let form = new FormData();
 
-    if (file.size <= maxFileSize && file.type === "image/png" || file.type === "image/jpeg") {
-        Data.set('image', file)
-        this.props.actions.setDocumentPhoto(Data.get('image'))
+        if (file.size <= maxFileSize && file.type === "image/png" || file.type === "image/jpeg") {
+            form.append('image', file)
+            console.log(form.get('image'))
+            this.props.actions.setDocumentPhoto(form)
+        }
+
+        // console.log(file)
+
+        // if ((file[0].size <= maxFileSize) && ((file[0].type == 'image/png') || (file[0].type == 'image/jpeg'))) {
+        //     Data.append('images[]', file[0]);
+
+        //     console.log(file)
+        // }
+    };
+
+    //Init handle func
+    componentDidMount() {
+        this.dragCounter = 0
+        let div = this.dropRef.current
+        div.addEventListener('dragenter', this.handleDragIn)
+        div.addEventListener('dragleave', this.handleDragOut)
+        div.addEventListener('dragover', this.handleDrag)
+        div.addEventListener('drop', this.handleDrop)
+    }
+    componentWillUnmount() {
+        let div = this.dropRef.current
+        div.removeEventListener('dragenter', this.handleDragIn)
+        div.removeEventListener('dragleave', this.handleDragOut)
+        div.removeEventListener('dragover', this.handleDrag)
+        div.removeEventListener('drop', this.handleDrop)
     }
 
-    // console.log(file)
+    clearValue = () => {
+        let uploadContainer = document.getElementById('upload-container')
+        let img = this.imageRef.current
+        let uploadInfo = this.uploadInfoRef.current
+        this.setState({
+            image: {
+                src: ulpoad_img
+            }
+        })
+        this.props.actions.setDocumentPhoto('')
+        img.style.width = '51px'
+        uploadContainer.style.padding = '5%'
+        uploadInfo.style.display = 'flex'
+    }
 
-    // if ((file[0].size <= maxFileSize) && ((file[0].type == 'image/png') || (file[0].type == 'image/jpeg'))) {
-    //     Data.append('images[]', file[0]);
+    componentWillReceiveProps(nextProps) {
+        nextProps.clear ? this.clearValue() : void 0
+    }
 
-    //     console.log(file)
-    // }
-};
-
-//Init handle func
-componentDidMount() {
-    this.dragCounter = 0
-    let div = this.dropRef.current
-    div.addEventListener('dragenter', this.handleDragIn)
-    div.addEventListener('dragleave', this.handleDragOut)
-    div.addEventListener('dragover', this.handleDrag)
-    div.addEventListener('drop', this.handleDrop)
-}
-componentWillUnmount() {
-    let div = this.dropRef.current
-    div.removeEventListener('dragenter', this.handleDragIn)
-    div.removeEventListener('dragleave', this.handleDragOut)
-    div.removeEventListener('dragover', this.handleDrag)
-    div.removeEventListener('drop', this.handleDrop)
-}
-
-clearValue = () => {
-    let uploadContainer = document.getElementById('upload-container')
-    let img = this.imageRef.current
-    let uploadInfo = this.uploadInfoRef.current
-    this.setState({
-        image: {
-            src: ulpoad_img
-        }
-    })
-    this.props.actions.setDocumentPhoto('')
-    img.style.width = '51px'
-    uploadContainer.style.padding = '5%'
-    uploadInfo.style.display = 'flex'
-}
-
-componentWillReceiveProps(nextProps) {
-    nextProps.clear ? this.clearValue() : void 0
-}
-
-render() {
-    return (
-        <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} >
-            <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
-            <div className="upload_info" ref={this.uploadInfoRef}>
-                <input id="file-input" type="file" name="file" onChange={this.onInputChange} multiple></input>
-                <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
-                <label htmlFor="file-input">Завантажити</label>
-            </div>
-        </form>
-    );
-}
+    render() {
+        return (
+            <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} encType="multipart/form-data" >
+                <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
+                <div className="upload_info" ref={this.uploadInfoRef}>
+                    <input id="file-input" type="file" name="file" onChange={this.onInputChange} multiple></input>
+                    <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
+                    <label htmlFor="file-input">Завантажити</label>
+                </div>
+            </form>
+        );
+    }
 }
 
 export default connect(
