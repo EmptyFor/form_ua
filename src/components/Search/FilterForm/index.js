@@ -22,8 +22,8 @@ class FilterForm extends Component {
     city: '',
     region: '',
     tax_form: '',
-    price_from: 0,
-    price_to: 0,
+    price_from: false,
+    price_to: false,
     pda: false,
     license: [],
     have_activity: false,
@@ -48,6 +48,7 @@ class FilterForm extends Component {
     search_args = search_args.join('&')
 
     this.props.actions.setSearchArgs(search_args)
+    console.log(search_args)
   }
 
   setMainPageFormInfo = (e) => {
@@ -95,6 +96,20 @@ class FilterForm extends Component {
 
   clearAllFields = () => {
     this.props.actions.clearAllInfo(true)
+    this.setState({
+      legal_form: '',
+      kved_code: '',
+      kved_name: '',
+      city: '',
+      region: '',
+      tax_form: '',
+      price_from: false,
+      price_to: false,
+      pda: false,
+      license: [],
+      have_activity: false,
+      no_debt: false
+    })
     setTimeout(() => {
       this.props.actions.clearAllInfo(false)
     }, 100);
@@ -115,6 +130,7 @@ class FilterForm extends Component {
       pda: pda
     })
     this.sendSearchData()
+    this.sendSearchArgs()
   }
 
   render() {

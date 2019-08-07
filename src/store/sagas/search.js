@@ -22,7 +22,8 @@ export function* getCurrentPagePosts(current_page) {
 }
 
 export function* getFoundPagePosts(search_args) {
-    const token = yield localStorage.getItem('firm-token');
+    const token = yield localStorage.getItem('firm-token')
+    console.log(search_args);
     const options = {
         headers: { "Authorization": `Bearer ${token}` }
     }

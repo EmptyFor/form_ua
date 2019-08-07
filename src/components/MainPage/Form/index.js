@@ -25,9 +25,9 @@ export class Form extends Component {
         city: '',
         region: '',
         tax_form: '',
-        price_from: 0,
-        price_to: 0,
-        pda: false
+        price_from: '',
+        price_to: '',
+        pda: false,
     }
 
     setSearchData = (e) => {
@@ -59,25 +59,22 @@ export class Form extends Component {
     sendSearchData = () => {
         const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda } = this.state
 
-        if (legal_form &&
-            kved_name &&
-            city &&
-            region &&
-            tax_form &&
-            price_from.length > 0 &&
-            price_to > 0
+        if (legal_form ||
+            kved_name ||
+            city ||
+            region ||
+            tax_form
         ) {
             this.props.actions.setMainPageFormInfo(legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda)
             localStorage.setItem('formData', {
 
             })
-            console.log(this.props)
+            this.searchLink = 'active'
         }
     }
 
     render() {
         this.sendSearchData()
-        console.log(this.props)
         return (
 
             <div className='wrapp' >
@@ -158,13 +155,13 @@ export class Form extends Component {
                         />
                     </div>
 
-                    <Link to={'/'} className='common_btn_link' style={{ gridColumn: 'span 3' }}>
+                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 3' }}>
                         <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 
 
-                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
+                    <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
                         <Button
                             className='find'
                             text='Знайти'
