@@ -42,7 +42,7 @@ class Modal extends Component {
                     <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
                         Очікуйте дзвінків від покупців.
                 </p>
-                    <Button onClick={this.handleCheckAdvert} width="40%" text="Переглянути" />
+                    <Link  className='common_btn_link' to={links.details}><Button onClick={this.handleCheckAdvert} width="40%" text="Переглянути" /></Link>
                 </div>
             </div>
         );

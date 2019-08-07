@@ -62,7 +62,7 @@ export class Login extends Component {
     return (
 
       <div className="login_page">
-        <img alt="" src={logo_login}></img>
+        <Link to={links.home}><img alt="" src={logo_login}></img></Link>
         <div className={`login_modal_form ${errClass}`} style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
           <form ref='logForm' onKeyPress={this.handleEnter} >

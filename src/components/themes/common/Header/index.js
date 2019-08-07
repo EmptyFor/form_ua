@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateAdvertBtn from '../../../common/CreateAdvertBtn';
@@ -10,10 +9,11 @@ import * as actions from '../../../../store/actions/user'
 import { logout } from '../../../../store/actions/authorise'
 import { bindActionCreators } from 'redux';
 import { getInfo, getToken } from '../../../../store/helpers/localStorage'
+import { Redirect } from 'react-router-dom';
 
 class Header extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.token = getToken();
     this.id = getInfo()
@@ -24,7 +24,7 @@ class Header extends Component {
   }
 
   componentDidMount = () => {
-    if(this.token){
+    if (this.token) {
       this.props.actions.getUserId(this.id)
     }
   }

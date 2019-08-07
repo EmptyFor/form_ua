@@ -16,7 +16,6 @@ let pagesLength;
 class SearchResult extends Component {
 
     state = {
-        visiblePagination: 'visibility',
         currentPage: 1,
         disPrev: true,
         disNext: false,
@@ -99,7 +98,7 @@ class SearchResult extends Component {
 
 
     render() {
-        const { disPrev, disNext, colorNext, colorPrev, visiblePagination, currentPage } = this.state;
+        const { disPrev, disNext, colorNext, colorPrev, currentPage } = this.state;
         const { data } = this.props.data
         let paginationPageCounter, dynamicWidth;
 
@@ -163,11 +162,9 @@ class SearchResult extends Component {
                         {this.renderAdverts(data.posts)}
                     </div>
 
-
-                    <div className="pagination_div" style={{ visibility: visiblePagination }}>
-                        <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
-
                         {/* Pagination counting */}
+                    <div className="pagination_div">
+                        <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
                         <div className="pagination_count" style={{ width: dynamicWidth }} >
                             {paginationPageCounter}
                         </div>

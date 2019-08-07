@@ -8,7 +8,9 @@ import CreateAdvertBtn from '../../common/CreateAdvertBtn';
 import description_img_1 from '../../../assets/images/icon-1@2x.png';
 import description_img_2 from '../../../assets/images/icon-2@2x.png';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
+
 export class Info extends Component {
+
 
     render() {
         return (
@@ -69,15 +71,15 @@ export class Info extends Component {
                                 відділяють тебе від бажаного.
                              </p>
                         </div>
-                        </div>
                     </div>
                 </div>
+            </div>
 
-                );
-            }
-        }
-        
-        export default connect(
+        );
+    }
+}
+
+export default connect(
     // (state) => ({}),
     // dispatch => ({
     //                 // actions: bindActionCreators(actions, dispatch)

@@ -5,10 +5,20 @@ export const getUserId = (id) => ({
     id
 });
 
-export const getUserInfo = (data) => ({
+export const getUserInfo = (user) => ({
     type: types.GET_USER_INFO,
-    data
+    user
 });
+
+export const getProfileInfo = (current_page) => ({
+    type: types.GET_PROFILE_INFO,
+    current_page
+})
+
+export const setProfileInfo = (data) => ({
+    type: types.SET_PROFILE_INFO,
+    data
+})
 
 export const setError = (error) => ({
     type: types.SET_ERROR,
