@@ -4,4 +4,6 @@ export const OWNER_INFO = 'OWNER_INFO';
 export const DOCUMENT_PHOTO = 'DOCUMENT_PHOTO';
 export const SEND_ADVERT_DATA = 'SEND_ADVERT_DATA';
 export const CLEAR_FORM = 'CLEAR_FORM';
+export const GET_STATUS_RESPONSE = 'GET_STATUS_RESPONSE';
+export const SET_CLEAR_STATUS = 'SET_CLEAR_STATUS';
 export const SET_ERROR = 'SET_ERROR';

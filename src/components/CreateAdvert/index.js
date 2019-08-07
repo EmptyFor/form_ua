@@ -10,21 +10,25 @@ import AdditionlInfo from './AdditionlInfo';
 import OwnerInfo from './OwnerInfo';
 import FormFooter from './FormFooter';
 import '../CreateAdvert/style.modules.scss';
-import '../CreateAdvert/style.modules.media.scss';
+import Modal from '../common/Modal'
+
 
 export class CreateAdvert extends Component {
 
-
     render() {
-
+        let post;
+        if (this.props.response.data) {
+          post  = this.props.response.data.data.post;
+        }
         return (
             <Fragment>
+                {this.props.status ? <Modal status={this.props.status} advertid={post.id} /> : null}
                 <Header className="header" fix={true} />
                 <div className="ca_bg">
                     <div className="form_bg">
                         <FormHeader />
                         <div className="form_content_bg">
-                            <GeneralInfo  />
+                            <GeneralInfo />
                             <AdditionlInfo />
                             <OwnerInfo />
                         </div>
@@ -37,7 +41,10 @@ export class CreateAdvert extends Component {
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        response: state.advert.response,
+        status: state.advert.status,
+    }),
     dispatch => ({
         // actions: bindActionCreators(actions, dispatch)
     })

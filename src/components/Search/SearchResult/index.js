@@ -29,7 +29,7 @@ class SearchResult extends Component {
         this.props.actions.postCurrentPage(this.state.currentPage)
     }
 
-    // Set and calculate count of pages on pagination
+    // Method of changes current - page
 
     getCurrentPageNumber = e => {
         this.setState({
@@ -64,8 +64,9 @@ class SearchResult extends Component {
     }
 
 
-    //RENDER ALL CONTENT ON PAGE
+    //Function for rendering adverts
     renderAdverts = (posts) => {
+        
         if (posts.length === 0) {
             return <img className="search_adverts_nodata_img" src={nodata}></img>
         } else {
@@ -74,19 +75,19 @@ class SearchResult extends Component {
                     console.log(item)
                     return (
                         // <Link to={links.details} >
-                            <Fragment key={i}>
-                                <Advert
-                                    advertid={item.id}
-                                    orgName={`${item.name}`}
-                                    ispda={`${item.pda + ''}`}
-                                    createDate={`від ${item.registered_at}`}
-                                    cityPlace={`${item.city}`}
-                                    fullPrice={`${item.price} $`}
-                                    about={`${item.owner_data}`}
-                                    image={`${item.image.url}`}
-                                />
-                                <div className='line'></div>
-                            </Fragment>
+                        <Fragment key={i}>
+                            <Advert
+                                advertid={item.id}
+                                orgName={`${item.name}`}
+                                ispda={`${item.pda + ''}`}
+                                createDate={`від ${item.registered_at}`}
+                                cityPlace={`${item.city}`}
+                                fullPrice={`${item.price} $`}
+                                about={`${[item.kved_name, ...item.extra_kved_name].join('; ')}`}
+                                image={`${item.image.url}`}
+                            />
+                            <div className='line'></div>
+                        </Fragment>
                         // </Link>
                     )
                 })
@@ -95,16 +96,12 @@ class SearchResult extends Component {
         }
 
     }
-    //RENDER ALL CONTENT ON PAGE
 
 
     render() {
         const { disPrev, disNext, colorNext, colorPrev, visiblePagination, currentPage } = this.state;
         const { data } = this.props.data
         let paginationPageCounter, dynamicWidth;
-
-        console.log(currentPage)
-        console.log(data)
 
         if (data) {
             let numersOfPages = [];
@@ -157,12 +154,15 @@ class SearchResult extends Component {
         return (
             <Fragment>
                 {!data ? <p className="results_preloader">Зачекайте...</p> : <div className='results_list'>
+                    < div className="results_content">
+                        {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
+                            {`(${data.total})`}
+                        </span></div> : null}
 
-                    {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
-                        {`(${data.total})`}
-                    </span></div> : null}
 
-                    {this.renderAdverts(data.posts)}
+                        {this.renderAdverts(data.posts)}
+                    </div>
+
 
                     <div className="pagination_div" style={{ visibility: visiblePagination }}>
                         <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>

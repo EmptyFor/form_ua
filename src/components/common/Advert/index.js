@@ -23,8 +23,7 @@ class Advert extends Component {
     }
 
     handleClick = () => {
-        const { advertid } = this.props
-        console.log(this.props)
+        const { advertid } = this.props;
         this.props.searchActions.getAdvertDetails(advertid)
     }
 
@@ -37,9 +36,8 @@ class Advert extends Component {
                     <div className="minor_info_advert" advertid={this.props.advertid}>
                         <span className="ispda_advert" ispda={this.props.ispda}>{this.state.text}</span>
                         {this.props.ispda ? <span className="ispda_confirmation"><span style={{top:'-10%',left:'37%', position: 'absolute', transform: `rotate(-133deg) scale(-1, 1)` }}>˥</span></span> : null}
-                        <span className="circle_advert"></span>
-                        <span className="date_advert"> 	{this.props.createDate}</span>
-                        <span className="circle_advert"></span>
+                        <span className="date_advert"> 	&bull;	 {this.props.createDate} &bull;	</span>
+
                         <span className="place_advert">{this.props.cityPlace}</span>
                     </div>
                     <p>{this.props.about}</p>

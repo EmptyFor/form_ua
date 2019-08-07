@@ -21,7 +21,9 @@ const initState = {
     capital: 0,
     owner_data: '',
     tel: [],
-    clear: false
+    clear: false,
+    response: [],
+    status:''
 }
 
 export default (state = initState, action) => {
@@ -66,6 +68,20 @@ export default (state = initState, action) => {
                 ...state,
                 clear: action.clear
             }
+            
+            case types.GET_STATUS_RESPONSE:
+            return {
+                ...state,
+                response: action.response,
+                status: action.status
+            }
+
+            case types.SET_CLEAR_STATUS:
+            return {
+                ...state,
+                status: action.clearStatus
+            }
+
         default:
             return state
     }

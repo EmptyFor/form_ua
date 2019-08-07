@@ -43,7 +43,7 @@ body {
 
   .details_main_info {
     display: flex;
-    height: 86.2%;
+    height: auto;
     padding: 5%;
     flex-direction: column;
 
@@ -121,9 +121,9 @@ body {
     }
 
     .details_main_info_footer {
-      height: 10%;
+      height: 5%;
       margin-block-start: 5%;
-      margin-block-end: -2%;
+      // margin-block-end: -5%;
       display: flex;
      
       label{

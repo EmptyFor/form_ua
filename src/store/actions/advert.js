@@ -63,6 +63,17 @@ export const clearAllInfo = (clear) => ({
     clear
 })
 
+export const getStatusResponse = (response,status) => ({
+    type: types.GET_STATUS_RESPONSE,
+    response,
+    status
+})
+
+export const setClearStatus = (clearStatus) => ({
+    type: types.SET_CLEAR_STATUS,
+    clearStatus
+})
+
 export const setError = (error) => ({
     type: types.SET_ERROR,
     error
