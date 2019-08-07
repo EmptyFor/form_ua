@@ -2,8 +2,8 @@ import * as types from '../types/search';
 // import { stat } from 'fs';
 
 const initState = {
-    price_from: 0,
-    price_to: 0,
+    price_from: '',
+    price_to: '',
     legal_form: '',
     kved_code: '',
     kved_name: '',

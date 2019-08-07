@@ -24,6 +24,7 @@ class Advert extends Component {
 
     handleClick = () => {
         const { advertid } = this.props
+        console.log(this.props)
         this.props.searchActions.getAdvertDetails(advertid)
     }
 

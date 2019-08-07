@@ -71,21 +71,22 @@ class SearchResult extends Component {
         } else {
             return (
                 posts.map((item, i) => {
+                    console.log(item)
                     return (
                         // <Link to={links.details} >
-                        <Fragment key={i}>
-                            <Advert
-                                advertid={item.id}
-                                orgName={`${item.name}`}
-                                ispda={`${item.pda + ''}`}
-                                createDate={`від ${item.registered_at}`}
-                                cityPlace={`${item.city}`}
-                                fullPrice={`${item.price} $`}
-                                about={`${item.owner_data}`}
-                                image={`${item.image.url}`}
-                            />
-                            <div className='line'></div>
-                        </Fragment>
+                            <Fragment key={i}>
+                                <Advert
+                                    advertid={item.id}
+                                    orgName={`${item.name}`}
+                                    ispda={`${item.pda + ''}`}
+                                    createDate={`від ${item.registered_at}`}
+                                    cityPlace={`${item.city}`}
+                                    fullPrice={`${item.price} $`}
+                                    about={`${item.owner_data}`}
+                                    image={`${item.image.url}`}
+                                />
+                                <div className='line'></div>
+                            </Fragment>
                         // </Link>
                     )
                 })
@@ -167,7 +168,7 @@ class SearchResult extends Component {
                         <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
 
                         {/* Pagination counting */}
-                        <div className="pagination_count" style={{ width: dynamicWidth }}>
+                        <div className="pagination_count" style={{ width: dynamicWidth }} >
                             {paginationPageCounter}
                         </div>
                         <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
@@ -184,7 +185,7 @@ class SearchResult extends Component {
 export default connect(
     (state) => ({
         legal_form: state.search.legal_form,
-        data:state.search.data
+        data: state.search.data
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

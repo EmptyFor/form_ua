@@ -10,6 +10,7 @@ import AdditionlInfo from './AdditionlInfo';
 import OwnerInfo from './OwnerInfo';
 import FormFooter from './FormFooter';
 import '../CreateAdvert/style.modules.scss';
+import '../CreateAdvert/style.modules.media.scss';
 
 export class CreateAdvert extends Component {
 

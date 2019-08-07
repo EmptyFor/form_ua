@@ -13,8 +13,7 @@ export class CheckBox extends Component {
     }
 
     clearValue = () => {
-        let checkMar = document.getElementById(this.props.id).getElementsByTagName('input')
-        checkMar[0].checked = false
+        this.value = false
     }
 
     componentWillMount() {

@@ -22,7 +22,8 @@ export function* getCurrentPagePosts(current_page) {
 }
 
 export function* getFoundPagePosts(search_args) {
-    const token = yield localStorage.getItem('firm-token');
+    const token = yield localStorage.getItem('firm-token')
+    console.log(search_args);
     const options = {
         headers: { "Authorization": `Bearer ${token}` }
     }
@@ -40,25 +41,28 @@ export function* getFoundPagePosts(search_args) {
 }
 
 export function* getAdvertDetailsInfo(advertid) {
-    // const token = yield localStorage.getItem('firm-token');
-    // const options = {
-    //     headers: { "Authorization": `Bearer ${token}` }
-    // }
-    // try {
-    //     const info = yield axios.get(`${baseURL}/ru/api/v1/posts/${advertid}`, options)
-    //         .then(response => {
-    //             return response.data;
-    //         })
-    //     yield put(actions.setAdvertDetails(info))
-    // } catch (error) {
-    //     yield put(actions.setError(error.message));
-    // }
+    const token = yield localStorage.getItem('firm-token');
+    const options = {
+        headers: { "Authorization": `Bearer ${token}` }
+    }
+    try {
+        const info = yield axios.get(`${baseURL}/ru/api/v1/posts/${advertid}`, options)
+        console.log(info)
+            .then(response => {
+                console.log(response.data)
+                return response.data;
+            })
+        yield put(actions.setAdvertDetails(info))
+    } catch (error) {
+        yield put(actions.setError(error.message));
+    }
 }
 
 export default function* () {
     yield all([
         yield takeEvery(types.POST_CURRENT_PAGE, ({ current_page }) => getCurrentPagePosts(current_page)),
-        yield takeEvery(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args))
+        yield takeEvery(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args)),
+        yield takeEvery(types.SET_ADVERT_DETAILS, ({ info }) => getAdvertDetailsInfo(info))
     ])
 }
 
