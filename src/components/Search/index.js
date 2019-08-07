@@ -23,7 +23,7 @@ class Search extends Component {
         <div className='short_wrapp' >
         <img className="image_bg" alt="" src={triangle_bg}></img>
           <FilterForm />
-          <SearchResult inform = {this.props.data}/>
+          <SearchResult />
         </div>
       </Fragment>
     )

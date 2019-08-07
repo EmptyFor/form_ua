@@ -3,19 +3,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 40px;
-  background-image: linear-gradient(to top, rgba(111, 134, 214, 0.16), rgba(72, 198, 239, 0));
+  // background-image: linear-gradient(to top, rgba(111, 134, 214, 0.16), rgba(72, 198, 239, 0));
+  background-image: url('../../assets/images/triangle_bg.png');
   padding: 100px 7%;
   background-color: #efeff6;
   margin: 0 auto;
-  height: 160vh;
-  .image_bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 125vh;
-    z-index: -1;
-  }
+  height: 175vh;
 }
 .menu_fix {
   top: 0;

@@ -7,7 +7,6 @@ import axios from 'axios'
 
 export function* getUserInfoSaga(id) {
     const token = yield localStorage.getItem('firm-token')
-    console.log(token)
     try {
         const { user } = yield axios.get(`${baseURL}/ru/api/v1/users/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {

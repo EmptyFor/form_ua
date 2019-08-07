@@ -32,10 +32,12 @@ export function* advert(name, code, price, image, legal_form, kved_code, kved_na
     }
 
     try {
-        yield axios({ method: 'post', url:`${baseURL}ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
+        const response = yield axios({ method: 'post', url: `${baseURL}ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
             .then(response => {
-                return console.log(response);
+                return response;
             })
+        yield put(actions.getStatusResponse(response, response.status));
+
     } catch (error) {
         yield put(actions.setError(error.message));
         // yield removeToken();

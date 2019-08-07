@@ -11,7 +11,7 @@ export const Footer = () => ({
         return (
             <footer>
 
-                <Link to='/'> <div className="footer_logo"><img src={logo_footer} alt="#"></img></div></Link>
+             <div className="footer_logo"><img src={logo_footer} alt="#"></img></div>
                 <div className="footer_texts">
                     <div className="footer_links"><a href="/">Партнерам</a> | <a href="/">Політика конфіденційності </a>| <a href="/">Часті запитання</a></div>
                     <span>(c) firm.ua 2019 всі права захищені </span>
