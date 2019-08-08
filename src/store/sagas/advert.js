@@ -8,30 +8,6 @@ import { getToken } from '../helpers/localStorage';
 import axios from 'axios'
 
 export function* advert(data) {
-    let post = {'post':data}
-    console.log(post)
-    // const data = {
-    //     name,
-    //     code,
-    //     price,
-    //     image,
-    //     legal_form,
-    //     kved_code,
-    //     kved_name,
-    //     extra_kved_name,
-    //     tax_form,
-    //     license,
-    //     city,
-    //     region,
-    //     registered_at,
-    //     pda,
-    //     have_activity,
-    //     no_debt,
-    //     capital,
-    //     owner_data,
-    //     tel
-    // }
-
     try {
         let selt = this
         const response = yield axios({ method: 'post', url: `${baseURL}ua/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })

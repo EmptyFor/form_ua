@@ -129,7 +129,7 @@ export class Profile extends Component {
                   cityPlace={item.city}
                   fullPrice={`${item.price} ₴`}
                   about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
-                  image={document}
+                  image={item.image.url}
                 />
               </Link>
               <div className="advert_action_bar">
