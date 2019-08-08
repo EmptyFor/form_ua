@@ -168,7 +168,7 @@ export class SearchSelect extends Component {
         // })
         // this.closeSelectStyle()
         let value = this.state.value
-        if (value !== "") {
+        if (value !== "" && !this.state.isOpen) {
             this.setState(prevState => ({
                 style: {
                     ...prevState.style,

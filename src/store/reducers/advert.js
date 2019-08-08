@@ -5,7 +5,7 @@ const initState = {
     name: '',
     code: 0,
     price: 0,
-    image: undefined,
+    image: '',
     legal_form: '',
     kved_code: '',
     kved_name: '',

@@ -58,18 +58,6 @@ export class CommonSelect extends Component {
 
     closeSelectStyle = () => {
         let value = this.state.value
-        this.setState(prevState => ({
-            isOpen: false,
-            togleClass: 'close',
-            style: {
-                ...prevState.style,
-                select: {
-                    borderRadius: '30px',
-                    border: 'solid 1px #b1a7c8',
-                    zIndex: 1
-                },
-            }
-        }))
         if (this.props.required) {
             if (value.length > 0) {
                 this.setState(prevState => ({
@@ -79,7 +67,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #b1a7c8',
+                            border: 'solid 1px #1ccee9',
                             zIndex: 1
                         },
                     }
@@ -110,8 +98,7 @@ export class CommonSelect extends Component {
                         ...prevState.style,
                         select: {
                             borderRadius: '30px',
-                            border: 'solid 1px #b1a7c8',
-                            borderColor: '#1ccee9',
+                            border: 'solid 1px #1ccee9',
                             zIndex: 1
                         },
                     }

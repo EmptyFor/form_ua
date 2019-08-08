@@ -111,8 +111,8 @@ export class UloadField extends Component {
 
         if (file.size <= maxFileSize && file.type === "image/png" || file.type === "image/jpeg") {
             form.append('image', file)
-            console.log(form.get('image'))
-            this.props.actions.setDocumentPhoto(form)
+            console.log(form)
+            this.props.actions.setDocumentPhoto(file)
         }
 
         // console.log(file)

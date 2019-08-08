@@ -6,17 +6,6 @@ import './style.modules.scss';
 // import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Radiobutton extends Component {
 
-    value = ''
-
-    selectRadio = () => {
-        let radio = document.getElementById(this.props.id).getElementsByTagName('input')
-        for (let i = 0; i < radio.length; i++) {
-            if (radio[i].checked === true) {
-                this.value = radio[i].value
-            }
-        }
-    }
-
     radiobuttons = this.props.options.map((item, index) => {
         return (
             <label

@@ -7,32 +7,34 @@ import { baseURL } from '../../core/constants/baseURL';
 import { getToken } from '../helpers/localStorage';
 import axios from 'axios'
 
-export function* advert(name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel) {
-
-    const data = {
-        name,
-        code,
-        price,
-        image,
-        legal_form,
-        kved_code,
-        kved_name,
-        extra_kved_name,
-        tax_form,
-        license,
-        city,
-        region,
-        registered_at,
-        pda,
-        have_activity,
-        no_debt,
-        capital,
-        owner_data,
-        tel
-    }
+export function* advert(data) {
+    let post = {'post':data}
+    console.log(post)
+    // const data = {
+    //     name,
+    //     code,
+    //     price,
+    //     image,
+    //     legal_form,
+    //     kved_code,
+    //     kved_name,
+    //     extra_kved_name,
+    //     tax_form,
+    //     license,
+    //     city,
+    //     region,
+    //     registered_at,
+    //     pda,
+    //     have_activity,
+    //     no_debt,
+    //     capital,
+    //     owner_data,
+    //     tel
+    // }
 
     try {
-        const response = yield axios({ method: 'post', url: `${baseURL}ru/api/v1/posts/`, headers: { "Authorization": `Bearer ${getToken()}` }, data })
+        let selt = this
+        const response = yield axios({ method: 'post', url: `${baseURL}ru/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })
             .then(response => {
                 console.log(response)
                 return response;
@@ -50,7 +52,6 @@ export default function* () {
         name,
         code,
         price,
-        image,
         legal_form,
         kved_code,
         kved_name,
@@ -65,13 +66,14 @@ export default function* () {
         no_debt,
         capital,
         owner_data,
-        tel
+        tel,
+        image,
+        data
     }) =>
         advert(
             name,
             code,
             price,
-            image,
             legal_form,
             kved_code,
             kved_name,
@@ -86,6 +88,8 @@ export default function* () {
             no_debt,
             capital,
             owner_data,
-            tel
+            tel,
+            image,
+            data
         ))
 }

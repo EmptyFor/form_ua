@@ -50,7 +50,6 @@ export class GeneralInfo extends Component {
     }
 
     render() {
-        console.log(this.state)
         console.log(this.props)
         this.sendGeneralInfoData()
         return (
@@ -68,6 +67,7 @@ export class GeneralInfo extends Component {
                         className="text_area"
                         placeholder="Введіть назву організації"
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -80,6 +80,7 @@ export class GeneralInfo extends Component {
                         className="input"
                         placeholder="Введіть восьмизначний код"
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -92,6 +93,7 @@ export class GeneralInfo extends Component {
                         className="input"
                         placeholder="Ведіть ціну в гривнях"
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
