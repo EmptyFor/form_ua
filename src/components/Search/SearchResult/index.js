@@ -82,7 +82,7 @@ class SearchResult extends Component {
                                 cityPlace={`${item.city}`}
                                 fullPrice={`${item.price} ₴`}
                                 about={`${[item.kved_name, ...item.extra_kved_name].join('; ')}`}
-                                image={`http://firm-ua.com:3000${item.image.url}`}
+                                image={`${item.image.url}`}
                             />
                             <div className='line'></div>
                         </Fragment>

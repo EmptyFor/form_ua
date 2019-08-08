@@ -94,7 +94,8 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Господарська діяльність</label>
-                                    <span className="details_values_list">{data.post.have_activity || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
+                                    <span className="details_values_list">{data.post.have_activity === true ? 'Вела/веде господарську діяльнасть' :
+                                    data.post.have_activity === false ? 'НЕ вела/веде господарську діяльність' : <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >

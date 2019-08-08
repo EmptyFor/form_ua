@@ -16,7 +16,7 @@ export function* registrationSaga(first_name, phone, email, password) {
         password: password
     }
     try {
-        const { data }  = yield axios.post(`${baseURL}/ru/api/v1/users`, { user })
+        const { data }  = yield axios.post(`${baseURL}ua/api/v1/users`, { user })
             .then(response => {
                 return response.data;
             })

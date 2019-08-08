@@ -15,7 +15,7 @@ export function* authorise(email, password) {
   }
 
   try {
-    const { data } = yield axios.post(`${baseURL}ru/api/v1/log_in`, { user })
+    const { data } = yield axios.post(`${baseURL}ua/api/v1/log_in`, { user })
       .then(response => {
         return response;
       })

@@ -34,7 +34,7 @@ export function* advert(data) {
 
     try {
         let selt = this
-        const response = yield axios({ method: 'post', url: `${baseURL}ru/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })
+        const response = yield axios({ method: 'post', url: `${baseURL}ua/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })
             .then(response => {
                 console.log(response)
                 return response;
