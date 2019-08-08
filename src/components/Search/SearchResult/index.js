@@ -73,7 +73,6 @@ class SearchResult extends Component {
             return (
                 posts.map((item, i) => {
                     return (
-                        // <Link to={links.details} >
                         <Fragment key={i}>
                             <Advert
                                 advertid={item.id}
@@ -81,13 +80,12 @@ class SearchResult extends Component {
                                 ispda={`${item.pda + ''}`}
                                 createDate={`від ${item.registered_at}`}
                                 cityPlace={`${item.city}`}
-                                fullPrice={`${item.price} $`}
+                                fullPrice={`${item.price} ₴`}
                                 about={`${[item.kved_name, ...item.extra_kved_name].join('; ')}`}
                                 image={`${item.image.url}`}
                             />
                             <div className='line'></div>
                         </Fragment>
-                        // </Link>
                     )
                 })
 

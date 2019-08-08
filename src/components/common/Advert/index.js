@@ -6,6 +6,7 @@ import * as searchActions from '../../../store/actions/details'
 import links from '../../../config/links';
 import { Link } from 'react-router-dom';
 import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage'
+import { baseURL } from '../../../core/constants/baseURL'
 
 class Advert extends Component {
 
@@ -26,12 +27,12 @@ class Advert extends Component {
         this.props.searchActions.getAdvertDetails(advertid);
         const localPostId = getPostId();
 
-        if(advertid !== localPostId){
+        if (advertid !== localPostId) {
             removePostId();
             setPostId(advertid);
         }
-        
-        
+
+
     }
 
     render() {
@@ -54,7 +55,7 @@ class Advert extends Component {
                     </div>
                     <div className="right_side_advert">
                         <span className="fullprice_advert">{this.props.fullPrice}</span>
-                        <span className="image_document_advert"><img alt="" style={{ height: '100%', width: '100%' }} src={this.props.image}></img></span>
+                        <span className="image_document_advert"><img alt="" style={{ height: '100%', width: '100%' }} src={`${baseURL}${this.props.image}`}></img></span>
                     </div>
 
                 </div>

@@ -7,6 +7,7 @@ import './style.modules.scss';
 import document from '../../assets/images/spa.jpg';
 import { getPostId } from '../../store/helpers/localStorage'
 import ispdacheck from '../../assets/images/ispdacheck.svg'
+import { baseURL } from '../../core/constants/baseURL'
 export class AdvertDetails extends Component {
 
     constructor() {
@@ -36,7 +37,7 @@ export class AdvertDetails extends Component {
                                     <span className="details_main_info_head_contain_title">{data.post.name}</span>
                                     <span className="details_main_info_head_contain_price">{data.post.price} грн</span>
                                 </div>
-                                <div className="details_main_info_head_image"><img alt="" style={{ height: '100%', width: '100%' }} src={document}></img></div>
+                                <div className="details_main_info_head_image"><img alt="" style={{ height: '100%', width: '100%' }} src={baseURL + data.post.image}></img></div>
                             </div>
 
                             {/* Main Body */}
@@ -60,7 +61,7 @@ export class AdvertDetails extends Component {
                                         </ul>)
                                     })}*/}
 
-                                    <span className="details_values_list list"><span style={{color:'grey'}}>Не надано жодної інформації</span></span>
+                                    <span className="details_values_list list"><span style={{ color: 'grey' }}>Не надано жодної інформації</span></span>
                                 </div>
 
                                 <div className="details_body_item_list" >
@@ -88,23 +89,23 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Ліцензія</label>
-                                    <span className="details_values_list">{data.post.tax_form || <span style={{color:'grey'}}>Не надано жодної інформації</span>}</span>
+                                    <span className="details_values_list">{data.post.tax_form || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Господарська діяльність</label>
-                                    <span className="details_values_list">{data.post.have_activity || <span style={{color:'grey'}}>Не надано жодної інформації</span>}</span>
+                                    <span className="details_values_list">{data.post.have_activity || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Обтяження та заборгованість</label>
                                     <span className="details_values_list">{data.post.no_debt === true ? 'Присутні' :
-                                        data.post.no_debt === false ? 'Відсутні' : <span style={{color:'grey'}}>Не надано жодної інформації</span>}</span>
+                                        data.post.no_debt === false ? 'Відсутні' : <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Статутний капітал</label>
-                                    <span className="details_values_list" style={{ fontWeight: '800' }}> {data.post.capital || <span style={{color:'grey'}}>Не надано жодної інформації</span>} </span>
+                                    <span className="details_values_list" style={{ fontWeight: '800' }}> {data.post.capital || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>} </span>
                                 </div>
 
                                 {/* footer */}

@@ -127,7 +127,7 @@ export class Profile extends Component {
                   ispda={item.ispda}
                   createDate={`від ${item.registered_at}`}
                   cityPlace={item.city}
-                  fullPrice={`${item.price} $`}
+                  fullPrice={`${item.price} ₴`}
                   about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
                   image={document}
                 />
