@@ -27,10 +27,7 @@ class Modal extends Component {
         this.props.actions.setClearStatus(this.status)
     }
 
-    handleCheckAdvert = () => {
-        getAdvertDetails(this.advertid)
 
-    }
 
     render() {
         return (
@@ -42,7 +39,7 @@ class Modal extends Component {
                     <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
                         Очікуйте дзвінків від покупців.
                 </p>
-                    <Link  className='common_btn_link' to={links.details}><Button onClick={this.handleCheckAdvert} width="40%" text="Переглянути" /></Link>
+                    <Link  className='common_btn_link' to={links.details}><Button width="40%" text="Переглянути" /></Link>
                 </div>
             </div>
         );

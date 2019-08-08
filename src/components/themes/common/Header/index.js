@@ -13,19 +13,16 @@ import { Redirect } from 'react-router-dom';
 
 class Header extends Component {
 
-  constructor(props) {
-    super(props)
-    this.token = getToken();
-    this.id = getInfo()
-  }
 
   state = {
     isOpen: false,
   }
 
   componentDidMount = () => {
-    if (this.token) {
-      this.props.actions.getUserId(this.id)
+    const token = getToken();
+    const id = getInfo()
+    if (token) {
+      this.props.actions.getUserId(id)
     }
   }
 
@@ -51,6 +48,7 @@ class Header extends Component {
   render() {
     const { user } = this.props;
     const { isOpen } = this.state;
+    const token = getToken()
 
     return (
       <header className={`menu ${this.props.className}`} fix={this.props.fix}>
@@ -67,7 +65,7 @@ class Header extends Component {
           {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
           <div className={styles.profile}>
             {
-              this.props.token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+             token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
             }
 
             {isOpen ? <div className={styles.profile_dropdown}>
@@ -86,7 +84,7 @@ export default connect(
   (state) => ({
     token: state.auth.token,
     user: state.usr.user,
-    id: state.auth.id
+    id: state.auth.id,
   }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch),

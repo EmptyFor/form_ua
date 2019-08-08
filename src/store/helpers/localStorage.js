@@ -23,3 +23,18 @@ export const getInfo = () => {
 export const removeInfo = () => {
   return localStorage.removeItem('firm-id');
 }
+
+// id post
+export const setPostId = (advertid) => {
+  return localStorage.setItem('firm-post', advertid);
+
+} 
+
+export const getPostId = () => {
+  return localStorage.getItem('firm-post');
+}
+
+
+export const removePostId = () => {
+  return localStorage.removeItem('firm-post');
+}

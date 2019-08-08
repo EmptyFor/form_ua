@@ -29,7 +29,7 @@ body {
   }
   .profile_info {
     width: 30%;
-    height: 29vh;
+    height: 30%;
     background-color: #fff;
     .info_head {
       height: 8.7vh;
@@ -37,11 +37,19 @@ body {
     }
   }
   .profile_info_main_contain {
-    height: 48%;
+    // height: 48%;
     display: flex;
     justify-content: flex-start;
     padding: 8% 10%;
     flex-direction: column;
+
+    .profile_info_labels{
+
+      img{
+        width: 1.3em;
+        padding-right: 5%;
+      }
+    }
 
     span {
       margin-block-end: 8%;
@@ -152,6 +160,8 @@ body {
 }
 
 .profile_advert_hover:hover {
+  transition: 0.3s;
+  transform: scale(1.01);
   box-shadow: 0.5px 1.2px 10px #6b6b6b;
 }
 .pagination_count {

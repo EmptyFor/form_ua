@@ -45,7 +45,6 @@ export class Input extends Component {
         this.setState({
             value: value
         });
-        console.log(name)
         this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
 
         // name === 'EDRPOYCode' && value.length === 17 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' })

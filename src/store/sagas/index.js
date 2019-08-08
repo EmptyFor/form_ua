@@ -4,13 +4,16 @@ import registrationSaga from './registration';
 import advertSaga from './advert';
 import userSaga from './user'
 import getSearchPostsSaga from './search'
+import detailsSaga from './details'
+
 
 export default function* rootSaga() {
   yield all([
     fork(authoriseSaga),
     fork(registrationSaga),
     fork(advertSaga),
-    fork(userSaga),
-    fork(getSearchPostsSaga)
+    fork(userSaga), 
+    fork(getSearchPostsSaga),
+    fork(detailsSaga),
   ]);
 }

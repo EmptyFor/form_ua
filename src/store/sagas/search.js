@@ -11,12 +11,11 @@ export function* getCurrentPagePosts(current_page) {
         headers: { "Authorization": `Bearer ${token}` }
     }
     try {
-        const data = yield axios.get(`${baseURL}/ru/api/v1/posts?page=${current_page}`, options)
+        const posts = yield axios.get(`${baseURL}/ru/api/v1/posts?page=${current_page}`, options)
             .then(response => {
-                console.log('RSPONS', response)
                 return response.data;
             })
-        yield put(actions.getPagePosts(data))
+        yield put(actions.getPagePosts(posts))
     } catch (error) {
         yield put(actions.setError(error.message));
     }
@@ -39,26 +38,12 @@ export function* getFoundPagePosts(search_args) {
     }
 }
 
-export function* getAdvertDetailsInfo(advertid) {
-    const token = localStorage.getItem('firm-token');
-    const options = {
-        headers: { "Authorization": `Bearer ${token}` }
-    }
-    try {
-        const info = yield axios.get(`${baseURL}/ru/api/v1/posts/${advertid}`, options)
-            .then(response => {
-                return response.data;
-            })
-        yield put(actions.setAdvertDetails(info))
-    } catch (error) {
-    }
-}
+
 
 export default function* () {
     yield all([
-        yield takeEvery(types.POST_CURRENT_PAGE, ({ current_page }) => getCurrentPagePosts(current_page)),
-        yield takeEvery(types.GET_ADVERT_DETAILS, ({ advertid }) => getFoundPagePosts(advertid)),
-        yield takeEvery(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args)),
+        yield takeLatest(types.POST_CURRENT_PAGE, ({ current_page }) => getCurrentPagePosts(current_page)),
+        yield takeLatest(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args)),
     ])
 }
 

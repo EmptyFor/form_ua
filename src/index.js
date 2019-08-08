@@ -20,11 +20,8 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(< Provider store={store} >
-    <
-        Router history={history} >
-        <
-            Routes />
-        <
-    /Router> {" "} </Provider > ,
+    <Router history={history} >
+        <Routes />
+    </Router> {" "} </Provider >,
     document.getElementById("root")
 );

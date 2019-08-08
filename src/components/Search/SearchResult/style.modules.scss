@@ -14,7 +14,7 @@
   a:link {
     color: #28252f;
   }
-  .common_advert:hover{
+  .common_advert:hover {
     transition: 0.3s;
     transform: scale(1.01);
     box-shadow: 0.5px 1.2px 10px #6b6b6b;
@@ -53,7 +53,6 @@
     }
 
     .pagination_div {
-
       height: 6vh;
       display: flex;
       align-items: center;
@@ -100,9 +99,9 @@
 }
 
 .search_adverts_nodata_img {
-  width: 50%;
-  height: 20%;
-  padding-top: 15%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
   margin: 0 auto;
 }
 .results_preloader {

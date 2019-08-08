@@ -153,7 +153,6 @@ export class SearchSelect extends Component {
     //Togle Select List
 
     togleSelectList = (e) => {
-        console.log(e.target)
         e.target.getAttribute('id') !== 'searchInput' ? this.togleIsOpenState() : void 0
         this.state.isOpen && e.target.getAttribute('id') !== 'searchInput' ? this.closeSelectStyle() : this.openSelectStyle()
     }
@@ -259,7 +258,6 @@ export class SearchSelect extends Component {
     }
 
     render() {
-        console.log(kved.sections[0])
         return (
             <div id={this.props.id}
                 name={this.props.name}

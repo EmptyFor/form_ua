@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import links from '../../../config/links';
 import document from '../../../assets/images/spa.jpg'
 import nodata from '../../../assets/images/nodata.png'
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -65,13 +66,12 @@ class SearchResult extends Component {
 
     //Function for rendering adverts
     renderAdverts = (posts) => {
-        
+
         if (posts.length === 0) {
             return <img className="search_adverts_nodata_img" src={nodata}></img>
         } else {
             return (
                 posts.map((item, i) => {
-                    console.log(item)
                     return (
                         // <Link to={links.details} >
                         <Fragment key={i}>
@@ -162,14 +162,14 @@ class SearchResult extends Component {
                         {this.renderAdverts(data.posts)}
                     </div>
 
-                        {/* Pagination counting */}
-                    <div className="pagination_div">
+                    {/* Pagination counting */}
+                    {pagesLength <= 1 ? null : <div className="pagination_div">
                         <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
                         <div className="pagination_count" style={{ width: dynamicWidth }} >
                             {paginationPageCounter}
                         </div>
                         <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
-                    </div>
+                    </div>}
                 </div>
 
                 }

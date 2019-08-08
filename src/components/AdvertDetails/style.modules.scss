@@ -4,7 +4,6 @@ body {
 
 .details_wrapper {
   width: 87%;
-  min-height: 135vh;
   margin: 0 auto;
   margin-block-start: 7%;
   display: flex;
@@ -14,7 +13,6 @@ body {
 
   .details_list {
     width: 68.8%;
-    min-height: 100%;
     background-color: white;
   }
 
@@ -186,4 +184,8 @@ body {
     border-radius: 19.5px;
     background-color: #ffab2a;
     color: white;
+}
+
+.ispdacheck{
+  padding-left: 2%;
 }

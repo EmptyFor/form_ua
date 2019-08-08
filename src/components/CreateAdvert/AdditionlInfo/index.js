@@ -113,7 +113,6 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
-        console.log(this.state)
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >

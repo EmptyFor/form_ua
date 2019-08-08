@@ -19,8 +19,6 @@ export class FormFooter extends Component {
 
         let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
 
-        console.log(data)
-
         name.length > 0 &&
             code.length === 8 &&
             price.length > 0 &&
@@ -45,7 +43,6 @@ export class FormFooter extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="form_footer" >
                 <Button className="clear_btn grey_btn" text="Очистити дані" width="20%" onClick={this.clearAllFields} />

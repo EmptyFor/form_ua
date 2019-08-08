@@ -25,7 +25,6 @@ export function* getUserInfoPosts(current_page) {
     try {
         const { data } = yield axios.get(`${baseURL}ru/api/v1/my_posts?page=${current_page}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
-                console.log('RESPONSE', response)
                 return response.data;
             })
         yield put(actions.setProfileInfo(data))

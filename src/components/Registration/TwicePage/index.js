@@ -26,9 +26,6 @@ export class RegistrationTwice extends Component {
         borderColor: '',
     }
 
-    componentWillMount = () => {
-console.log(this.props)
-    }
 
     handleSubmit = () => {
         const { password, confPassword, email } = this.state;

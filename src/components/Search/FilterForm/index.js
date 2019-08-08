@@ -48,7 +48,6 @@ class FilterForm extends Component {
     search_args = search_args.join('&')
 
     this.props.actions.setSearchArgs(search_args)
-    console.log(search_args)
   }
 
   setMainPageFormInfo = (e) => {
@@ -134,7 +133,6 @@ class FilterForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="filter_form" ref={this.filterItemList}>
         <div className="filter_header">Загальні параметри пошуку</div>

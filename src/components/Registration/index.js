@@ -11,7 +11,6 @@ export default class Registration extends Component {
 
   render () {
     // TODO: add app global messages here with other global things
-    console.log(this)
     return (
         <Fragment>
         </Fragment>

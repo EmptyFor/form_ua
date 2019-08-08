@@ -50,8 +50,6 @@ export class GeneralInfo extends Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.props)
         this.sendGeneralInfoData()
         return (
             <div className="general_info" >

@@ -16,7 +16,6 @@
 
 // //   render() {
 // //     // const { token, error, authActions } = this.props;
-
 // //     // if (token) {
 // //     //   return <Redirect to={links.home} />
 // //     // }

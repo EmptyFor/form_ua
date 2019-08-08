@@ -16,7 +16,8 @@ import { getToken } from '../../store/helpers/localStorage'
 import delete_img from '../../assets/images/delete2.png'
 import deactivate_img from '../../assets/images/deactivate2x.png'
 import edit_img from '../../assets/images/edit2x.png'
-
+import profile_phone from '../../assets/images/profile_phone2x.png'
+import profile_email from '../../assets/images/profile_mail2x.png'
 
 const pageStep = 3;
 let pagesLength;
@@ -116,15 +117,15 @@ export class Profile extends Component {
           } else {
             dateResult = `${new Date(item.created_at).getDate()} / ${new Date(item.created_at).getMonth() < 10 ? `0${new Date(item.created_at).getMonth()}` : new Date(item.created_at).getMonth()} / ${new Date(item.created_at).getFullYear()}`
           }
-          console.log(item)
           return (
             <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
               <Link to={links.details}>
                 <Advert
+                  advertid={item.id}
                   onClick={this.handleClickInfo}
                   orgName={item.name}
                   ispda={item.ispda}
-                  createDate={`від ${item.date}`}
+                  createDate={`від ${item.registered_at}`}
                   cityPlace={item.city}
                   fullPrice={`${item.price} $`}
                   about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
@@ -135,7 +136,7 @@ export class Profile extends Component {
                 <div className="advert_action_bar_time">{`${dateResult}`}</div>
                 <div className="advert_action_bar_actions" >
                   <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}><img src={delete_img} />Видалити</span>
-                  <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}><img src={deactivate_img}/>Деактивувати</span>
+                  <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}><img src={deactivate_img} />Деактивувати</span>
                   <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}><img src={edit_img} />Редагувати</span>
                 </div>
               </div>
@@ -212,11 +213,11 @@ export class Profile extends Component {
     return (
 
       <Fragment>
-        <Header className='menu_fix' fix={'true'} />
+        <Header className='menu_fix' fix="true" />
 
         <div className="profile_wrapper">
           <img className="image_bg" alt="" src={triangle_bg}></img>
-          {!data ? <p className="results_preloader">Зачекайте...</p> : <div className="profile_list" >
+          {!data ? <p className="">Зачекайте...</p> : <div className="profile_list" >
             <div>
               {data ? <div className='profile_list_header'>
                 <span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${data.total})`}</label></span>
@@ -243,8 +244,8 @@ export class Profile extends Component {
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
               <span style={{ fontWeight: 'bold', fontSize: '35px' }}>{user.first_name}</span>
-              <span style={{ marginBlockEnd: '5%' }}>{user.phone}</span>
-              <span style={{ marginBlockEnd: '5%' }}>{user.email}</span>
+              <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_phone} />{user.phone}</span>
+              <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_email} />{user.email}</span>
             </div>
           </div>
         </div>
