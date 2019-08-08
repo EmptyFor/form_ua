@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import * as actions from '../../store/actions/';
 import './style.modules.scss';
 
 export class FormHeader extends Component {
@@ -19,9 +16,4 @@ export class FormHeader extends Component {
     }
 }
 
-export default connect(
-    (state) => ({}),
-    dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
-    })
-)(FormHeader);
+export default connect()(FormHeader);

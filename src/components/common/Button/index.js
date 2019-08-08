@@ -1,9 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import '../Button/style.modules.scss';
-// import globalStyle from '../../../assets/styles/global.styles.scss'
 
 export const Button = () => ({
 
@@ -30,9 +27,4 @@ export const Button = () => ({
 
 
 
-export default connect(
-    // (state) => ({}),
-    // dispatch => ({
-    //     // actions: bindActionCreators(actions, dispatch)
-    // })
-)(Button);
+export default connect()(Button);

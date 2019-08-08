@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
+import * as actions from '../../../../store/actions/advert';
+
 import './style.modules.scss';
 
 export class MultiplySelect extends Component {

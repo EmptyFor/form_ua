@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import * as actions from '../../../store/actions/advert';
-// import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
-import './style.modules.scss';
 import { MultiplySearchSelect } from './MultiplySearchSelect';
 import { CheckBoxSelect } from './CheckBoxSelect';
 import { MultiplySelect } from './MultiplySelect';
 import { CommonSelect } from './CommonSelect';
 import { SearchSelect } from './SearchSelect';
-
+import './style.modules.scss';
 export class Select extends Component {
 
     render() {
@@ -93,11 +88,4 @@ export class Select extends Component {
     }
 }
 
-export default connect(
-    (state) => ({
-        // clear: state.advert.clear
-    }),
-    dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
-    })
-)(Select);
+export default connect()(Select);

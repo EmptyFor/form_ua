@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
-import './style.modules.scss';
 import legalForm from '../../../assets/db/legalForm';
 import taxForm from '../../../assets/db/taxForm';
 import license from '../../../assets/db/license';
@@ -11,6 +10,7 @@ import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { Radiobutton } from '../../common/Radiobutton';
+import './style.modules.scss';
 
 export class AdditionlInfo extends Component {
     constructor() {

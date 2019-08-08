@@ -10,7 +10,7 @@ import axios from 'axios'
 export function* getUserInfoSaga(id) {
     const token = localStorage.getItem('firm-token')
     try {
-        const { user } = yield axios.get(`${baseURL}/ru/api/v1/users/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const { user } = yield axios.get(`${baseURL}ua/api/v1/users/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 return response.data.data;
             })
@@ -23,7 +23,7 @@ export function* getUserInfoSaga(id) {
 export function* getUserInfoPosts(current_page) {
     const token = localStorage.getItem('firm-token')
     try {
-        const { data } = yield axios.get(`${baseURL}ru/api/v1/my_posts?page=${current_page}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const { data } = yield axios.get(`${baseURL}ua/api/v1/my_posts?page=${current_page}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 return response.data;
             })

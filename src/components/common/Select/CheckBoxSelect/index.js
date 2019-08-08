@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
 import './style.modules.scss';
 
 export class CheckBoxSelect extends Component {
@@ -232,8 +228,4 @@ export class CheckBoxSelect extends Component {
     }
 }
 
-export default connect(
-    (state) => ({}),
-    dispatch => ({
-    })
-)(CheckBoxSelect);
+export default connect()(CheckBoxSelect);

@@ -11,7 +11,7 @@ export function* getCurrentPagePosts(current_page) {
         headers: { "Authorization": `Bearer ${token}` }
     }
     try {
-        const posts = yield axios.get(`${baseURL}/ru/api/v1/posts?page=${current_page}`, options)
+        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?page=${current_page}`, options)
             .then(response => {
                 return response.data;
             })
@@ -27,7 +27,7 @@ export function* getFoundPagePosts(search_args) {
         headers: { "Authorization": `Bearer ${token}` }
     }
     try {
-        const data = yield axios.get(`${baseURL}/ru/api/v1/posts/${search_args}`, options)
+        const data = yield axios.get(`${baseURL}ua/api/v1/posts/${search_args}`, options)
             .then(response => {
                 return response.data;
             })

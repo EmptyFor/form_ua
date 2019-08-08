@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
 import '../Input/style.modules.scss';
 
 export class Input extends Component {
@@ -26,12 +23,6 @@ export class Input extends Component {
   }
   render() {
     const { visibillity } = this.state
-    // const { token, error, authActions } = this.props;
-
-    // if (token) {
-    //   return <Redirect to={links.home} />
-    // }
-
 
     return (
       <Fragment>
@@ -41,9 +32,4 @@ export class Input extends Component {
   }
 }
 
-export default connect(
-  (state) => ({}),
-  dispatch => ({
-    // actions: bindActionCreators(actions, dispatch)
-  })
-)(Input);
+export default connect()(Input);
