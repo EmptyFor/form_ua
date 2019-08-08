@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
+import * as actions from '../../../../store/actions/advert';
 import kvedArr from '../../../../assets/db/kvedArr';
-// import { Redirect } from 'react-router-dom';
-// import links from '../../config/links';
 import './style.modules.scss';
 
 export class MultiplySearchSelect extends Component {

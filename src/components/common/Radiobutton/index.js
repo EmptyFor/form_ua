@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import './style.modules.scss';
-// import globalStyle from '../../../assets/styles/global.styles.scss'
 export class Radiobutton extends Component {
 
     radiobuttons = this.props.options.map((item, index) => {
@@ -46,11 +43,4 @@ export class Radiobutton extends Component {
 }
 
 
-export default connect(
-    (state) => ({
-
-    }),
-    dispatch => ({
-        // actions: bindActionCreators(actions, dispatch)
-    })
-)(Radiobutton);
+export default connect()(Radiobutton);

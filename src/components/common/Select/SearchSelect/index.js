@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../../../store/actions/advert';
 import { bindActionCreators } from 'redux';
-// import { Redirect } from 'react-router-dom';
+import * as actions from '../../../../store/actions/advert';
 import city from '../../../../assets/db/city';
-import kved from '../../../../assets/db/kved';
+// import kved from '../../../../assets/db/kved';
 import kvedArr from '../../../../assets/db/kvedArr';
 import './style.modules.scss';
 

@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../store/actions/details';
 import Header from '../themes/common/Header';
 import './style.modules.scss';
-import document from '../../assets/images/spa.jpg';
 import { getPostId } from '../../store/helpers/localStorage'
 import ispdacheck from '../../assets/images/ispdacheck.svg'
 import { baseURL } from '../../core/constants/baseURL'

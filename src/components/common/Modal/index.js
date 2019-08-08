@@ -1,14 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../Modal/style.modules.scss';
 import * as actions from '../../../store/actions/advert';
-import { getAdvertDetails } from '../../../store/actions/search'
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import links from '../../../config/links';
-import { Redirect } from 'react-router-dom';
 
 
 
@@ -20,14 +17,10 @@ class Modal extends Component {
         this.advertid = props.advertid
     }
 
-
-
     handleClose = () => {
         this.status = ''
         this.props.actions.setClearStatus(this.status)
     }
-
-
 
     render() {
         return (
@@ -47,14 +40,9 @@ class Modal extends Component {
 }
 
 
-
-
-
-
 export default connect(
     (state) => ({
         info: state.search.info,
-        // status: state.advert.status
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

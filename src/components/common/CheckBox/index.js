@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import './style.modules.scss';
-// import globalStyle from '../../../assets/styles/global.styles.scss'
 export class CheckBox extends Component {
 
     value = Boolean

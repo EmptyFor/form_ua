@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import * as FormData from 'form-data';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as FormData from 'form-data';
 import * as actions from '../../../store/actions/advert'
 import './styles.modules.scss';
-// import globalStyle from '../../../assets/styles/global.styles.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
 export class UloadField extends Component {
 
