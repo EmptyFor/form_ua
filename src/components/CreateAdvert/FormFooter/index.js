@@ -67,7 +67,7 @@ export class FormFooter extends Component {
             owner_data.length > 0 &&
             tel[0].length > 0 ?
             this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
-            : console.log('Fill all required fields')
+            : alert('Заповніть обов’язкові поля')
 
     }
 

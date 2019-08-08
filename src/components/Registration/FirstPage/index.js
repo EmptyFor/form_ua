@@ -55,7 +55,7 @@ export class RegistrationFirst extends Component {
                             <Input name='first_name' value={first_name} onChange={this.handleChange} placeholder="Прізвище Ім'я або Назва компанії" maxLength='30' />
                         </div>
                         <div className="input_container phone_input">
-                            <Input type='phone' placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _" name='phone' value={phone} onChange={this.handleChange} maxLength='13' />
+                            <Input type='phone' placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _" name='phone' value={phone} onChange={this.handleChange} className="form_input" maxLength='13' />
                         </div>
                         <Link to={links.registrationTwice} className="common_btn_link"><Button width='92%' back={disabledColor} onClick={this.handleSubmit} text='Далі' disabled={!isOk} /></Link>
                     </form>
