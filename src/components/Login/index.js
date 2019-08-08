@@ -66,9 +66,13 @@ export class Login extends Component {
         <div className={`login_modal_form ${errClass}`} style={{ borderColor: borderColor }}>
           <span className="login_form_header">Вхід</span>
           <form ref='logForm' onKeyPress={this.handleEnter} >
-            <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть e-mail' visibleLabel={false} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
-            <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" />
-            {error ?<label className="err_label">Неправильно введений логін або пароль!</label> : <label style={{ visibility: visibility }}>{message}</label> }
+            <div className="input_container email_input">
+              <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть e-mail' visibleLabel={false} placeholder="Електронна адреса" value={email} onChange={this.handleChange} name="email" />
+            </div>
+            <div className="input_container password_input">
+              <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" className="password_input" />
+            </div>
+            {error ? <label className="err_label">Неправильно введений логін або пароль!</label> : <label style={{ visibility: visibility }}>{message}</label>}
             <Button width='92%' text='Увійти' onClick={this.handleSubmit} />
           </form>
           <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.registrationFirst}>Зареєструватися >></Link></div>

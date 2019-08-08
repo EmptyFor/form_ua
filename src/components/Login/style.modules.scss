@@ -95,12 +95,42 @@
 .error {
   border-color: red;
 
-  input{
-    border-color: red
+  input {
+    border-color: red;
   }
 
-  .err_label{
+  .err_label {
     color: red;
     font-weight: 600;
+  }
+}
+
+.input_container {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background-image: url("../../assets/images/at.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+    left: 15px;
+    top: 15px;
+    z-index: 9;
+  }
+}
+
+.email_input {
+  &::after {
+    background-image: url("../../assets/images/at.svg");
+  }
+}
+
+.password_input {
+  &::after {
+    background-image: url("../../assets/images/lock-1.svg");
+    height: 19px;
+    top: 11px;
   }
 }

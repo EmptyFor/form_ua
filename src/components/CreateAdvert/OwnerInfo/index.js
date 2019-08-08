@@ -33,7 +33,7 @@ export class OwnerInfo extends Component {
                     name="tel"
                     id={`ca_phone_input_${this.phoneInputArr.length + 1}`}
                     key={`ca_phone_input_${this.phoneInputArr.length + 1}`}
-                    getData={this.sendOwnerInfoData}
+                    getData={this.setOwnerInfoData}
                     clear={this.props.clear}
                 />)
             this.setState({
@@ -44,9 +44,7 @@ export class OwnerInfo extends Component {
 
     //Send data to redux store
 
-    sendOwnerInfoData = (e) => {
-        const { owner_data, tel } = this.state
-
+    setOwnerInfoData = (e) => {
         let name = e.target.name
         let value = e.target.value
         let id = e.target.id.replace('ca_phone_input_', "")
@@ -61,24 +59,27 @@ export class OwnerInfo extends Component {
         else if (name === 'owner_data') {
             this.setState({ owner_data: value })
         }
-
-        owner_data && tel[0].length === 24 ? this.props.actions.setOwnerInfo(owner_data, tel) : void 0
-
     }
 
-    clearPhoneNumbers = () => {
+    sendOwnerInfoData = () => {
+        const { owner_data, tel } = this.state
+        owner_data && tel[0].length === 24 ? this.props.actions.setOwnerInfo(owner_data, tel) : void 0
+    }
+
+    clearState = () => {
         this.phoneInputArr = []
         this.tel = [""]
         this.setState({
             input: this.phoneInputArr,
-            tel: this.tel
+            tel: this.tel,
+            owner_data: ''
         })
     }
 
     clearValue = () => {
-        this.clearPhoneNumbers()
-        // const { owner_data, tel } = this.state
-        // this.props.actions.setOwnerInfo(owner_data, tel)
+        this.clearState()
+        const { owner_data, tel } = this.state
+        this.props.actions.setOwnerInfo(owner_data, tel)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,8 +102,9 @@ export class OwnerInfo extends Component {
                         width="100%"
                         className="input"
                         name="owner_data"
-                        getData={this.sendOwnerInfoData}
+                        getData={this.setOwnerInfoData}
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -116,8 +118,9 @@ export class OwnerInfo extends Component {
                         name="tel"
                         id="ca_phone_input_0"
                         key="ca_phone_input_0"
-                        getData={this.sendOwnerInfoData}
+                        getData={this.setOwnerInfoData}
                         clear={this.props.clear}
+                        required={true}
                     />
                     {this.state.input.map(item => { return item })}
                     <label className="append_phone" onClick={this.appendPhoneInput}>

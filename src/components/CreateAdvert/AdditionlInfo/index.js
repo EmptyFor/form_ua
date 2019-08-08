@@ -39,7 +39,10 @@ export class AdditionlInfo extends Component {
 
         name === 'extra_kved_name' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'capital' ? value = value.replace(/\D/g, '') : void 0
-        name === 'pda' || name === 'have_activity' || name === 'no_debt' ? value === "Так" ? value = true : value = false : void 0
+        
+        if (name === 'pda' || name === 'have_activity' || name === 'no_debt') {
+            value === 'Так' ? value = true : value = false
+        }
 
         if (name === 'location') {
             value === undefined ? value = "" : void 0
@@ -85,7 +88,7 @@ export class AdditionlInfo extends Component {
                 city &&
                 region &&
                 registered_at.length === 10 &&
-                pda ?
+                pda.toString().length > 0 ?
                 this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) :
                 void 0
         }
@@ -109,7 +112,7 @@ export class AdditionlInfo extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // nextProps.clear ? this.clearValue() : void 0
+        nextProps.clear ? this.clearValue() : void 0
     }
 
     render() {
@@ -133,6 +136,7 @@ export class AdditionlInfo extends Component {
                         icon={images.house}
                         id='ca_form_select_1'
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -148,6 +152,7 @@ export class AdditionlInfo extends Component {
                         icon={images.portfolio}
                         id='ca_form_select_2'
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -176,6 +181,7 @@ export class AdditionlInfo extends Component {
                         icon={images.lable}
                         id='ca_form_select_4'
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -206,6 +212,7 @@ export class AdditionlInfo extends Component {
                         icon={images.mapPoint}
                         id='ca_form_select_6'
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
@@ -219,6 +226,7 @@ export class AdditionlInfo extends Component {
                         width="100%"
                         className="input"
                         clear={this.props.clear}
+                        required={true}
                     />
                 </div>
 
