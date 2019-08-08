@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../store/actions/details';
 import Header from '../themes/common/Header';
-import './style.modules.scss';
 import { getPostId } from '../../store/helpers/localStorage'
 import ispdacheck from '../../assets/images/ispdacheck.svg'
 import { baseURL } from '../../core/constants/baseURL'
+import profile_phone from '../../assets/images/profile_phone2x.png'
+import './style.modules.scss';
+
 export class AdvertDetails extends Component {
 
     constructor() {
@@ -20,14 +22,12 @@ export class AdvertDetails extends Component {
 
     render() {
         const { data } = this.props.info
-        if (data) {
-            console.log(data.post)
-        }
+
         return (
             <Fragment >
                 <Header className='menu_fix' fix="false" />
-                <div className="details_wrapper">
-                    {data ? <div className="details_list" >
+                {data ? <div className="details_wrapper">
+                    <div className="details_list" >
                         {/* Head */}
                         <div className='details_list_header'><span>Деталі оголошення </span></div>
                         <div className="details_main_info">
@@ -94,7 +94,7 @@ export class AdvertDetails extends Component {
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Господарська діяльність</label>
                                     <span className="details_values_list">{data.post.have_activity === true ? 'Вела/веде господарську діяльнасть' :
-                                    data.post.have_activity === false ? 'НЕ вела/веде господарську діяльність' : <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
+                                        data.post.have_activity === false ? 'НЕ вела/веде господарську діяльність' : <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
@@ -116,16 +116,16 @@ export class AdvertDetails extends Component {
                                 <span className="details_values_list" style={{ paddingLeft: '2%' }}> {data.post.owner_data}</span>
                             </div>
                         </div>
-                    </div> : <p className="results_preloader">Зачекайте...</p>}
+                    </div>
                     <div className="details_info" >
                         <div className='details_list_header info_head'><span>Особисті дані </span></div>
                         <div className="details_info_main_contain ">
-                            <span style={{ fontWeight: 'bold', fontSize: '25px' }}>Name Profile</span>
-                            <span style={{ marginBlockEnd: '5%' }}>number</span>
+                            <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{data.author.first_name}</span>
+                            <span style={{ marginBlockEnd: '5%' }}><img style={{ width: '1.3em', paddingRight: '5%' }} src={profile_phone} />{data.author.phone}</span>
                             {/* <span style={{marginBlockEnd:'5%'}}>email</span> */}
                         </div>
                     </div>
-                </div>
+                </div> : <p className="results_preloader">Зачекайте...</p>}
             </Fragment>
         );
     }
