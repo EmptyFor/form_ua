@@ -39,7 +39,7 @@ export class FormFooter extends Component {
         }
         console.log(JSON.stringify(post))
 
-        for( let key in post ) {
+        for (let key in post) {
             data.append(`post[${key}]`, post[key])
         }
         this.props.actions.setAdvertData(data)
@@ -50,24 +50,25 @@ export class FormFooter extends Component {
 
         this.setState(prevState => ({ test: !prevState.test }))
 
-        // let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
+        let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
 
         name.length > 0 &&
             code.length === 8 &&
             price.length > 0 &&
-            legal_form &&
-            kved_name &&
+            legal_form.length > 0 &&
+            kved_name.length > 0 &&
             extra_kved_name.length <= 10 &&
-            tax_form &&
+            tax_form.length > 0 &&
             license.length <= 5 &&
-            city &&
-            region &&
+            city.length > 0 &&
+            region.length > 0 &&
             registered_at.length === 10 &&
-            pda &&
+            pda.toString().length > 0 &&
             owner_data.length > 0 &&
-            tel[0].length ?
+            tel[0].length > 0 ?
             this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
             : console.log('Fill all required fields')
+
     }
 
     clearAllFields = () => {

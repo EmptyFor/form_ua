@@ -63,6 +63,7 @@ export class OwnerInfo extends Component {
 
     sendOwnerInfoData = () => {
         const { owner_data, tel } = this.state
+        console.log(tel[0].length)
         owner_data && tel[0].length === 24 ? this.props.actions.setOwnerInfo(owner_data, tel) : void 0
     }
 
@@ -88,6 +89,8 @@ export class OwnerInfo extends Component {
     }
 
     render() {
+        this.sendOwnerInfoData()
+        console.log(this.props)
         return (
             <div className="owner_info">
                 <div className="title" >
