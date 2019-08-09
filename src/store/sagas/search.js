@@ -10,7 +10,6 @@ export function* getCurrentPagePosts(current_page, search_args) {
     const options = {
         headers: { "Authorization": `Bearer ${token}` }
     }
-    console.log('CURRENT->',current_page)
     try {
         console.log(search_args)
         const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`, options)
