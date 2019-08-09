@@ -26,7 +26,7 @@ class SearchResult extends Component {
     }
 
     componentDidMount = () => {
-        this.props.actions.postCurrentPage(this.state.currentPage)
+        this.props.actions.postCurrentPage(this.state.currentPage, this.props.search_args)
     }
 
     // Method of changes current - page
@@ -44,7 +44,7 @@ class SearchResult extends Component {
         } else {
             this.setState({ disPrev: true, colorPrev: '#aeaeae', disNext: false, colorNext: '#1ccee9' })
         }
-        this.props.actions.postCurrentPage(this.state.currentPage)
+        this.props.actions.postCurrentPage(this.state.currentPage, this.props.search_args)
     }
 
     nextPage = () => {
@@ -98,6 +98,7 @@ class SearchResult extends Component {
 
 
     render() {
+        console.log(this.props)
         const { disPrev, disNext, colorNext, colorPrev, currentPage } = this.state;
         const { data } = this.props.data
         let paginationPageCounter, dynamicWidth;
@@ -181,8 +182,8 @@ class SearchResult extends Component {
 
 export default connect(
     (state) => ({
-        legal_form: state.search.legal_form,
-        data: state.search.data
+        data: state.search.data,
+        search_args: state.search.search_args
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

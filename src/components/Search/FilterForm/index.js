@@ -33,17 +33,28 @@ class FilterForm extends Component {
   sendSearchArgs = () => {
     const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda, extra_kved_name, license, have_activity, no_debt } = this.state
     let search_args = []
+    let by_price = [price_from, price_to]
 
-    legal_form !== undefined ? legal_form.length > 0 ? search_args.push(`?legalform=${legal_form}`) : void 0 : void 0
-    kved_name !== undefined ? kved_name.length > 0 ? search_args.push(`?st_kved_name=${kved_name}`) : void 0 : void 0
-    city !== undefined ? city.length > 0 ? search_args.push(`?st_city=${city}`) : void 0 : void 0
-    tax_form !== undefined ? tax_form.length > 0 ? search_args.push(`?taxform=${tax_form}`) : void 0 : void 0
-    price_from !== false ? price_from >= 0 && price_from !== '' ? search_args.push(`?over_price=${price_from}`) : void 0 : void 0
-    price_to !== false ? price_to >= 0 && price_to !== '' ? search_args.push(`?under_price=${price_to}`) : void 0 : void 0
-    pda !== undefined ? pda === true ? search_args.push(`?pda_true=${pda}`) : void 0 : void 0
-    license !== undefined ? license.length > 0 ? search_args.push(`?st_license=${license}`) : void 0 : void 0
-    have_activity !== undefined ? have_activity === true ? search_args.push(`?no_debt_true=${have_activity}`) : void 0 : void 0
-    no_debt !== undefined ? no_debt === true ? search_args.push(`?no_debt_true=${no_debt}`) : void 0 : void 0
+    price_from === false || price_from === '' ? by_price[0] = 0 : by_price[0] = price_from
+    price_to === false || price_to === '' ? by_price[1] = 99999999999999999 : by_price[1] = price_to
+    search_args.push(`?min=${by_price[0]}`)
+    search_args.push(`max=${by_price[1]}`)
+
+    legal_form !== undefined ? legal_form.length > 0 ? search_args.push(`by_legalform=${legal_form}`) : void 0 : void 0
+
+    kved_name !== undefined ? kved_name.length > 0 ? search_args.push(`st_by_kved_name=${kved_name}`) : void 0 : void 0
+
+    city !== undefined ? city.length > 0 ? search_args.push(`st_by_city=${city}`) : void 0 : void 0
+
+    tax_form !== undefined ? tax_form.length > 0 ? search_args.push(`by_taxform=${tax_form}`) : void 0 : void 0
+
+    pda !== undefined ? pda === true ? search_args.push(`pda_true=${pda}`) : void 0 : void 0
+
+    license !== undefined ? license.length > 0 ? search_args.push(`st_license=${license}`) : void 0 : void 0
+
+    have_activity !== undefined ? have_activity === true ? search_args.push(`have_activity_true=${have_activity}`) : void 0 : void 0
+
+    no_debt !== undefined ? no_debt === true ? search_args.push(`no_debt_true=${no_debt}`) : void 0 : void 0
 
     search_args = search_args.join('&')
 
@@ -116,20 +127,20 @@ class FilterForm extends Component {
 
   componentWillMount = () => {
     const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda } = this.props
-
-    this.setState({
-      legal_form: legal_form,
-      kved_code: kved_code,
-      kved_name: kved_name,
-      city: city,
-      region: region,
-      tax_form: tax_form,
-      price_from: price_from,
-      price_to: price_to,
-      pda: pda
-    })
+    kved_code === undefined ?
+      this.setState({ kved_code: "", kved_name: "" }) :
+      this.setState({
+        legal_form: legal_form,
+        kved_code: kved_code,
+        kved_name: kved_name,
+        city: city,
+        region: region,
+        tax_form: tax_form,
+        price_from: price_from,
+        price_to: price_to,
+        pda: pda
+      })
     this.sendSearchData()
-    this.sendSearchArgs()
   }
 
   render() {
@@ -289,7 +300,8 @@ export default connect(
     license: state.search.license,
     have_activity: state.search.have_activity,
     no_debt: state.search.no_debt,
-    clear: state.search.clear
+    clear: state.search.clear,
+    search_args: state.search.search_args
   }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch)

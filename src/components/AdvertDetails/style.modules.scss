@@ -10,6 +10,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin-block-end: 3%;
+  font-family: AvenirNext-Medium;
 
   .details_list {
     width: 68.8%;
@@ -82,7 +83,7 @@ body {
         width: 15%;
         padding: 1.5%;
         background: linear-gradient(#e591b469, #64646448);
-        background-color: rgba(255, 255, 255, .5);
+        background-color: rgba(255, 255, 255, 0.5);
         overflow: hidden;
       }
     }
@@ -109,6 +110,13 @@ body {
           color: #99abc3;
         }
 
+        ul {
+          display: flex;
+          flex-direction: column;
+          width: 69%;
+          font-size: 20px;
+        }
+
         .details_values_list {
           font-size: 20px;
           width: 69%;
@@ -123,8 +131,8 @@ body {
       margin-block-start: 5%;
       // margin-block-end: -5%;
       display: flex;
-     
-      label{
+
+      label {
         display: flex;
         width: 26%;
         padding: 0 7% 0 0;
@@ -132,13 +140,13 @@ body {
         font-weight: 600;
         letter-spacing: 0.06px;
         color: #99abc3;
-      } 
-      
-      span{
+      }
+
+      span {
         font-size: 20px;
         width: 69%;
         display: flex;
-        font-weight: 800
+        font-weight: 800;
       }
     }
   }
@@ -175,17 +183,17 @@ body {
   flex-direction: column;
 }
 .place_advert_detail {
-    padding: 3px 35px;
-    height: 25px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.07px;
-    border-radius: 19.5px;
-    background-color: #ffab2a;
-    color: white;
+  padding: 3px 35px;
+  height: 25px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07px;
+  border-radius: 19.5px;
+  background-color: #ffab2a;
+  color: white;
 }
 
-.ispdacheck{
+.ispdacheck {
   padding-left: 2%;
 }

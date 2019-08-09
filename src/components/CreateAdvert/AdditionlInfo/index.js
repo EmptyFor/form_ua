@@ -39,7 +39,7 @@ export class AdditionlInfo extends Component {
 
         name === 'extra_kved_name' || name === 'license' ? value === undefined ? value = "" : value = value.split(',') : void 0
         name === 'capital' ? value = value.replace(/\D/g, '') : void 0
-        
+
         if (name === 'pda' || name === 'have_activity' || name === 'no_debt') {
             value === 'Так' ? value = true : value = false
         }
@@ -58,10 +58,7 @@ export class AdditionlInfo extends Component {
         else if (name === 'extra_kved_name' && value !== undefined && value !== '') {
             let extra_kved_name = []
             value.map(item => {
-                extra_kved_name.push({
-                    code: item.replace(' ', 'splitPoint').split('splitPoint')[0],
-                    name: item.replace(' ', 'splitPoint').split('splitPoint')[1]
-                })
+                extra_kved_name.push(item.replace(' ', 'splitPoint').split('splitPoint')[1])
             })
             this.setState({
                 extra_kved_name: extra_kved_name
@@ -82,9 +79,7 @@ export class AdditionlInfo extends Component {
         else {
             legal_form &&
                 kved_name &&
-                extra_kved_name.length <= 10 &&
                 tax_form &&
-                license.length <= 5 &&
                 city &&
                 region &&
                 registered_at.length === 10 &&
@@ -116,6 +111,7 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
+        console.log(this.props)
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >

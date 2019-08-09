@@ -5,6 +5,7 @@
   transition: 0.3s;
   background-color: #fff;
   padding: 2.2% 4.7% 1.6% 4.9%;
+  font-family: AvenirNext-Regular;
   cursor: pointer;
 
   .left_side_advert {
@@ -14,8 +15,8 @@
     padding-right: 5%;
 
     h1 {
-      font-family: AvenirNext;
-      font-size: 38px;
+      font-family: AvenirNext-Bold;
+      font-size: 19px;
       font-weight: bold;
       letter-spacing: 0.1px;
       color: #28252f;
@@ -25,7 +26,7 @@
     .ispda_advert,
     .date_advert {
       color: black;
-      font-size: 18px;
+      font-size: 13px;
     }
 
     .date_advert {
@@ -40,7 +41,7 @@
     .ispda_confirmation {
       color: white;
       position: relative;
-      font-size: 24px;
+      font-size: 29px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -68,7 +69,7 @@
 
       .place_advert {
         padding: 3px 16px !important;
-        font-size: 22px;
+        font-size: 13px;
         letter-spacing: 0.07px;
         border-radius: 12.5px;
         background-color: #ffab2a;
@@ -77,8 +78,7 @@
     }
 
     p {
-      font-family: AvenirNext;
-      font-size: 22px;
+      font-size: 13px;
       letter-spacing: 0.07px;
       color: #28252f;
     }
@@ -92,9 +92,10 @@
     text-align: center;
 
     .fullprice_advert {
-      font-size: 28px;
+      font-size: 19px;
       font-weight: 600;
       letter-spacing: 0.13px;
+      word-break: break-word;
       color: #20bdcb;
     }
 

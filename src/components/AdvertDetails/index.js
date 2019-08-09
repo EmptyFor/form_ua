@@ -54,13 +54,20 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Додаткові види</label>
-                                    {/* {Object.values(item)[0].map((elem, index) => {
-                                        return (<ul key={index + 'a'}>
-                                            <li style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
-                                        </ul>)
-                                    })}*/}
-
-                                    <span className="details_values_list list"><span style={{ color: 'grey' }}>Не надано жодної інформації</span></span>
+                                    <ul>
+                                        {
+                                            data.post.extra_kved_name.map((elem, index) => {
+                                                return (
+                                                    <li style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
+                                                )
+                                            })
+                                        }
+                                        {
+                                            data.post.extra_kved_name.length < 1 && <span className="details_values_list list">
+                                                <span style={{ color: 'grey' }}>Не надано жодної інформації</span>
+                                            </span>
+                                        }
+                                    </ul>
                                 </div>
 
                                 <div className="details_body_item_list" >
@@ -88,7 +95,21 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Ліцензія</label>
-                                    <span className="details_values_list">{data.post.tax_form || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
+                                    <ul>
+                                        {
+                                            data.post.licenses.map((elem, index) => {
+                                                return (
+                                                    <li style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
+                                                )
+                                            })
+                                        }
+                                        {
+                                            data.post.licenses.length < 1 && <span className="details_values_list list">
+                                                <span style={{ color: 'grey' }}>Не надано жодної інформації</span>
+                                            </span>
+                                        }
+                                    </ul>
+
                                 </div>
 
                                 <div className="details_body_item_list" >
