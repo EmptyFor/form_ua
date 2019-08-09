@@ -33,6 +33,7 @@ export class Form extends Component {
     setSearchData = (e) => {
         let name = e.target.getAttribute('name')
         let value = e.target.getAttribute('value') || e.target.value
+        value === undefined ? value = "" : void 0
 
         name === 'price_from' || name === 'price_to' ? value = value.replace(/\D/g, '') : void 0
         name === 'pda' ? value = e.target.checked : void 0
@@ -63,7 +64,9 @@ export class Form extends Component {
             kved_name ||
             city ||
             region ||
-            tax_form
+            tax_form ||
+            price_from !== '' ||
+            price_to !== ''
         ) {
             this.props.actions.setMainPageFormInfo(legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda)
             localStorage.setItem('formData', {
@@ -71,6 +74,37 @@ export class Form extends Component {
             })
             this.searchLink = 'active'
         }
+    }
+
+    sendSearchArgs = () => {
+        const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda, extra_kved_name, license, have_activity, no_debt } = this.state
+        let search_args = []
+        let by_price = [price_from, price_to]
+
+        price_from === false || price_from === '' ? by_price[0] = 0 : by_price[0] = price_from
+        price_to === false || price_to === '' ? by_price[1] = 99999999999999999 : by_price[1] = price_to
+        search_args.push(`?min=${by_price[0]}`)
+        search_args.push(`max=${by_price[1]}`)
+
+        legal_form !== undefined ? legal_form.length > 0 ? search_args.push(`by_legalform=${legal_form}`) : void 0 : void 0
+
+        kved_name !== undefined ? kved_name.length > 0 ? search_args.push(`st_by_kved_name=${kved_name}`) : void 0 : void 0
+
+        city !== undefined ? city.length > 0 ? search_args.push(`st_by_city=${city}`) : void 0 : void 0
+
+        tax_form !== undefined ? tax_form.length > 0 ? search_args.push(`by_taxform=${tax_form}`) : void 0 : void 0
+
+        pda !== undefined ? pda === true ? search_args.push(`pda_true=${pda}`) : void 0 : void 0
+
+        license !== undefined ? license.length > 0 ? search_args.push(`st_license=${license}`) : void 0 : void 0
+
+        have_activity !== undefined ? have_activity === true ? search_args.push(`have_activity_true=${have_activity}`) : void 0 : void 0
+
+        no_debt !== undefined ? no_debt === true ? search_args.push(`no_debt_true=${no_debt}`) : void 0 : void 0
+
+        search_args = search_args.join('&')
+
+        this.props.actions.setSearchArgs(search_args)
     }
 
     render() {
@@ -165,6 +199,7 @@ export class Form extends Component {
                         <Button
                             className='find'
                             text='Знайти'
+                            onClick={this.sendSearchArgs}
                         />
                     </Link>
                 </div>

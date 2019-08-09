@@ -5,13 +5,15 @@ import { baseURL } from '../../core/constants/baseURL'
 import axios from 'axios'
 
 
-export function* getCurrentPagePosts(current_page) {
+export function* getCurrentPagePosts(current_page, search_args) {
     const token = localStorage.getItem('firm-token');
     const options = {
         headers: { "Authorization": `Bearer ${token}` }
     }
+    console.log('CURRENT->',current_page)
     try {
-        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?page=${current_page}`, options)
+        console.log(search_args)
+        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`, options)
             .then(response => {
                 return response.data;
             })
@@ -42,7 +44,7 @@ export function* getFoundPagePosts(search_args) {
 
 export default function* () {
     yield all([
-        yield takeLatest(types.POST_CURRENT_PAGE, ({ current_page }) => getCurrentPagePosts(current_page)),
+        yield takeLatest(types.POST_CURRENT_PAGE, ({ current_page, search_args }) => getCurrentPagePosts(current_page, search_args)),
         yield takeLatest(types.GET_FOUND_POSTS, ({ search_args }) => getFoundPagePosts(search_args)),
     ])
 }

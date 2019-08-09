@@ -36,11 +36,15 @@ export class FormFooter extends Component {
             tel,
             image
         }
-        console.log(JSON.stringify(post))
+        console.log(post)
 
         for (let key in post) {
-            data.append(`post[${key}]`, post[key])
+            // Array.isArray(post[key]) ? data.set(`post[${key}]`, JSON.stringify(post[key]))  : data.set(`post[${key}]`, post[key])
+
+            Array.isArray(post[key]) ? post[key].map((item, index) => data.append(`post[${key}][]`, item))  : data.set(`post[${key}]`, post[key])
+
         }
+        console.log(data.get('post[extra_kved_name]'))
         this.props.actions.setAdvertData(data)
     }
 
@@ -50,7 +54,6 @@ export class FormFooter extends Component {
         this.setState(prevState => ({ test: !prevState.test }))
 
         let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
-
         name.length > 0 &&
             code.length === 8 &&
             price.length > 0 &&

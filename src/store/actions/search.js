@@ -39,9 +39,10 @@ export const clearAllInfo = (clear) => ({
     clear
 })
 
-export const postCurrentPage = (current_page) => ({
+export const postCurrentPage = (current_page, search_args) => ({
     type: types.POST_CURRENT_PAGE,
-    current_page
+    current_page,
+    search_args
 })
 
 export const getPagePosts = (data) =>({
