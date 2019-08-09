@@ -5,7 +5,7 @@ import advertSaga from './advert';
 import userSaga from './user'
 import getSearchPostsSaga from './search'
 import detailsSaga from './details'
-
+import profileActionsSaga from './profile'
 
 export default function* rootSaga() {
   yield all([
@@ -14,6 +14,7 @@ export default function* rootSaga() {
     fork(advertSaga),
     fork(userSaga), 
     fork(getSearchPostsSaga),
+    fork(profileActionsSaga),
     fork(detailsSaga),
   ]);
 }

@@ -51,7 +51,24 @@
     }
   }
 }
-.common_btn_link{
+.common_btn_link {
   margin: 0 auto;
   align-self: center;
+}
+.modal_delete_advert {
+  width: 400px;
+  height: 300px;
+  background: black;
+  position: absolute;
+  top: 11%;
+  left: 40%;
+}
+.modal_button_group{
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+
+  &btn:hover{
+    color: black !important;
+  }
 }

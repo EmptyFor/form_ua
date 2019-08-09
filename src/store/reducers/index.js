@@ -4,14 +4,17 @@ import authorise from './authorise';
 import search from './search';
 import registration from './registration';
 import user from './user';
-import details from './details'
+import details from './details';
+import profile from './profile';
+
 
 
 export default combineReducers({
   advert,
   auth: authorise,
-   search,
+  search,
   usr: user,
   details,
-  reg:registration
+  profile,
+  reg: registration
 });

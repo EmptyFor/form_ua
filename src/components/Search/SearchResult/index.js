@@ -51,7 +51,8 @@ class SearchResult extends Component {
         if (this.state.currentPage === pagesLength - 1) {
             this.setState({ disNext: true, colorNext: '#aeaeae' })
         }
-        this.setState({ currentPage: this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+        this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+
         this.props.actions.postCurrentPage(this.state.currentPage)
     }
 
@@ -59,8 +60,9 @@ class SearchResult extends Component {
         if (this.state.currentPage === 1 + 1) {
             this.setState({ disPrev: true, colorPrev: '#aeaeae' })
         }
-        this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
+        this.setState({ currentPage: this.state.currentPage = this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
         this.props.actions.postCurrentPage(this.state.currentPage)
+
     }
 
 

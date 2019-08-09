@@ -1,5 +1,5 @@
 import { all, put, takeEvery } from 'redux-saga/effects';
-// import { getToken } from '../helpers';
+import { removeToken, removeInfo } from '../helpers/localStorage';
 import * as types from '../types/user';
 import * as actions from '../actions/user';
 import { baseURL } from '../../core/constants/baseURL'
@@ -16,6 +16,10 @@ export function* getUserInfoSaga(id) {
             })
         yield put(actions.getUserInfo(user))
     } catch (error) {
+        if (error.message === 'Request failed with status code 401') {
+            yield removeToken();
+            yield removeInfo();
+        }
         yield put(actions.setError(error.message));
     }
 }
@@ -37,6 +41,6 @@ export function* getUserInfoPosts(current_page) {
 export default function* () {
     yield all([
         yield takeEvery(types.GET_USER_ID, ({ id }) => getUserInfoSaga(id)),
-        yield takeEvery(types.GET_PROFILE_INFO, ({current_page}) => getUserInfoPosts(current_page)),
+        yield takeEvery(types.GET_PROFILE_INFO, ({ current_page }) => getUserInfoPosts(current_page)),
     ])
 }

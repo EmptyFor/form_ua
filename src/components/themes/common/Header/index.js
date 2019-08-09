@@ -46,7 +46,7 @@ class Header extends Component {
 
 
   render() {
-    const { user } = this.props;
+    const { user, error } = this.props;
     const { isOpen } = this.state;
     const token = getToken()
 
@@ -85,6 +85,7 @@ export default connect(
     token: state.auth.token,
     user: state.usr.user,
     id: state.auth.id,
+    error: state.usr.err
   }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch),

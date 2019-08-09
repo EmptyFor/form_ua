@@ -108,3 +108,87 @@
     }
   }
 }
+.advert_action_bar {
+  display: flex;
+  height: 3.4em;
+  background-color: #f0f1f5;
+  border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+  color: #707488c0;
+  flex-direction: row;
+  align-items: center;
+  .advert_action_bar_time {
+    width: 50%;
+    padding-left: 5%;
+  }
+  .advert_action_bar_actions {
+    width: 50%;
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    flex-direction: row;
+    justify-content: space-around;
+    font-weight: 600;
+    padding-right: 3%;
+
+    .profile_advert_action_delete,
+    .profile_advert_action_disactivate,
+    .profile_advert_action_edit {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 12px;
+        height: 12px;
+        margin-inline-end: 10%;
+      }
+    }
+
+    .profile_advert_action_disactivate {
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+.profile_advert_hover:hover {
+  transition: 0.3s;
+  transform: scale(1.01);
+  box-shadow: 0.5px 1.2px 10px #6b6b6b;
+}
+.pagination_count {
+  width: 18%;
+  display: flex;
+  font-weight: 700;
+  align-items: center;
+  justify-content: space-around;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+.profile_advert_action_delete:hover {
+  color: #fc4445;
+}
+
+.profile_advert_action_disactivate:hover {
+  color: rgb(255, 197, 36);
+}
+
+.profile_advert_action_edit:hover {
+  color: rgb(26, 143, 253);
+}
+
+.profile_adverts_nodata {
+  font-size: 30px;
+  font-weight: 600;
+  color: grey;
+  letter-spacing: 0.4;
+  opacity: 0.6;
+  text-align: center;
+  padding-top: 30%;
+}
+
+

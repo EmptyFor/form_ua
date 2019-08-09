@@ -70,7 +70,7 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Дата державної реєстрації</label>
-                                    <span className="details_values_list">{data.post.registered_at}</span>
+                                    <span className="details_values_list">{data.post.registered_at || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
