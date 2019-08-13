@@ -46,7 +46,7 @@ class Header extends Component {
 
 
   render() {
-    const { user, error } = this.props;
+    const { user } = this.props;
     const { isOpen } = this.state;
     const token = getToken()
 
@@ -65,7 +65,7 @@ class Header extends Component {
           {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
           <div className={styles.profile}>
             {
-             token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+             token ? <p  onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
             }
 
             {isOpen ? <div className={styles.profile_dropdown}>

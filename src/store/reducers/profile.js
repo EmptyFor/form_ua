@@ -4,7 +4,8 @@ import * as types from '../types/profile';
 const initState = {
     error: '',
     id: '',
-    type: ''
+    tupe: '',
+    status:''
 };
 
 export default (state = initState, action) => {
@@ -13,7 +14,18 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 id: action.id,
-                type: action.type
+                tupe: action.tupe
+            };
+            case types.CLEAR_ADVERT_ID:
+            return {
+                ...state,
+                id: '',
+                tupe: ''
+            };
+            case types.CHECK_STATUS:
+            return {
+                ...state,
+                status: action.status
             };
         case types.SET_ERROR:
             return {

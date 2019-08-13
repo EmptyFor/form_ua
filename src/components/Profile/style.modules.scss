@@ -34,6 +34,7 @@ body {
     .info_head {
       height: 8.7vh;
       padding: 0 9%;
+      
     }
   }
   .profile_info_main_contain {
@@ -43,9 +44,10 @@ body {
     padding: 8% 10%;
     flex-direction: column;
 
-    .profile_info_labels{
-
-      img{
+    .profile_info_labels {
+      font-family: AvenirNext-Medium;
+      letter-spacing: 0.4px;
+      img {
         width: 1.3em;
         padding-right: 5%;
       }
@@ -63,10 +65,12 @@ body {
   font-size: 20px;
   font-weight: 600;
   align-items: center;
+  font-family: AvenirNext-DemiBold;
   letter-spacing: 0.09px;
   color: #99abc3;
   padding: 0 5%;
   display: flex;
+
   justify-content: space-between;
 }
 .profile_create_advert_btn {
@@ -88,6 +92,8 @@ body {
 .results_header_counter {
   margin-inline-start: 1%;
   color: #fc4445;
+  font-family: AvenirNext-DemiBold;
+  letter-spacing: 0.09px;
 }
 .pagination_div {
   position: relative;
@@ -115,5 +121,3 @@ body {
     color: white;
   }
 }
-
-

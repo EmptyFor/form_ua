@@ -16,9 +16,11 @@
   }
 }
 
+
 .email_input {
   &::after {
     background-image: url("../../../assets/images/at.svg");
+    top: 32%
   }
 }
 
@@ -26,6 +28,5 @@
   &::after {
     background-image: url("../../../assets/images/lock-1.svg");
     height: 19px;
-    top: 11px;
   }
 }

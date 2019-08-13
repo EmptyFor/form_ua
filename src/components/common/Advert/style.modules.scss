@@ -12,21 +12,21 @@
     display: flex;
     width: 78%;
     flex-direction: column;
-    padding-right: 5%;
+    padding-right: 2%;
 
     h1 {
       font-family: AvenirNext-Bold;
-      font-size: 19px;
+      font-size: 24px;
       font-weight: bold;
       letter-spacing: 0.1px;
       color: #28252f;
-      margin-block-end: 2.5%;
+      margin-block-end: 3.7%;
     }
 
     .ispda_advert,
     .date_advert {
       color: black;
-      font-size: 13px;
+      font-size: 16px;
     }
 
     .date_advert {
@@ -54,8 +54,8 @@
     .minor_info_advert {
       display: flex;
       align-items: center;
-      margin-block-end: 3%;
-      font-size: 20px;
+      margin-block-end: 3.7%;
+      font-size: 22px;
 
       span {
         margin-inline-end: 3%;
@@ -78,21 +78,22 @@
     }
 
     p {
-      font-size: 13px;
+      font-size: 16px;
+      line-height: 22px;
       letter-spacing: 0.07px;
       color: #28252f;
     }
   }
 
   .right_side_advert {
-    width: 16%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 
     .fullprice_advert {
-      font-size: 19px;
+      font-size: 24px;
       font-weight: 600;
       letter-spacing: 0.13px;
       word-break: break-word;
@@ -101,9 +102,9 @@
 
     .image_document_advert {
       width: 80%;
-      height: 70%;
+      height: 80%;
       padding: 8%;
-      margin-block-start: 18%;
+      margin-block-start: 8%;
       background: linear-gradient(#8888883d, #a3a3a352);
       overflow: hidden;
     }
@@ -191,5 +192,3 @@
   text-align: center;
   padding-top: 30%;
 }
-
-

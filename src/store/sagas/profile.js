@@ -1,4 +1,4 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { removeToken, removeInfo } from '../helpers/localStorage';
 import * as types from '../types/profile';
 import * as actions from '../actions/profile';
@@ -11,19 +11,20 @@ export function* deleteAdvert(id) {
     const token = localStorage.getItem('firm-token')
 
     try {
-        yield axios.delete(`${baseURL}ua/api/v1/posts/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const data = yield axios.delete(`${baseURL}ua/api/v1/posts/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
-                console.log(response)
                 return response;
             })
+            yield put(actions.checkAdvertStatus(data.status))
     } catch (error) {
         yield put(actions.setError(error.message));
     }
 }
 
 
+
 export default function* () {
     yield all([
-        yield takeLatest(types.DELETE_ADVERT, ({ id }) => deleteAdvert(id)),
+        yield takeEvery(types.DELETE_ADVERT, ({ id }) => deleteAdvert(id)),
     ])
 }

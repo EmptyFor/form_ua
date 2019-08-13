@@ -11,7 +11,7 @@ import { baseURL } from '../../../core/constants/baseURL'
 import delete_img from '../../../assets/images/delete2.png'
 import deactivate_img from '../../../assets/images/deactivate2x.png'
 import edit_img from '../../../assets/images/edit2x.png'
-import Modal from '../../common/Modal';
+import Modal from '../Modal';
 class Advert extends Component {
 
     modal = null;
@@ -34,9 +34,9 @@ class Advert extends Component {
     }
     componentDidMount = () => {
         if (this.props.ispda) {
-            this.setState({ text: 'Є платником ПДФ' })
+            this.setState({ text: 'Є платником ПДВ' })
         } else {
-            this.setState({ text: 'НЕ є платником ПДФ' })
+            this.setState({ text: 'НЕ є платником ПДВ' })
         }
     }
 
@@ -55,12 +55,11 @@ class Advert extends Component {
         const { advertid } = this.props;
         const type = 'delete'
         this.props.profileActions.getAdvertId(advertid, type)
-        // this.props.profileActions.deleteAdvert(advertid)
     }
 
     render() {
         return (<Fragment>
-            
+          
             <Link to={links.details}>
                 <div className="common_advert" profile={this.props.profile} onClick={this.handleClick} key={this.props.key}>
                     <div className="left_side_advert">

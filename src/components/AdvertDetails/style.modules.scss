@@ -19,12 +19,14 @@ body {
 
   .details_info {
     width: 27%;
-    height: 25vh;
+    height: 20%;
     background-color: #fff;
 
     .info_head {
       height: 7.5vh;
       padding: 0 9%;
+      font-family: AvenirNext-DemiBold;
+      letter-spacing: 0.09px;
     }
   }
   .details_info_main_contain {
@@ -52,6 +54,8 @@ body {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      font-family: AvenirNext-DemiBold;
+      letter-spacing: 0.09px;
       border-bottom: 1px solid rgba(111, 134, 214, 0.16);
 
       .details_main_info_head_contain {
@@ -80,7 +84,8 @@ body {
       }
 
       .details_main_info_head_image {
-        width: 15%;
+        width: 25%;
+        height: 20vh;
         padding: 1.5%;
         background: linear-gradient(#e591b469, #64646448);
         background-color: rgba(255, 255, 255, 0.5);

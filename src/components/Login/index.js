@@ -60,7 +60,6 @@ export class Login extends Component {
       return <Redirect to={links.home} />
     }
     return (
-
       <div className="login_page">
         <Link to={links.home}><img alt="" src={logo_login}></img></Link>
         <div className={`login_modal_form ${errClass}`} style={{ borderColor: borderColor }}>

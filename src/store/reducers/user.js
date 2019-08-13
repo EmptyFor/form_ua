@@ -20,6 +20,11 @@ export default (state = initState, action) => {
                 ...state,
                 data: action.data
             }
+        case types.DELETE_USER_INFO:
+            return {
+                ...state,
+                user: action.user
+            };
         case types.SET_ERROR:
             return {
                 ...state,

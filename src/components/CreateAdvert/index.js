@@ -36,6 +36,7 @@ export class CreateAdvert extends Component {
         return (
             <Fragment>
                 {this.props.status ? <Modal status={this.props.status} advertid={post.id} /> : null}
+                {/* <Modal /> */}
                 <Header className="header" fix="true" />
                 <div className="ca_bg">
                     <div className="form_bg">

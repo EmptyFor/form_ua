@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../Modal/style.modules.scss';
 import * as actions from '../../../store/actions/advert';
+import * as profileActions from '../../../store/actions/profile';
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import links from '../../../config/links';
+import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage'
 
 
 
@@ -22,9 +24,21 @@ class Modal extends Component {
     }
 
     componentDidMount = () => {
+        console.log(this.advertid)
         this.setState({
             isOpen: true
         })
+    }
+
+    setAdvertid = () => {
+        const localPostId = getPostId();
+
+        if (this.advertid !== localPostId) {
+            removePostId();
+            setPostId(this.advertid);
+        }
+        this.status = ''
+        this.props.actions.setClearStatus(this.status)
     }
 
     handleClose = () => {
@@ -32,8 +46,14 @@ class Modal extends Component {
         this.props.actions.setClearStatus(this.status)
     }
 
+    deleteConfirmation = () => {
+        this.props.profileActions.deleteAdvert(this.advertid);
+        this.closeModal()
+    }
+
     closeModal = () => {
-        this.setState({ isOpen: false })
+        this.setState({ isOpen: false });
+        this.props.profileActions.clearAdvertId()
     }
 
     render() {
@@ -50,7 +70,7 @@ class Modal extends Component {
                         </div>
                         <p className="modal_text">Ви дійсно хочете видалити це оголошення?</p>
                         <div className="modal_button_group">
-                            <div onClick={ this.props.confirmation } style={{width:'40%'}}><Button width="100%" text="Так" /></div>
+                            <div onClick={ this.props.confirmation } style={{width:'40%'}}><Button width="100%" text="Так" onClick = {this.deleteConfirmation} /></div>
                             <Button width ="40%" onClick={this.closeModal} text="Скасувати" />
                         </div>
                     </div>
@@ -63,7 +83,7 @@ class Modal extends Component {
                         <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
                             Очікуйте дзвінків від покупців.
                 </p>
-                        <Link className='common_btn_link' to={links.details}><Button width="40%" text="Переглянути" /></Link>
+                        <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text="Переглянути" onClick={this.setAdvertid}/></Link></span>
 
                     </div>}
 
@@ -79,6 +99,7 @@ export default connect(
         info: state.search.info,
     }),
     dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch),
+        profileActions: bindActionCreators(profileActions, dispatch),
     })
 )(Modal);

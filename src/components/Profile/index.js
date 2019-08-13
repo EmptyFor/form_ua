@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
 import * as actions from '../../store/actions/user';
+import * as profileActions from '../../store/actions/profile';
 import Header from '../themes/common/Header';
 import './style.modules.scss';
 import CreateAdvertBtn from '../common/CreateAdvertBtn';
@@ -12,7 +13,6 @@ import Advert from '../common/Advert';
 import { Redirect } from 'react-router-dom';
 import triangle_bg from '../../assets/images/triangle_bg.png'
 import { getToken } from '../../store/helpers/localStorage'
-
 import profile_phone from '../../assets/images/profile_phone2x.png'
 import profile_email from '../../assets/images/profile_mail2x.png'
 import Modal from '../common/Modal';
@@ -33,14 +33,9 @@ export class Profile extends Component {
     disNext: false,
     colorNext: '#1ccee9',
     colorPrev: '#aeaeae',
-    modal: true
-  } 
-   componentWillReceiveProps = () => {
-     console.log(this.props)
-    if (this.props.id && this.props.type) {
-        this.setState({ modal: true })
-    }
-}
+    modal: false
+  }
+
 
   componentDidMount = () => {
     this.props.actions.getProfileInfo(this.state.currentPage)
@@ -67,7 +62,7 @@ export class Profile extends Component {
     if (this.state.currentPage === pagesLength - 1) {
       this.setState({ disNext: true, colorNext: '#aeaeae' })
     }
-    this.setState({ currentPage: this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+    this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
@@ -75,7 +70,7 @@ export class Profile extends Component {
     if (this.state.currentPage === 1 + 1) {
       this.setState({ disPrev: true, colorPrev: '#aeaeae' })
     }
-    this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
+    this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, disNext: false, colorNext: '#1ccee9' });
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
@@ -139,9 +134,7 @@ export class Profile extends Component {
     const { user } = this.props;
     const { data } = this.props
     let paginationPageCounter, dynamicWidth;
-
     const token = localStorage.getItem('firm-token')
-
     if (!token) {
       return <Redirect to={links.login} />
     }
@@ -195,12 +188,20 @@ export class Profile extends Component {
 
       dynamicWidth = 3 * numersOfPages.length + "%"
     }
+    if (this.props.status === 200 ) {
+      if((data.total / 3) !== currentPage){
+        this.props.actions.getProfileInfo(this.state.currentPage - 1);
+      }else{
+        this.props.actions.getProfileInfo(this.state.currentPage );
+      }
+      this.props.profileActions.checkAdvertStatus('')
+    }
 
     return (
 
       <Fragment>
         {
-          this.props.type ? <Modal type='delete' /> : null
+          this.props.id && this.props.tupe ? <Modal type='delete' advertid={this.props.id} /> : null
         }
         <Header className='menu_fix' fix="true" />
         <div className="profile_wrapper">
@@ -231,7 +232,7 @@ export class Profile extends Component {
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
-              <span style={{ fontWeight: 'bold', fontSize: '35px' }}>{user.first_name}</span>
+              <span style={{ fontWeight: 'bold', fontSize: '35px', fontFamily: '' }}>{user.first_name}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_phone} />{user.phone}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_email} />{user.email}</span>
             </div>
@@ -247,9 +248,11 @@ export default connect(
     user: state.usr.user,
     data: state.usr.data,
     id: state.profile.id,
-    type: state.profile.type,
+    tupe: state.profile.tupe,
+    status: state.profile.status
   }),
   dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(actions, dispatch),
+    profileActions: bindActionCreators(profileActions, dispatch),
   })
 )(Profile);

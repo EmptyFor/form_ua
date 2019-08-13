@@ -10,7 +10,7 @@ import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../store/actions/registration'
 import logo_login from '../../../assets/images/logolog.png'
 import { Redirect } from 'react-router-dom';
-import { setInfo, setToken } from '../../../store/helpers/localStorage'
+import { setInfo, setToken, getToken } from '../../../store/helpers/localStorage'
 import { setAuthData } from '../../../store/actions/authorise'
 
 export class RegistrationTwice extends Component {
@@ -61,6 +61,8 @@ export class RegistrationTwice extends Component {
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         const { first_name, phone } = this.props;
 
+        console.log(this.props)
+
         let disabledColor = '';
         if (first_name !== undefined && phone !== undefined) {
             if ((first_name.length || phone.length) === 0) {
@@ -70,7 +72,7 @@ export class RegistrationTwice extends Component {
 
         if (this.props.data) {
             const { id, auth_token } = this.props.data.user
-            if (auth_token) {
+            if (auth_token && !getToken()) {
                 setInfo(id);
                 setAuthData(auth_token);
                 setToken(auth_token);
@@ -115,7 +117,6 @@ export default connect(
         first_name: state.reg.first_name,
         phone: state.reg.phone,
         data: state.reg.data,
-
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
