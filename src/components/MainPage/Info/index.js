@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import left_image from '../../../assets/images/rectangle-16@3x.png'
 import '../Info/style.modules.scss';
+import '../Info/style.modules.media.scss';
 import CreateAdvertBtn from '../../common/CreateAdvertBtn';
 import description_img_1 from '../../../assets/images/icon-1@2x.png';
 import description_img_2 from '../../../assets/images/icon-2@2x.png';

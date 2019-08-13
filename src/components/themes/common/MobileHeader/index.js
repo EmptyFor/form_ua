@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { getInfo, getToken } from '../../../../store/helpers/localStorage'
 import { Redirect } from 'react-router-dom';
 
-class Header extends Component {
+class MobileHeader extends Component {
 
 
   state = {
@@ -91,4 +91,4 @@ export default connect(
     actions: bindActionCreators(actions, dispatch),
     logout: bindActionCreators(logout, dispatch)
   })
-)(Header);
+)(MobileHeader);

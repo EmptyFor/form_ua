@@ -1,7 +1,7 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(4, 1fr);
   padding-top: 100px;
   height: 120vh;
   .left_img {
@@ -36,7 +36,6 @@
       font-style: normal;
       font-stretch: normal;
       line-height: 1.35;
-      margin-bottom: 5%;
     }
     .advert {
       background-color: #fff;
@@ -95,24 +94,24 @@
       font-family: AvenirNext-Regular;
     }
   }
-}
-.right_description {
-  grid-row: span 1;
-  grid-column: span 1;
-  padding: 0 100px 100px 0;
-  box-sizing: border-box;
-  h1 {
-    font-family: AvenirNext-Bold;
-  }
-  p {
-    font-family: AvenirNext-Regular;
+  .right_description {
+    grid-row: span 1;
+    grid-column: span 1;
+    padding: 0 100px 100px 0;
+    box-sizing: border-box;
+    h1 {
+      font-family: AvenirNext-Bold;
+    }
+    p {
+      font-family: AvenirNext-Regular;
+    }
   }
 }
 .description {
   display: flex;
   flex-direction: row;
   background-color: #fff;
-  padding: 50px  50px 50px 50px;
+  padding: 10%;
   img {
     height: 100%;
     margin-right: 5%;
