@@ -1,4 +1,6 @@
 .input_container {
+  display: flex;
+  align-items: center;
   position: relative;
   &::after {
     content: "";
@@ -8,7 +10,6 @@
     height: 15px;
     width: 15px;
     left: 7.5%;
-    top: 32%;
     z-index: 9;
   }
 }

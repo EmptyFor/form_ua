@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import InputMask from 'react-input-mask';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
 import './style.modules.scss';
+import '../style.modules.media.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../../src/store/actions/registration';
@@ -47,7 +47,7 @@ export class RegistrationFirst extends Component {
         return (
 
             <div className="login_page">
-                <img alt="" src={logo_login}></img>
+                <Link to={links.home}><img alt="" src={logo_login}></img></Link>
                 <div className='login_modal_form'>
                     <span className="login_form_header">Реєстрація</span>
                     <form>
@@ -57,7 +57,7 @@ export class RegistrationFirst extends Component {
                         <div className="input_container phone_input">
                             <Input type='phone' placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _" name='phone' value={phone} onChange={this.handleChange} className="form_input" maxLength='13' />
                         </div>
-                        <Link to={links.registrationTwice} className="common_btn_link"><Button width='92%' back={disabledColor} onClick={this.handleSubmit} text='Далі' disabled={!isOk} /></Link>
+                        <span className='span_btn'><Link to={links.registrationTwice} className="common_btn_link"><Button width='100%' back={disabledColor} onClick={this.handleSubmit} text='Далі' disabled={!isOk} /></Link></span>
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links.login}> Увійти >></Link></div>
                 </div>
