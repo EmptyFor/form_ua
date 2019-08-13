@@ -2,6 +2,7 @@ import { all, put, takeLatest, call } from 'redux-saga/effects';
 import { setToken, removeToken, setInfo, removeInfo } from '../helpers/localStorage';
 import * as types from '../types/authorise';
 import * as actions from '../actions/authorise';
+import * as userActions from '../actions/user'
 // import { getUserId } from '../actions/user'
 // import fetchSome from '../helpers/fetchJSON'
 // import { options } from '../helpers/options'
@@ -36,6 +37,7 @@ export function* logout() {
   try {
     yield removeToken();
     yield removeInfo();
+    yield put(userActions.deletUserInfo())
   } catch (error) {
     console.error('some error happened', error);
   }

@@ -20,6 +20,11 @@ export const setProfileInfo = (data) => ({
     data
 })
 
+export const deletUserInfo = () => ({
+    type: types.DELETE_USER_INFO,
+    user: {}
+})
+
 export const setError = (error) => ({
     type: types.SET_ERROR,
     error

@@ -5,12 +5,13 @@ import { bindActionCreators } from 'redux';
 import links from '../../../config/links';
 import { Input } from '../../common/LogForm/Input';
 import './style.modules.scss';
+import '../style.modules.media.scss';
 import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../store/actions/registration'
 import logo_login from '../../../assets/images/logolog.png'
 import { Redirect } from 'react-router-dom';
-import { setInfo, setToken } from '../../../store/helpers/localStorage'
+import { setInfo, setToken, getToken } from '../../../store/helpers/localStorage'
 import { setAuthData } from '../../../store/actions/authorise'
 
 export class RegistrationTwice extends Component {
@@ -61,6 +62,8 @@ export class RegistrationTwice extends Component {
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         const { first_name, phone } = this.props;
 
+        console.log(this.props)
+
         let disabledColor = '';
         if (first_name !== undefined && phone !== undefined) {
             if ((first_name.length || phone.length) === 0) {
@@ -70,7 +73,7 @@ export class RegistrationTwice extends Component {
 
         if (this.props.data) {
             const { id, auth_token } = this.props.data.user
-            if (auth_token) {
+            if (auth_token && !getToken()) {
                 setInfo(id);
                 setAuthData(auth_token);
                 setToken(auth_token);
@@ -82,22 +85,22 @@ export class RegistrationTwice extends Component {
 
         return (
             <div className="login_page">
-                <img alt="" src={logo_login}></img>
+                <Link to={links.home}><img alt="" src={logo_login}></img></Link>
                 <div className='login_modal_form'>
-                    <span className="login_form_header">Реєстрація</span>
+                    <span className="login_form_header header_height" >Реєстрація</span>
                     <form className='reg_form'>
-                        <div className="input_container email_input">
+                        <div className="input_container email_registration_input">
                             <Input name='email' value={email} onChange={this.handleChange} placeholder="Електронна адреса" />
                         </div>
-                        <div className="input_container password_input">
+                        <div className="input_container password_registration_input">
                             <Input style={{ borderColor: borderColor }} name='password' value={password} onChange={this.handleChange} type='password' placeholder="Пароль" />
                         </div>
-                        <div className="input_container password_input">
+                        <div className="input_container password_registration_input">
                             <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
                         </div>
                         <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label>
                         <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
-                        <Button width='92%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} />
+                        <span className='span_btn'><Button width='100%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} /> </span>
 
                     </form>
                     <div className="login_form_footer">Вже зареєстровані? &nbsp; <Link to={links.login}> Увійти >></Link></div>
@@ -115,7 +118,6 @@ export default connect(
         first_name: state.reg.first_name,
         phone: state.reg.phone,
         data: state.reg.data,
-
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)

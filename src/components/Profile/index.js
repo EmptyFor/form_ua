@@ -5,19 +5,17 @@ import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
 import * as actions from '../../store/actions/user';
+import * as profileActions from '../../store/actions/profile';
 import Header from '../themes/common/Header';
 import './style.modules.scss';
 import CreateAdvertBtn from '../common/CreateAdvertBtn';
 import Advert from '../common/Advert';
-import document from '../../assets/images/spa.jpg'
 import { Redirect } from 'react-router-dom';
 import triangle_bg from '../../assets/images/triangle_bg.png'
 import { getToken } from '../../store/helpers/localStorage'
-import delete_img from '../../assets/images/delete2.png'
-import deactivate_img from '../../assets/images/deactivate2x.png'
-import edit_img from '../../assets/images/edit2x.png'
 import profile_phone from '../../assets/images/profile_phone2x.png'
 import profile_email from '../../assets/images/profile_mail2x.png'
+import Modal from '../common/Modal';
 
 const pageStep = 3;
 let pagesLength;
@@ -34,21 +32,13 @@ export class Profile extends Component {
     disPrev: true,
     disNext: false,
     colorNext: '#1ccee9',
-    colorPrev: '#aeaeae'
+    colorPrev: '#aeaeae',
+    modal: false
   }
+
 
   componentDidMount = () => {
     this.props.actions.getProfileInfo(this.state.currentPage)
-  }
-
-  handleDeleteAdvert = (e) => {
-  }
-
-  handleDisActivateAdvert = (e) => {
-  }
-
-  handleEditAdvert = (e) => {
-
   }
 
   getCurrentPageNumber = e => {
@@ -72,7 +62,7 @@ export class Profile extends Component {
     if (this.state.currentPage === pagesLength - 1) {
       this.setState({ disNext: true, colorNext: '#aeaeae' })
     }
-    this.setState({ currentPage: this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
+    this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
@@ -80,7 +70,7 @@ export class Profile extends Component {
     if (this.state.currentPage === 1 + 1) {
       this.setState({ disPrev: true, colorPrev: '#aeaeae' })
     }
-    this.setState({ currentPage: this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
+    this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, disNext: false, colorNext: '#1ccee9' });
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
@@ -119,27 +109,19 @@ export class Profile extends Component {
           }
           return (
             <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
-              <Link to={links.details}>
-                <Advert
-                  advertid={item.id}
-                  onClick={this.handleClickInfo}
-                  orgName={item.name}
-                  ispda={item.ispda}
-                  createDate={`від ${item.registered_at}`}
-                  cityPlace={item.city}
-                  fullPrice={`${item.price} ₴`}
-                  about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
-                  image={item.image.url}
-                />
-              </Link>
-              <div className="advert_action_bar">
-                <div className="advert_action_bar_time">{`${dateResult}`}</div>
-                <div className="advert_action_bar_actions" >
-                  <span className="profile_advert_action_delete" onClick={this.handleDeleteAdvert}><img src={delete_img} />Видалити</span>
-                  <span className="profile_advert_action_disactivate" onClick={this.handleDeleteAdvert}><img src={deactivate_img} />Деактивувати</span>
-                  <span className="profile_advert_action_edit" onClick={this.handleDeleteAdvert}><img src={edit_img} />Редагувати</span>
-                </div>
-              </div>
+              <Advert
+                advertid={item.id}
+                onClick={this.handleClickInfo}
+                orgName={item.name}
+                ispda={item.ispda}
+                createDate={`від ${item.registered_at}`}
+                cityPlace={item.city}
+                fullPrice={`${item.price} ₴`}
+                about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
+                image={item.image.url}
+                dateResult={dateResult}
+                profile='true'
+              />
             </div>
           )
         }))
@@ -148,13 +130,11 @@ export class Profile extends Component {
 
 
   render() {
-    const { disPrev, disNext, colorNext, colorPrev, currentPage } = this.state;
+    const { disPrev, disNext, colorNext, colorPrev, currentPage, modal } = this.state;
     const { user } = this.props;
     const { data } = this.props
     let paginationPageCounter, dynamicWidth;
-
     const token = localStorage.getItem('firm-token')
-
     if (!token) {
       return <Redirect to={links.login} />
     }
@@ -208,13 +188,22 @@ export class Profile extends Component {
 
       dynamicWidth = 3 * numersOfPages.length + "%"
     }
-
+    if (this.props.status === 200 ) {
+      if((data.total / 3) !== currentPage){
+        this.props.actions.getProfileInfo(this.state.currentPage - 1);
+      }else{
+        this.props.actions.getProfileInfo(this.state.currentPage );
+      }
+      this.props.profileActions.checkAdvertStatus('')
+    }
 
     return (
 
       <Fragment>
+        {
+          this.props.id && this.props.tupe ? <Modal type='delete' advertid={this.props.id} /> : null
+        }
         <Header className='menu_fix' fix="true" />
-
         <div className="profile_wrapper">
           <img className="image_bg" alt="" src={triangle_bg}></img>
           {!data ? <p className="">Зачекайте...</p> : <div className="profile_list" >
@@ -243,7 +232,7 @@ export class Profile extends Component {
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
-              <span style={{ fontWeight: 'bold', fontSize: '35px' }}>{user.first_name}</span>
+              <span style={{ fontWeight: 'bold', fontSize: '35px', fontFamily: '' }}>{user.first_name}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_phone} />{user.phone}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_email} />{user.email}</span>
             </div>
@@ -257,9 +246,13 @@ export class Profile extends Component {
 export default connect(
   (state) => ({
     user: state.usr.user,
-    data: state.usr.data
+    data: state.usr.data,
+    id: state.profile.id,
+    tupe: state.profile.tupe,
+    status: state.profile.status
   }),
   dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(actions, dispatch),
+    profileActions: bindActionCreators(profileActions, dispatch),
   })
 )(Profile);

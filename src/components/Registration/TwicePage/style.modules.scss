@@ -1,10 +1,22 @@
 .login_modal_form {
+  margin-top: 5%;
+  
+
+.login_form_header{
+  .header_height{
+    height: 35% !important;
+  }
+}
   .reg_form {
     padding: 4% 0;
   }
   .reg_label {
     margin-bottom: -8%;
     padding-top: 5%;
+  }
+
+  .first_reg_input {
+    width: 80% !important;
   }
 
   .information_label {
@@ -16,16 +28,18 @@
   }
 }
 
-.email_input {
+
+
+.email_registration_input {
   &::after {
     background-image: url("../../../assets/images/at.svg");
+    top: 122%;
   }
 }
 
-.password_input {
+.password_registration_input {
   &::after {
     background-image: url("../../../assets/images/lock-1.svg");
     height: 19px;
-    top: 11px;
   }
 }

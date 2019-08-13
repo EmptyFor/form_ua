@@ -77,7 +77,7 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Дата державної реєстрації</label>
-                                    <span className="details_values_list">{data.post.registered_at}</span>
+                                    <span className="details_values_list">{data.post.registered_at || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>}</span>
                                 </div>
 
                                 <div className="details_body_item_list" >
@@ -88,8 +88,8 @@ export class AdvertDetails extends Component {
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Оплата податків</label>
                                     <span className="details_values_list">
-                                        {data.post.pda ? <span>Є платником ПДФ <img src={ispdacheck} /></span>
-                                            : <span>Не є платником ПДФ</span>}
+                                        {data.post.pda ? <span>Є платником ПДВ <img src={ispdacheck} /></span>
+                                            : <span>Не є платником ПДВ</span>}
                                     </span>
                                 </div>
 
@@ -142,8 +142,15 @@ export class AdvertDetails extends Component {
                         <div className='details_list_header info_head'><span>Особисті дані </span></div>
                         <div className="details_info_main_contain ">
                             <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{data.author.first_name}</span>
-                            <span style={{ marginBlockEnd: '5%' }}><img style={{ width: '1.3em', paddingRight: '5%' }} src={profile_phone} />{data.author.phone}</span>
-                            {/* <span style={{marginBlockEnd:'5%'}}>email</span> */}
+                                {
+                                    data.post.tel.map((item, index) => {
+                                        return <span style={{ marginBlockEnd: '5%' }}>
+                                            <img style={{ width: '1.3em', paddingRight: '5%' }} src={profile_phone} key={index} />
+                                            {item}
+                                            <br/>
+                                            </span>
+                                    })
+                                }
                         </div>
                     </div>
                 </div> : <p className="results_preloader">Зачекайте...</p>}

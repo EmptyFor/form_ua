@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../Modal/style.modules.scss';
 import * as actions from '../../../store/actions/advert';
+import * as profileActions from '../../../store/actions/profile';
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import links from '../../../config/links';
+import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage'
 
 
 
@@ -17,24 +19,76 @@ class Modal extends Component {
         this.advertid = props.advertid
     }
 
+    state = {
+        isOpen: ''
+    }
+
+    componentDidMount = () => {
+        console.log(this.advertid)
+        this.setState({
+            isOpen: true
+        })
+    }
+
+    setAdvertid = () => {
+        const localPostId = getPostId();
+
+        if (this.advertid !== localPostId) {
+            removePostId();
+            setPostId(this.advertid);
+        }
+        this.status = ''
+        this.props.actions.setClearStatus(this.status)
+    }
+
     handleClose = () => {
         this.status = ''
         this.props.actions.setClearStatus(this.status)
     }
 
+    deleteConfirmation = () => {
+        this.props.profileActions.deleteAdvert(this.advertid);
+        this.closeModal()
+    }
+
+    closeModal = () => {
+        this.setState({ isOpen: false });
+        this.props.profileActions.clearAdvertId()
+    }
+
     render() {
-        return (
-            <div className="modal_wrapper" >
-                <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
-                    <div className="modal_header">
-                        <span onClick={this.handleClose}>&times;</span>
+        const { isOpen } = this.state
+        return (<div>
+
+            { isOpen ? <div className="modal_wrapper" type={this.props.type} >
+
+                {this.props.type === 'delete' ?
+                    //delete modal
+                    <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
+                        <div className="modal_header">
+                            <span onClick={this.closeModal}>&times;</span>
+                        </div>
+                        <p className="modal_text">Ви дійсно хочете видалити це оголошення?</p>
+                        <div className="modal_button_group">
+                            <div onClick={ this.props.confirmation } style={{width:'40%'}}><Button width="100%" text="Так" onClick = {this.deleteConfirmation} /></div>
+                            <Button width ="40%" onClick={this.closeModal} text="Скасувати" />
+                        </div>
                     </div>
-                    <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
-                        Очікуйте дзвінків від покупців.
+
+
+                    : <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
+                        <div className="modal_header">
+                            <span onClick={this.handleClose}>&times;</span>
+                        </div>
+                        <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
+                            Очікуйте дзвінків від покупців.
                 </p>
-                    <Link  className='common_btn_link' to={links.details}><Button width="40%" text="Переглянути" /></Link>
-                </div>
-            </div>
+                        <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text="Переглянути" onClick={this.setAdvertid}/></Link></span>
+
+                    </div>}
+
+            </div> : null}
+        </div>
         );
     }
 }
@@ -45,6 +99,7 @@ export default connect(
         info: state.search.info,
     }),
     dispatch => ({
-        actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch),
+        profileActions: bindActionCreators(profileActions, dispatch),
     })
 )(Modal);

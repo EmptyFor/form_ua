@@ -7,9 +7,9 @@ import { Redirect } from 'react-router-dom';
 import links from '../../config/links';
 import { Input } from '../common/LogForm/Input';
 import './style.modules.scss';
+import './style.modules.media.scss';
 import { Button } from '../common/Button';
 import * as actions from '../../store/actions/authorise';
-// import * as regexps from '../../core/constants/regexp';
 import logo_login from '../../assets/images/logolog.png'
 
 export class Login extends Component {
@@ -60,7 +60,6 @@ export class Login extends Component {
       return <Redirect to={links.home} />
     }
     return (
-
       <div className="login_page">
         <Link to={links.home}><img alt="" src={logo_login}></img></Link>
         <div className={`login_modal_form ${errClass}`} style={{ borderColor: borderColor }}>
@@ -73,7 +72,7 @@ export class Login extends Component {
               <Input style={{ borderColor: borderColor }} label='Будь ласка, введіть пароль' visibleLabel={false} type='password' placeholder="Пароль" value={password} onChange={this.handleChange} name="password" className="password_input" />
             </div>
             {error ? <label className="err_label">Неправильно введений логін або пароль!</label> : <label style={{ visibility: visibility }}>{message}</label>}
-            <Button width='92%' text='Увійти' onClick={this.handleSubmit} />
+            <span className='span_btn'><Button width='100%' text='Увійти' onClick={this.handleSubmit} /></span>
           </form>
           <div className="login_form_footer">Ви ще не з нами? &nbsp; <Link to={links.registrationFirst}>Зареєструватися >></Link></div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './style.modules.scss'
+import './style.modules.media.scss'
 // import { bindActionCreators } from 'redux';
 import logo_footer from '../../assets/images/logologin2x.png'
 // import links from '../../config/links';

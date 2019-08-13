@@ -4,6 +4,7 @@
   text-decoration: none;
   height: 100%;
 }
+
 .user_input {
   &::after {
     background-image: url("../../../assets/images/user-silhouette.svg");
@@ -14,4 +15,8 @@
   &::after {
     background-image: url("../../../assets/images/call-answer-3.svg");
   }
+}
+
+.input_container{
+  width: 100%
 }
