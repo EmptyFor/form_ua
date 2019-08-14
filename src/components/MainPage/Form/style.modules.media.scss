@@ -116,6 +116,7 @@
 /* Small Devices, Desktops */
 @media only screen and (max-width: 580px) {
   .wrapp {
+    height: auto;
     h1 {
       font-size: 30px;
     }
@@ -123,10 +124,9 @@
       font-size: 12px;
       padding-bottom: 10%;
     }
-    .search_form  {
+    .search_form {
       position: relative;
-      bottom: 0;
-      grid-template-columns: repeat(13, 4.5vw);
+      grid-template-columns: repeat(13, 4.3vw);
       .price {
         display: none;
       }
@@ -139,6 +139,14 @@
       }
       .is_PDV_payer {
         grid-column: span 5;
+      }
+      .common_btn_link {
+        &:first-of-type {
+          grid-column: span 6;
+        }
+        &:last-of-type {
+          grid-column: 8 / span 6;
+        }
       }
       .common_btn {
         padding: 7px;

@@ -189,13 +189,13 @@ export class Form extends Component {
                         />
                     </div>
 
-                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 6' }}>
+                    <Link to={links.search} className='common_btn_link'>
                         <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 
 
-                    <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link' style={{ gridColumn: '8 / span 6'}}>
+                    <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link'>
                         <Button
                             className='find'
                             text='Знайти'

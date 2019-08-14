@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../themes/common/Header';
 import MobileHeader from '../themes/common/MobileHeader';
-import Form  from './Form';
+import Form from './Form';
 import Info from './Info';
 // import { bindActionCreators } from 'redux';
 // import * as actions from '../../store/actions/';
@@ -14,12 +14,25 @@ export class MainPage extends Component {
 
     static propTypes = {}
 
+    state = { hideNav: false }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.resize.bind(this))
+        this.resize()
+    }
+
+    resize = () => {
+        this.setState({ hideNav: window.innerWidth <= 580 })
+    }
+
     render() {
         // const {  } = this.props;
         return (
             <div className="bg">
                 <img className="image_bg" alt="" src={triangle_bg}></img>
-                <Header fix="false"/>
+                {
+                    this.state.hideNav ? <MobileHeader fix="false" /> : <Header fix="false" />
+                }
                 <Form />
                 <Info />
             </div>
