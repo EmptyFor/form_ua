@@ -22,10 +22,10 @@ export class Info extends Component {
                 </div>
 
                 <div className="right_create_advert">
-                    <h1>
+                    <h1 className="title">
                         Шукаєш рішення для продажу власної компанії?
                     </h1>
-                    <p>
+                    <p className="subtitle">
                         Тоді не варто зволікати, створюй оголошення всього за декілька секунд
                     </p>
                     <CreateAdvertBtn />
