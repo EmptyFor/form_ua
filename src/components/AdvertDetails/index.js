@@ -6,7 +6,7 @@ import Header from '../themes/common/Header';
 import { getPostId } from '../../store/helpers/localStorage'
 import ispdacheck from '../../assets/images/ispdacheck.svg'
 import { baseURL } from '../../core/constants/baseURL'
-import profile_phone from '../../assets/images/profile_phone2x.png'
+import profile_phone from '../../assets/images/red_phone.svg'
 import './style.modules.scss';
 
 export class AdvertDetails extends Component {
@@ -36,7 +36,7 @@ export class AdvertDetails extends Component {
                                     <span className="details_main_info_head_contain_title">{data.post.name}</span>
                                     <span className="details_main_info_head_contain_price">{data.post.price} грн</span>
                                 </div>
-                                <div className="details_main_info_head_image"><img alt="" style={{ height: '100%', width: '100%' }} src={baseURL + data.post.image}></img></div>
+                                <div className="details_main_info_head_image"><img alt="" style={{ height: '100%', width: '100%', objectFit: 'contain' }} src={baseURL + data.post.image}></img></div>
                             </div>
 
                             {/* Main Body */}
@@ -58,7 +58,7 @@ export class AdvertDetails extends Component {
                                         {
                                             data.post.extra_kved_name.map((elem, index) => {
                                                 return (
-                                                    <li style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
+                                                    <li key={index+'a'} style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
                                                 )
                                             })
                                         }
@@ -99,7 +99,7 @@ export class AdvertDetails extends Component {
                                         {
                                             data.post.licenses.map((elem, index) => {
                                                 return (
-                                                    <li style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
+                                                    <li key={index} style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
                                                 )
                                             })
                                         }
@@ -144,7 +144,7 @@ export class AdvertDetails extends Component {
                             <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{data.author.first_name}</span>
                                 {
                                     data.post.tel.map((item, index) => {
-                                        return <span style={{ marginBlockEnd: '5%' }}>
+                                        return <span key={index} style={{ marginBlockEnd: '5%' }}>
                                             <img style={{ width: '1.3em', paddingRight: '5%' }} src={profile_phone} key={index} />
                                             {item}
                                             <br/>
