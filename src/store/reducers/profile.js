@@ -5,7 +5,8 @@ const initState = {
     error: '',
     id: '',
     tupe: '',
-    status:''
+    status:'',
+    active:''
 };
 
 export default (state = initState, action) => {
@@ -14,18 +15,24 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 id: action.id,
-                tupe: action.tupe
+                tupe: action.tupe,
+                active: action.active
             };
             case types.CLEAR_ADVERT_ID:
             return {
                 ...state,
                 id: '',
-                tupe: ''
+                tupe: '',
             };
             case types.CHECK_STATUS:
             return {
                 ...state,
                 status: action.status
+            };
+            case types.SET_STATUS_DEACTIVATE_ADVERT:
+            return {
+                ...state,
+                active: action.active_status
             };
         case types.SET_ERROR:
             return {

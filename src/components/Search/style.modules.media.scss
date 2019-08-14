@@ -1,0 +1,228 @@
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1500px) {
+  .wrapp {
+    .search_form {
+      .common_btn {
+        font-size: 14px;
+      }
+      .price {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 768px) {
+}
+
+/* Small Devices, Desktops */
+@media only screen and (max-width: 580px) {
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 425px) {
+  /*==========  Desktop First  ==========*/
+
+  /* Large Devices, Wide Screens */
+
+  @media only screen and (max-width: 1500px) {
+    .wrapp {
+      .search_form {
+        .common_btn {
+          font-size: 14px;
+        }
+        .price {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+  }
+
+  /* Medium Devices, Desktops */
+
+  @media only screen and (max-width: 1024px) {
+  }
+
+  @media only screen and (max-width: 991px) {
+    /**/
+  }
+
+  /* Small Devices, Tablets */
+
+  @media only screen and (max-width: 768px) {
+  }
+
+  /* Small Devices, Desktops */
+  @media only screen and (max-width: 580px) {
+  }
+
+  /* Extra Small Devices, Phones */
+
+  @media only screen and (max-width: 425px) {
+    .short_wrapp {
+      display: flex;
+      flex-direction: column;
+      padding: 19% 0 0 0;
+      .filter_form {
+        height: 91vh;
+        min-height: 92vh;
+        margin-block-end: 2%;
+        .filter_header {
+          font-family: AvenirNext-DemiBold;
+          letter-spacing: 0.07px;
+          font-size: 14px;
+        }
+        .filter_inputs {
+          padding: 5%;
+          font-family: AvenirNext-Medium;
+          .common_select {
+            .select_area {
+              max-width: none;
+            }
+          }
+        }
+        .filter_checkboxes {
+          padding: 5% 0;
+          height: 12%;
+          span {
+            margin-block-end: 5%;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.07px;
+          }
+        }
+
+        .filter_bottom {
+          padding-top: 5%;
+          .filter_bottom_inputs {
+            label {
+              font-size: 14px;
+              font-weight: 500;
+              letter-spacing: 0.07px;
+              color: #707488;
+            }
+          }
+        }
+      }
+
+      .results_list {
+        .results_content {
+          .results_list_header {
+            height: 5vh;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.07px;
+            color: #99abc3;
+          }
+        }
+        .pagination_div{
+          button{
+            font-size: 14px;
+          }
+          .pagination_count{
+            width: 20% !important;
+          }
+        }
+      }
+    }
+  }
+
+  /* Custom, iPhone Retina */
+
+  @media only screen and (max-width: 360px) {
+  }
+
+  @media only screen and (max-width: 320px) {
+  }
+
+  /*==========  Mobile First  ==========*/
+
+  /* Custom, iPhone Retina */
+
+  @media only screen and (min-width: 320px) and (max-width: 420px) {
+  }
+
+  /* Extra Small Devices, Phones */
+
+  @media only screen and (min-width: 480px) {
+    /**/
+  }
+
+  /* Small Devices, Tablets */
+
+  @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  }
+
+  /* Medium Devices, Desktops */
+
+  @media only screen and (min-width: 769px) {
+  }
+
+  /* Large Devices, Wide Screens */
+
+  @media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  }
+
+  @media only screen and (min-width: 1200px) {
+  }
+}
+
+/* Custom, iPhone Retina */
+
+@media only screen and (max-width: 360px) {
+}
+
+@media only screen and (max-width: 320px) {
+}
+
+/*==========  Mobile First  ==========*/
+
+/* Custom, iPhone Retina */
+
+@media only screen and (min-width: 320px) and (max-width: 420px) {
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (min-width: 480px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (min-width: 769px) {
+}
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

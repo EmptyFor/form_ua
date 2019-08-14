@@ -111,6 +111,7 @@ export class Profile extends Component {
             <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
               <Advert
                 advertid={item.id}
+                activate={item.active}
                 onClick={this.handleClickInfo}
                 orgName={item.name}
                 ispda={item.ispda}

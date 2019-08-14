@@ -5,10 +5,11 @@ export const deleteAdvert = (id) => ({
     id
 });
 
-export const getAdvertId = (id, tupe) => ({
+export const getAdvertId = (id, tupe, active) => ({
     type: types.GET_ADVERT_ID,
     id,
-    tupe
+    tupe,
+    active
 });
 
 export const clearAdvertId = () => ({
@@ -20,14 +21,15 @@ export const checkAdvertStatus = (status) => ({
     status
 });
 
-export const deactivateAdvert = (id) => ({
+export const deactivateAdvert = (id, active) => ({
     type: types.DEACTIVATE_ADVERT,
-    id
+    id,
+    active
 });
 
-export const setStatusDeactivateAdvert = (somethink) => ({
+export const setStatusDeactivateAdvert = (active_status) => ({
     type: types.SET_STATUS_DEACTIVATE_ADVERT,
-    somethink
+    active_status
 });
 
 export const editAdvert = (id) => ({

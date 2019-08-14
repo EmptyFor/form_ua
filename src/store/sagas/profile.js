@@ -15,7 +15,20 @@ export function* deleteAdvert(id) {
             .then(response => {
                 return response;
             })
-            yield put(actions.checkAdvertStatus(data.status))
+        yield put(actions.checkAdvertStatus(data.status))
+    } catch (error) {
+        yield put(actions.setError(error.message));
+    }
+}
+
+export function* deactivateAdvert(id, active) {
+    const token = localStorage.getItem('firm-token')
+    try {
+        yield axios.patch(`${baseURL}ua/api/v1/posts/${id}`, { active: !active }, { headers: { "Authorization": `Bearer ${token}` } })
+            .then(response => {
+                console.log(response)
+                return response;
+            })
     } catch (error) {
         yield put(actions.setError(error.message));
     }
@@ -23,8 +36,10 @@ export function* deleteAdvert(id) {
 
 
 
+
 export default function* () {
     yield all([
         yield takeEvery(types.DELETE_ADVERT, ({ id }) => deleteAdvert(id)),
+        yield takeEvery(types.DEACTIVATE_ADVERT, ({ id, active }) => deactivateAdvert(id, active)),
     ])
 }

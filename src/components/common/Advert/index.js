@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './style.modules.scss';
+import './style.modules.media.scss';
 import * as searchActions from '../../../store/actions/details'
 import * as profileActions from '../../../store/actions/profile'
 import links from '../../../config/links';
@@ -11,7 +12,8 @@ import { baseURL } from '../../../core/constants/baseURL'
 import delete_img from '../../../assets/images/delete2.png'
 import deactivate_img from '../../../assets/images/deactivate2x.png'
 import edit_img from '../../../assets/images/edit2x.png'
-import ispdacheck from '../../../assets/images/ispdacheck.svg'
+import ispdacheck from '../../../assets/images/ispdacheck.svg';
+
 class Advert extends Component {
 
     modal = null;
@@ -34,9 +36,9 @@ class Advert extends Component {
     }
     componentDidMount = () => {
         if (this.props.ispda) {
-            this.setState({ text: 'Є платником ПДВ' })
+            this.setState({ text: 'Платник ПДВ' })
         } else {
-            this.setState({ text: 'НЕ є платником ПДВ' })
+            this.setState({ text: 'НЕ платник ПДВ' })
         }
     }
 
@@ -54,20 +56,21 @@ class Advert extends Component {
     deleteAdvert = () => {
         const { advertid } = this.props;
         const type = 'delete'
-        this.props.profileActions.getAdvertId(advertid, type)
+        this.props.profileActions.getAdvertId(advertid, type, null)
     }
 
     deactivateAdvert = () => {
-        const { advertid } = this.props;
+        const { advertid, activate } = this.props;
         const type = 'deactivate';
-        this.props.profileActions.getAdvertId(advertid, type)
+        this.props.profileActions.getAdvertId(advertid, type, activate)
     }
 
     render() {
         return (<Fragment>
-          
+
             <Link to={links.details}>
-                <div className="common_advert" profile={this.props.profile} onClick={this.handleClick} key={this.props.key}>
+                <div className="common_advert" active={this.props.activate} profile={this.props.profile} onClick={this.handleClick} key={this.props.key}>
+                {this.props.activate ? <span className="profile_advert_check_active"></span> : <span className="profile_advert_check_active" style={{backgroundColor:'orange'}}></span>}
                     <div className="left_side_advert">
                         <h1>{this.props.orgName}</h1>
                         <div className="minor_info_advert" advertid={this.props.advertid}>
@@ -81,7 +84,7 @@ class Advert extends Component {
                     </div>
                     <div className="right_side_advert">
                         <span className="fullprice_advert">{this.props.fullPrice}</span>
-                        <span className="image_document_advert"><picture><img alt="" style={{ height: '100%', width: '100%',objectFit: 'contain' }} src={`${baseURL}${this.props.image}`} /></picture></span>
+                        <span className="image_document_advert"><picture><img alt="" style={{ height: '100%', width: '100%', objectFit: 'contain' }} src={`${baseURL}${this.props.image}`} /></picture></span>
                     </div>
 
 
@@ -92,9 +95,15 @@ class Advert extends Component {
                     <div className="advert_action_bar_time">{`${this.props.dateResult}`}</div>
                     <div className="advert_action_bar_actions" >
                         <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />Видалити</span>
-                        <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span>
+                        
+                        {
+                            this.props.activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span> :
+                                <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Активувати</span>
+                        }
+
                         <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />Редагувати</span>
                     </div>
+                    
                 </div> : null
             }
         </Fragment>
@@ -103,7 +112,9 @@ class Advert extends Component {
 }
 
 export default connect(
-    () => ({}),
+    (state) => ({
+        active: state.profile.active
+    }),
     dispatch => ({
         searchActions: bindActionCreators(searchActions, dispatch),
         profileActions: bindActionCreators(profileActions, dispatch)

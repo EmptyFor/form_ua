@@ -17,6 +17,7 @@ class Modal extends Component {
         super(props);
         this.status = props.status;
         this.advertid = props.advertid
+        this.active = props.active
     }
 
     state = {
@@ -51,6 +52,7 @@ class Modal extends Component {
     }
 
     deactivateConfirmation = () => {
+        this.props.profileActions.deactivateAdvert(this.advertid, this.active)
         this.closeModal()
     }
 
@@ -79,13 +81,13 @@ class Modal extends Component {
 
 
                     this.props.type === 'deactivate' ?
-                        <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
+                        <div className="modal_window" active={this.props.active} status={this.props.status} advertid={this.props.advertid}>
                             <div className="modal_header">
                                 <span onClick={this.closeModal}>&times;</span>
                             </div>
                             <p className="modal_text">Ви дійсно хочете деактивувати це оголошення?</p>
                             <div className="modal_button_group">
-                                <div  style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text="Так" onClick={this.deactivateConfirmation} /></div>
+                                <div style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text="Так" onClick={this.deactivateConfirmation} /></div>
                                 <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text="Скасувати" />
                             </div>
                         </div>
@@ -111,7 +113,7 @@ class Modal extends Component {
 
 export default connect(
     (state) => ({
-        info: state.search.info,
+        active: state.profile.active
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch),

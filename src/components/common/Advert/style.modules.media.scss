@@ -1,0 +1,212 @@
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1500px) {
+  .wrapp {
+    .search_form {
+      .common_btn {
+        font-size: 14px;
+      }
+      .price {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 768px) {
+}
+
+/* Small Devices, Desktops */
+@media only screen and (max-width: 580px) {
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 425px) {
+  /*==========  Desktop First  ==========*/
+
+  /* Large Devices, Wide Screens */
+
+  @media only screen and (max-width: 1500px) {
+    .wrapp {
+      .search_form {
+        .common_btn {
+          font-size: 14px;
+        }
+        .price {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+  }
+
+  /* Medium Devices, Desktops */
+
+  @media only screen and (max-width: 1024px) {
+  }
+
+  @media only screen and (max-width: 991px) {
+    /**/
+  }
+
+  /* Small Devices, Tablets */
+
+  @media only screen and (max-width: 768px) {
+  }
+
+  /* Small Devices, Desktops */
+  @media only screen and (max-width: 580px) {
+  }
+
+  /* Extra Small Devices, Phones */
+
+  @media only screen and (max-width: 425px) {
+    .common_advert {
+      height: auto;
+      padding-bottom: 5%;
+      .left_side_advert {
+        width: 84%;
+        padding-right: 0;
+        h1 {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.36;
+          letter-spacing: 0.07px;
+          text-align: left;
+          color: #28252f;
+        }
+        .minor_info_advert {
+          img {
+            width: 15px;
+            height: 15px;
+          }
+          .ispda_advert,
+          .date_advert,
+          .place_advert {
+            font-size: 10px;
+            letter-spacing: 0.06px;
+            color: #28252f;
+            margin-inline-end: 1%;
+          }
+        }
+        p {
+          font-size: 12px;
+          letter-spacing: 0.06px;
+          color: #28252f;
+        }
+      }
+
+      .right_side_advert {
+        width: 22%;
+        .fullprice_advert {
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.08px;
+          color: #20bdcb;
+        }
+        .image_document_advert{
+          width: auto;
+          height: auto;
+          margin-top: 30%;
+        }
+      }
+    }
+  }
+
+  /* Custom, iPhone Retina */
+
+  @media only screen and (max-width: 360px) {
+  }
+
+  @media only screen and (max-width: 320px) {
+  }
+
+  /*==========  Mobile First  ==========*/
+
+  /* Custom, iPhone Retina */
+
+  @media only screen and (min-width: 320px) and (max-width: 420px) {
+  }
+
+  /* Extra Small Devices, Phones */
+
+  @media only screen and (min-width: 480px) {
+    /**/
+  }
+
+  /* Small Devices, Tablets */
+
+  @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  }
+
+  /* Medium Devices, Desktops */
+
+  @media only screen and (min-width: 769px) {
+  }
+
+  /* Large Devices, Wide Screens */
+
+  @media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  }
+
+  @media only screen and (min-width: 1200px) {
+  }
+}
+
+/* Custom, iPhone Retina */
+
+@media only screen and (max-width: 360px) {
+}
+
+@media only screen and (max-width: 320px) {
+}
+
+/*==========  Mobile First  ==========*/
+
+/* Custom, iPhone Retina */
+
+@media only screen and (min-width: 320px) and (max-width: 420px) {
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (min-width: 480px) {
+  /**/
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (min-width: 769px) {
+}
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

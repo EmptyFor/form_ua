@@ -64,6 +64,7 @@
         background-color: inherit;
         outline: none;
         border: none;
+        font-family: AvenirNext-DemiBold;
       }
 
       .pagination_current {
@@ -75,6 +76,7 @@
         text-align: center;
         font-weight: bold;
         color: white;
+        font-family: AvenirNext-DemiBold;
       }
     }
   }
@@ -85,6 +87,7 @@
     font-weight: 700;
     align-items: center;
     justify-content: space-around;
+    font-family: AvenirNext-DemiBold;
 
     span {
       cursor: pointer;
