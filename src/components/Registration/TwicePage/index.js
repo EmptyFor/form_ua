@@ -35,8 +35,9 @@ export class RegistrationTwice extends Component {
             this.setState({ password: '', confPassword: '', validPass: false, validConfPass: false, borderColor: 'red', visibility: 'visible' })
         } else {
             this.setState({ borderColor: '', visibility: 'hidden' })
+            this.props.actions.twicePage(first_name, phone, email, password)
+
         }
-        this.props.actions.twicePage(first_name, phone, email, password)
     }
 
     handleChange = e => {
@@ -61,8 +62,6 @@ export class RegistrationTwice extends Component {
         const { email, password, confPassword, validEmail, validPass, validConfPass, visibility, borderColor } = this.state
         const isOk = email.length > 0 && validEmail && password.length > 0 && validPass && confPassword.length > 0 && validConfPass;
         const { first_name, phone } = this.props;
-
-        console.log(this.props)
 
         let disabledColor = '';
         if (first_name !== undefined && phone !== undefined) {
@@ -98,7 +97,7 @@ export class RegistrationTwice extends Component {
                         <div className="input_container password_registration_input">
                             <Input style={{ borderColor: borderColor }} name='confPassword' value={confPassword} onChange={this.handleChange} type='password' placeholder="Підтвердити Пароль" />
                         </div>
-                        <label className="information_label">Пароль мусить містити не менше ніж 6 символів</label>
+                        <label className="information_label">Пароль повинен містити не менше ніж 6 символів</label>
                         <label className='reg_label' style={{ visibility: visibility }}>{`Паролі не співпадають. Будь ласка, введіть однaкові паролі`}</label>
                         <span className='span_btn'><Button width='100%' text='Зареєструватись' onClick={this.handleSubmit} back={disabledColor} disabled={!isOk} /> </span>
 
