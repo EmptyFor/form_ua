@@ -126,14 +126,12 @@
         }
       }
     }
-
-    .extendet_search {
-      grid-row: span 1;
+  }
+  .common_btn_link {
+    &:first-of-type {
       grid-column: span 3;
     }
-
-    .find {
-      grid-row: span 1;
+    &:last-of-type {
       grid-column: span 2;
     }
   }

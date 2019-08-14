@@ -44,6 +44,7 @@
       letter-spacing: 0.08px;
       text-align: center;
       color: #28252f;
+      font-family: AvenirNext-Medium;
     }
 
     .common_btn {
@@ -54,5 +55,39 @@
 .common_btn_link {
   margin: 0 auto;
   align-self: center;
-  height: 100%;
+}
+.modal_delete_advert {
+  width: 400px;
+  height: 300px;
+  background: black;
+  position: absolute;
+  top: 11%;
+  left: 40%;
+}
+.modal_button_group {
+  width: 68%;
+  height: 15%;
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+
+  .delete_modal_btn {
+    padding: 0;
+    height: 100%;
+  }
+
+  &btn:hover {
+    color: black !important;
+  }
+}
+
+.link_modal_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1.3%;
+  a {
+    width: 40%;
+  }
 }

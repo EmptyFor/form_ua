@@ -201,7 +201,7 @@ export class Profile extends Component {
 
       <Fragment>
         {
-          this.props.id && this.props.tupe ? <Modal type='delete' advertid={this.props.id} /> : null
+          this.props.id && this.props.tupe ? <Modal type={this.props.tupe} advertid={this.props.id} /> : null
         }
         <Header className='menu_fix' fix="true" />
         <div className="profile_wrapper">

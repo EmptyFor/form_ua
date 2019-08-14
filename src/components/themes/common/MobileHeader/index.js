@@ -17,6 +17,7 @@ class MobileHeader extends Component {
 
   state = {
     isOpen: false,
+    hideMenu: true,
   }
 
   componentDidMount = () => {
@@ -45,6 +46,11 @@ class MobileHeader extends Component {
 
   }
 
+  togleMenu = () => {
+    this.setState((prevState) => ({ hideMenu: !prevState.hideMenu }))
+    console.log(this.state.hideMenu)
+  }
+
 
   render() {
     const { user } = this.props;
@@ -53,27 +59,37 @@ class MobileHeader extends Component {
 
     return (
       <header className={`menu ${this.props.className}`} fix={this.props.fix}>
-        <div className={styles.language} id="language">
-          <p>
-            Language
-          </p>
-        </div>
         <Link className={styles.main_logo} to={links.login}>
           <img src={main_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 
-        <div className={styles.right_side}>
-          {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
-          <div className={styles.profile}>
-            {
-             token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
-            }
+        <div
+          className={styles.hamburger}
+          onClick={this.togleMenu}
+        >
+          <span></span>
+        </div>
 
-            {isOpen ? <div className={styles.profile_dropdown}>
-              <Link to={links.profile}><span onClick={this.handleClose}>Profile</span></Link>
-              <span onClick={this.handleLogout}>Logout</span>
-            </div> : null
-            }
+        <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
+          <div className={styles.language} id="language">
+            <p>
+              Language
+          </p>
+          </div>
+
+          <div className={styles.right_side}>
+            {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
+            <div className={styles.profile}>
+              {
+                token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+              }
+
+              {isOpen ? <div className={styles.profile_dropdown}>
+                <Link to={links.profile}><span onClick={this.handleClose}>Profile</span></Link>
+                <span onClick={this.handleLogout}>Logout</span>
+              </div> : null
+              }
+            </div>
           </div>
         </div>
       </header>

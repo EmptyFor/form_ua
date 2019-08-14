@@ -57,6 +57,12 @@ class Advert extends Component {
         this.props.profileActions.getAdvertId(advertid, type)
     }
 
+    deactivateAdvert = () => {
+        const { advertid } = this.props;
+        const type = 'deactivate';
+        this.props.profileActions.getAdvertId(advertid, type)
+    }
+
     render() {
         return (<Fragment>
           
@@ -86,7 +92,7 @@ class Advert extends Component {
                     <div className="advert_action_bar_time">{`${this.props.dateResult}`}</div>
                     <div className="advert_action_bar_actions" >
                         <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />Видалити</span>
-                        <span className="profile_advert_action_disactivate" onClick={this.props.onClick}><img src={deactivate_img} />Деактивувати</span>
+                        <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span>
                         <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />Редагувати</span>
                     </div>
                 </div> : null

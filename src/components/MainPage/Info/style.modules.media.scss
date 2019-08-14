@@ -18,19 +18,6 @@
         margin-bottom: 0;
       }
     }
-    .left_description {
-      grid-row-start: 3;
-      grid-column: span 2;
-      padding: 0% 5%;
-    }
-    .right_description {
-      grid-column: span 2;
-      grid-row-start: 4;
-      padding: 0% 5%;
-    }
-    .description {
-      padding: 3%;
-    }
   }
 }
 
@@ -64,11 +51,56 @@
         font-size: 20px;
       }
     }
+    .left_description,
+    .right_description {
+      padding: 0;
+      grid-column: span 2;
+    }
+    .left_description {
+      grid-row-start: 3;
+    }
+    .right_description {
+      grid-row-start: 4;
+      .description {
+        img {
+          order: 1;
+        }
+      }
+    }
+    .description {
+      padding: 2% 4%;
+      img {
+        height: 124px;
+      }
+      .text {
+        p {
+          font-size: 12px;
+        }
+        h1 {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
 
 /* Small Devices, Desktops */
 @media only screen and (max-width: 580px) {
+  .left_img {
+    display: none;
+  }
+  .right_create_advert {
+    grid-column: span 2 !important;
+  }
+  .how_it_works {
+    grid-row-start: 2;
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 16px !important;
+    }
+  }
 }
 
 /* Extra Small Devices, Phones */
