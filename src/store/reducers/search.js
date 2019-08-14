@@ -52,7 +52,6 @@ export default (state = initState, action) => {
                 data: action.data
             }
         case types.GET_FOUND_POSTS:
-            console.log(state)
             return {
                 ...state,
                 search_args: action.search_args

@@ -22,16 +22,18 @@
   }
 
   h1 {
-    margin-top: 7%;
+    margin-top: 15vh;
     font-size: 44px;
     text-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.39);
     font-family: AvenirNext-Bold;
+    text-align: center;
     color: #ffffff;
   }
 
   .form_subtitle {
     color: #ffffff;
     opacity: 0.9;
+    text-align: center;
     text-shadow: 0 2px 7.5px rgba(0, 0, 0, 0.21);
     font-family: AvenirNext-Regular;
     letter-spacing: 0.04px;
@@ -79,9 +81,16 @@
       grid-column: span 8;
     }
 
+    .common_select {
+      .select_area {
+        white-space: nowrap;
+      }
+    }
+
     .price {
       display: flex;
       align-items: center;
+      font-family: AvenirNext-Medium;
       justify-content: flex-end;
       grid-row: span 1;
       grid-column: span 1;
@@ -108,6 +117,8 @@
       .common_checkbox {
         .container {
           .text {
+            display: flex;
+            align-items: center;
             margin-right: 14px;
             font-size: 13px;
             line-height: 1.3;

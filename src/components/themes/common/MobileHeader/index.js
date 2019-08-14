@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { getInfo, getToken } from '../../../../store/helpers/localStorage'
 import { Redirect } from 'react-router-dom';
 
-class Header extends Component {
+class MobileHeader extends Component {
 
 
   state = {
@@ -66,7 +66,7 @@ class Header extends Component {
           {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
           <div className={styles.profile}>
             {
-             token ? <p  onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+             token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
             }
 
             {isOpen ? <div className={styles.profile_dropdown}>
@@ -86,10 +86,9 @@ export default connect(
     token: state.auth.token,
     user: state.usr.user,
     id: state.auth.id,
-    error: state.usr.err
   }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch),
     logout: bindActionCreators(logout, dispatch)
   })
-)(Header);
+)(MobileHeader);

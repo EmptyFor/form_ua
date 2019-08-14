@@ -162,7 +162,7 @@ export class Form extends Component {
                         getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
-                        placeholder='від (₴)'
+                        placeholder='Ціна від (₴)'
                         width="100%"
                         className='price_from'
                         name="price_from"
@@ -172,7 +172,7 @@ export class Form extends Component {
                         getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
-                        placeholder='до (₴)'
+                        placeholder='Ціна до (₴)'
                         width="100%"
                         className='price_to'
                         name="price_to"
@@ -189,13 +189,13 @@ export class Form extends Component {
                         />
                     </div>
 
-                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 3' }}>
+                    <Link to={links.search} className='common_btn_link' style={{ gridColumn: 'span 6' }}>
                         <Button className='extendet_search grey_btn'
                             text='Розширений пошук' />
                     </Link>
 
 
-                    <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link' style={{ gridColumn: 'span 2' }}>
+                    <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link' style={{ gridColumn: '8 / span 6'}}>
                         <Button
                             className='find'
                             text='Знайти'

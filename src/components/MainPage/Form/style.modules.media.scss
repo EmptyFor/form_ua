@@ -6,10 +6,17 @@
   .wrapp {
     .search_form {
       .common_btn {
-          font-size: 14px;
+        font-size: 13px;
       }
       .price {
-          font-size: 14px;
+        font-size: 13px;
+      }
+      .is_PDV_payer {
+        .common_checkbox {
+          .container .text {
+            font-size: 11px;
+          }
+        }
       }
     }
   }
@@ -21,6 +28,32 @@
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width: 1024px) {
+  .wrapp {
+    .search_form {
+      .common_select {
+        .select_area {
+          font-size: 10px;
+        }
+      }
+      .common_btn {
+        font-size: 9px;
+      }
+      .price {
+        font-size: 10px;
+      }
+      .common-input {
+        height: auto;
+        font-size: 10px;
+      }
+      .is_PDV_payer {
+        .common_checkbox {
+          .container .text {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -30,10 +63,89 @@
 /* Small Devices, Tablets */
 
 @media only screen and (max-width: 768px) {
+  .wrapp {
+    h1 {
+      font-size: 35px;
+    }
+    .form_subtitle {
+      font-size: 14px;
+    }
+    .search_form {
+      .common_btn {
+        font-size: 9px;
+      }
+      .price {
+        font-size: 9px;
+      }
+      .is_PDV_payer {
+        .common_checkbox {
+          .container .text {
+            font-size: 8px;
+          }
+        }
+      }
+    }
+    .search_form {
+      #mp_form_select_1 {
+        object-fit: cover;
+        grid-row-start: 1;
+        grid-column: span 13;
+      }
+
+      #mp_form_select_2 {
+        object-fit: cover;
+        grid-row-start: 2;
+        grid-column: span 13;
+      }
+
+      #mp_form_select_3 {
+        object-fit: cover;
+        grid-row-start: 3;
+        grid-column: span 13;
+      }
+
+      #mp_form_select_4 {
+        object-fit: cover;
+        grid-row-start: 4;
+        grid-column: span 13;
+      }
+    }
+  }
 }
 
 /* Small Devices, Desktops */
 @media only screen and (max-width: 580px) {
+  .wrapp {
+    h1 {
+      font-size: 30px;
+    }
+    .form_subtitle {
+      font-size: 12px;
+      padding-bottom: 10%;
+    }
+    .search_form  {
+      position: relative;
+      bottom: 0;
+      grid-template-columns: repeat(13, 4.5vw);
+      .price {
+        display: none;
+      }
+      .price_from {
+        padding: 7px 20%;
+        grid-column: span 4;
+      }
+      .price_to {
+        grid-column: span 4;
+      }
+      .is_PDV_payer {
+        grid-column: span 5;
+      }
+      .common_btn {
+        padding: 7px;
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -78,5 +190,4 @@
 }
 
 @media only screen and (min-width: 1200px) {
-    
 }
