@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert';
 import Button from '../../common/Button';
 import './style.modules.scss';
+import './style.modules.media.scss';
 
 export class FormFooter extends Component {
 
@@ -80,8 +81,8 @@ export class FormFooter extends Component {
     render() {
         return (
             <div className="form_footer" >
-                <Button className="clear_btn grey_btn" text="Очистити дані" width="20%" onClick={this.clearAllFields} />
-                <Button className="publish_btn" text="Опублікувати" width="20%" onClick={this.handleClick} />
+                <Button className="clear_btn grey_btn" text="Очистити дані" onClick={this.clearAllFields} />
+                <Button className="publish_btn" text="Опублікувати" onClick={this.handleClick} />
             </div>
         );
     }
