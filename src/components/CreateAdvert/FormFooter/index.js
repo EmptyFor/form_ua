@@ -11,7 +11,7 @@ export class FormFooter extends Component {
         test: false
     }
 
-    setFormData = (name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image) => {
+    setFormData = (name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image) => {
 
         let data = new FormData()
 
@@ -24,7 +24,7 @@ export class FormFooter extends Component {
             kved_name,
             extra_kved_name,
             tax_form,
-            license,
+            licenses,
             city,
             region,
             registered_at,
@@ -49,11 +49,11 @@ export class FormFooter extends Component {
     }
 
     handleClick = () => {
-        const { name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel } = this.props
+        const { name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel } = this.props
 
         this.setState(prevState => ({ test: !prevState.test }))
 
-        let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
+        let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
         name.length > 0 &&
             code.length === 8 &&
             price.length > 0 &&
@@ -61,14 +61,14 @@ export class FormFooter extends Component {
             kved_name.length > 0 &&
             extra_kved_name.length <= 10 &&
             tax_form.length > 0 &&
-            license.length <= 5 &&
+            licenses.length <= 5 &&
             city.length > 0 &&
             region.length > 0 &&
             registered_at.length === 10 &&
             pda.toString().length > 0 &&
             owner_data.length > 0 &&
             tel[0].length > 0 ?
-            this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
+            this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
             : alert('Заповніть обов’язкові поля')
 
     }
@@ -98,7 +98,7 @@ export default connect(
         kved_name: state.advert.kved_name,
         extra_kved_name: state.advert.extra_kved_name,
         tax_form: state.advert.tax_form,
-        license: state.advert.license,
+        licenses: state.advert.license,
         city: state.advert.city,
         region: state.advert.region,
         registered_at: state.advert.registered_at,

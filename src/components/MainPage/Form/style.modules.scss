@@ -45,6 +45,7 @@
     width: auto;
     height: auto;
     display: grid;
+    justify-content: center;
     background-color: #fff;
     box-shadow: 0px 20px 50px -20px rgba(0, 0, 0, 0.5);
     padding: 6% 10%;
@@ -91,8 +92,10 @@
       display: flex;
       align-items: center;
       font-family: AvenirNext-Medium;
-      justify-content: flex-end;
+      justify-content: flex-start;
       grid-row: span 1;
+      color: #3b3f54;
+      font-size: 16px;
       grid-column: span 1;
     }
 
@@ -133,6 +136,23 @@
     }
     &:last-of-type {
       grid-column: span 2;
+    }
+  }
+  .mobile_bg {
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    background-image: linear-gradient(235deg, rgba(0, 114, 240, 0.5), rgba(32, 189, 203, 0.5));
+    .form_subtitle {
+      margin-top: 10%;
+    }
+    .mobile_bg_photo {
+      position: absolute;
+      width: 100%;
+      height: 360px;
+      top: 0;
+      z-index: -1;
     }
   }
 }

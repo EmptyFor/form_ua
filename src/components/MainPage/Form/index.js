@@ -14,7 +14,8 @@ import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { CheckBox } from '../../common/CheckBox';
 import links from '../../../config/links';
-import { images } from '../../../assets/images/images'
+import { images } from '../../../assets/images/images';
+import background from '../../../assets/images/baground@2x.png';
 
 export class Form extends Component {
 
@@ -28,6 +29,16 @@ export class Form extends Component {
         price_from: '',
         price_to: '',
         pda: false,
+        mobile: false
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.resize.bind(this))
+        this.resize()
+    }
+
+    resize = () => {
+        this.setState({ mobile: window.innerWidth <= 580 })
     }
 
     setSearchData = (e) => {
@@ -112,8 +123,11 @@ export class Form extends Component {
         return (
 
             <div className='wrapp' >
-                <h1>Розпочни свій бізнес вже сьогодні</h1>
-                <span className="form_subtitle" >Знайди ідеальне рішення за декілька секунд...</span>
+                <div className={this.state.mobile && "mobile_bg"}>
+                    {this.state.mobile && <img src={background} className="mobile_bg_photo"></img>}
+                    <h1>Розпочни свій бізнес вже сьогодні</h1>
+                    <p className="form_subtitle" >Знайди ідеальне рішення за декілька секунд...</p>
+                </div>
 
                 <div className='search_form grid'>
 
@@ -162,7 +176,7 @@ export class Form extends Component {
                         getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
-                        placeholder='Ціна від (₴)'
+                        placeholder='від (₴)'
                         width="100%"
                         className='price_from'
                         name="price_from"
@@ -172,7 +186,7 @@ export class Form extends Component {
                         getData={this.setSearchData}
                         name="registrationDate"
                         type="money"
-                        placeholder='Ціна до (₴)'
+                        placeholder='до (₴)'
                         width="100%"
                         className='price_to'
                         name="price_to"

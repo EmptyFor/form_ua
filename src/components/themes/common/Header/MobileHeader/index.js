@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import CreateAdvertBtn from '../../../common/CreateAdvertBtn';
+import CreateAdvertBtn from '../../../../common/CreateAdvertBtn';
 import styles from './styles.module.scss';
 import './style.modules.media.scss';
-import main_logo from '../../../../assets/images/logo@2x.png'
-import links from '../../../../config/links';
-import * as actions from '../../../../store/actions/user'
-import { logout } from '../../../../store/actions/authorise'
+import main_logo from '../../../../../assets/images/logo@2x.png';
+import mobile_logo from '../../../../../assets/images/mobile_logo.svg';
+import links from '../../../../../config/links';
+import * as actions from '../../../../../store/actions/user';
+import { logout } from '../../../../../store/actions/authorise';
 import { bindActionCreators } from 'redux';
-import { getInfo, getToken } from '../../../../store/helpers/localStorage'
+import { getInfo, getToken } from '../../../../../store/helpers/localStorage';
 import { Redirect } from 'react-router-dom';
 
 class MobileHeader extends Component {
@@ -48,7 +49,6 @@ class MobileHeader extends Component {
 
   togleMenu = () => {
     this.setState((prevState) => ({ hideMenu: !prevState.hideMenu }))
-    console.log(this.state.hideMenu)
   }
 
 
@@ -58,36 +58,37 @@ class MobileHeader extends Component {
     const token = getToken()
 
     return (
-      <header className={`menu ${this.props.className}`} fix={this.props.fix}>
+      <header className={`menu ${this.props.className} ${this.state.isTransparent && this.props.isMobile  ? styles.close : styles.open}`} fix={this.props.fix}>
         <Link className={styles.main_logo} to={links.login}>
-          <img src={main_logo} alt="" onClick={this.handleClick}></img>
+          <img src={this.state.isTransparent && this.props.isMobile ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 
         <div
           className={styles.hamburger}
           onClick={this.togleMenu}
         >
-          <span></span>
+          <input type="checkbox"></input>
+          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
+          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
+          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
         </div>
 
         <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
           <div className={styles.language} id="language">
             <p>
-              Language
-          </p>
+              Українська
+            </p>
           </div>
 
           <div className={styles.right_side}>
             {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
             <div className={styles.profile}>
               {
-                token ? <p onClick={this.openDropdown}>{user.first_name || ""}</p> : <Link to={links.login}><p>Увійти</p></Link>
+                token ? <Link to={links.profile}><p onClick={this.handleClose}>{user.first_name || ""}</p></Link> : <Link to={links.login}><p>Увійти</p></Link>
               }
 
-              {isOpen ? <div className={styles.profile_dropdown}>
-                <Link to={links.profile}><span onClick={this.handleClose}>Profile</span></Link>
-                <span onClick={this.handleLogout}>Logout</span>
-              </div> : null
+              {
+                token && <span onClick={this.handleLogout}>Вийти</span>
               }
             </div>
           </div>
