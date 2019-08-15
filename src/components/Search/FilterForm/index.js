@@ -31,7 +31,8 @@ class FilterForm extends Component {
     no_debt: false,
     hideNav: false,
     transitionFilters: true,
-    filterTransitionClass: ''
+    filterTransitionClass: '100vh',
+    checkedTransition:'4.3ch'
   }
 
   componentDidMount() {
@@ -42,6 +43,9 @@ class FilterForm extends Component {
 
   resize = () => {
     this.setState({ hideNav: window.innerWidth <= 580 })
+    if(this.state.hideNav) {
+      this.setState({filterTransitionClass: this.state.checkedTransition})
+    }
   }
 
   sendSearchArgs = () => {
@@ -165,18 +169,18 @@ class FilterForm extends Component {
       transitionFilters: this.state.transitionFilters = !this.state.transitionFilters
     })
 
-    // if (this.state.transitionFilters) {
-    //   this.setState({ filterTransitionClass: '-100%' })
-    // } else {
-    //   this.setState({ filterTransitionClass: '5%' })
-    // }
+    if (this.state.transitionFilters) {
+      this.setState({ checkedTransition: '100vh' })
+    } else {
+      this.setState({ filterTransitionClass: '4.3vh' })
+    }
   }
 
   render() {
     const {filterTransitionClass} = this.state
     return (
 
-      <div className="filter_form" ref={this.filterItemList}  >
+      <div className="filter_form" ref={this.filterItemList} style={{minHeight:filterTransitionClass}} >
         {this.state.hideNav ? <div className="filter_header filter_header_mobile" onClick={this.showFiltersMenu}>Загальні параметри пошуку <img src={result_btn} /></div> : <div className="filter_header">Загальні параметри пошуку</div>}
 
         {this.state.transitionFilters ? <div className="filter_transition_div">
