@@ -16,7 +16,7 @@ class Search extends Component {
   componentDidMount = () => {
     this.props.actions.postCurrentPage(1)
   }
-
+  
   render() {
  
     return (
@@ -31,6 +31,7 @@ class Search extends Component {
     )
   }
 }
+
 
 export default connect(
   (state) => ({

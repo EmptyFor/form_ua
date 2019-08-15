@@ -69,8 +69,13 @@ class Advert extends Component {
         return (<Fragment>
 
             <Link to={links.details}>
-                <div className="common_advert" active={this.props.activate} profile={this.props.profile} onClick={this.handleClick} key={this.props.key}>
-                {this.props.activate ? <span className="profile_advert_check_active"></span> : <span className="profile_advert_check_active" style={{backgroundColor:'orange'}}></span>}
+                <div className="common_advert" placement={this.props.placement} active={this.props.activate} profile={this.props.profile} onClick={this.handleClick} key={this.props.key}>
+                    {/* {this.props.activate ? <span className="profile_advert_check_active"></span> : <span className="profile_advert_check_active" style={{backgroundColor:'orange'}}></span>} */}
+                    {this.props.placement === 'profile' && this.props.activate ? <span className="profile_advert_check_active"></span> :
+                        this.props.placement === 'profile' && !this.props.activate ? <span className="profile_advert_check_active" style={{ backgroundColor: 'rgba(247, 93, 4, 0.518)' }}></span>
+                            : null
+                    }
+
                     <div className="left_side_advert">
                         <h1>{this.props.orgName}</h1>
                         <div className="minor_info_advert" advertid={this.props.advertid}>
@@ -91,11 +96,11 @@ class Advert extends Component {
                 </div>
             </Link>
             {
-                this.props.profile ? <div className="advert_action_bar">
+                this.props.placement === 'profile' ? <div className="advert_action_bar">
                     <div className="advert_action_bar_time">{`${this.props.dateResult}`}</div>
                     <div className="advert_action_bar_actions" >
                         <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />Видалити</span>
-                        
+
                         {
                             this.props.activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span> :
                                 <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Активувати</span>
@@ -103,7 +108,7 @@ class Advert extends Component {
 
                         <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />Редагувати</span>
                     </div>
-                    
+
                 </div> : null
             }
         </Fragment>

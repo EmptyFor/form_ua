@@ -111,6 +111,7 @@ export class Profile extends Component {
             <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
               <Advert
                 advertid={item.id}
+                placement={'profile'}
                 activate={item.active}
                 onClick={this.handleClickInfo}
                 orgName={item.name}
@@ -121,7 +122,6 @@ export class Profile extends Component {
                 about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
                 image={item.image.url}
                 dateResult={dateResult}
-                profile='true'
               />
             </div>
           )

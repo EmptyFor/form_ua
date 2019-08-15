@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../common/Button';
 import legalForm from '../../../assets/db/legalForm';
@@ -11,6 +11,7 @@ import { images } from '../../../assets/images/images';
 import * as actions from '../../../store/actions/search';
 import { bindActionCreators } from 'redux';
 import '../FilterForm/style.modules.scss';
+import result_btn from '../../../assets/images/filter-results-button.svg'
 class FilterForm extends Component {
 
   filterItemList = React.createRef()
@@ -27,7 +28,20 @@ class FilterForm extends Component {
     pda: false,
     license: [],
     have_activity: false,
-    no_debt: false
+    no_debt: false,
+    hideNav: false,
+    transitionFilters: false,
+    filterTransitionClass: '4.2vh'
+  }
+
+  componentDidMount() {
+    this.props.actions.postCurrentPage(1)
+    window.addEventListener('resize', this.resize.bind(this))
+    this.resize()
+  }
+
+  resize = () => {
+    this.setState({ hideNav: window.innerWidth <= 580 })
   }
 
   sendSearchArgs = () => {
@@ -125,6 +139,9 @@ class FilterForm extends Component {
     }, 100);
   }
 
+
+
+
   componentWillMount = () => {
     const { legal_form, kved_code, kved_name, city, region, tax_form, price_from, price_to, pda } = this.props
     kved_code === undefined ?
@@ -143,167 +160,184 @@ class FilterForm extends Component {
     this.sendSearchData()
   }
 
-  render() {
-    return (
-      <div className="filter_form" ref={this.filterItemList}>
-        <div className="filter_header">Загальні параметри пошуку</div>
-        <div className="filter_inputs">
-          <Select
-            getData={this.setSearchData}
-            name="legal_form"
-            itemList={legalForm}
-            type="common"
-            width='auto'
-            placeholder='Оберіть зі списку'
-            icon={images.house}
-            id='ca_form_select_1'
-            clear={this.props.clear}
-            value={this.state.legal_form}
-          />
-          <Select
-            getData={this.setSearchData}
-            name="kved_name"
-            type="search"
-            searchType="kved"
-            width='auto'
-            placeholder='Оберіть зі списку'
-            icon={images.portfolio}
-            id='ca_form_select_2'
-            clear={this.props.clear}
-            value={`${this.state.kved_code}, ${this.state.kved_name}`}
-          />
-          <Select
-            getData={this.setSearchData}
-            name="location"
-            type="search"
-            searchType="location"
-            width='auto'
-            placeholder='Вибріть місто/населений пункт'
-            icon={images.mapPoint}
-            id='ca_form_select_6'
-            clear={this.props.clear}
-            value={`${this.state.region}, ${this.state.city}`}
-          />
-          <Select
-            getData={this.setSearchData}
-            name="tax_form"
-            type="common"
-            itemList={taxForm}
-            width='auto'
-            placeholder='Форма оподаткування'
-            icon={images.lable}
-            id='ca_form_select_4'
-            clear={this.props.clear}
-            value={this.state.tax_form}
-          />
-          <Select
-            getData={this.setSearchData}
-            name="license"
-            type="multiply"
-            itemList={license}
-            width='auto'
-            placeholder='Ліцензія'
-            icon={images.cc}
-            id='ca_form_select_5'
-            clear={this.props.clear}
-          />
-        </div>
+  showFiltersMenu = () => {
+    this.setState({
+      transitionFilters: this.state.transitionFilters = !this.state.transitionFilters
+    })
 
-        <div className="filter_checkboxes">
-          <span>
-            <label>Є платником ПДВ?</label>
-            <CheckBox
-              getData={this.setSearchData}
-              name="pda"
-              id='pda'
-              clear={this.props.clear}
-              value={this.state.pda}
-            />
-          </span>
-          <span>
-            <label>Ведення господарської діяльності</label>
-            <CheckBox
-              getData={this.setSearchData}
-              name="have_activity"
-              id='have_activity'
-              clear={this.props.clear}
-              value={this.state.have_activity}
-            />
-          </span>
-          <span>
-            <label>Наявність заборгованостей/обтяжень</label>
-            <CheckBox
-              getData={this.setSearchData}
-              name="no_debt"
-              id='no_debt'
-              clear={this.props.clear}
-              value={this.state.no_debt}
-            />
-          </span>
-        </div>
-
-        <div className="filter_bottom">
-          <div className="filter_bottom_inputs">
-            <label>Ціна</label>
-            <Input
-              getData={this.setSearchData}
-              type="money"
-              placeholder='від (₴)'
-              width="100%"
-              className='price_from'
-              name="price_from"
-              clear={this.props.clear}
-              value={this.state.price_from}
-            />
-            <Input
-              getData={this.setSearchData}
-              type="money"
-              placeholder='до (₴)'
-              width="100%"
-              className='price_to'
-              name="price_to"
-              clear={this.props.clear}
-              value={this.state.price_to}
-            />
-          </div>
-
-          <div className="filter_bottom_buttons">
-            <Button
-              className='grey_btn'
-              text='Скинути фільтри'
-              onClick={this.clearAllFields}
-            />
-            <Button
-              className='find'
-              text='Показати'
-              onClick={this.sendSearchArgs}
-            />
-          </div>
-        </div>
-      </div>
-
-    )
+    if (this.state.transitionFilters) {
+      this.setState({ filterTransitionClass: '100vh' })
+    } else {
+      this.setState({ filterTransitionClass: '4.3vh' })
+    }
   }
-}
 
-export default connect(
+  render() {
+    const {filterTransitionClass} = this.state
+    return (
+
+      <div className="filter_form" ref={this.filterItemList} style={{height:filterTransitionClass, minHeight:filterTransitionClass}} >
+        {this.state.hideNav ? <div className="filter_header filter_header_mobile" onClick={this.showFiltersMenu}>Загальні параметри пошуку <img src={result_btn} /></div> : <div className="filter_header">Загальні параметри пошуку</div>}
+
+        {this.state.transitionFilters ? <div className="filter_transition_div">
+          <div className="filter_inputs">
+            <Select
+              getData={this.setSearchData}
+              name="legal_form"
+              itemList={legalForm}
+              type="common"
+              width='auto'
+              placeholder='Оберіть зі списку'
+              icon={images.house}
+              id='ca_form_select_1'
+              clear={this.props.clear}
+              value={this.state.legal_form}
+            />
+            <Select
+              getData={this.setSearchData}
+              name="kved_name"
+              type="search"
+              searchType="kved"
+              width='auto'
+              placeholder='Оберіть зі списку'
+              icon={images.portfolio}
+              id='ca_form_select_2'
+              clear={this.props.clear}
+              value={`${this.state.kved_code}, ${this.state.kved_name}`}
+            />
+            <Select
+              getData={this.setSearchData}
+              name="location"
+              type="search"
+              searchType="location"
+              width='auto'
+              placeholder='Вибріть місто/населений пункт'
+              icon={images.mapPoint}
+              id='ca_form_select_6'
+              clear={this.props.clear}
+              value={`${this.state.region}, ${this.state.city}`}
+            />
+            <Select
+              getData={this.setSearchData}
+              name="tax_form"
+              type="common"
+              itemList={taxForm}
+              width='auto'
+              placeholder='Форма оподаткування'
+              icon={images.lable}
+              id='ca_form_select_4'
+              clear={this.props.clear}
+              value={this.state.tax_form}
+            />
+            <Select
+              getData={this.setSearchData}
+              name="license"
+              type="multiply"
+              itemList={license}
+              width='auto'
+              placeholder='Ліцензія'
+              icon={images.cc}
+              id='ca_form_select_5'
+              clear={this.props.clear}
+            />
+          </div>
+
+          <div className="filter_checkboxes">
+            <span>
+              <label>Є платником ПДВ?</label>
+              <CheckBox
+                getData={this.setSearchData}
+                name="pda"
+                id='pda'
+                clear={this.props.clear}
+                value={this.state.pda}
+              />
+            </span>
+            <span>
+              <label>Ведення господарської діяльності</label>
+              <CheckBox
+                getData={this.setSearchData}
+                name="have_activity"
+                id='have_activity'
+                clear={this.props.clear}
+                value={this.state.have_activity}
+              />
+            </span>
+            <span>
+              <label>Наявність заборгованостей/обтяжень</label>
+              <CheckBox
+                getData={this.setSearchData}
+                name="no_debt"
+                id='no_debt'
+                clear={this.props.clear}
+                value={this.state.no_debt}
+              />
+            </span>
+          </div>
+
+          <div className="filter_bottom">
+            <div className="filter_bottom_inputs">
+              <label>Ціна</label>
+              <Input
+                getData={this.setSearchData}
+                type="money"
+                placeholder='від (₴)'
+                width="100%"
+                className='price_from'
+                name="price_from"
+                clear={this.props.clear}
+                value={this.state.price_from}
+              />
+              <Input
+                getData={this.setSearchData}
+                type="money"
+                placeholder='до (₴)'
+                width="100%"
+                className='price_to'
+                name="price_to"
+                clear={this.props.clear}
+                value={this.state.price_to}
+              />
+            </div>
+
+            <div className="filter_bottom_buttons">
+              <Button
+                className='grey_btn'
+                text='Скинути фільтри'
+                onClick={this.clearAllFields}
+              />
+              <Button
+                className='find'
+                text='Показати'
+                onClick={this.sendSearchArgs}
+              />
+            </div>
+          </div>
+        </div>: null }
+       </div> 
+ 
+     )
+   }
+ }
+ 
+ export default connect(
   (state) => ({
-    legal_form: state.search.legal_form,
-    kved_code: state.search.kved_code,
-    kved_name: state.search.kved_name,
-    city: state.search.city,
-    region: state.search.region,
-    tax_form: state.search.tax_form,
-    price_from: state.search.price_from,
-    price_to: state.search.price_to,
-    pda: state.search.pda,
-    license: state.search.license,
-    have_activity: state.search.have_activity,
-    no_debt: state.search.no_debt,
-    clear: state.search.clear,
-    search_args: state.search.search_args
-  }),
+          legal_form: state.search.legal_form,
+        kved_code: state.search.kved_code,
+        kved_name: state.search.kved_name,
+        city: state.search.city,
+        region: state.search.region,
+        tax_form: state.search.tax_form,
+        price_from: state.search.price_from,
+        price_to: state.search.price_to,
+        pda: state.search.pda,
+        license: state.search.license,
+        have_activity: state.search.have_activity,
+        no_debt: state.search.no_debt,
+        clear: state.search.clear,
+        search_args: state.search.search_args
+      }),
   dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
-  })
+          actions: bindActionCreators(actions, dispatch)
+      })
 )(FilterForm);
