@@ -17,7 +17,7 @@ export class MainPage extends Component {
         return (
             <div className="bg">
                 <img className="image_bg" alt="" src={triangle_bg}></img>
-                <Header fix="false" />
+                <Header fix="false" isTransparent={true}/>
                 <Form />
                 <Info />
             </div>
