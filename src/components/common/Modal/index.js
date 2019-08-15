@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../Modal/style.modules.scss';
+import '../Modal/style.modules.media.scss';
 import * as actions from '../../../store/actions/advert';
 import * as profileActions from '../../../store/actions/profile';
 import { Button } from '../Button';

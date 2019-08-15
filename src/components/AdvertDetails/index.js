@@ -10,6 +10,7 @@ import profile_phone from '../../assets/images/red_phone.svg'
 import './style.modules.scss';
 import './style.modules.media.scss';
 
+
 export class AdvertDetails extends Component {
 
     constructor() {
