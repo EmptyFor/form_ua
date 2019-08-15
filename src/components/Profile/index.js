@@ -111,6 +111,8 @@ export class Profile extends Component {
             <div id={`x${item.id}`} className="profile_advert_hover" key={`_${item.id}`}>
               <Advert
                 advertid={item.id}
+                placement={'profile'}
+                activate={item.active}
                 onClick={this.handleClickInfo}
                 orgName={item.name}
                 ispda={item.ispda}
@@ -120,7 +122,6 @@ export class Profile extends Component {
                 about={`${[item.kved_name, item.extra_kved_name].join(', ')}`}
                 image={item.image.url}
                 dateResult={dateResult}
-                profile='true'
               />
             </div>
           )
@@ -201,7 +202,7 @@ export class Profile extends Component {
 
       <Fragment>
         {
-          this.props.id && this.props.tupe ? <Modal type='delete' advertid={this.props.id} /> : null
+          this.props.id && this.props.tupe ? <Modal type={this.props.tupe} advertid={this.props.id} /> : null
         }
         <Header className='menu_fix' fix="true" />
         <div className="profile_wrapper">

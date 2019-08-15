@@ -6,6 +6,8 @@ import FilterForm from '../Search/FilterForm/index';
 import SearchResult from '../Search/SearchResult/index'
 // import { wrap } from 'module';
 import './style.modules.scss'
+import './style.modules.media.scss'
+
 import Header from '../themes/common/Header';
 import triangle_bg from '../../assets/images/triangle_bg.png'
 
@@ -14,7 +16,7 @@ class Search extends Component {
   componentDidMount = () => {
     this.props.actions.postCurrentPage(1)
   }
-
+  
   render() {
  
     return (
@@ -29,6 +31,7 @@ class Search extends Component {
     )
   }
 }
+
 
 export default connect(
   (state) => ({

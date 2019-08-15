@@ -80,55 +80,61 @@
   /* Extra Small Devices, Phones */
 
   @media only screen and (max-width: 425px) {
-    .login_page {
-      height: 100vh;
-      position: relative;
-      img {
-        margin-top: 4vh;
-      }
-    }
-
-    .login_modal_form {
-      overflow: hidden;
-      width: 90%;
-      border-radius: 28px;
-      height: 6  0vh;
-      margin-block-start: 20%;
-      margin-block-end: 20%;
-      padding: 0;
-
-      label{
-        font-size: 14px;
-      }
-
-      .login_form_header{
-        font-size: 25px;
-      }
-
-      .form_input::placeholder{
-        font-size: 13px;
-      }
-      .form_input[type=password]::placeholder{
-        font-size: 18px;
-      }
-
-      .login_form_footer {
-        font-size: 14px;
-      }
-
-      form {
-        .span_btn {
-          width: 100%;
-
-          .common_btn {
-            width: 100% !important;
+    .common_advert {
+      height: auto;
+      padding-bottom: 5%;
+      .left_side_advert {
+        width: 84%;
+        padding-right: 0;
+        h1 {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.36;
+          letter-spacing: 0.07px;
+          text-align: left;
+          color: #28252f;
+        }
+        .minor_info_advert {
+          img {
+            width: 15px;
+            height: 15px;
+          }
+          .ispda_advert,
+          .date_advert,
+          .place_advert {
+            font-size: 10px;
+            letter-spacing: 0.06px;
+            color: #28252f;
+            margin-inline-end: 1%;
           }
         }
+        p {
+          font-size: 12px;
+          letter-spacing: 0.06px;
+          color: #28252f;
+        }
       }
-    }
 
-    .footer {
-      display: none;
+      .right_side_advert {
+        width: 22%;
+        .fullprice_advert {
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.08px;
+          color: #20bdcb;
+        }
+        .image_document_advert{
+          width: auto;
+          height: auto;
+          margin-top: 30%;
+        }
+      }
+      .profile_advert_check_active{
+        width: 7px;
+        height: 7px;
+        top: 5px;
+        right: 5px;
+      }
     }
   }
 

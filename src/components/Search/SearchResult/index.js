@@ -52,7 +52,6 @@ class SearchResult extends Component {
             this.setState({ disNext: true, colorNext: '#aeaeae' })
         }
         this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, colorPrev: '#1ccee9', disPrev: false });
-
         this.props.actions.postCurrentPage(this.state.currentPage)
     }
 

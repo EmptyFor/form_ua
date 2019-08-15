@@ -6,6 +6,8 @@
   background-color: #fff;
   padding: 2.2% 4.7% 1.6% 4.9%;
   font-family: AvenirNext-Regular;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
 
   .left_side_advert {
@@ -134,6 +136,7 @@
 
     .profile_advert_action_delete,
     .profile_advert_action_disactivate,
+    .profile_advert_action_activate,
     .profile_advert_action_edit {
       display: flex;
       align-items: center;
@@ -145,7 +148,8 @@
       }
     }
 
-    .profile_advert_action_disactivate {
+    .profile_advert_action_disactivate,
+    .profile_advert_action_activate {
       img {
         width: 16px;
         height: 16px;
@@ -176,11 +180,15 @@
 }
 
 .profile_advert_action_disactivate:hover {
-  color: rgb(255, 197, 36);
+  color: rgb(248, 161, 0);
 }
 
 .profile_advert_action_edit:hover {
   color: rgb(26, 143, 253);
+}
+
+.profile_advert_action_activate:hover {
+  color: rgba(19, 161, 0, 0.518);
 }
 
 .profile_adverts_nodata {
@@ -191,4 +199,26 @@
   opacity: 0.6;
   text-align: center;
   padding-top: 30%;
+}
+
+// .profile_advert_check_active {
+//   width: 25px;
+//   height: 35px;
+// background-color: rgba(4, 247, 4, 0.518);
+//   position: absolute;
+//   right: -10px;
+//   top: -14px;
+//   transform: rotate(135deg)
+// }
+
+.profile_advert_check_active {
+  width: 15px;
+  height: 15px;
+  border-radius: 7px;
+  background-color: rgba(4, 247, 4, 0.518);
+  // background-color: rgba(247, 93, 4, 0.518);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transform: rotate(135deg);
 }

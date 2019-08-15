@@ -1,108 +1,119 @@
 .filter_form {
-    min-height: 100vh;
-    text-align: center;
-    min-width: 330px;
-    float: left;
+  min-height: 100vh;
+  text-align: center;
+  min-width: 330px;
+  float: left;
+}
+.filter_transition_div {
+  position: absolute;
+  transition: 1s;
+}
+.filter_header {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.09px;
+  color: #99abc3;
+  background-color: #fff;
+  text-align: start;
+  padding-left: 7%;
 }
 
-.filter_header {
-    height: 5%;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(177, 167, 200, 0.47);
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.09px;
-    color: #99abc3;
-    background-color: #fff;
-    text-align: start;
-    padding-left: 7%
+.filter_header_mobile {
+  cursor: pointer;
+  z-index: 99999;
+  img {
+    padding-left: 5%;
+  }
 }
 
 .filter_inputs {
-    padding: 10% 7%;
-    display: grid;
-    grid-auto-columns: repeat(1, 100%);
-    grid-template-rows: repeat(40px, auto);
-    grid-gap: 25px;
-    background-color: #fff;
-    border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+  padding: 10% 7%;
+  display: grid;
+  grid-auto-columns: repeat(1, 100%);
+  grid-template-rows: repeat(40px, auto);
+  grid-gap: 25px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(177, 167, 200, 0.47);
 
-    .common_select {
-        box-sizing: border-box;
-        .select_area {
-            max-width: 300px;
-        }
+  .common_select {
+    box-sizing: border-box;
+    .select_area {
+      max-width: 300px;
     }
+  }
 }
 
 .filter_checkboxes {
-    padding: 10% 0;
+  padding: 10% 0;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.06px;
+  color: #707488;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(177, 167, 200, 0.47);
+
+  span {
     display: flex;
-    height: 10%;
+    text-align: start;
     justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.06px;
-    color: #707488;
-    background-color: #fff;
-    border-bottom: 1px solid rgba(177, 167, 200, 0.47);
 
-    span {
-        display: flex;
-        text-align: start;
-        justify-content: space-between;
-
-        input[type="checkbox"] {
-            content: "";
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border-radius: 25px;
-        }
+    input[type="checkbox"] {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 25px;
     }
+  }
 }
 
 .filter_bottom {
+  display: flex;
+  height: auto;
+  padding: 10% 0% 5%;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+
+  .filter_bottom_inputs {
+    width: 86%;
     display: flex;
-    height: auto;
-    padding: 10% 0% 5%;
-    justify-content: space-around;
-    flex-direction: column;
     align-items: center;
-    background-color: #fff;
-
-    .filter_bottom_inputs {
-        width: 86%;
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        label {
-            width: auto;
-            font-size: 22px;
-        }
-
-        .common-input {
-            width: 30%;
-            height: 40px;
-            padding: 0px 15px;
-            margin: 0px 10px;
-            border:  1px solid #b1a7c8;
-        }
+    flex-direction: row;
+    justify-content: space-around;
+    label {
+      width: auto;
+      font-size: 22px;
     }
 
-    .filter_bottom_buttons {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-block-start: 15%;
-        width: 74%;
-        height: 20%;
-        .common_btn{
-            margin-block-end: 8%
-        }
+    .common-input {
+      width: 30%;
+      height: 40px;
+      padding: 0px 15px;
+      margin: 0px 10px;
+      border: 1px solid #b1a7c8;
     }
+  }
+
+  .filter_bottom_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-block-start: 15%;
+    width: 74%;
+    height: 20%;
+    .common_btn {
+      margin-block-end: 8%;
+    }
+  }
 }

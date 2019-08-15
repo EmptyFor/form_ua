@@ -80,55 +80,77 @@
   /* Extra Small Devices, Phones */
 
   @media only screen and (max-width: 425px) {
-    .login_page {
-      height: 100vh;
-      position: relative;
-      img {
-        margin-top: 4vh;
-      }
-    }
+    .short_wrapp {
+      display: flex;
+      flex-direction: column;
+      padding: 19% 0 0 0;
+      .filter_form {
+        height: 91vh;
+        min-height: 92vh;
+        margin-block-end: 2%;
+        .filter_header {
+          font-family: AvenirNext-DemiBold;
+          letter-spacing: 0.07px;
+          font-size: 14px;
+          height: 5vh;
+          padding-left: 5%;
+        }
+        .filter_inputs {
+          padding: 5%;
+          font-family: AvenirNext-Medium;
+          .common_select {
+            .select_area {
+              max-width: none;
+            }
+          }
+        }
+        .filter_checkboxes {
+          padding: 5% 0;
+          height: 12%;
+          span {
+            margin-block-end: 5%;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.07px;
+          }
+        }
 
-    .login_modal_form {
-      overflow: hidden;
-      width: 90%;
-      border-radius: 28px;
-      height: 6  0vh;
-      margin-block-start: 20%;
-      margin-block-end: 20%;
-      padding: 0;
-
-      label{
-        font-size: 14px;
-      }
-
-      .login_form_header{
-        font-size: 25px;
-      }
-
-      .form_input::placeholder{
-        font-size: 13px;
-      }
-      .form_input[type=password]::placeholder{
-        font-size: 18px;
-      }
-
-      .login_form_footer {
-        font-size: 14px;
-      }
-
-      form {
-        .span_btn {
-          width: 100%;
-
-          .common_btn {
-            width: 100% !important;
+        .filter_bottom {
+          padding-top: 5%;
+          .filter_bottom_inputs {
+            label {
+              font-size: 14px;
+              font-weight: 500;
+              letter-spacing: 0.07px;
+              color: #707488;
+            }
+          }
+          .filter_bottom_buttons{
+            padding-block-start: 9%;
           }
         }
       }
-    }
 
-    .footer {
-      display: none;
+      .results_list {
+        .results_content {
+          .results_list_header {
+            height: 5vh;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.07px;
+            color: #99abc3;
+          }
+        }
+        .pagination_div{
+          background-color: #efeff6;
+          button{
+            font-size: 14px;
+          }
+          .pagination_count{
+            width: 20% !important;
+          }
+        }
+      }
     }
   }
 
