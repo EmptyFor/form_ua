@@ -71,16 +71,23 @@
       font-size: 14px;
     }
     .search_form {
-      .common_btn {
-        font-size: 9px;
+      .common_select {
+        .select_area {
+          font-size: 14px;
+          padding: 10px 0;
+        }
       }
-      .price {
+      .common-input {
+        height: auto;
+        font-size: 14px;
+      }
+      .common_btn {
         font-size: 9px;
       }
       .is_PDV_payer {
         .common_checkbox {
           .container .text {
-            font-size: 8px;
+            font-size: 12px;
           }
         }
       }
@@ -117,6 +124,7 @@
 @media only screen and (max-width: 580px) {
   .wrapp {
     height: auto;
+    background-image: unset;
     h1 {
       font-size: 30px;
     }
@@ -126,19 +134,34 @@
     }
     .search_form {
       position: relative;
-      grid-template-columns: repeat(13, 4.3vw);
+      padding: 10% 0;
+      width: 100%;
+      grid-template-columns: repeat(13, 5.5vw);
+      grid-row-gap: 20px;
+      bottom: 0;
       .price {
-        display: none;
+        grid-row-start: 5;
+        grid-column: span 13;
       }
       .price_from {
         padding: 7px 20%;
-        grid-column: span 4;
+        grid-column: span 6;
       }
       .price_to {
-        grid-column: span 4;
+        grid-column: 8 / span 6;
       }
       .is_PDV_payer {
-        grid-column: span 5;
+        grid-column: span 13;
+        .common_checkbox {
+          width: 100%;
+          .container {
+            width: 100%;
+            .checkmark {
+              order: -1;
+              margin-right: 10px;
+            }
+          }
+        }
       }
       .common_btn_link {
         &:first-of-type {
