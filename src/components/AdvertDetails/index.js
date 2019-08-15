@@ -9,6 +9,7 @@ import { baseURL } from '../../core/constants/baseURL'
 import profile_phone from '../../assets/images/red_phone.svg'
 import './style.modules.scss';
 
+
 export class AdvertDetails extends Component {
 
     constructor() {
