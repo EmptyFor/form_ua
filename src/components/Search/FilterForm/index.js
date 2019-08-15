@@ -30,8 +30,8 @@ class FilterForm extends Component {
     have_activity: false,
     no_debt: false,
     hideNav: false,
-    transitionFilters: false,
-    filterTransitionClass: '4.2vh'
+    transitionFilters: true,
+    filterTransitionClass: ''
   }
 
   componentDidMount() {
@@ -165,18 +165,18 @@ class FilterForm extends Component {
       transitionFilters: this.state.transitionFilters = !this.state.transitionFilters
     })
 
-    if (this.state.transitionFilters) {
-      this.setState({ filterTransitionClass: '100vh' })
-    } else {
-      this.setState({ filterTransitionClass: '4.3vh' })
-    }
+    // if (this.state.transitionFilters) {
+    //   this.setState({ filterTransitionClass: '-100%' })
+    // } else {
+    //   this.setState({ filterTransitionClass: '5%' })
+    // }
   }
 
   render() {
     const {filterTransitionClass} = this.state
     return (
 
-      <div className="filter_form" ref={this.filterItemList} style={{height:filterTransitionClass, minHeight:filterTransitionClass}} >
+      <div className="filter_form" ref={this.filterItemList}  >
         {this.state.hideNav ? <div className="filter_header filter_header_mobile" onClick={this.showFiltersMenu}>Загальні параметри пошуку <img src={result_btn} /></div> : <div className="filter_header">Загальні параметри пошуку</div>}
 
         {this.state.transitionFilters ? <div className="filter_transition_div">
