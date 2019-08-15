@@ -26,7 +26,6 @@ class Header extends Component {
         <MobileHeader
           isTransparent={this.props.isTransparent}
           fix={this.props.fix}
-          className={this.props.className}
         />
         : <CommonHeader
           fix={this.props.fix}

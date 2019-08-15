@@ -27,6 +27,7 @@ class MobileHeader extends Component {
     if (token) {
       this.props.actions.getUserId(id)
     }
+    console.log(this.props)
   }
 
   handleClose = () => {
@@ -56,11 +57,10 @@ class MobileHeader extends Component {
     const { user } = this.props;
     const { isOpen } = this.state;
     const token = getToken()
-
     return (
-      <header className={`menu ${this.props.className} ${this.state.isTransparent && this.props.isMobile  ? styles.close : styles.open}`} fix={this.props.fix}>
+      <header className={`menu ${this.props.className} ${this.state.hideMenu && this.props.isTransparent  ? styles.close : styles.open}`} fix={this.props.fix}>
         <Link className={styles.main_logo} to={links.login}>
-          <img src={this.state.isTransparent && this.props.isMobile ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
+          <img src={this.state.hideMenu && this.props.isTransparent ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 
         <div
@@ -68,9 +68,9 @@ class MobileHeader extends Component {
           onClick={this.togleMenu}
         >
           <input type="checkbox"></input>
-          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
-          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
-          <span style = {this.props.isTransparent && {background : '#fff'}}></span>
+          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
+          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
+          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
         </div>
 
         <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
