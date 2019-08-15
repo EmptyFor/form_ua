@@ -99,7 +99,7 @@ export class AdvertDetails extends Component {
                                         {
                                             data.post.licenses.map((elem, index) => {
                                                 return (
-                                                    <li key={index} style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem}`}</li>
+                                                    <li key={index} style={{ marginBlockEnd: '2%' }}>{`${index + 1}. ${elem.name}`}</li>
                                                 )
                                             })
                                         }

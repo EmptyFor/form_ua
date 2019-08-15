@@ -10,6 +10,7 @@ import AdditionlInfo from './AdditionlInfo';
 import OwnerInfo from './OwnerInfo';
 import FormFooter from './FormFooter';
 import '../CreateAdvert/style.modules.scss';
+import '../CreateAdvert/style.modules.media.scss';
 import Modal from '../common/Modal'
 import { getToken } from '../../store/helpers/localStorage'
 import { Redirect } from 'react-router-dom';

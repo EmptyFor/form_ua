@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Input } from '../../common/Input';
 import * as actions from '../../../store/actions/advert';
 import './style.modules.scss'
+import './style.modules.media.scss'
 
 export class OwnerInfo extends Component {
 

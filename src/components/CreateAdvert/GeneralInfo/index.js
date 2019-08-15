@@ -6,6 +6,7 @@ import TextArea from '../../common/TextArea';
 import Input from '../../common/Input';
 import UploadField from '../../common/UploadField';
 import './style.modules.scss';
+import './style.modules.media.scss';
 
 export class GeneralInfo extends Component {
 

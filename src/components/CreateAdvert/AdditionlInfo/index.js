@@ -11,6 +11,7 @@ import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { Radiobutton } from '../../common/Radiobutton';
 import './style.modules.scss';
+import './style.modules.media.scss';
 
 export class AdditionlInfo extends Component {
     constructor() {

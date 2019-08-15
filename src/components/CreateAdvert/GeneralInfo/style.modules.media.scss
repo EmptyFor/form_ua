@@ -3,15 +3,6 @@
 /* Large Devices, Wide Screens */
 
 @media only screen and (max-width: 1500px) {
-  .ca_bg {
-    .form_bg {
-      .form_content_bg {
-        .subtitle {
-          font-size: 15px;
-        }
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -20,6 +11,26 @@
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width: 1024px) {
+  .general_info {
+    .first_position,
+    .second_position,
+    .third_position,
+    .forth_position {
+      grid-column: span 2;
+      grid-row-start: unset;
+    }
+    .forth_position {
+      #upload-container {
+        padding: 20%;
+      }
+    }
+    .grid_right_column {
+      margin-left: 0 !important;
+    }
+    .grid_left_column {
+      margin: 0 !important;
+    }
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -33,32 +44,6 @@
 
 /* Small Devices, Desktops */
 @media only screen and (max-width: 580px) {
-  .ca_bg {
-    background-color: unset;
-    padding-left: 0;
-    padding-right: 0;
-    .form_bg {
-      margin-top: 9%;
-      width: 100%;
-      border: none;
-      .form_header {
-        background-color: unset;
-        border-bottom: 3px solid #dedede;
-        width: 90%;
-        margin: 0 auto;
-        padding-left: 0;
-        h1 {
-          color: #99abc3;
-          margin-left: 3%;
-        }
-      }
-      .form_content_bg {
-        .subtitle {
-          font-size: 15px;
-        }
-      }
-    }
-  }
 }
 
 /* Extra Small Devices, Phones */
