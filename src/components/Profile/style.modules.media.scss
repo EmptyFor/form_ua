@@ -80,75 +80,116 @@
   /* Extra Small Devices, Phones */
 
   @media only screen and (max-width: 425px) {
-    .short_wrapp {
-      display: flex;
+    .profile_wrapper {
       flex-direction: column;
-      padding: 19% 0 0 0;
-      .filter_form {
-        // height: 91vh;
-        // min-height: 92vh;
-        margin-block-end: 2%;
-        .filter_header {
-          font-family: AvenirNext-DemiBold;
-          letter-spacing: 0.07px;
-          font-size: 14px;
+      width: 100%;
+      margin-block-start: 0;
+      max-height: none;
+      .image_bg {
+        display: none;
+      }
+
+      .profile_info {
+        margin-block-start: 19%;
+        margin-block-end: 4%;
+        order: 1;
+        width: 100%;
+        box-shadow: 0.5px 0.5px 12px rgb(90, 90, 90);
+
+        .profile_list_header {
+          background-color: #efeff6;
           height: 5vh;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.79;
+          letter-spacing: 0.07px;
           padding-left: 5%;
         }
-        .filter_inputs {
-          padding: 5%;
-          font-family: AvenirNext-Medium;
-          .common_select {
-            .select_area {
-              max-width: none;
-            }
-          }
-        }
-        .filter_checkboxes {
-          padding: 5% 0;
-          height: 12%;
-          span {
-            margin-block-end: 5%;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.07px;
-          }
-        }
 
-        .filter_bottom {
-          padding-top: 5%;
-          .filter_bottom_inputs {
-            label {
-              font-size: 14px;
-              font-weight: 500;
-              letter-spacing: 0.07px;
-              color: #707488;
-            }
+        .profile_info_main_contain {
+          padding: 5% 0 0 5%;
+          span {
+            margin-block-end: 4%;
           }
-          .filter_bottom_buttons{
-            padding-block-start: 9%;
+
+          .profile_info_labels {
+            font-family: SegoeUI;
+            font-size: 14px;
+            color: #707070;
+          }
+          .profile_info_name {
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.33px;
+            color: #000000;
           }
         }
       }
 
-      .results_list {
-        .results_content {
-          .results_list_header {
-            height: 5vh;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.07px;
-            color: #99abc3;
-          }
-        }
-        .pagination_div{
+      .profile_list {
+        order: 2;
+        width: 100%;
+
+        .pagination_div {
           background-color: #efeff6;
-          button{
+          button {
             font-size: 12px;
           }
-          .pagination_count{
+          .pagination_count {
             font-size: 12px;
             width: 20% !important;
+          }
+        }
+
+        .profile_list_header {
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.07px;
+          color: #99abc3;
+          background-color: #efeff6;
+          box-shadow: -5px -5px 6px white;
+          border-top: 1px solid rgba(177, 167, 200, 0.47);
+
+          .results_header {
+            width: 50%;
+          }
+
+          .profile_create_advert_btn_span {
+            width: 50%;
+            overflow: hidden;
+            .profile_create_advert_btn {
+              width: 80%;
+            }
+          }
+        }
+
+        .profile_advert_hover {
+          .advert_action_bar {
+            font-size: 12px;
+            letter-spacing: 0.06px;
+            color: #707488;
+
+            .advert_action_bar_time {
+              width: 34%;
+              opacity: 0.7;
+            }
+
+            .advert_action_bar_actions {
+              .profile_advert_action_delete,
+              .profile_advert_action_disactivate,
+              .profile_advert_action_edit {
+                margin-inline-start: 4%;
+                margin-inline-end: 4%;
+                font-size: 10px;
+              }
+
+              img {
+                width: 10px;
+                height: 10px;
+                margin-inline-end: 4%;
+              }
+            }
           }
         }
       }

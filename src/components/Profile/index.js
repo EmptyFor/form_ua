@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import { Redirect } from 'react-router-dom';
@@ -8,6 +7,7 @@ import * as actions from '../../store/actions/user';
 import * as profileActions from '../../store/actions/profile';
 import Header from '../themes/common/Header';
 import './style.modules.scss';
+import './style.modules.media.scss';
 import CreateAdvertBtn from '../common/CreateAdvertBtn';
 import Advert from '../common/Advert';
 import { Redirect } from 'react-router-dom';
@@ -210,8 +210,8 @@ export class Profile extends Component {
           {!data ? <p className="">Зачекайте...</p> : <div className="profile_list" >
             <div>
               {data ? <div className='profile_list_header'>
-                <span style={{ width: '30%' }}>Мої оголошення <label className='results_header_counter'>{`(${data.total})`}</label></span>
-                <span className=''><CreateAdvertBtn className="profile_create_advert_btn" /></span></div> : null}
+                <span className="results_header" >Мої оголошення <label className='results_header_counter'>{`(${data.total})`}</label></span>
+                <span className='profile_create_advert_btn_span'><CreateAdvertBtn className="profile_create_advert_btn" /></span></div> : null}
 
               {this.renderAdverts(data.posts)}
 
@@ -233,7 +233,7 @@ export class Profile extends Component {
           <div className="profile_info" >
             <div className='profile_list_header info_head'><span>Особисті дані </span></div>
             <div className="profile_info_main_contain ">
-              <span style={{ fontWeight: 'bold', fontSize: '35px', fontFamily: '' }}>{user.first_name}</span>
+              <span className="profile_info_name" >{user.first_name}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_phone} />{user.phone}</span>
               <span className="profile_info_labels" style={{ marginBlockEnd: '5%' }}><img src={profile_email} />{user.email}</span>
             </div>

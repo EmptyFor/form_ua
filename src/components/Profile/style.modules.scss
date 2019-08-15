@@ -35,6 +35,9 @@ body {
       height: 8.7vh;
       padding: 0 9%;
       
+      .results_header{
+        width: 30%;
+      }
     }
   }
   .profile_info_main_contain {
@@ -43,7 +46,10 @@ body {
     justify-content: flex-start;
     padding: 8% 10%;
     flex-direction: column;
-
+    .profile_info_name{
+      font-weight: bold;
+      font-size: 35px;
+    }
     .profile_info_labels {
       font-family: AvenirNext-Medium;
       letter-spacing: 0.4px;
