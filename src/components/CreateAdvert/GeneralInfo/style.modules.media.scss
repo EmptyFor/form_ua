@@ -12,6 +12,7 @@
 
 @media only screen and (max-width: 1024px) {
   .general_info {
+    grid-template-columns: repeat(2, 1fr);
     .first_position,
     .second_position,
     .third_position,

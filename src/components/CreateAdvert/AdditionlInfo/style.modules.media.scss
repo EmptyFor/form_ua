@@ -12,6 +12,7 @@
 
 @media only screen and (max-width: 1024px) {
   .additionl_info {
+    grid-template-columns: repeat(2, 1fr);
     .first_position,
     .second_position,
     .third_position,
@@ -24,8 +25,15 @@
       grid-column: span 2;
       grid-row-start: unset;
     }
+    .eith_position {
+      padding-left: 0 !important;
+      .container {
+        padding: 0;
+        padding-left: 15px;
+      }
+    }
     .grid_right_column {
-      margin-left: 0!important;
+      margin-left: 0 !important;
     }
     .grid_left_column {
       margin: 0 !important;
@@ -40,6 +48,7 @@
 /* Small Devices, Tablets */
 
 @media only screen and (max-width: 768px) {
+
 }
 
 /* Small Devices, Desktops */
