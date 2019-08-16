@@ -285,10 +285,13 @@ export class SearchSelect extends Component {
     //Set top for select list
 
     setTop = () => {
-        let h = this.selectArea.current.offsetHeight
-        this.top = h + 'px'
+        try {
+            let h = this.selectArea.current.offsetHeight
+            this.top = h + 'px'
 
-        this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
+            this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
+        }
+        catch {}
     }
 
     componentWillMount() {

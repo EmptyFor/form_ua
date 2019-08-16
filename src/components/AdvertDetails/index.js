@@ -8,6 +8,7 @@ import ispdacheck from '../../assets/images/ispdacheck.svg'
 import { baseURL } from '../../core/constants/baseURL'
 import profile_phone from '../../assets/images/red_phone.svg'
 import './style.modules.scss';
+import './style.modules.media.scss';
 
 
 export class AdvertDetails extends Component {
@@ -127,7 +128,7 @@ export class AdvertDetails extends Component {
 
                                 <div className="details_body_item_list" >
                                     <label className="details_labels_list">Статутний капітал</label>
-                                    <span className="details_values_list" style={{ fontWeight: '800' }}> {data.post.capital || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>} </span>
+                                    <span className="details_values_list"> {data.post.capital || <span style={{ color: 'grey' }}>Не надано жодної інформації</span>} </span>
                                 </div>
 
                                 {/* footer */}
@@ -135,7 +136,7 @@ export class AdvertDetails extends Component {
                             </div>
                             <div className="details_main_info_footer">
                                 <label className="details_labels_list ">Власник / Юридична особа</label>
-                                <span className="details_values_list" style={{ paddingLeft: '2%' }}> {data.post.owner_data}</span>
+                                <span className="details_values_list"> {data.post.owner_data}</span>
                             </div>
                         </div>
                     </div>
