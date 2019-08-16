@@ -23,11 +23,12 @@
   .details_wrapper {
     flex-direction: column;
     margin: 0;
+    margin-block-start: 0 !important;
     .details_info {
       width: 100vw;
       order: -1;
       margin-bottom: 5%;
-      margin-top: 15%;
+      margin-top: 0.2% !important;
     }
     .details_list {
       margin-bottom: 5%;
@@ -43,9 +44,8 @@
     .details_info {
       margin-top: 10%;
       .details_list_header {
-
       }
-      .details_info_main_contain  {
+      .details_info_main_contain {
         span {
           font-size: 14px;
           &:last-child {
@@ -97,7 +97,7 @@
       }
       .details_main_info_footer {
         flex-direction: column;
-        .details_labels_list  {
+        .details_labels_list {
           width: 90%;
           margin-bottom: 2%;
           font-size: 14px;
