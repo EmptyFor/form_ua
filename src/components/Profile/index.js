@@ -77,7 +77,7 @@ export class Profile extends Component {
     if (this.state.currentPage === 1 + 1) {
       this.setState({ disPrev: true, colorPrev: '#aeaeae' })
     }
-    this.setState({ currentPage: this.state.currentPage = this.state.currentPage + 1, disNext: false, colorNext: '#1ccee9' });
+    this.setState({ currentPage: this.state.currentPage = this.state.currentPage - 1, disNext: false, colorNext: '#1ccee9' });
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
 
@@ -85,7 +85,7 @@ export class Profile extends Component {
 
   renderAdverts = (posts) => {
     if (!posts) {
-      return <div>Somethink wrong!</div>
+      return <div> . . .</div>
     }
     if (posts.length === 0) {
       return <div className="profile_adverts_nodata"> НЕ ЗАРЕЄСТРОВАНО ЖОДНОГО ОГОЛОШЕННЯ </div>
@@ -143,7 +143,6 @@ export class Profile extends Component {
     const { data } = this.props
     let paginationPageCounter, dynamicWidth;
 
-    console.log('suqa' , this.props)
     const token = localStorage.getItem('firm-token')
     if (!token) {
       return <Redirect to={links.login} />
@@ -216,10 +215,10 @@ export class Profile extends Component {
         <Header className='menu_fix' fix="true" />
         <div className="profile_wrapper">
           <img className="image_bg" alt="" src={triangle_bg}></img>
-          {!data ? <p className="">Зачекайте...</p> : <div className="profile_list" >
+          {!data ? <p className="results_preloader">Зачекайте...</p> : <div className="profile_list" >
             <div>
               {data ? <div className='profile_list_header'>
-                <span className="results_header" >Мої оголошення <label className='results_header_counter'>{`(${data.total})`}</label></span>
+                <span className="results_header" >Мої оголошення <label className='results_header_counter'>{!data.total ? ' ' : `(${data.total})`}</label></span>
                 <span className='profile_create_advert_btn_span'><CreateAdvertBtn className="profile_create_advert_btn" /></span></div> : null}
 
               {this.renderAdverts(data.posts)}

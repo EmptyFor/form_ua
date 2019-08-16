@@ -103,7 +103,7 @@
           }
         }
         .filter_checkboxes {
-          padding:0 0 4% 0;
+          padding: 0 0 4% 0;
 
           span {
             font-size: 14px;
@@ -122,7 +122,7 @@
               color: #707488;
             }
           }
-          .filter_bottom_buttons{
+          .filter_bottom_buttons {
             padding-block-start: 5%;
           }
         }
@@ -138,16 +138,25 @@
             color: #99abc3;
           }
         }
-        .pagination_div{
+        .pagination_div {
           background-color: #efeff6;
-          button{
+          button {
             font-size: 12px;
           }
-          .pagination_count{
+          .pagination_count {
             font-size: 12px;
             width: 20% !important;
           }
         }
+      }
+
+      .results_preloader {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        padding: 20% 5%;
+
       }
     }
   }
