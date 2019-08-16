@@ -6,13 +6,10 @@ import axios from 'axios'
 
 
 export function* getCurrentPagePosts(current_page, search_args) {
-    const token = localStorage.getItem('firm-token');
-    const options = {
-        headers: { "Authorization": `Bearer ${token}` }
-    }
+  
     try {
         console.log(search_args)
-        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`, options)
+        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`)
             .then(response => {
                 return response.data;
             })
@@ -23,12 +20,9 @@ export function* getCurrentPagePosts(current_page, search_args) {
 }
 
 export function* getFoundPagePosts(search_args) {
-    const token = localStorage.getItem('firm-token');
-    const options = {
-        headers: { "Authorization": `Bearer ${token}` }
-    }
+    
     try {
-        const data = yield axios.get(`${baseURL}ua/api/v1/posts/${search_args}`, options)
+        const data = yield axios.get(`${baseURL}ua/api/v1/posts/${search_args}`)
             .then(response => {
                 return response.data;
             })

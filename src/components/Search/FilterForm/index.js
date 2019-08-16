@@ -42,7 +42,7 @@ class FilterForm extends Component {
   }
 
   resize = () => {
-    this.setState({ hideNav: window.innerWidth <= 580 })
+    this.setState({ hideNav: window.innerWidth <= 769 })
     if(this.state.hideNav) {
       this.setState({filterTransitionClass: this.state.checkedTransition})
     }

@@ -198,7 +198,7 @@
     flex-direction: column;
     padding: 0.2% 0 0 0;
     .filter_form {
-      padding-top: 5%;
+      margin-block-start: 10%;
       margin-block-end: 2%;
       .filter_header {
         font-family: AvenirNext-DemiBold;
@@ -277,7 +277,6 @@
 /* Extra Small Devices, Phones */
 
 @media only screen and (min-width: 480px) {
-
   /**/
 }
 
