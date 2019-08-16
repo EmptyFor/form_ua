@@ -29,11 +29,7 @@ export class GeneralInfo extends Component {
             this.props.actions.setGeneralInfo(name, code, price)
         }
         else {
-            name.length > 0 &&
-            code.length === 8 &&
-            price.length > 0 ?
-                this.props.actions.setGeneralInfo(name, code, price) :
-                void 0
+            this.props.actions.setGeneralInfo(name, code, price)
         }
     }
 

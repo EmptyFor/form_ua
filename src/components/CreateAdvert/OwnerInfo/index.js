@@ -52,7 +52,7 @@ export class OwnerInfo extends Component {
 
         this.props.actions.clearAllInfo(false)
 
-        if (name === 'tel' && value.length === 24) {
+        if (name === 'tel') {
             this.tel[id] = value
             value = this.tel
             this.setState({ tel: value })
@@ -64,8 +64,7 @@ export class OwnerInfo extends Component {
 
     sendOwnerInfoData = () => {
         const { owner_data, tel } = this.state
-        console.log(tel[0].length)
-        owner_data && tel[0].length === 24 ? this.props.actions.setOwnerInfo(owner_data, tel) : void 0
+        this.props.actions.setOwnerInfo(owner_data, tel)
     }
 
     clearState = () => {

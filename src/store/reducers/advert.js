@@ -15,7 +15,7 @@ const initState = {
     city: '',
     region: '',
     registered_at: '',
-    pda: false,
+    pda: '',
     have_activity: false,
     no_debt: false,
     capital: 0,

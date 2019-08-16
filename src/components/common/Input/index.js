@@ -116,6 +116,7 @@ export class Input extends Component {
                 className={`common-input ${className}`}
                 placeholder={placeholder}
                 style={{ width: width, borderColor: this.state.borderColor }}
+                autoComplete="off"
                 name={name}
                 ref={this.inputRef}
                 onChange={this.moneyInput}
