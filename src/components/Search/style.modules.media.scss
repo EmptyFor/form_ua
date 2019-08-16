@@ -3,16 +3,6 @@
 /* Large Devices, Wide Screens */
 
 @media only screen and (max-width: 1500px) {
-  .wrapp {
-    .search_form {
-      .common_btn {
-        font-size: 12px;
-      }
-      .price {
-        font-size: 14px;
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -44,16 +34,6 @@
   /* Large Devices, Wide Screens */
 
   @media only screen and (max-width: 1500px) {
-    .wrapp {
-      .search_form {
-        .common_btn {
-          font-size: 12px;
-        }
-        .price {
-          font-size: 14px;
-        }
-      }
-    }
   }
 
   @media only screen and (max-width: 1200px) {
@@ -83,7 +63,7 @@
     .short_wrapp {
       display: flex;
       flex-direction: column;
-      padding: .2% 0 0 0;
+      padding: 0.2% 0 0 0;
       .filter_form {
         margin-block-end: 2%;
         .filter_header {
@@ -156,7 +136,6 @@
         align-items: center;
         justify-content: center;
         padding: 20% 5%;
-
       }
     }
   }
@@ -225,6 +204,83 @@
 /* Small Devices, Tablets */
 
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .short_wrapp {
+    .filter_form {
+      margin-block-end: 2%;
+      .filter_header {
+        height: 7vh !important;
+        font-family: AvenirNext-DemiBold;
+        letter-spacing: 0.07px;
+        font-size: 16px;
+        height: 5vh;
+        padding-left: 5%;
+      }
+      .filter_inputs {
+        padding: 5%;
+        font-family: AvenirNext-Medium;
+        .common_select {
+          .select_area {
+            max-width: none;
+          }
+        }
+      }
+      .filter_checkboxes {
+        padding: 0 0 4% 0;
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 0.07px;
+        }
+      }
+
+      .filter_bottom {
+        padding-top: 5%;
+        .filter_bottom_inputs {
+          label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.07px;
+            color: #707488;
+          }
+        }
+        .filter_bottom_buttons {
+          padding-block-start: 10%;
+        }
+      }
+    }
+
+    .results_list {
+      .results_content {
+        .results_list_header {
+          height: 7vh;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 0.07px;
+          color: #99abc3;
+        }
+      }
+      .pagination_div {
+        background-color: #efeff6;
+        height: 8vh;
+        button {
+          font-size: 14px;
+        }
+        .pagination_count {
+          font-size: 14px;
+          width: 20% !important;
+        }
+      }
+    }
+
+    .results_preloader {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      padding: 20% 5%;
+    }
+  }
 }
 
 /* Medium Devices, Desktops */
