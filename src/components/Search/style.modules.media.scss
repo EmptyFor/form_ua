@@ -192,12 +192,92 @@
 
 /* Custom, iPhone Retina */
 
-@media only screen and (min-width: 320px) and (max-width: 420px) {
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+  .short_wrapp {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2% 0 0 0;
+    .filter_form {
+      padding-top: 5%;
+      margin-block-end: 2%;
+      .filter_header {
+        font-family: AvenirNext-DemiBold;
+        letter-spacing: 0.07px;
+        font-size: 14px;
+        height: 5vh;
+        padding-left: 5%;
+      }
+      .filter_inputs {
+        padding: 5%;
+        font-family: AvenirNext-Medium;
+        .common_select {
+          .select_area {
+            max-width: none;
+          }
+        }
+      }
+      .filter_checkboxes {
+        padding: 0 0 4% 0;
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 0.07px;
+        }
+      }
+
+      .filter_bottom {
+        padding-top: 5%;
+        .filter_bottom_inputs {
+          label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.07px;
+            color: #707488;
+          }
+        }
+        .filter_bottom_buttons {
+          padding-block-start: 5%;
+        }
+      }
+    }
+
+    .results_list {
+      .results_content {
+        .results_list_header {
+          height: 5vh;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.07px;
+          color: #99abc3;
+        }
+      }
+      .pagination_div {
+        background-color: #efeff6;
+        button {
+          font-size: 12px;
+        }
+        .pagination_count {
+          font-size: 12px;
+          width: 20% !important;
+        }
+      }
+    }
+
+    .results_preloader {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      padding: 20% 5%;
+    }
+  }
 }
 
 /* Extra Small Devices, Phones */
 
 @media only screen and (min-width: 480px) {
+
   /**/
 }
 
