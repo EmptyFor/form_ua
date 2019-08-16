@@ -197,7 +197,7 @@
   }
 }
 
-@media only screen and (max-height: 700px) {
+@media only screen and (max-height: 700px) and (max-width: 580px) {
   .wrapp {
     height: auto;
     .mobile_bg {
