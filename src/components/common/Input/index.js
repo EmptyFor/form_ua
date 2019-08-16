@@ -105,6 +105,7 @@ export class Input extends Component {
                 required={required}
                 mask="+ 38 (099) 999 - 99 - 99"
                 maskChar=""
+                autoComplete="off"
                 value={this.state.value}
                 onChange={this.onChange}
                 onClick={this.onClick}
@@ -134,6 +135,7 @@ export class Input extends Component {
                 id={id}
                 required={required}
                 mask="99 - 99 - 99 - 99"
+                autoComplete="off"
                 maskChar=""
                 value={this.state.value}
                 onChange={this.onChange}
@@ -150,6 +152,7 @@ export class Input extends Component {
                 id={id}
                 required={required}
                 mask="99/99/9999"
+                autoComplete="off"
                 maskChar=""
                 value={this.state.value}
                 onChange={this.onChange}
@@ -165,6 +168,7 @@ export class Input extends Component {
                 name={name}
                 ref={this.inputRef}
                 onChange={this.checkInputValue}
+                autoComplete="off"
                 onBlur={this.props.getData}
                 id={id}
                 required={required}
