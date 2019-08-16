@@ -6,7 +6,7 @@ const initState = {
     id: '',
     tupe: '',
     status:'',
-    active:''
+    active_status:''
 };
 
 export default (state = initState, action) => {
@@ -29,11 +29,7 @@ export default (state = initState, action) => {
                 ...state,
                 status: action.status
             };
-            case types.SET_STATUS_DEACTIVATE_ADVERT:
-            return {
-                ...state,
-                active: action.active_status
-            };
+           
         case types.SET_ERROR:
             return {
                 ...state,

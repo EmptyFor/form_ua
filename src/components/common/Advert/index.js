@@ -21,6 +21,13 @@ class Advert extends Component {
     state = {
         text: '',
         profile: false,
+        rendering:''
+    }
+
+    componentWillReceiveProps = () => {
+        if(this.props.activeStatus === '200'){
+            alert('AAAAAAAAAAAAAAAA')
+        }
     }
 
     componentWillMount = () => {
@@ -66,6 +73,8 @@ class Advert extends Component {
     }
 
     render() {
+
+        const { activate } = this.props;
         return (<Fragment>
 
             <Link to={links.details}>
@@ -102,7 +111,7 @@ class Advert extends Component {
                         <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />Видалити</span>
 
                         {
-                            this.props.activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span> :
+                            activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span> :
                                 <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Активувати</span>
                         }
 
@@ -118,7 +127,7 @@ class Advert extends Component {
 
 export default connect(
     (state) => ({
-        active: state.profile.active
+        activeStatus: state.profile.activeStatus
     }),
     dispatch => ({
         searchActions: bindActionCreators(searchActions, dispatch),

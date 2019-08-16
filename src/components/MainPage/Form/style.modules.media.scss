@@ -78,7 +78,6 @@
         }
       }
       .common-input {
-        height: auto;
         font-size: 14px;
       }
       .common_btn {
@@ -171,9 +170,16 @@
       grid-template-columns: repeat(13, 5.5vw);
       grid-row-gap: 20px;
       bottom: 0;
+
       .common_btn {
         padding: 7px;
         font-size: 14px;
+      }
+      .common_select {
+        .select_area {
+          max-width: none;
+          max-height: 30px;
+        }
       }
     }
   }
@@ -182,6 +188,8 @@
 /* Extra Small Devices, Phones */
 
 @media only screen and (max-width: 425px) {
+ 
+
 }
 
 /* Custom, iPhone Retina */

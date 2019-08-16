@@ -27,10 +27,6 @@ export const deactivateAdvert = (id, active) => ({
     active
 });
 
-export const setStatusDeactivateAdvert = (active_status) => ({
-    type: types.SET_STATUS_DEACTIVATE_ADVERT,
-    active_status
-});
 
 export const editAdvert = (id) => ({
     type: types.EDIT_ADVERT,
