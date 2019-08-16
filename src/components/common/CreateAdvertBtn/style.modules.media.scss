@@ -34,6 +34,9 @@
 /* Custom, iPhone Retina */
 
 @media only screen and (max-width: 360px) {
+  .advert {
+    line-height: 1;
+  }
 }
 
 @media only screen and (max-width: 320px) {
