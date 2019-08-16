@@ -37,6 +37,13 @@ export class Profile extends Component {
   }
 
 
+
+  componentWillReceiveProps = () => {
+    if (this.props.active_status) {
+      this.setState({ modal: false })
+    }
+  }
+
   componentDidMount = () => {
     this.props.actions.getProfileInfo(this.state.currentPage)
   }
@@ -135,6 +142,8 @@ export class Profile extends Component {
     const { user } = this.props;
     const { data } = this.props
     let paginationPageCounter, dynamicWidth;
+
+    console.log('suqa' , this.props)
     const token = localStorage.getItem('firm-token')
     if (!token) {
       return <Redirect to={links.login} />
@@ -189,11 +198,11 @@ export class Profile extends Component {
 
       dynamicWidth = 3 * numersOfPages.length + "%"
     }
-    if (this.props.status === 200 ) {
-      if((data.total / 3) !== currentPage){
+    if (this.props.status === 200) {
+      if ((data.total / 3) !== currentPage) {
         this.props.actions.getProfileInfo(this.state.currentPage - 1);
-      }else{
-        this.props.actions.getProfileInfo(this.state.currentPage );
+      } else {
+        this.props.actions.getProfileInfo(this.state.currentPage);
       }
       this.props.profileActions.checkAdvertStatus('')
     }
@@ -250,7 +259,8 @@ export default connect(
     data: state.usr.data,
     id: state.profile.id,
     tupe: state.profile.tupe,
-    status: state.profile.status
+    status: state.profile.status,
+    active_status: state.profile.active_status
   }),
   dispatch => ({
     actions: bindActionCreators(actions, dispatch),

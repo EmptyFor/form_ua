@@ -31,7 +31,7 @@ class FilterForm extends Component {
     no_debt: false,
     hideNav: false,
     transitionFilters: true,
-    filterTransitionClass: '100vh',
+    filterTransitionClass: '91vh',
     checkedTransition:'4.3ch'
   }
 

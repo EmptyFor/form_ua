@@ -86,7 +86,7 @@ class Modal extends Component {
                             <div className="modal_header">
                                 <span onClick={this.closeModal}>&times;</span>
                             </div>
-                            <p className="modal_text">Ви дійсно хочете деактивувати це оголошення?</p>
+                           {this.props.active ? <p className="modal_text">Ви дійсно хочете деактивувати це оголошення?</p> : <p className="modal_text">Ви дійсно хочете активувати це оголошення?</p>}
                             <div className="modal_button_group">
                                 <div style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text="Так" onClick={this.deactivateConfirmation} /></div>
                                 <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text="Скасувати" />
@@ -114,7 +114,7 @@ class Modal extends Component {
 
 export default connect(
     (state) => ({
-        active: state.profile.active
+        active: state.profile.active,
     }),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch),

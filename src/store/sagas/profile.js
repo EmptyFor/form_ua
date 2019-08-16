@@ -24,11 +24,11 @@ export function* deleteAdvert(id) {
 export function* deactivateAdvert(id, active) {
     const token = localStorage.getItem('firm-token')
     try {
-        yield axios.patch(`${baseURL}ua/api/v1/posts/${id}`, { active: !active }, { headers: { "Authorization": `Bearer ${token}` } })
+        const data = yield axios.patch(`${baseURL}ua/api/v1/posts/${id}`, { active: !active }, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
-                console.log(response)
                 return response;
             })
+            yield put(actions.checkAdvertStatus(data.status))
     } catch (error) {
         yield put(actions.setError(error.message));
     }

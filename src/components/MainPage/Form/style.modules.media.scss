@@ -78,7 +78,6 @@
         }
       }
       .common-input {
-        height: auto;
         font-size: 14px;
       }
       .common_btn {
@@ -184,6 +183,7 @@
       grid-row-gap: 20px;
       height: fit-content;
       bottom: 0;
+
       .common_btn {
         padding: 7px;
         font-size: 14px;
@@ -200,6 +200,8 @@
 /* Extra Small Devices, Phones */
 
 @media only screen and (max-width: 425px) {
+ 
+
 }
 
 /* Custom, iPhone Retina */

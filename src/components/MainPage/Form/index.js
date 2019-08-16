@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -172,27 +172,28 @@ export class Form extends Component {
                     />
 
                     <p className="price">Ціна</p>
-                    <Input
-                        getData={this.setSearchData}
-                        name="registrationDate"
-                        type="money"
-                        placeholder='від (₴)'
-                        width="100%"
-                        className='price_from'
-                        name="price_from"
-                        clear={this.props.clear}
-                    />
-                    <Input
-                        getData={this.setSearchData}
-                        name="registrationDate"
-                        type="money"
-                        placeholder='до (₴)'
-                        width="100%"
-                        className='price_to'
-                        name="price_to"
-                        clear={this.props.clear}
-                    />
-
+                    <Fragment>
+                        <Input
+                            getData={this.setSearchData}
+                            name="registrationDate"
+                            type="money"
+                            placeholder='від (₴)'
+                            width="100%"
+                            className='price_from'
+                            name="price_from"
+                            clear={this.props.clear}
+                        />
+                        <Input
+                            getData={this.setSearchData}
+                            name="registrationDate"
+                            type="money"
+                            placeholder='до (₴)'
+                            width="100%"
+                            className='price_to'
+                            name="price_to"
+                            clear={this.props.clear}
+                        />
+                    </Fragment>
                     <div className="is_PDV_payer">
                         <CheckBox
                             getData={this.setSearchData}
