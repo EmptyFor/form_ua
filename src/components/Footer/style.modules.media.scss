@@ -80,13 +80,25 @@
     /* Extra Small Devices, Phones */
   
     @media only screen and (max-width: 425px) {
-        .footer_texts{
-            .footer_links{
-                width: 94%;
-                padding: 0 2%;
-                font-size: 12px
-            }
+      footer{
+        height: 100px;
+        .footer_logo{
+          height: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 2%;
         }
+        .footer_texts{
+          padding-top:3%;
+          .footer_links{
+              width: 94%;
+              padding: 0 2%;
+              font-size: 10px
+          }
+      }
+      }
+        
     }
   
     /* Custom, iPhone Retina */
