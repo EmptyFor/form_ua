@@ -61,7 +61,7 @@ class MobileHeader extends Component {
       fix={this.props.fix}
       style={!this.props.isTransparent ? {position: 'relative'} : void 0}
       >
-        <Link className={styles.main_logo} to={links.login}>
+        <Link className={styles.main_logo} to={links.home}>
           <img src={this.state.hideMenu && this.props.isTransparent ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 
