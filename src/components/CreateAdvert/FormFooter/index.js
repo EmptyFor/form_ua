@@ -59,6 +59,7 @@ export class FormFooter extends Component {
             code.length === 8 &&
             price.length > 0 &&
             legal_form.length > 0 &&
+            image !== '' &&
             kved_name.length > 0 &&
             extra_kved_name.length <= 10 &&
             tax_form.length > 0 &&
