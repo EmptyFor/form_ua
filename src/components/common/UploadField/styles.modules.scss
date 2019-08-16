@@ -13,6 +13,11 @@
   letter-spacing: 0.03px;
   text-align: center;
   color: #99abc3;
+  &:hover {
+    label {
+      display: block;
+    }
+  }
   img {
     width: 51px;
     margin-bottom: 20px;
@@ -28,6 +33,7 @@
   label {
     position: absolute;
     bottom: 10%;
+    display: none;
     font-size: 12px;
     font-weight: 100;
     color: #fff;

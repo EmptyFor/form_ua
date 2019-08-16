@@ -165,8 +165,8 @@ export class UloadField extends Component {
                 <div className="upload_info" ref={this.uploadInfoRef}>
                     <input id="file-input" type="file" name="file" onChange={this.onInputChange} multiple></input>
                     <span>Завантажте фото документу, щ зсвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
-                    <label htmlFor="file-input">Завантажити</label>
                 </div>
+                <label htmlFor="file-input">Завантажити</label>
             </form>
         );
     }

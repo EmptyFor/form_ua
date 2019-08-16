@@ -78,15 +78,7 @@ export class AdditionlInfo extends Component {
             this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital)
         }
         else {
-            legal_form &&
-                kved_name &&
-                tax_form &&
-                city &&
-                region &&
-                registered_at.length === 10 &&
-                pda.toString().length > 0 ?
-                this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital) :
-                void 0
+            this.props.actions.setAdditionalInfo(legal_form, kved_code, kved_name, extra_kved_name, tax_form, license, city, region, registered_at, pda, have_activity, no_debt, capital)
         }
     }
 

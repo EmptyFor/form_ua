@@ -55,10 +55,12 @@ export class FormFooter extends Component {
         this.setState(prevState => ({ test: !prevState.test }))
 
         let data = [name, code, price, image, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel]
+        console.log(data)
         name.length > 0 &&
             code.length === 8 &&
             price.length > 0 &&
             legal_form.length > 0 &&
+            image !== '' &&
             kved_name.length > 0 &&
             extra_kved_name.length <= 10 &&
             tax_form.length > 0 &&
@@ -68,7 +70,7 @@ export class FormFooter extends Component {
             registered_at.length === 10 &&
             pda.toString().length > 0 &&
             owner_data.length > 0 &&
-            tel[0].length > 0 ?
+            tel[0].length === 24 ?
             this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
             : alert('Заповніть обов’язкові поля')
 
