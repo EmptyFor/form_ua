@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateAdvertBtn from '../../../../common/CreateAdvertBtn';
 import styles from './styles.module.scss';
-import './style.modules.media.scss';
 import main_logo from '../../../../../assets/images/logo@2x.png';
 import mobile_logo from '../../../../../assets/images/mobile_logo.svg';
 import links from '../../../../../config/links';
@@ -27,7 +26,6 @@ class MobileHeader extends Component {
     if (token) {
       this.props.actions.getUserId(id)
     }
-    console.log(this.props)
   }
 
   handleClose = () => {
@@ -58,7 +56,11 @@ class MobileHeader extends Component {
     const { isOpen } = this.state;
     const token = getToken()
     return (
-      <header className={`menu ${this.props.className} ${this.state.hideMenu && this.props.isTransparent  ? styles.close : styles.open}`} fix={this.props.fix}>
+      <header 
+      className={`menu ${this.props.className} ${this.state.hideMenu && this.props.isTransparent  ? styles.close : styles.open}`} 
+      fix={this.props.fix}
+      style={!this.props.isTransparent ? {position: 'relative'} : void 0}
+      >
         <Link className={styles.main_logo} to={links.login}>
           <img src={this.state.hideMenu && this.props.isTransparent ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
         </Link>

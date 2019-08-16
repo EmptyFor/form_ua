@@ -41,6 +41,9 @@
       margin-top: 9%;
       width: 100%;
       border: none;
+      .title {
+        font-size: 14px !important;
+      }
       .form_header {
         background-color: unset;
         border-bottom: 3px solid #dedede;

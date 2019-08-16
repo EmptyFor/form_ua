@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 class Header extends Component {
 
 
-  state = { isMobile: false }
+  state = { isMobile: false, isTransparent: false }
 
   componentDidMount() {
     window.addEventListener('resize', this.resize.bind(this))
@@ -17,14 +17,14 @@ class Header extends Component {
   }
 
   resize = () => {
-    this.setState({ isMobile: window.innerWidth <= 580 })
+    this.setState({ isMobile: window.innerWidth <= 580, isTransparent: window.innerHeight <= 700 })
   }
 
   render() {
     return (
       this.state.isMobile ?
         <MobileHeader
-          isTransparent={this.props.isTransparent}
+          isTransparent={!this.state.isTransparent && this.props.isTransparent}
           fix={this.props.fix}
         />
         : <CommonHeader

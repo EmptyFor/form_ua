@@ -154,21 +154,34 @@
 /* Small Devices, Desktops */
 @media only screen and (max-width: 580px) {
   .wrapp {
-    height: auto;
+    height: 100vh;
     background-image: unset;
+    .mobile_bg {
+      height: 100%;
+      display: flex;
+      padding: 25% 0 5% 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
     h1 {
       font-size: 30px;
+      margin-top: 0;
     }
     .form_subtitle {
       font-size: 12px;
-      padding-bottom: 10%;
+      margin-top: 5%;
     }
     .search_form {
       position: relative;
+      // display: block;
       padding: 10% 0;
       width: 100%;
+      top: 0;
       grid-template-columns: repeat(13, 5.5vw);
+      grid-template-rows: 36px 36px 36px 36px 36px 36px 36px 36px;
       grid-row-gap: 20px;
+      height: fit-content;
       bottom: 0;
 
       .common_btn {
@@ -177,10 +190,18 @@
       }
       .common_select {
         .select_area {
-          max-width: none;
-          max-height: 30px;
+          max-height: 36px;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  .wrapp {
+    height: auto;
+    .mobile_bg {
+      display: none;
     }
   }
 }
