@@ -8,7 +8,7 @@ import axios from 'axios'
 export function* getCurrentPagePosts(current_page, search_args) {
   
     try {
-        console.log(search_args)
+        console.log(search_args + '/' + current_page)
         const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`)
             .then(response => {
                 return response.data;
