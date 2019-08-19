@@ -8,9 +8,11 @@ import axios from 'axios'
 
 
 export function* getUserInfoSaga(id) {
-    const token = localStorage.getItem('firm-token')
+    const token = localStorage.getItem('firm-token');
+    const lang = localStorage.getItem('i18nextLng')
+
     try {
-        const { user } = yield axios.get(`${baseURL}ua/api/v1/users/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const { user } = yield axios.get(`${baseURL}${lang}/api/v1/users/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 return response.data.data;
             })
@@ -25,9 +27,11 @@ export function* getUserInfoSaga(id) {
 }
 
 export function* getUserInfoPosts(current_page) {
-    const token = localStorage.getItem('firm-token')
+    const token = localStorage.getItem('firm-token');
+    const lang = localStorage.getItem('i18nextLng')
+
     try {
-        const { data } = yield axios.get(`${baseURL}ua/api/v1/my_posts?page=${current_page}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const { data } = yield axios.get(`${baseURL}${lang}/api/v1/my_posts?page=${current_page}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 console.log(response)
                 return response.data;

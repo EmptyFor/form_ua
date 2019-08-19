@@ -6,7 +6,7 @@ import registration from './registration';
 import user from './user';
 import details from './details';
 import profile from './profile';
-
+import language from './language'
 
 
 export default combineReducers({
@@ -16,5 +16,6 @@ export default combineReducers({
   usr: user,
   details,
   profile,
-  reg: registration
+  reg: registration,
+  language
 });

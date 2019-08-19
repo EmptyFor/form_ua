@@ -14,9 +14,10 @@ export function* authorise(email, password) {
     email: email,
     password: password
   }
+  const lang = localStorage.getItem('i18nextLng')
 
   try {
-    const { data } = yield axios.post(`${baseURL}ua/api/v1/log_in`, { user })
+    const { data } = yield axios.post(`${baseURL}${lang}/api/v1/log_in`, { user })
       .then(response => {
         return response;
       })

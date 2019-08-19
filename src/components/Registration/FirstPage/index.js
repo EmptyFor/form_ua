@@ -11,6 +11,9 @@ import { Button } from '../../common/Button';
 import * as regexps from '../../../core/constants/regexp'
 import * as actions from '../../../../src/store/actions/registration';
 import logo_login from '../../../assets/images/logolog.png'
+import { withTranslation } from 'react-i18next';
+
+
 export class RegistrationFirst extends Component {
 
     state = {
@@ -69,9 +72,9 @@ export class RegistrationFirst extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({}),
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(RegistrationFirst);
+)(RegistrationFirst));

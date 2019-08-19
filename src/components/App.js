@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Suspense  } from 'react';
 import { connect } from 'react-redux';
 import { Footer } from './Footer';
 // import { bindActionCreators } from 'redux';
@@ -9,11 +9,11 @@ class App extends Component {
     // TODO: add app global messages here with other global things
 
     return (
-      <Fragment>
-        {this.props.children}
+      <Suspense fallback="loading">
+          {this.props.children}
 
-        <Footer />
-      </Fragment>
+          <Footer />
+      </Suspense>
       //   <Fragment>
       //     { this.props.children }
       //   </Fragment>

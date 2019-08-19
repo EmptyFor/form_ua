@@ -9,9 +9,11 @@ import axios from 'axios'
 
 export function* deleteAdvert(id) {
     const token = localStorage.getItem('firm-token')
+    const lang = localStorage.getItem('i18nextLng')
+
 
     try {
-        const data = yield axios.delete(`${baseURL}ua/api/v1/posts/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
+        const data = yield axios.delete(`${baseURL}${lang}/api/v1/posts/${id}`, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 return response;
             })
@@ -22,9 +24,11 @@ export function* deleteAdvert(id) {
 }
 
 export function* deactivateAdvert(id, active) {
-    const token = localStorage.getItem('firm-token')
+    const token = localStorage.getItem('firm-token');
+    const lang = localStorage.getItem('i18nextLng');
+    
     try {
-        const data = yield axios.patch(`${baseURL}ua/api/v1/posts/${id}`, { active: !active }, { headers: { "Authorization": `Bearer ${token}` } })
+        const data = yield axios.patch(`${baseURL}${lang}/api/v1/posts/${id}`, { active: !active }, { headers: { "Authorization": `Bearer ${token}` } })
             .then(response => {
                 return response;
             })

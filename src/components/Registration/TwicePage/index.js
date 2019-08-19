@@ -13,6 +13,7 @@ import logo_login from '../../../assets/images/logolog.png'
 import { Redirect } from 'react-router-dom';
 import { setInfo, setToken, getToken } from '../../../store/helpers/localStorage'
 import { setAuthData } from '../../../store/actions/authorise'
+import { withTranslation } from 'react-i18next';
 
 export class RegistrationTwice extends Component {
 
@@ -112,7 +113,7 @@ export class RegistrationTwice extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         first_name: state.reg.first_name,
         phone: state.reg.phone,
@@ -121,4 +122,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(RegistrationTwice);
+)(RegistrationTwice));

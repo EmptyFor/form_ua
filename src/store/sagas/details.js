@@ -5,12 +5,9 @@ import { baseURL } from '../../core/constants/baseURL'
 import axios from 'axios'
 
 export function* getAdvertDetailsInfo(advertid) {
-    const token = localStorage.getItem('firm-token');
-    const options = {
-        headers: { "Authorization": `Bearer ${token}` }
-    }
+    const lang = localStorage.getItem('i18nextLng')
     try {
-        const info = yield axios.get(`${baseURL}ua/api/v1/posts/${advertid}`, options)
+        const info = yield axios.get(`${baseURL}${lang}/api/v1/posts/${advertid}`)
             .then(response => {
                 console.log('DETAILS INFO ->>>>>',response)
                 return response.data;

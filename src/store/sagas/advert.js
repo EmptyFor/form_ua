@@ -8,18 +8,17 @@ import { getToken } from '../helpers/localStorage';
 import axios from 'axios'
 
 export function* advert(data) {
+    const lang = localStorage.getItem('i18nextLng')
     try {
         let selt = this
-        const response = yield axios({ method: 'post', url: `${baseURL}ua/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })
+        const response = yield axios({ method: 'post', url: `${baseURL}${lang}/api/v1/posts/`, data, headers: { "Authorization": `Bearer ${getToken()}`, 'Content-Type': 'multipart/form-data'} })
             .then(response => {
-                console.log(response)
                 return response;
             })
         yield put(actions.getStatusResponse(response, response.status));
 
     } catch (error) {
         yield put(actions.setError(error.message));
-        // yield removeToken();
     }
 }
 

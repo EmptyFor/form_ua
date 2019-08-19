@@ -10,6 +10,7 @@ import createSagaMiddleware from "redux-saga";
 import Routes from "./routes";
 import "./assets/fonts/AdvenirNext/advenir-next.css";
 import "./reset.css";
+import './i18n';
 
 const history = createBrowserHistory();
 

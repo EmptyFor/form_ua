@@ -6,10 +6,11 @@ import axios from 'axios'
 
 
 export function* getCurrentPagePosts(current_page, search_args) {
-  
+    const lang = localStorage.getItem('i18nextLng')
+
     try {
         console.log(search_args)
-        const posts = yield axios.get(`${baseURL}ua/api/v1/posts?${search_args}&page=${current_page}`)
+        const posts = yield axios.get(`${baseURL}${lang}/api/v1/posts?${search_args}&page=${current_page}`)
             .then(response => {
                 return response.data;
             })
@@ -20,9 +21,10 @@ export function* getCurrentPagePosts(current_page, search_args) {
 }
 
 export function* getFoundPagePosts(search_args) {
-    
+    const lang = localStorage.getItem('i18nextLng')
+
     try {
-        const data = yield axios.get(`${baseURL}ua/api/v1/posts/${search_args}`)
+        const data = yield axios.get(`${baseURL}${lang}/api/v1/posts/${search_args}`)
             .then(response => {
                 return response.data;
             })
