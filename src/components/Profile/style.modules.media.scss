@@ -239,7 +239,32 @@
 
 /* Small Devices, Tablets */
 
-@media only screen and (min-width: 769px) and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1400px) {
+  .profile_wrapper{
+    .profile_list{
+      .profile_list_header{
+        font-size: 15px;
+
+        .results_header{
+          width:15vw;
+        }
+      }
+    }
+
+    .profile_info{
+      .profile_list_header {
+        font-size: 18px;
+      }
+      .profile_info_main_contain {
+        .profile_info_name{
+          font-size: 26px;
+        }
+        .profile_info_labels{
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }
 
 /* Medium Devices, Desktops */
