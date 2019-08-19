@@ -11,7 +11,7 @@ body {
 }
 .profile_wrapper {
   width: 87%;
-  max-height: 135vh;
+  min-height: 130vh;
   margin: 0 auto;
   margin-block-start: 100px;
   display: flex;
@@ -103,7 +103,7 @@ body {
 }
 .pagination_div {
   position: relative;
-  height: 6vh;
+  height: 8vh;
   display: flex;
   align-items: center;
   justify-content: center;

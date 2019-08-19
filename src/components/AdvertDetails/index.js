@@ -143,10 +143,10 @@ export class AdvertDetails extends Component {
                     <div className="details_info" >
                         <div className='details_list_header info_head'><span>Особисті дані </span></div>
                         <div className="details_info_main_contain ">
-                            <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{data.author.first_name}</span>
+                            <span className="details_info_name" >{data.author.first_name}</span>
                                 {
                                     data.post.tel.map((item, index) => {
-                                        return <span key={index} style={{ marginBlockEnd: '5%' }}>
+                                        return <span className="details_info_labels" key={index} style={{ marginBlockEnd: '5%' }}>
                                             <img style={{ width: '1.3em', paddingRight: '5%' }} src={profile_phone} key={index} />
                                             {item}
                                             <br/>

@@ -282,7 +282,7 @@
 
 /* Small Devices, Tablets */
 
-@media only screen and (min-width: 769px) and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1300px) {
   .short_wrapp {
     .filter_form {
       margin-block-end: 2%;
@@ -340,7 +340,6 @@
         }
       }
       .pagination_div {
-        background-color: #efeff6;
         height: 8vh;
         button {
           font-size: 14px;
