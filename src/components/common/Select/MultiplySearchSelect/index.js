@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../../../store/actions/advert';
 import kvedArr from '../../../../assets/db/kvedArr';
 import './style.modules.scss';
+import { withTranslation } from 'react-i18next';
 
 export class MultiplySearchSelect extends Component {
 
@@ -196,12 +197,13 @@ export class MultiplySearchSelect extends Component {
 
     togleActiveClass = (e, value) => {
         let checkBoxClasses
-        try{checkBoxClasses = e.childNodes[1].classList
-        value === 'true' ? e.setAttribute('value', false) : e.setAttribute('value', true)
-        value === 'true' ? e.classList.add('active') : e.classList.remove('active')
-        value === 'true' ? checkBoxClasses.add('select') : checkBoxClasses.remove('select')
+        try {
+            checkBoxClasses = e.childNodes[1].classList
+            value === 'true' ? e.setAttribute('value', false) : e.setAttribute('value', true)
+            value === 'true' ? e.classList.add('active') : e.classList.remove('active')
+            value === 'true' ? checkBoxClasses.add('select') : checkBoxClasses.remove('select')
         }
-        catch {}
+        catch { }
     }
 
     handleClick = (e) => {
@@ -399,6 +401,7 @@ export class MultiplySearchSelect extends Component {
     }
 
     render() {
+        const { t } = this.props
         return (
             <div id={this.props.id}
                 value={[this.state.selectedItems]}
@@ -439,7 +442,7 @@ export class MultiplySearchSelect extends Component {
                                 autoFocus={true}
                                 type="search"
                                 autoComplete="off"
-                                placeholder="Пошук..."
+                                placeholder={this.props.searchHolder}
                                 id="searchInput"
                                 key="searchInputKved"
                                 ref={this.searchInputNameRef}

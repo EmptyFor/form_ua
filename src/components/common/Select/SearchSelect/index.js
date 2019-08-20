@@ -291,7 +291,7 @@ export class SearchSelect extends Component {
 
             this.top !== this.state.top ? this.setState({ top: h + 'px' }) : void 0
         }
-        catch {}
+        catch { }
     }
 
     componentWillMount() {
@@ -381,7 +381,7 @@ export class SearchSelect extends Component {
                     <div id="select_list" className={`select_list ${this.state.togleClass}`} style={{ top: this.top }} >
                         <input
                             type="text"
-                            placeholder="Пошук..."
+                            placeholder={this.props.searchHolder}
                             id="searchInput"
                             key="searchInput"
                             ref={this.searchInputNameRef}
@@ -412,7 +412,7 @@ export class SearchSelect extends Component {
                                 autoFocus={true}
                                 type="search"
                                 autoComplete="off"
-                                placeholder="Пошук..."
+                                placeholder={this.props.searchHolder}
                                 id="searchInput"
                                 key="searchInputKved"
                                 ref={this.searchInputNameRef}

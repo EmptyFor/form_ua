@@ -12,6 +12,10 @@ import * as actions from '../../../store/actions/search';
 import { bindActionCreators } from 'redux';
 import '../FilterForm/style.modules.scss';
 import result_btn from '../../../assets/images/filter-results-button.svg'
+import { withTranslation } from 'react-i18next';
+
+
+
 class FilterForm extends Component {
 
   filterItemList = React.createRef()
@@ -32,7 +36,7 @@ class FilterForm extends Component {
     hideNav: false,
     transitionFilters: true,
     filterTransitionClass: '91vh',
-    checkedTransition:'4.3ch'
+    checkedTransition: '4.3ch'
   }
 
   componentDidMount() {
@@ -43,8 +47,8 @@ class FilterForm extends Component {
 
   resize = () => {
     this.setState({ hideNav: window.innerWidth <= 769 })
-    if(this.state.hideNav) {
-      this.setState({filterTransitionClass: this.state.checkedTransition})
+    if (this.state.hideNav) {
+      this.setState({ filterTransitionClass: this.state.checkedTransition })
     }
   }
 
@@ -177,11 +181,12 @@ class FilterForm extends Component {
   }
 
   render() {
-    const {filterTransitionClass} = this.state
+    const { filterTransitionClass } = this.state
+    const { t } = this.props
     return (
 
-      <div className="filter_form" ref={this.filterItemList} style={{minHeight:filterTransitionClass}} >
-        {this.state.hideNav ? <div className="filter_header filter_header_mobile" onClick={this.showFiltersMenu}>Загальні параметри пошуку <img src={result_btn} /></div> : <div className="filter_header">Загальні параметри пошуку</div>}
+      <div className="filter_form" ref={this.filterItemList} style={{ minHeight: filterTransitionClass }} >
+        {this.state.hideNav ? <div className="filter_header filter_header_mobile" onClick={this.showFiltersMenu}>{t('search-filter-header')} <img src={result_btn} /></div> : <div className="filter_header">{t('search-filter-header')}</div>}
 
         {this.state.transitionFilters ? <div className="filter_transition_div">
           <div className="filter_inputs">
@@ -191,7 +196,7 @@ class FilterForm extends Component {
               itemList={legalForm}
               type="common"
               width='auto'
-              placeholder='Оберіть зі списку'
+              placeholder={t('additional-default-select-placeholder')}
               icon={images.house}
               id='ca_form_select_1'
               clear={this.props.clear}
@@ -203,7 +208,7 @@ class FilterForm extends Component {
               type="search"
               searchType="kved"
               width='auto'
-              placeholder='Оберіть зі списку'
+              placeholder={t('additional-default-select-placeholder')}
               icon={images.portfolio}
               id='ca_form_select_2'
               clear={this.props.clear}
@@ -215,7 +220,7 @@ class FilterForm extends Component {
               type="search"
               searchType="location"
               width='auto'
-              placeholder='Вибріть місто/населений пункт'
+              placeholder={t('location-select-placeholder')}
               icon={images.mapPoint}
               id='ca_form_select_6'
               clear={this.props.clear}
@@ -227,7 +232,7 @@ class FilterForm extends Component {
               type="common"
               itemList={taxForm}
               width='auto'
-              placeholder='Форма оподаткування'
+              placeholder={t('tax-form-select-placeholder')}
               icon={images.lable}
               id='ca_form_select_4'
               clear={this.props.clear}
@@ -239,7 +244,7 @@ class FilterForm extends Component {
               type="multiply"
               itemList={license}
               width='auto'
-              placeholder='Ліцензія'
+              placeholder={t('advert-details-license')}
               icon={images.cc}
               id='ca_form_select_5'
               clear={this.props.clear}
@@ -248,7 +253,7 @@ class FilterForm extends Component {
 
           <div className="filter_checkboxes">
             <span>
-              <label>Є платником ПДВ?</label>
+              <label>{t('ispda-question-placeholder')}</label>
               <CheckBox
                 getData={this.setSearchData}
                 name="pda"
@@ -258,7 +263,7 @@ class FilterForm extends Component {
               />
             </span>
             <span>
-              <label>Ведення господарської діяльності</label>
+              <label>{t('haveactivity-check-placeholder')}</label>
               <CheckBox
                 getData={this.setSearchData}
                 name="have_activity"
@@ -268,7 +273,7 @@ class FilterForm extends Component {
               />
             </span>
             <span>
-              <label>Наявність заборгованостей/обтяжень</label>
+              <label>{t('no-debt-check-placeholder')}</label>
               <CheckBox
                 getData={this.setSearchData}
                 name="no_debt"
@@ -281,11 +286,11 @@ class FilterForm extends Component {
 
           <div className="filter_bottom">
             <div className="filter_bottom_inputs">
-              <label>Ціна</label>
+              <label>{t('price')}</label>
               <Input
                 getData={this.setSearchData}
                 type="money"
-                placeholder='від (₴)'
+                placeholder={`${t('from')} (₴)`}
                 width="100%"
                 className='price_from'
                 name="price_from"
@@ -307,41 +312,41 @@ class FilterForm extends Component {
             <div className="filter_bottom_buttons">
               <Button
                 className='grey_btn'
-                text='Скинути фільтри'
+                text={t('clear-filters')}
                 onClick={this.clearAllFields}
               />
               <Button
                 className='find'
-                text='Показати'
+                text={t('filter-results-show')}
                 onClick={this.sendSearchArgs}
               />
             </div>
           </div>
-        </div>: null }
-       </div> 
- 
-     )
-   }
- }
- 
- export default connect(
+        </div> : null}
+      </div>
+
+    )
+  }
+}
+
+export default withTranslation()(connect(
   (state) => ({
-          legal_form: state.search.legal_form,
-        kved_code: state.search.kved_code,
-        kved_name: state.search.kved_name,
-        city: state.search.city,
-        region: state.search.region,
-        tax_form: state.search.tax_form,
-        price_from: state.search.price_from,
-        price_to: state.search.price_to,
-        pda: state.search.pda,
-        license: state.search.license,
-        have_activity: state.search.have_activity,
-        no_debt: state.search.no_debt,
-        clear: state.search.clear,
-        search_args: state.search.search_args
-      }),
+    legal_form: state.search.legal_form,
+    kved_code: state.search.kved_code,
+    kved_name: state.search.kved_name,
+    city: state.search.city,
+    region: state.search.region,
+    tax_form: state.search.tax_form,
+    price_from: state.search.price_from,
+    price_to: state.search.price_to,
+    pda: state.search.pda,
+    license: state.search.license,
+    have_activity: state.search.have_activity,
+    no_debt: state.search.no_debt,
+    clear: state.search.clear,
+    search_args: state.search.search_args
+  }),
   dispatch => ({
-          actions: bindActionCreators(actions, dispatch)
-      })
-)(FilterForm);
+    actions: bindActionCreators(actions, dispatch)
+  })
+)(FilterForm));

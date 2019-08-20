@@ -146,6 +146,7 @@ export class Form extends Component {
                         type="search"
                         searchType="kved"
                         width='auto'
+                        searchHolder={t('search-select-placeholder')}
                         placeholder={t('kved-name-select-placeholder')}
                         icon={images.portfolio}
                         id='mp_form_select_2'
@@ -156,6 +157,7 @@ export class Form extends Component {
                         type="search"
                         searchType="location"
                         width='auto'
+                        searchHolder={t('search-select-placeholder')}
                         placeholder={t('location-select-placeholder')}
                         icon={images.mapPoint}
                         id='mp_form_select_3'
@@ -226,7 +228,7 @@ export class Form extends Component {
     }
 }
 
-export default withTranslation (connect(
+export default withTranslation()(connect(
     (state) => ({
         legal_form: state.search.legal_form,
         kved_name: state.search.kved_name,

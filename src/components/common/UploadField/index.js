@@ -5,6 +5,9 @@ import * as FormData from 'form-data';
 import * as actions from '../../../store/actions/advert'
 import './styles.modules.scss';
 import ulpoad_img from '../../../assets/images/document@2x.png';
+import { withTranslation } from 'react-i18next';
+
+
 export class UloadField extends Component {
 
     dropRef = React.createRef()
@@ -159,20 +162,21 @@ export class UloadField extends Component {
     }
 
     render() {
+        const { t } = this.props
         return (
             <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} encType="multipart/form-data" >
                 <img id="upload-image" src={this.state.image.src} ref={this.imageRef}></img>
                 <div className="upload_info" ref={this.uploadInfoRef}>
                     <input id="file-input" type="file" name="file" onChange={this.onInputChange} multiple></input>
-                    <span>Завантажте фото документу, що засвідчує право на володіння організацією у форматі JPG, PDF (не більше 46 МБ)</span>
+                    <span>{t('upload-field-placeholder')}</span>
                 </div>
-                <label htmlFor="file-input">Завантажити</label>
+                <label htmlFor="file-input">{t('upload-field-btn-placeholder')}</label>
             </form>
         );
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         image: state.advert.image,
         // clear: state.advert.clear
@@ -180,4 +184,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(UloadField);
+)(UloadField));

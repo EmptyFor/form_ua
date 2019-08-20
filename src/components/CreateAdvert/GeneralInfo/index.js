@@ -7,6 +7,7 @@ import Input from '../../common/Input';
 import UploadField from '../../common/UploadField';
 import './style.modules.scss';
 import './style.modules.media.scss';
+import { withTranslation } from 'react-i18next';
 
 export class GeneralInfo extends Component {
 
@@ -46,54 +47,55 @@ export class GeneralInfo extends Component {
     }
 
     render() {
+        const { t } = this.props
         this.sendGeneralInfoData()
         return (
             <div className="general_info" >
                 <div className="title" >
                     <span>1</span>
-                    <h1>Загальна інформація</h1>
+                    <h1>{t('create-advert-general-title')}</h1>
                 </div>
 
                 <div className="first_position grid_left_column">
-                    <p className="subtitle">Назва організації:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-general-name')}<span>*</span></p>
                     <TextArea
                         getData={this.setGeneralInfoData}
                         name="name"
                         className="text_area"
-                        placeholder="Введіть назву організації"
+                        placeholder={t('org-name-textarea-placeholder')}
                         clear={this.props.clear}
                         required={true}
                     />
                 </div>
 
                 <div className="second_position grid_left_column">
-                    <p className="subtitle">Код ЄДРПОУ (8 цифр):<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-general-edrpoy')}<span>*</span></p>
                     <Input
                         getData={this.setGeneralInfoData}
                         name="code"
                         type="EDRPOY"
                         className="input"
-                        placeholder="Введіть восьмизначний код"
+                        placeholder={t('edrpoy-input-placeholder')}
                         clear={this.props.clear}
                         required={true}
                     />
                 </div>
 
                 <div className="third_position grid_left_column">
-                    <p className="subtitle">Ціна купівлі без ПДВ та роздрібних витрат:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-general-price')}<span>*</span></p>
                     <Input
                         getData={this.setGeneralInfoData}
                         name="price"
                         type="money"
                         className="input"
-                        placeholder="Ведіть ціну в гривнях"
+                        placeholder={t('price-input-placeholder')}
                         clear={this.props.clear}
                         required={true}
                     />
                 </div>
 
                 <div className="forth_position grid_right_column">
-                    <p className="subtitle">Фото документу який засвідчує право власності:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-general-photo')}<span>*</span></p>
                     <UploadField clear={this.props.clear} />
                     <br />
 
@@ -103,7 +105,7 @@ export class GeneralInfo extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         name: state.advert.name,
         code: state.advert.code,
@@ -114,4 +116,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(GeneralInfo);
+)(GeneralInfo));

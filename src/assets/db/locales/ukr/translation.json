@@ -112,6 +112,17 @@
 
 
 
+    "search-filter-header":"Загальні параметри пошуку",
+    "search-results-header":"Всі оголошення ",
+
+
+
+    "footer-politics":"Політика конфіденційності",
+    "footer-questions":"Часті запитання",
+    "footer-lawyers":"всі права захищені",
+
+
+
     "commoon-advert-ispda-confirm": "Платник ПДВ",
     "commoon-advert-ispda-denied": "Не платник ПДВ",
     "commoon-advert-actions-delete": "Видалити",
@@ -149,6 +160,14 @@
     "haveactivity-question-placeholder": "Вела господарську діяльність?",
     "no-debt-question-placeholder": "Без обтяжень і заборгованостей?",
     
+    "haveactivity-check-placeholder": "Ведення господарської діяльності",   
+    "no-debt-check-placeholder": "Наявність заборгованостей/обтяжень",   
+    "clear-filters":"Скинути фільтри",
+    "filter-results-show":"Показати",
+
+    "language-translate-ukr":"Українська",
+    "language-translate-ru":"Російська",
+
     "yes":"Так",
     "no":"Ні",
     "cancel":"Скасувати",

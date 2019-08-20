@@ -4,11 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/search';
 import '../SearchResult/style.modules.scss';
 import Advert from '../../common/Advert';
-import { Link } from 'react-router-dom';
-import links from '../../../config/links';
-import document from '../../../assets/images/spa.jpg'
 import nodata from '../../../assets/images/nodata.png'
-import { Redirect } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 
 
@@ -97,9 +94,10 @@ class SearchResult extends Component {
 
 
     render() {
-        console.log(this.props)
         const { disPrev, disNext, colorNext, colorPrev, currentPage } = this.state;
-        const { data } = this.props.data
+        const { data } = this.props.data;
+        const { t } = this.props
+
         let paginationPageCounter, dynamicWidth;
 
         if (data) {
@@ -151,35 +149,35 @@ class SearchResult extends Component {
         }
 
         return (
-            <Fragment>
-                {!data ? <p className="results_preloader">Зачекайте...</p> : <div className='results_list'>
-                    < div className="results_content">
-                        {data ? <div className='results_list_header'><span>Всі оголошення </span><span className='results_header_counter'>
-                            {`(${data.total})`}
-                        </span></div> : null}
+            < Fragment >
+            {!data ? <p className="results_preloader">{t('result-preloader')}</p> : <div className='results_list'>
+                < div className="results_content">
+                    {data ? <div className='results_list_header'><span>{t('search-results-header')}</span><span className='results_header_counter'>
+                        {`(${data.total})`}
+                    </span></div> : null}
 
 
-                        {this.renderAdverts(data.posts)}
-                    </div>
-
-                    {/* Pagination counting */}
-                    {pagesLength <= 1 ? null : <div className="pagination_div">
-                        <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< Попередня `} </button>
-                        <div className="pagination_count" style={{ width: dynamicWidth }} >
-                            {paginationPageCounter}
-                        </div>
-                        <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`Наступна >>`}</button>
-                    </div>}
+                    {this.renderAdverts(data.posts)}
                 </div>
 
-                }
+                {/* Pagination counting */}
+                {pagesLength <= 1 ? null : <div className="pagination_div">
+                    <button style={{ color: colorPrev }} onClick={this.prevPage} ref='_prevBtn' disabled={disPrev}>{`<< ${t('pagination-btn-prev')} `} </button>
+                    <div className="pagination_count" style={{ width: dynamicWidth }} >
+                        {paginationPageCounter}
+                    </div>
+                    <button style={{ color: colorNext }} onClick={this.nextPage} ref='_nextBtn' disabled={disNext}>{`${t('pagination-btn-next')} >>`}</button>
+                </div>}
+            </div>
+
+    }
             </Fragment>
         )
     }
 
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         data: state.search.data,
         search_args: state.search.search_args
@@ -187,4 +185,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(SearchResult);
+)(SearchResult));

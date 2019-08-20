@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import links from '../../../config/links';
 import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage'
+import { withTranslation } from 'react-i18next';
 
 
 
@@ -63,6 +64,7 @@ class Modal extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { isOpen } = this.state
         return (<div>
 
@@ -73,10 +75,10 @@ class Modal extends Component {
                         <div className="modal_header">
                             <span onClick={this.closeModal}>&times;</span>
                         </div>
-                        <p className="modal_text">Ви дійсно хочете видалити це оголошення?</p>
+                        <p className="modal_text">{t('commoon-modal-delete')}</p>
                         <div className="modal_button_group">
-                            <div onClick={this.props.confirmation} style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text="Так" onClick={this.deleteConfirmation} /></div>
-                            <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text="Скасувати" />
+                            <div onClick={this.props.confirmation} style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text={t('yes')} onClick={this.deleteConfirmation} /></div>
+                            <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text={t('cancel')} />
                         </div>
                     </div> :
 
@@ -86,10 +88,10 @@ class Modal extends Component {
                             <div className="modal_header">
                                 <span onClick={this.closeModal}>&times;</span>
                             </div>
-                           {this.props.active ? <p className="modal_text">Ви дійсно хочете деактивувати це оголошення?</p> : <p className="modal_text">Ви дійсно хочете активувати це оголошення?</p>}
+                            {this.props.active ? <p className="modal_text">{t('commoon-modal-disactivate')}</p> : <p className="modal_text">{t('commoon-modal-activate')}</p>}
                             <div className="modal_button_group">
-                                <div style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text="Так" onClick={this.deactivateConfirmation} /></div>
-                                <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text="Скасувати" />
+                                <div style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text={t('yes')} onClick={this.deactivateConfirmation} /></div>
+                                <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text={t('cancel')} />
                             </div>
                         </div>
 
@@ -98,10 +100,8 @@ class Modal extends Component {
                             <div className="modal_header">
                                 <span onClick={this.handleClose}>&times;</span>
                             </div>
-                            <p className="modal_text">Ваше оголошення було успішно опубліковане.<br />
-                                Очікуйте дзвінків від покупців.
-                </p>
-                            <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text="Переглянути" onClick={this.setAdvertid} /></Link></span>
+                            <p className="modal_text">{t('commoon-modal-create-advert')} </p>
+                            <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text={t('commoon-modal-create-advert-btn')} onClick={this.setAdvertid} /></Link></span>
 
                         </div>}
 
@@ -112,7 +112,7 @@ class Modal extends Component {
 }
 
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         active: state.profile.active,
     }),
@@ -120,4 +120,4 @@ export default connect(
         actions: bindActionCreators(actions, dispatch),
         profileActions: bindActionCreators(profileActions, dispatch),
     })
-)(Modal);
+)(Modal));

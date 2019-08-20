@@ -6,6 +6,7 @@ import { Input } from '../../common/Input';
 import * as actions from '../../../store/actions/advert';
 import './style.modules.scss'
 import './style.modules.media.scss'
+import { withTranslation } from 'react-i18next';
 
 export class OwnerInfo extends Component {
 
@@ -89,19 +90,19 @@ export class OwnerInfo extends Component {
     }
 
     render() {
+        const { t } = this.props
         this.sendOwnerInfoData()
-        console.log(this.props)
         return (
             <div className="owner_info">
                 <div className="title" >
                     <span>3</span>
-                    <h1>Дані про власника</h1>
+                    <h1>{t('create-advert-owner-header')}</h1>
                 </div>
 
                 <div className="first_position grid_left_column">
-                    <p className="subtitle">ПІБ власника/юридичної особи:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-owner-name')}<span>*</span></p>
                     <Input
-                        placeholder="Введіть прізвище ім’я та по-батькові власника"
+                        placeholder={t('owner-name-input-placeholder')}
                         width="100%"
                         className="input"
                         name="owner_data"
@@ -112,7 +113,7 @@ export class OwnerInfo extends Component {
                 </div>
 
                 <div className="second_position grid_right_column">
-                    <p className="subtitle">Контактний номер телефону:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-owner-phone')}<span>*</span></p>
                     <Input
                         type='phone'
                         placeholder="+ 38 (0 _ _ )  _ _ _  -  _ _  -  _ _"
@@ -127,7 +128,7 @@ export class OwnerInfo extends Component {
                     />
                     {this.state.input.map(item => { return item })}
                     <label className="append_phone" onClick={this.appendPhoneInput}>
-                        Додати телефон
+                        {t('create-advert-owner-add-phone')}
                         <span></span>
                     </label>
                 </div>
@@ -136,7 +137,7 @@ export class OwnerInfo extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         owner_data: state.advert.owner_data,
         tel: state.advert.tel,
@@ -145,4 +146,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(OwnerInfo);
+)(OwnerInfo));

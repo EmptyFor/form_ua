@@ -61,7 +61,6 @@ class CommonHeader extends Component {
     i18n.init({
       lng: localStorage.getItem('localHaste')
     })
-    // this.props.languageAction.setLanguages(language);
     this.handleClose()
   }
 
@@ -114,8 +113,8 @@ class CommonHeader extends Component {
             {this.state.lang}
           </p>
           {isOpenLang ? <div className={styles.language_dropdown}>
-            <span onClick={this.setLanguage.bind(this, 'ukr')}>Українська</span>
-            <span onClick={this.setLanguage.bind(this, 'ru')}>Російська</span>
+            <span onClick={this.setLanguage.bind(this, 'ukr')}>{t('language-translate-ukr')}</span>
+            <span onClick={this.setLanguage.bind(this, 'ru')}>{t('language-translate-ru')}</span>
           </div> : null
           }
         </div>

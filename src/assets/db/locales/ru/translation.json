@@ -53,7 +53,18 @@
     "profile-adverts-nodata": "НЕ ЗАРЕГИСТРИРОВАНО НИ ОДНОГО ОБЪЯВЛЕНИЯ",
     "profile-adverts-header": "Мои объявления",
     "profile-info": "Личные данные",
-   
+    "profile-info-time-justnow": "Только что",
+    "profile-info-time-minute-ten": "минуту назад",
+    "profile-info-time-minute-more": "минуты назад",
+    "profile-info-time-minute-last": "минут назад",
+    "profile-info-time-hours-ten": "час назад",
+    "profile-info-time-hours-more": "часа назад",
+    "profile-info-time-hours-last": "часов назад",
+    "profile-info-time-days-ten": "день назад",
+    "profile-info-time-days-more": "дня назад",
+    "profile-info-time-days-last": "дней назад",
+    "pagination-btn-next":"Следующая",
+    "pagination-btn-prev":"Предыдущая",
    
    
    
@@ -67,7 +78,6 @@
     "main-page-info-description1-text": "С помощью параметров расширенного поиска ты легко сможешь найти нужное объявление на нашем сайте. Зконтактуйся с владельцем и получай удовольствие от успешной покупки без помех.",
     "main-page-info-description2-title": "Решай все вопросы без проблем",
     "main-page-info-description2-text": "Регистрируйся на сайте и публикуй свои объявления о бизнесе, Клиенты не заставят себя ждать! Получай звонки и выбирай лучшие предложения по пользой для себя. Всего несколько шагов отделяют тебя от желаемого.",
-   
    
    
    
@@ -99,6 +109,16 @@
     "create-advert-footer-confirm-btn": "Oпубликовать",
 
 
+    "search-filter-header":"Общие параметры поиска",
+    "search-results-header":"Все объявления ",
+
+
+
+    "footer-politics":"Политика конфиденциальности",
+    "footer-questions":"Часто задаваемые вопросы",
+    "footer-lawyers":"все права защищены",
+
+
 
     "commoon-advert-ispda-confirm": "Плательщик НДС",
     "commoon-advert-ispda-denied": "Не плательщик НДС",
@@ -114,8 +134,6 @@
     "commoon-modal-disactivate": "Вы действительно хотите деактивировать это объявление?",
     "commoon-modal-create-advert": "Ваше объявление было успешно опубликовано. \n Ожидайте звонков от покупателей.",
     "commoon-modal-create-advert-btn": "Посмотреть",
-
-
 
 
 
@@ -137,6 +155,14 @@
     "haveactivity-question-placeholder": "Вела хозяйственную деятельность?",
     "no-debt-question-placeholder": "Без обременений и задолженностей?",
     
+    "haveactivity-check-placeholder": "Ведение хозяйственной деятельности",   
+    "no-debt-check-placeholder": "Наличие задолженностей / обременений",   
+    "clear-filters":"Cбросить фильтры",
+    "filter-results-show":"Показать",
+
+    "language-translate-ukr":"Украинский",
+    "language-translate-ru":"Русский",
+
     "yes":"Да",
     "no":"Нет",
     "cancel":"Отменить",

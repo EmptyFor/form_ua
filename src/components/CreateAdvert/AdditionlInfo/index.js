@@ -12,6 +12,7 @@ import { Input } from '../../common/Input';
 import { Radiobutton } from '../../common/Radiobutton';
 import './style.modules.scss';
 import './style.modules.media.scss';
+import { withTranslation } from 'react-i18next';
 
 export class AdditionlInfo extends Component {
     constructor() {
@@ -104,24 +105,24 @@ export class AdditionlInfo extends Component {
     }
 
     render() {
-        console.log(this.props)
+        const { t } = this.props
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >
                 <div className="title" >
                     <span>2</span>
-                    <h1>Положення згідно законодавства</h1>
+                    <h1>{t('create-advert-additional-header')}</h1>
                 </div>
 
                 <div className="first_position grid_left_column">
-                    <p className="subtitle">Організаційно правова форма:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-additional-legal-form')}<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="legal_form"
                         type="common"
                         itemList={legalForm}
                         width='auto'
-                        placeholder='Оберіть зі списку'
+                        placeholder={t('additional-default-select-placeholder')}
                         icon={images.house}
                         id='ca_form_select_1'
                         clear={this.props.clear}
@@ -130,14 +131,14 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="second_position grid_left_column">
-                    <p className="subtitle">Основний вид господарської діяльності:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-additional-kved-name')}<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="kved_name"
                         type="search"
                         searchType="kved"
                         width='auto'
-                        placeholder='Оберіть зі списку'
+                        placeholder={t('additional-default-select-placeholder')}
                         icon={images.portfolio}
                         id='ca_form_select_2'
                         clear={this.props.clear}
@@ -146,12 +147,12 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="third_position grid_left_column">
-                    <p className="subtitle">Додаткові види (до 10 видів):</p>
+                    <p className="subtitle">{t('create-advert-additional-extra-kved')}</p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="extra_kved_name"
                         type="multiply search" width='auto'
-                        placeholder='Оберіть зі списку'
+                        placeholder={t('additional-default-select-placeholder')}
                         icon={images.plus}
                         id='ca_form_select_3'
                         clear={this.props.clear}
@@ -159,14 +160,14 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="forth_position grid_left_column">
-                    <p className="subtitle">Форма оподаткування:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-additional-tax-form')}<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="tax_form"
                         type="common"
                         itemList={taxForm}
                         width='auto'
-                        placeholder='Оберіть зі списку'
+                        placeholder={t('additional-default-select-placeholder')}
                         icon={images.lable}
                         id='ca_form_select_4'
                         clear={this.props.clear}
@@ -175,14 +176,14 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="fifth_position grid_left_column">
-                    <p className="subtitle">Ліцензія (до 5 видів):</p>
+                    <p className="subtitle">{t('create-advert-additional-license')}</p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="license"
                         itemList={license}
                         type="multiply"
                         width='auto'
-                        placeholder='Оберіть зі списку'
+                        placeholder={t('additional-default-select-placeholder')}
                         icon={images.cc}
                         id='ca_form_select_5'
                         clear={this.props.clear}
@@ -190,14 +191,14 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="sixth_position grid_right_column">
-                    <p className="subtitle">Місце знаходження/реєстрації:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-additional-place')}<span>*</span></p>
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="location"
                         type="search"
                         searchType="location"
                         width='auto'
-                        placeholder='Вибріть місто/населений пункт'
+                        placeholder={t('location-select-placeholder')}
                         icon={images.mapPoint}
                         id='ca_form_select_6'
                         clear={this.props.clear}
@@ -206,12 +207,12 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="seventh_position grid_right_column">
-                    <p className="subtitle">Дата державної реєстрації:<span>*</span></p>
+                    <p className="subtitle">{t('create-advert-additional-registered')}<span>*</span></p>
                     <Input
                         getData={this.setAdditionlInfoData}
                         name="registered_at"
                         type="date"
-                        placeholder="Введіть у форматі ДД/ММ/РРРР"
+                        placeholder={t('registered-input-placeholder')}
                         width="100%"
                         className="input"
                         clear={this.props.clear}
@@ -221,33 +222,33 @@ export class AdditionlInfo extends Component {
 
                 <div className="eith_position grid_right_column">
                     <div className="first_radio">
-                        <p className="subtitle">Є платником ПДВ?<span>*</span></p>
+                        <p className="subtitle">{t('ispda-question-placeholder')}<span>*</span></p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
                             name="pda"
-                            options={['Так', 'Ні']}
+                            options={[t('yes'), t('no')]}
                             id='pda'
                             clear={this.props.clear}
                         />
                     </div>
 
                     <div className="second_radio">
-                        <p className="subtitle">Вела господарську діяльність?</p>
+                        <p className="subtitle">{t('haveactivity-question-placeholder')}</p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
                             name="have_activity"
-                            options={['Так', 'Ні']}
+                            options={[t('yes'), t('no')]}
                             id='have_activity'
                             clear={this.props.clear}
                         />
                     </div>
 
                     <div className="third_radio">
-                        <p className="subtitle">Без обтяжень та заборгованостей?</p>
+                        <p className="subtitle">{t('no-debt-question-placeholder')}</p>
                         <Radiobutton
                             getData={this.setAdditionlInfoData}
                             name="no_debt"
-                            options={['Так', 'Ні']}
+                            options={[t('yes'), t('no')]}
                             id='no_debt'
                             clear={this.props.clear}
                         />
@@ -255,12 +256,12 @@ export class AdditionlInfo extends Component {
                 </div>
 
                 <div className="nineth_position grid_right_column">
-                    <p className="subtitle">Статутний капітал:</p>
+                    <p className="subtitle">{t('create-advert-additional-capital')}</p>
                     <Input
                         getData={this.setAdditionlInfoData}
                         name="capital"
                         type="money"
-                        placeholder="Введіть суму в гривнях"
+                        placeholder={t('price-input-placeholder')}
                         width="100%"
                         className="input"
                         clear={this.props.clear}
@@ -272,7 +273,7 @@ export class AdditionlInfo extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         legal_form: state.advert.legal_form,
         kved_code: state.advert.kved_code,
@@ -292,4 +293,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(AdditionlInfo);
+)(AdditionlInfo));

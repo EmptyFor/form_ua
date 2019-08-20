@@ -13,6 +13,7 @@ import delete_img from '../../../assets/images/delete2.png'
 import deactivate_img from '../../../assets/images/deactivate2x.png'
 import edit_img from '../../../assets/images/edit2x.png'
 import ispdacheck from '../../../assets/images/ispdacheck.svg';
+import { withTranslation } from 'react-i18next';
 
 class Advert extends Component {
 
@@ -24,10 +25,10 @@ class Advert extends Component {
         rendering:''
     }
 
-    // componentWillReceiveProps = () => {
-    //     if(this.props.activeStatus === '200'){
-    //     }
-    // }
+    constructor(props){
+        super(props);
+        this.t = props.t
+    }
 
     componentWillMount = () => {
         if (this.props.profile) {
@@ -42,9 +43,9 @@ class Advert extends Component {
     }
     componentDidMount = () => {
         if (this.props.ispda) {
-            this.setState({ text: 'Платник ПДВ' })
+            this.setState({ text: this.t('commoon-advert-ispda-confirm') })
         } else {
-            this.setState({ text: 'НЕ платник ПДВ' })
+            this.setState({ text: this.t('commoon-advert-ispda-denied') })
         }
     }
 
@@ -107,14 +108,14 @@ class Advert extends Component {
                 this.props.placement === 'profile' ? <div className="advert_action_bar">
                     <div className="advert_action_bar_time">{`${this.props.dateResult}`}</div>
                     <div className="advert_action_bar_actions" >
-                        <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />Видалити</span>
+                        <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />{this.t('commoon-advert-actions-delete')}</span>
 
                         {
-                            activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Деактивувати</span> :
-                                <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />Активувати</span>
+                            activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-deactivate')}</span> :
+                                <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-activate')}</span>
                         }
 
-                        <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />Редагувати</span>
+                        <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />{this.t('commoon-advert-actions-edit')}</span>
                     </div>
 
                 </div> : null
@@ -124,7 +125,7 @@ class Advert extends Component {
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         activeStatus: state.profile.activeStatus
     }),
@@ -132,4 +133,4 @@ export default connect(
         searchActions: bindActionCreators(searchActions, dispatch),
         profileActions: bindActionCreators(profileActions, dispatch)
     })
-)(Advert);
+)(Advert));

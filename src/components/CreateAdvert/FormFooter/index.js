@@ -5,6 +5,7 @@ import * as actions from '../../../store/actions/advert';
 import Button from '../../common/Button';
 import './style.modules.scss';
 import './style.modules.media.scss';
+import { withTranslation } from 'react-i18next';
 
 export class FormFooter extends Component {
 
@@ -42,7 +43,7 @@ export class FormFooter extends Component {
         for (let key in post) {
             // Array.isArray(post[key]) ? data.set(`post[${key}]`, JSON.stringify(post[key]))  : data.set(`post[${key}]`, post[key])
 
-            Array.isArray(post[key]) ? post[key].map((item, index) => data.append(`post[${key}][]`, item))  : data.set(`post[${key}]`, post[key])
+            Array.isArray(post[key]) ? post[key].map((item, index) => data.append(`post[${key}][]`, item)) : data.set(`post[${key}]`, post[key])
 
         }
         this.props.actions.setAdvertData(data)
@@ -71,7 +72,7 @@ export class FormFooter extends Component {
             owner_data.length > 0 &&
             tel[0].length === 24 ?
             this.setFormData(name, code, price, legal_form, kved_code, kved_name, extra_kved_name, tax_form, licenses, city, region, registered_at, pda, have_activity, no_debt, capital, owner_data, tel, image)
-            : alert('Заповніть обов’язкові поля')
+            : alert(this.props.t('create-advert-footer-alert'))
 
     }
 
@@ -80,16 +81,17 @@ export class FormFooter extends Component {
     }
 
     render() {
+        const { t } = this.props
         return (
             <div className="form_footer" >
-                <Button className="clear_btn grey_btn" text="Очистити дані" onClick={this.clearAllFields} />
-                <Button className="publish_btn" text="Опублікувати" onClick={this.handleClick} />
+                <Button className="clear_btn grey_btn" text={t('create-advert-footer-clear-btn')} onClick={this.clearAllFields} />
+                <Button className="publish_btn" text={t('create-advert-footer-confirm-btn')} onClick={this.handleClick} />
             </div>
         );
     }
 }
 
-export default connect(
+export default withTranslation()(connect(
     (state) => ({
         name: state.advert.name,
         code: state.advert.code,
@@ -115,4 +117,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(FormFooter);
+)(FormFooter));
