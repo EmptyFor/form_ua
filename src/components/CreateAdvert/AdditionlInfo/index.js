@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/advert'
-import legalForm from '../../../assets/db/legalForm';
-import taxForm from '../../../assets/db/taxForm';
-import license from '../../../assets/db/license';
 import { images } from '../../../assets/images/images';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
@@ -106,6 +103,7 @@ export class AdditionlInfo extends Component {
 
     render() {
         const { t } = this.props
+        console.log()
         this.sendAdditionlInfoData()
         return (
             <div className="additionl_info" >
@@ -120,7 +118,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="legal_form"
                         type="common"
-                        itemList={legalForm}
+                        itemList={t('legalForm',{returnObjects: true})}
                         width='auto'
                         placeholder={t('additional-default-select-placeholder')}
                         icon={images.house}
@@ -165,7 +163,7 @@ export class AdditionlInfo extends Component {
                         getData={this.setAdditionlInfoData}
                         name="tax_form"
                         type="common"
-                        itemList={taxForm}
+                        itemList={t('taxForm', {returnObjects: true})}
                         width='auto'
                         placeholder={t('additional-default-select-placeholder')}
                         icon={images.lable}
@@ -180,7 +178,7 @@ export class AdditionlInfo extends Component {
                     <Select
                         getData={this.setAdditionlInfoData}
                         name="license"
-                        itemList={license}
+                        itemList={t('license', {returnObjects: true})}
                         type="multiply"
                         width='auto'
                         placeholder={t('additional-default-select-placeholder')}

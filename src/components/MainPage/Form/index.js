@@ -6,9 +6,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../../store/actions/search';
 import '../Form/style.modules.scss';
 import '../Form/style.modules.media.scss';
-import legalForm from '../../../assets/db/legalForm';
-import taxForm from '../../../assets/db/taxForm';
-import license from '../../../assets/db/license';
 import { Button } from '../../common/Button';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
@@ -136,7 +133,7 @@ export class Form extends Component {
                     <Select
                         type="common"
                         width='auto'
-                        itemList={legalForm}
+                        itemList={t('legalForm',{returnObjects: true})}
                         placeholder={t('legal-form-select-placeholder')}
                         icon={images.house} id='mp_form_select_1'
                         name="legal_form"
@@ -166,7 +163,7 @@ export class Form extends Component {
                     />
                     <Select
                         type="common"
-                        itemList={taxForm}
+                        itemList={t('taxForm', {returnObjects: true})}
                         width='auto'
                         placeholder={t('tax-form-select-placeholder')}
                         icon={images.lable}

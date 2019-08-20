@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../common/Button';
-import legalForm from '../../../assets/db/legalForm';
-import taxForm from '../../../assets/db/taxForm';
-import license from '../../../assets/db/license';
 import { Select } from '../../common/Select';
 import { Input } from '../../common/Input';
 import { CheckBox } from '../../common/CheckBox';
@@ -193,7 +190,7 @@ class FilterForm extends Component {
             <Select
               getData={this.setSearchData}
               name="legal_form"
-              itemList={legalForm}
+              itemList={t('legalForm',{returnObjects: true})}
               type="common"
               width='auto'
               placeholder={t('additional-default-select-placeholder')}
@@ -230,7 +227,7 @@ class FilterForm extends Component {
               getData={this.setSearchData}
               name="tax_form"
               type="common"
-              itemList={taxForm}
+              itemList={t('taxForm', {returnObjects: true})}
               width='auto'
               placeholder={t('tax-form-select-placeholder')}
               icon={images.lable}
@@ -242,7 +239,7 @@ class FilterForm extends Component {
               getData={this.setSearchData}
               name="license"
               type="multiply"
-              itemList={license}
+              itemList={t('license', {returnObjects: true})}
               width='auto'
               placeholder={t('advert-details-license')}
               icon={images.cc}
