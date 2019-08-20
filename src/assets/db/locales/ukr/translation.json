@@ -1,9 +1,159 @@
 {
     "login": "Увійти",
-    "login-form-header":"Вход",
-    "login-placeholder-email": "Електронный адрес",
+    "login-form-header": "Вхід",
+    "login-placeholder-email": "Електронна адреса",
     "login-placeholder-password": "Пароль",
-    "login-form-footer": "Вы еще не с нами?"
+    "login-form-footer": "Ви ще не з нами?",
+    "registration": "Зареєструватися",
+    "login-empty-error-email": "Будь ласка, введіть email!",
+    "login-empty-error-password": "Будь ласка, введіть пароль!",
+    "login-error-label": "Неправильно введенный логин или пароль!",
+    "header-logout": "Вийти",
+    "header-profile": "Профіль",
+    
+    
+    
+    
+    "registration-header": "Реєстрація",
+    "registration-name": "Прізвище Ім'я або Назва компанії",
+    "registration-first-btn": "Далі",
+    "registration-footer": "Вже зареєстровані?",
+    "registration-confirm-password": "Підтвердіть пароль",
+    "registration-info-label": "Пароль повинен містити не менше 6 символів",
+    "registration-error-label": "Паролі не співпадають. Будь ласка, введіть однaкові паролі",
+    
+    
+    
+    
+    "advert-details-header": "Деталі оголошення",
+    "advert-details-legal-form": "Організаційно-правова форма",
+    "advert-details-kved-name": "Основний вид господарської діяльності",
+    "advert-details-extra-kved-name": "Додаткові види",
+    "advert-details-region": "Місце знаходження реєстрації",
+    "advert-details-registered": "Дата державної реєстрації",
+    "advert-details-tax-form": "Форма оподаткування",
+    "advert-details-ispda": "Оплата податків",
+    "advert-details-ispda-confirm": "Є платником ПДВ",
+    "advert-details-ispda-denied": "Не є платником ПДВ",
+    "advert-details-license": "Ліцензія",
+    "advert-details-have-activity": "Господарська діяльність",
+    "advert-details-have-activity-confirm": "Вела / веде господарську діяльність",
+    "advert-details-have-activity-denied": "Не вела / веде господарську діяльність",
+    "advert-details-debt": "Обтяження та заборгованість",
+    "advert-details-debt-confirm": "Присутні",
+    "advert-details-debt-denied": "Відсутні",
+    "advert-details-capital": "Статутний капітал",
+    "advert-details-owner": "Власник / Юридична особа",
+    "details-info-head": "Особисті дані",
+   
+    "result-preloader": "Зачекайте...",
+    "advert-details-empty": "Не надано жодної інформації",
+   
+   
+    "profile-adverts-nodata": "НЕ ЗАРЕЄСТРОВАНО ЖОДНОГО ОГОЛОШЕННЯ",
+    "profile-adverts-header": "Мої оголошення",
+    "profile-info": "Особисті дані",
+    "profile-info-time-justnow": "Щойно",
+    "profile-info-time-minute-ten": "хвилина тому",
+    "profile-info-time-minute-more": "хвилини тому",
+    "profile-info-time-minute-last": "хвилин тому",
+    "profile-info-time-hours-ten": "година тому",
+    "profile-info-time-hours-more": "години тому",
+    "profile-info-time-hours-last": "годин тому",
+    "profile-info-time-days-ten": "день тому",
+    "profile-info-time-days-more": "дні тому",
+    "profile-info-time-days-last": "днів тому",
+    "pagination-btn-next":"Наступна",
+    "pagination-btn-prev":"Попередня",
 
-  
+   
+   
+   
+    "main-page-form-title": "Розпочни свій бізнес вже сьогодні",
+    "main-page-form-subtitle": "Знайди ідеальне рішення за декілька секунд...",
+    "main-page-info-title": "Шукаєш рішення для продажу власної компанії?",
+    "main-page-info-subtitle": "Тоді не варто зволікати, створюй оголошення всього за кілька секунд",
+    "main-page-info-how-work": "Як це працює?",
+    "main-page-info-how-work-sub": "Це зовсім просто, почни прямо зараз",
+    "main-page-info-description1-title": "Знайди бажане за кілька хвилин",
+    "main-page-info-description1-text": "За допомогою параметрів розширеного пошуку ти легко зможеш знайти потрібне оголошення на нашому сайті. Зконтактуйся з власником і отримуй задоволення від успішної покупки без перешкод.",
+    "main-page-info-description2-title": "Вирішуй всі питання без проблем",
+    "main-page-info-description2-text": "Реєструйся на сайті та публікуй свої оголошення про бізнес, Клієнти не змусять себе чекати! Отримуй дзвінки і вибирай найкращі пропозиції по користю для себе. Всього кілька кроків відділяють тебе від бажаного.",
+   
+   
+   
+   
+   
+    "create-advert-form-header": "Створити оголошення про продаж",
+    "create-advert-general-title": "Загальна інформація",
+    "create-advert-general-name": "Назва організації:",
+    "create-advert-general-edrpoy": "Код ЄДРПОУ (8 цифр)",
+    "create-advert-general-price": "Ціна покупки без ПДВ і роздрібних витрат:",
+    "create-advert-general-photo": "Фото документа, що посвідчує право власності:",
+
+    "create-advert-additional-header": "Положення відповідно до законодавства",
+    "create-advert-additional-legal-form": "Організаційно-правова форма:",
+    "create-advert-additional-kved-name": "Основний вид господарської діяльності:",
+    "create-advert-additional-extra-kved": "Додаткові види (до 10 видів):",
+    "create-advert-additional-tax-form": "Форма оподаткування:",
+    "create-advert-additional-license": "Ліцензія (до 5 видів):",
+    "create-advert-additional-place": "Місце знаходження / реєстрації:",
+    "create-advert-additional-registered": "Дата державної реєстрації:",
+    "create-advert-additional-capital": "Статутний капітал:",
+    
+    "create-advert-owner-header": "Дані про власника",
+    "create-advert-owner-name": "ПІБ власника / юридичної особи:",
+    "create-advert-owner-phone": "Контактний номер телефону:",
+    "create-advert-owner-add-phone": "Додати телефон",
+
+    "create-advert-footer-alert": "Заповніть обов'язкові поля",
+    "create-advert-footer-clear-btn": "Очистити дані",
+    "create-advert-footer-confirm-btn": "Oпублікувати",
+
+
+
+    "commoon-advert-ispda-confirm": "Платник ПДВ",
+    "commoon-advert-ispda-denied": "Не платник ПДВ",
+    "commoon-advert-actions-delete": "Видалити",
+    "commoon-advert-actions-activate": "Деактивувати",
+    "commoon-advert-actions-deactivate": "Активувати",
+    "commoon-advert-actions-edit": "Редагувати",
+
+    "commoon-create-advert-btn": "Створити оголошення",
+    
+    "commoon-modal-delete": "Ви дійсно хочете видалити це оголошення?",
+    "commoon-modal-activate": "Ви дійсно хочете активувати це оголошення?",
+    "commoon-modal-disactivate": "Ви дійсно хочете деактивувати це оголошення?",
+    "commoon-modal-create-advert": "Ваше оголошення було успішно опубліковано. \n Чекайте дзвінків від покупців.",
+    "commoon-modal-create-advert-btn": "Переглянути",
+
+
+
+
+
+    "legal-form-select-placeholder": "Організаційно правова форма",
+    "kved-name-select-placeholder": "Основний вид господарської діяльності (КВЕД)",
+    "location-select-placeholder": "Виберіть місто / населений пункт",
+    "tax-form-select-placeholder": "Форма оподаткування",   
+    "search-select-placeholder": "Пошук...",   
+    "upload-field-placeholder": "Завантажте фото документа, що посвідчує право на володіння організацією в форматі JPG, PDF (не більше 46 МБ)",
+    "upload-field-btn-placeholder": "Завантажити",
+    "additional-default-select-placeholder": "Виберіть зі списку",
+    "org-name-textarea-placeholder": "Введіть назву організації",
+    "edrpoy-input-placeholder": "Введіть восьмизначний код",
+    "price-input-placeholder": "Введіть ціну в гривнях",
+    "registered-input-placeholder": "Введіть в форматі ДД / ММ / РРРР",
+    "owner-name-input-placeholder": "Введіть прізвище ім'я та по батькові власника",
+
+    "ispda-question-placeholder": "Є платником ПДВ?",
+    "haveactivity-question-placeholder": "Вела господарську діяльність?",
+    "no-debt-question-placeholder": "Без обтяжень і заборгованостей?",
+    
+    "yes":"Так",
+    "no":"Ні",
+    "cancel":"Скасувати",
+    "price": "Ціна",
+    "from": "Від",
+    "search":"Знайти",
+    "extended-serach-btn": "Розширений пошук"
 }

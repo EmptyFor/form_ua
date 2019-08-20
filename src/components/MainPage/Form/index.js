@@ -16,6 +16,7 @@ import { CheckBox } from '../../common/CheckBox';
 import links from '../../../config/links';
 import { images } from '../../../assets/images/images';
 import background from '../../../assets/images/baground@2x.png';
+import { withTranslation } from 'react-i18next';
 
 export class Form extends Component {
 
@@ -119,14 +120,15 @@ export class Form extends Component {
     }
 
     render() {
+        const {t} = this.props;
         this.sendSearchData()
         return (
 
             <div className='wrapp' >
                 <div className={this.state.mobile && "mobile_bg"}>
                     {this.state.mobile && <img src={background} className="mobile_bg_photo"></img>}
-                    <h1>Розпочни свій бізнес вже сьогодні</h1>
-                    <p className="form_subtitle" >Знайди ідеальне рішення за декілька секунд...</p>
+                    <h1>{t('main-page-form-title')}</h1>
+                    <p className="form_subtitle" >{t('main-page-form-subtitle')}</p>
                 </div>
 
                 <div className='search_form grid'>
@@ -135,7 +137,7 @@ export class Form extends Component {
                         type="common"
                         width='auto'
                         itemList={legalForm}
-                        placeholder='Організаційно правова форма'
+                        placeholder={t('legal-form-select-placeholder')}
                         icon={images.house} id='mp_form_select_1'
                         name="legal_form"
                         getData={this.setSearchData}
@@ -144,7 +146,7 @@ export class Form extends Component {
                         type="search"
                         searchType="kved"
                         width='auto'
-                        placeholder='Оновний вид господарської діяльності (КВЕДи)'
+                        placeholder={t('kved-name-select-placeholder')}
                         icon={images.portfolio}
                         id='mp_form_select_2'
                         name="kved_name"
@@ -154,7 +156,7 @@ export class Form extends Component {
                         type="search"
                         searchType="location"
                         width='auto'
-                        placeholder='Вибріть місто/населений пункт'
+                        placeholder={t('location-select-placeholder')}
                         icon={images.mapPoint}
                         id='mp_form_select_3'
                         name="location"
@@ -164,20 +166,20 @@ export class Form extends Component {
                         type="common"
                         itemList={taxForm}
                         width='auto'
-                        placeholder='Форма оподаткування'
+                        placeholder={t('tax-form-select-placeholder')}
                         icon={images.lable}
                         id='mp_form_select_4'
                         name="tax_form"
                         getData={this.setSearchData}
                     />
 
-                    <p className="price">Ціна</p>
+                    <p className="price">{t('price')}</p>
                     <Fragment>
                         <Input
                             getData={this.setSearchData}
                             name="registrationDate"
                             type="money"
-                            placeholder='від (₴)'
+                            placeholder={`${t('from')} (₴)`}
                             width="100%"
                             className='price_from'
                             name="price_from"
@@ -199,21 +201,21 @@ export class Form extends Component {
                             getData={this.setSearchData}
                             name="pda"
                             id='pda'
-                            text="Є платником ПДВ"
+                            text={t('advert-details-ispda-confirm')}
                             clear={this.props.clear}
                         />
                     </div>
 
                     <Link to={links.search} className='common_btn_link'>
                         <Button className='extendet_search grey_btn'
-                            text='Розширений пошук' />
+                            text={t('extended-serach-btn')} />
                     </Link>
 
 
                     <Link to={this.searchLink === 'active' ? links.search : "#"} className='common_btn_link'>
                         <Button
                             className='find'
-                            text='Знайти'
+                            text={t('search')}
                             onClick={this.sendSearchArgs}
                         />
                     </Link>
@@ -224,7 +226,7 @@ export class Form extends Component {
     }
 }
 
-export default connect(
+export default withTranslation (connect(
     (state) => ({
         legal_form: state.search.legal_form,
         kved_name: state.search.kved_name,
@@ -238,4 +240,4 @@ export default connect(
     dispatch => ({
         actions: bindActionCreators(actions, dispatch)
     })
-)(Form);
+)(Form));

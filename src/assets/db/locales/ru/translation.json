@@ -1,50 +1,147 @@
 {
     "login": "Войти",
-    "login-form-header":"Вход",
+    "login-form-header": "Вход",
     "login-placeholder-email": "Електронный адрес",
     "login-placeholder-password": "Пароль",
     "login-form-footer": "Вы еще не с нами?",
-    "registration":"Зарегистрироваться",
-    "login-empty-error-email":"Пожалуйста введите email!",
-    "login-empty-error-password":"Пожалуйста введите пароль!",
+    "registration": "Зарегистрироваться",
+    "login-empty-error-email": "Пожалуйста введите email!",
+    "login-empty-error-password": "Пожалуйста введите пароль!",
     "login-error-label": "Неправильно введенный логин или пароль!",
-
     "header-logout": "Выйти",
     "header-profile": "Профиль",
-
-    "registration-header": "Реестрация",
-    "registration-name":"Фамилия Им'я или Название компании",
-    "registration-first-btn": "Далее",
-    "registration-footer":"Уже зерегистрированы?",
-    "registration-confirm-password": "Подтвердить пароль",
-    "registration-info-label":"Пароль должен содержать не менее 6 символов",
-    "registration-error-label":"Пароли не совпадают. Пожалуйста, введите однaковые пароли",
-
-    "advert-details-header": "Детали объявления",
-    "advert-details-legal-form":"Организационно правовая форма",
-    "advert-details-kved-name":"Основной вид хозяйственной деятельности",
-    "advert-details-extra-kved-name": "Дополнительные виды",
-    "advert-details-region":"Место нахождения регистрации",
-    "advert-details-registered":"Дата государственной регистрации",
-    "advert-details-tax-form":"Форма налогообложения",
-    "advert-details-ispda":"Оплата налогов",
-    "advert-details-ispda-confirm":"Является плательщиком НДС",
-    "advert-details-ispda-denied":"Не является плательщиком НДС",
-    "advert-details-license":"Лицензия",
-    "advert-details-have-activity":"Хозяйственная деятельность",
-    "advert-details-have-activity-confirm":"Вела / ведет хозяйственную деятельность",
-    "advert-details-have-activity-denied":"Не вела / ведет хозяйственную деятельность",
-    "advert-details-debt":"Обременения и задолженность",
-    "advert-details-debt-confirm":"Присутствуют",
-    "advert-details-debt-denied":"Отсутствуют",
-    "advert-details-capital":"Уставной капитал",
-    "advert-details-owner":"Владелец / Юридическое лицо",
-
-    "details-info-head":"Личные данные",
-
-    "result-preloader":"Подождите. . .",
-
-    "advert-details-empty":"Не представлено никакой информации"
     
+    
+    
+    
+    "registration-header": "Реестрация",
+    "registration-name": "Фамилия Им'я или Название компании",
+    "registration-first-btn": "Далее",
+    "registration-footer": "Уже зерегистрированы?",
+    "registration-confirm-password": "Подтвердить пароль",
+    "registration-info-label": "Пароль должен содержать не менее 6 символов",
+    "registration-error-label": "Пароли не совпадают. Пожалуйста, введите однaковые пароли",
+    
+    
+    
+    
+    "advert-details-header": "Детали объявления",
+    "advert-details-legal-form": "Организационно правовая форма",
+    "advert-details-kved-name": "Основной вид хозяйственной деятельности",
+    "advert-details-extra-kved-name": "Дополнительные виды",
+    "advert-details-region": "Место нахождения регистрации",
+    "advert-details-registered": "Дата государственной регистрации",
+    "advert-details-tax-form": "Форма налогообложения",
+    "advert-details-ispda": "Оплата налогов",
+    "advert-details-ispda-confirm": "Является плательщиком НДС",
+    "advert-details-ispda-denied": "Не является плательщиком НДС",
+    "advert-details-license": "Лицензия",
+    "advert-details-have-activity": "Хозяйственная деятельность",
+    "advert-details-have-activity-confirm": "Вела / ведет хозяйственную деятельность",
+    "advert-details-have-activity-denied": "Не вела / ведет хозяйственную деятельность",
+    "advert-details-debt": "Обременения и задолженность",
+    "advert-details-debt-confirm": "Присутствуют",
+    "advert-details-debt-denied": "Отсутствуют",
+    "advert-details-capital": "Уставной капитал",
+    "advert-details-owner": "Владелец / Юридическое лицо",
+    "details-info-head": "Личные данные",
+   
+    "result-preloader": "Подождите...",
+    "advert-details-empty": "Не представлено никакой информации",
+   
+   
+    "profile-adverts-nodata": "НЕ ЗАРЕГИСТРИРОВАНО НИ ОДНОГО ОБЪЯВЛЕНИЯ",
+    "profile-adverts-header": "Мои объявления",
+    "profile-info": "Личные данные",
+   
+   
+   
+   
+    "main-page-form-title": "Начни свой бизнес уже сегодня",
+    "main-page-form-subtitle": "Найди идеальное решение за несколько секунд ...",
+    "main-page-info-title": "Ищешь решение для продажи собственной компании?",
+    "main-page-info-subtitle": "Тогда не стоит медлить, создавай объявления всего за несколько секунд",
+    "main-page-info-how-work": "Как это работает?",
+    "main-page-info-how-work-sub": "Это совсем просто, начни прямо сейчас",
+    "main-page-info-description1-title": "Найди желаемое за несколько минут",
+    "main-page-info-description1-text": "С помощью параметров расширенного поиска ты легко сможешь найти нужное объявление на нашем сайте. Зконтактуйся с владельцем и получай удовольствие от успешной покупки без помех.",
+    "main-page-info-description2-title": "Решай все вопросы без проблем",
+    "main-page-info-description2-text": "Регистрируйся на сайте и публикуй свои объявления о бизнесе, Клиенты не заставят себя ждать! Получай звонки и выбирай лучшие предложения по пользой для себя. Всего несколько шагов отделяют тебя от желаемого.",
+   
+   
+   
+   
+   
+    "create-advert-form-header": "Создать объявление о продаже",
+    "create-advert-general-title": "Общая информация",
+    "create-advert-general-name": "Название организации:",
+    "create-advert-general-edrpoy": "Код ЕГРПОУ (8 цифр)",
+    "create-advert-general-price": "Цена покупки без НДС и розничных расходов:",
+    "create-advert-general-photo": "Фото документа удостоверяющего право собственности:",
 
+    "create-advert-additional-header": "Положение в соответствии с законодательством",
+    "create-advert-additional-legal-form": "Организационно-правовая форма:",
+    "create-advert-additional-kved-name": "Основной вид хозяйственной деятельности:",
+    "create-advert-additional-extra-kved": "Дополнительные виды (до 10 видов):",
+    "create-advert-additional-tax-form": "Форма налогообложения:",
+    "create-advert-additional-license": "Лицензия (до 5 видов):",
+    "create-advert-additional-place": "Место нахождения / регистрации:",
+    "create-advert-additional-registered": "Дата государственной регистрации:",
+    "create-advert-additional-capital": "Уставной капитал:",
+    
+    "create-advert-owner-header": "Данные о владельце",
+    "create-advert-owner-name": "ФИО владельца / юридического лица:",
+    "create-advert-owner-phone": "Контактный номер телефона:",
+    "create-advert-owner-add-phone": "Добавить телефон",
+
+    "create-advert-footer-alert": "Заполните обязательные поля",
+    "create-advert-footer-clear-btn": "Очистить данные",
+    "create-advert-footer-confirm-btn": "Oпубликовать",
+
+
+
+    "commoon-advert-ispda-confirm": "Плательщик НДС",
+    "commoon-advert-ispda-denied": "Не плательщик НДС",
+    "commoon-advert-actions-delete": "Удалить",
+    "commoon-advert-actions-activate": "Деактивировать",
+    "commoon-advert-actions-deactivate": "Активировать",
+    "commoon-advert-actions-edit": "Редактировать",
+
+    "commoon-create-advert-btn": "Cоздать объявление",
+    
+    "commoon-modal-delete": "Вы действительно хотите удалить это объявление?",
+    "commoon-modal-activate": "Вы действительно хотите активировать это объявление?",
+    "commoon-modal-disactivate": "Вы действительно хотите деактивировать это объявление?",
+    "commoon-modal-create-advert": "Ваше объявление было успешно опубликовано. \n Ожидайте звонков от покупателей.",
+    "commoon-modal-create-advert-btn": "Посмотреть",
+
+
+
+
+
+    "legal-form-select-placeholder": "Организационно правовая форма",
+    "kved-name-select-placeholder": "Оновной вид хозяйственной деятельности (КВЭД)",
+    "location-select-placeholder": "Выберите город / населенный пункт",
+    "tax-form-select-placeholder": "Форма налогообложения",   
+    "search-select-placeholder": "Поиск...",   
+    "upload-field-placeholder": "Загрузите фото документа, удостоверяющего право на владение организацией в формате JPG, PDF (не более 46 МБ)",
+    "upload-field-btn-placeholder": "Загрузить",
+    "additional-default-select-placeholder": "Выберите из списка",
+    "org-name-textarea-placeholder": "Введите название организации",
+    "edrpoy-input-placeholder": "Введите восьмизначный код",
+    "price-input-placeholder": "Введите цену в гривнах",
+    "registered-input-placeholder": "Введите в формате ДД / ММ / ГГГГ",
+    "owner-name-input-placeholder": "Введите фамилию имя и отчество владельца",
+
+    "ispda-question-placeholder": "Является плательщиком НДС?",
+    "haveactivity-question-placeholder": "Вела хозяйственную деятельность?",
+    "no-debt-question-placeholder": "Без обременений и задолженностей?",
+    
+    "yes":"Да",
+    "no":"Нет",
+    "cancel":"Отменить",
+    "price": "Цена",
+    "from": "От",
+    "search":"Найти",
+    "extended-serach-btn": "Расширенный поиск"
 }

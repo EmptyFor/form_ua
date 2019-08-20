@@ -45,7 +45,6 @@ export class FormFooter extends Component {
             Array.isArray(post[key]) ? post[key].map((item, index) => data.append(`post[${key}][]`, item))  : data.set(`post[${key}]`, post[key])
 
         }
-        console.log(data.get('post[extra_kved_name]'))
         this.props.actions.setAdvertData(data)
     }
 

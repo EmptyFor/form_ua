@@ -24,11 +24,10 @@ class Advert extends Component {
         rendering:''
     }
 
-    componentWillReceiveProps = () => {
-        if(this.props.activeStatus === '200'){
-            alert('AAAAAAAAAAAAAAAA')
-        }
-    }
+    // componentWillReceiveProps = () => {
+    //     if(this.props.activeStatus === '200'){
+    //     }
+    // }
 
     componentWillMount = () => {
         if (this.props.profile) {
