@@ -179,7 +179,7 @@ class FilterForm extends Component {
 
   render() {
     const { filterTransitionClass } = this.state
-    const { t } = this.props
+    const { t } = this.props;
     return (
 
       <div className="filter_form" ref={this.filterItemList} style={{ minHeight: filterTransitionClass }} >

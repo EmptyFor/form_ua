@@ -22,7 +22,7 @@ i18n
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources,
-        lng: localStorage.getItem('localHaste'),
+         lng: localStorage.getItem('localHaste') || 'ukr',
         keySeparator: false, // we do not use keys in form messages.welcome
 
         // interpolation: {
