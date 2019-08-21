@@ -10,7 +10,8 @@ import * as actions from '../../../../../store/actions/user';
 import { logout } from '../../../../../store/actions/authorise';
 import { bindActionCreators } from 'redux';
 import { getInfo, getToken } from '../../../../../store/helpers/localStorage';
-import { Redirect } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../../../../i18n';
 
 class MobileHeader extends Component {
 
@@ -18,6 +19,7 @@ class MobileHeader extends Component {
   state = {
     isOpen: false,
     hideMenu: true,
+    lang:''
   }
 
   componentDidMount = () => {
@@ -26,6 +28,17 @@ class MobileHeader extends Component {
     if (token) {
       this.props.actions.getUserId(id)
     }
+
+    if(!localStorage.getItem('localHaste')){
+      this.setState({
+        lang: localStorage.getItem('i18nextLng').toUpperCase()
+      })
+    }else{
+      this.setState({
+        lang: localStorage.getItem('localHaste').toUpperCase()
+      })
+    }
+    
   }
 
   handleClose = () => {
@@ -47,19 +60,30 @@ class MobileHeader extends Component {
   }
 
   togleMenu = () => {
-    this.setState((prevState) => ({ hideMenu: !prevState.hideMenu }))
+    this.setState((prevState) => ({ hideMenu: !prevState.hideMenu }));
   }
 
+  setLanguage(language, e) {
+    
+    localStorage.setItem('localHaste', language)
+    i18n.init({
+      lng: localStorage.getItem('localHaste')
+    })
+    this.setState({
+      lang: localStorage.getItem('localHaste').toUpperCase()
+    })
+    this.handleClose()
+  }
 
   render() {
-    const { user } = this.props;
+    const { user, t } = this.props;
     const { isOpen } = this.state;
     const token = getToken()
     return (
-      <header 
-      className={`menu ${this.props.className} ${this.state.hideMenu && this.props.isTransparent  ? styles.close : styles.open}`} 
-      fix={this.props.fix}
-      style={!this.props.isTransparent ? {position: 'relative'} : void 0}
+      <header
+        className={`menu ${this.props.className} ${this.state.hideMenu && this.props.isTransparent ? styles.close : styles.open}`}
+        fix={this.props.fix}
+        style={!this.props.isTransparent ? { position: 'relative' } : void 0}
       >
         <Link className={styles.main_logo} to={links.home}>
           <img src={this.state.hideMenu && this.props.isTransparent ? main_logo : mobile_logo} alt="" onClick={this.handleClick}></img>
@@ -70,27 +94,31 @@ class MobileHeader extends Component {
           onClick={this.togleMenu}
         >
           <input type="checkbox"></input>
-          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
-          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
-          <span style = {this.props.isTransparent && this.state.hideMenu ? {background : '#fff'} : {background : '#207db5'}}></span>
+          <span style={this.props.isTransparent && this.state.hideMenu ? { background: '#fff' } : { background: '#207db5' }}></span>
+          <span style={this.props.isTransparent && this.state.hideMenu ? { background: '#fff' } : { background: '#207db5' }}></span>
+          <span style={this.props.isTransparent && this.state.hideMenu ? { background: '#fff' } : { background: '#207db5' }}></span>
         </div>
 
         <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
           <div className={styles.language} id="language">
-            <p>
-              Українська
-            </p>
+            <span onClick={this.setLanguage.bind(this, 'ukr')}>
+            {t('language-translate-ukr')}
+            </span>
+            <span onClick={this.setLanguage.bind(this, 'ru')}>
+            {t('language-translate-ru')}
+            </span>
+            <span className={styles.lang_checkout}>{this.state.lang}</span>
           </div>
 
           <div className={styles.right_side}>
             {this.props.fix === 'false' ? <CreateAdvertBtn className={styles.create_advert} /> : null}
             <div className={styles.profile}>
               {
-                token ? <Link to={links.profile}><p onClick={this.handleClose}>{user.first_name || ""}</p></Link> : <Link to={links.login}><p>Увійти</p></Link>
+                token ? <Link to={links.profile}><p onClick={this.handleClose}>{user.first_name || ""}</p></Link> : <Link to={links.login}><p>{t('login')}</p></Link>
               }
 
               {
-                token && <span onClick={this.handleLogout}>Вийти</span>
+                token && <span onClick={this.handleLogout}>{t('header-logout')}</span>
               }
             </div>
           </div>
@@ -100,7 +128,7 @@ class MobileHeader extends Component {
   }
 }
 
-export default connect(
+export default withTranslation()(connect(
   (state) => ({
     token: state.auth.token,
     user: state.usr.user,
@@ -110,4 +138,4 @@ export default connect(
     actions: bindActionCreators(actions, dispatch),
     logout: bindActionCreators(logout, dispatch)
   })
-)(MobileHeader);
+)(MobileHeader));
