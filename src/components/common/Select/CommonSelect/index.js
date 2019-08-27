@@ -256,7 +256,6 @@ export class CommonSelect extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div id={this.props.id}
                 name={this.props.name}

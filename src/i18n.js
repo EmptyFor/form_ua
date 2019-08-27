@@ -7,7 +7,7 @@ import { initReactI18next } from 'react-i18next';
 
 // the translations
 const resources = {
-    ukr: {
+    ua: {
         translation: translationUKR
     },
     ru: {
@@ -24,7 +24,7 @@ i18n
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources,
-         lng: localStorage.getItem('localHaste') || 'ukr',
+         lng: localStorage.getItem('localHaste') || 'ua',
         keySeparator: false, // we do not use keys in form messages.welcome
 
         // interpolation: {

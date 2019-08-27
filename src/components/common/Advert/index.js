@@ -111,8 +111,8 @@ class Advert extends Component {
                         <span className="profile_advert_action_delete" onClick={this.deleteAdvert}><img src={delete_img} />{this.t('commoon-advert-actions-delete')}</span>
 
                         {
-                            activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-deactivate')}</span> :
-                                <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-activate')}</span>
+                            activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-activate')}</span> :
+                                <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-deactivate')}</span>
                         }
 
                         <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />{this.t('commoon-advert-actions-edit')}</span>

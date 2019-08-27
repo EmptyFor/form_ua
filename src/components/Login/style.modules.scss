@@ -14,7 +14,8 @@
 
 .login_modal_form {
   display: flex;
-  min-height: 400px;
+  min-height: 420px !important;
+  min-width: 300px;
   flex-direction: column;
   border: 2px solid rgba(255, 255, 255, 0);
   text-align: center;
@@ -67,7 +68,7 @@
       width: 80%;
     }
 
-    .span_btn{
+    .span_btn {
       width: 92%;
     }
 
@@ -76,7 +77,6 @@
       &::after {
         content: "";
         position: absolute;
-        background-image: url("../../assets/images/at.svg");
         background-repeat: no-repeat;
         background-size: cover;
         height: 15px;
@@ -86,20 +86,19 @@
         z-index: 9;
       }
     }
-    
+
     .email_input {
       &::after {
         background-image: url("../../assets/images/at.svg");
         top: 22%;
-    
       }
     }
-    
+
     .password_input {
       &::after {
         background-image: url("../../assets/images/lock-1.svg");
         height: 19px;
-        top: 22% !important 
+        top: 22% !important;
       }
     }
   }
@@ -125,5 +124,3 @@
     font-weight: 600;
   }
 }
-
-

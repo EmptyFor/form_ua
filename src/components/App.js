@@ -9,7 +9,7 @@ class App extends Component {
   componentDidMount = () => {
     if(!localStorage.getItem('localHaste')){
       i18n.init({
-        lng: "ukr"
+        lng: "ua"
       })
 
     }
