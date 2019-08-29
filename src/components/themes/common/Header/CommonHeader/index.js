@@ -41,7 +41,7 @@ class CommonHeader extends Component {
         lang: "Русский"
       })
     }
-    if(localStorage.getItem('i18nextLng') === 'ukr'){
+    if(localStorage.getItem('i18nextLng') === 'ua'){
       this.setState({
         lang: "Українська"
       })
@@ -113,7 +113,7 @@ class CommonHeader extends Component {
             {this.state.lang}
           </p>
           {isOpenLang ? <div className={styles.language_dropdown}>
-            <span onClick={this.setLanguage.bind(this, 'ukr')}>{t('language-translate-ukr')}</span>
+            <span onClick={this.setLanguage.bind(this, 'ua')}>{t('language-translate-ukr')}</span>
             <span onClick={this.setLanguage.bind(this, 'ru')}>{t('language-translate-ru')}</span>
           </div> : null
           }

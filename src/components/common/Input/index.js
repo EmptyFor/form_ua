@@ -44,6 +44,22 @@ export class Input extends Component {
         this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
     }
 
+    dateMask = (newState, oldState, userInput) => {
+        let { value } = newState;
+        let selection = newState.selection;
+        let cursorPosition = selection ? selection.start : null;
+        let day = value[0] + value[1]
+        let month = value[3] + value[4]
+
+        day > 31 ? value = value.substring(0, 1) : void 0
+        month > 12 ? value = value.substring(0, 4) : void 0
+
+        return {
+            value,
+            selection
+        };
+    }
+
     beforeMaskedValueChange = (newState, oldState, userInput) => {
         var { value } = newState;
         var selection = newState.selection;
@@ -151,11 +167,20 @@ export class Input extends Component {
                 ref={this.inputRef}
                 id={id}
                 required={required}
-                mask="99/99/9999"
+                formatChars={{
+                    '9': '[0-9]',
+                    'd': '[1-3]',
+                    'm': '[0-1]',
+                    'a': '[A-Za-z]',
+                    '*': '[A-Za-z0-9]'
+                }}
+                beforeMaskedValueChange={this.dateMask}
+                mask="d9/m9/9999"
                 autoComplete="off"
                 maskChar=""
                 value={this.state.value}
                 onChange={this.onChange}
+                // onKeyUp={this.dateMask}
                 onBlur={this.props.getData}
                 onClick={this.onClick}
             />

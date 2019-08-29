@@ -1,12 +1,11 @@
 .login_modal_form {
   margin-top: 5%;
-  
 
-.login_form_header{
-  .header_height{
-    height: 35% !important;
+  .login_form_header {
+    .header_height {
+      height: 35% !important;
+    }
   }
-}
   .reg_form {
     padding: 4% 0;
   }
@@ -22,13 +21,12 @@
   .information_label {
     width: 100%;
     font-size: 15px;
+    margin-top: 5px;
     color: grey;
     font-weight: 500;
     opacity: 0.7;
   }
 }
-
-
 
 .email_registration_input {
   &::after {
@@ -40,6 +38,7 @@
 .password_registration_input {
   &::after {
     background-image: url("../../../assets/images/lock-1.svg");
-    height: 19px;
+    height: 19px !important;
+    top: 28%;
   }
 }

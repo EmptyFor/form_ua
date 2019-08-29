@@ -117,7 +117,8 @@ export class Form extends Component {
     }
 
     render() {
-        const {t} = this.props;
+        const { t } = this.props;
+        console.log("ZALUPA",t('taxForm', {returnObjects: true }))
         this.sendSearchData()
         return (
 
@@ -133,7 +134,7 @@ export class Form extends Component {
                     <Select
                         type="common"
                         width='auto'
-                        itemList={t('legalForm',{returnObjects: true})}
+                        itemList={t('legalForm', { returnObjects: true })}
                         placeholder={t('legal-form-select-placeholder')}
                         icon={images.house} id='mp_form_select_1'
                         name="legal_form"
@@ -163,7 +164,7 @@ export class Form extends Component {
                     />
                     <Select
                         type="common"
-                        itemList={t('taxForm', {returnObjects: true})}
+                        itemList={t('taxForm', { returnObjects: true })}
                         width='auto'
                         placeholder={t('tax-form-select-placeholder')}
                         icon={images.lable}
