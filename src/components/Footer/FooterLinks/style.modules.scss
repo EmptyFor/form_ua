@@ -1,18 +1,18 @@
-.confident_politics_wrapper{
-    width: 80%;
-    min-height: 100vh;
-    margin: 5% auto;
-    margin-top: 4%;
-    padding: 4%;
-    background: #fff;
-    border: .5px solid rgba(156, 156, 156, 0.753);
+.confident_politics_wrapper {
+  width: 80%;
+  min-height: 100vh;
+  margin: 5% auto;
+  margin-top: 6%;
+  padding: 2% 4%;
+  background: #fff;
+  border: 0.5px solid rgba(156, 156, 156, 0.753);
+  font-family: AvenirNext-Medium;
+  li {
+    margin-block-end: 1%;
+  }
 
-    li{
-        margin-block-end: 2%;
-    }
-
-    h3{
-        margin-block-start: 5%;
-        font-weight: 700
-    }
+  h3 {
+    margin-block-start: 3%;
+    font-weight: 700;
+  }
 }

@@ -17,9 +17,8 @@ class MobileHeader extends Component {
 
 
   state = {
-    isOpen: false,
     hideMenu: true,
-    lang:''
+    lang: ''
   }
 
   componentDidMount = () => {
@@ -29,16 +28,16 @@ class MobileHeader extends Component {
       this.props.actions.getUserId(id)
     }
 
-    if(!localStorage.getItem('localHaste')){
+    if (!localStorage.getItem('localHaste')) {
       this.setState({
         lang: localStorage.getItem('i18nextLng').toUpperCase()
       })
-    }else{
+    } else {
       this.setState({
         lang: localStorage.getItem('localHaste').toUpperCase()
       })
     }
-    
+
   }
 
   handleClose = () => {
@@ -64,7 +63,7 @@ class MobileHeader extends Component {
   }
 
   setLanguage(language, e) {
-    
+
     localStorage.setItem('localHaste', language)
     i18n.init({
       lng: localStorage.getItem('localHaste')
@@ -77,7 +76,6 @@ class MobileHeader extends Component {
 
   render() {
     const { user, t } = this.props;
-    const { isOpen } = this.state;
     const token = getToken()
     return (
       <header
@@ -101,12 +99,12 @@ class MobileHeader extends Component {
 
         <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
           <div className={styles.language} id="language">
-            <span onClick={this.setLanguage.bind(this, 'ukr')}>
-            {t('language-translate-ukr')}
+            <span onClick={this.setLanguage.bind(this, 'ua')}>
+              Українська
             </span>
             <span onClick={this.setLanguage.bind(this, 'ru')}>
-            {t('language-translate-ru')}
-            </span>
+              Русский
+               </span>
             <span className={styles.lang_checkout}>{this.state.lang}</span>
           </div>
 
