@@ -8,5 +8,6 @@ export default {
     search:'/extended_search',
     details:'/details',
     profile:'/profile',
+    confident_politic:'/confident_politic'
   }
   

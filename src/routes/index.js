@@ -12,13 +12,13 @@ import RegistrationTwice from '../components/Registration/TwicePage';
 import Search from '../components/Search';
 import Profile from '../components/Profile'
 import AdvertDetails from '../components/AdvertDetails';
+import ConfidentionalPolitic from '../components/Footer/FooterLinks/politic';
 
 
 class Routes extends PureComponent {
   render() {
     return (
       <App>
-        
         <Switch>
           <Route path={links.login} component={Login} />
 
@@ -33,6 +33,7 @@ class Routes extends PureComponent {
               <Route exact path={links.registrationFirst} component={RegistrationFirst} />
               <Route exact path={links.registrationTwice} component={RegistrationTwice} />
               <Route exact path={links.search} component={Search} />
+              <Route exact path={links.confident_politic} component={ConfidentionalPolitic} />
             </MainTemplate>
 
           </Provider>

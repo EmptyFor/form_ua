@@ -4,6 +4,8 @@ import './style.modules.scss'
 import './style.modules.media.scss'
 import logo_footer from '../../assets/images/footer.svg'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import links from '../../config/links'
 
 
 export const Footer = () => {
@@ -12,7 +14,7 @@ export const Footer = () => {
 
         < div className="footer_logo" > <img src={logo_footer} alt="#"></img></div>
         <div className="footer_texts">
-            <div className="footer_links"><a href="/">Партнерам</a> | <a href="/">{t('footer-politics')} </a>| <a href="/">{t('footer-questions')}</a></div>
+            <div className="footer_links"> <Link to={links.confident_politic}>{t('footer-politics')} </Link> <Link>{t('footer-questions')}</Link></div>
             <span>(c) firm.ua 2019 {t('footer-lawyers')} </span>
         </div>
     </footer >
