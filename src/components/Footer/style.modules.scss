@@ -22,12 +22,13 @@ footer {
     font-size: 8px;
   }
   .footer_links {
-    width: 50%;
+    width: 24%;
     margin: 0 auto;
     font-size: 18px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding-left: 4%;
+    // padding-left: 4%;
   }
 }
 a {
@@ -36,9 +37,3 @@ a {
   color: #ffffff;
 }
 
-@media (max-width: 519px) {
-  
-    footer{
-        
-    }
-}

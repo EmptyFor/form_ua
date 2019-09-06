@@ -1,4 +1,4 @@
-export const fetchSome = (url, options) =>
+export default (url, options) =>
     new Promise((resolve, reject) => {
         let status;
         return fetch(url, options)
@@ -10,4 +10,3 @@ export const fetchSome = (url, options) =>
             .catch(error => reject(error));
     });
 
-export default fetchSome

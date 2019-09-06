@@ -113,12 +113,12 @@ class CommonHeader extends Component {
             {this.state.lang}
           </p>
           {isOpenLang ? <div className={styles.language_dropdown}>
-            <span onClick={this.setLanguage.bind(this, 'ua')}>{t('language-translate-ukr')}</span>
-            <span onClick={this.setLanguage.bind(this, 'ru')}>{t('language-translate-ru')}</span>
+            <span onClick={this.setLanguage.bind(this, 'ua')}>Українська</span>
+            <span onClick={this.setLanguage.bind(this, 'ru')}>Русский</span>
           </div> : null
           }
         </div>
-        <Link className={styles.main_logo} to={links.login}>
+        <Link className={styles.main_logo} to={links.home}>
           <img src={main_logo} alt="" onClick={this.handleClick}></img>
         </Link>
 

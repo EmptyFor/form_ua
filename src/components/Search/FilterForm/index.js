@@ -190,10 +190,10 @@ class FilterForm extends Component {
             <Select
               getData={this.setSearchData}
               name="legal_form"
-              itemList={t('legalForm',{returnObjects: true})}
+              itemList={t('legalForm', { returnObjects: true })}
               type="common"
               width='auto'
-              placeholder={t('additional-default-select-placeholder')}
+              placeholder={t('legal-form-select-placeholder')}
               icon={images.house}
               id='ca_form_select_1'
               clear={this.props.clear}
@@ -205,7 +205,8 @@ class FilterForm extends Component {
               type="search"
               searchType="kved"
               width='auto'
-              placeholder={t('additional-default-select-placeholder')}
+              searchHolder={t('search-select-placeholder')}
+              placeholder={t('kved-name-select-placeholder')}
               icon={images.portfolio}
               id='ca_form_select_2'
               clear={this.props.clear}
@@ -218,6 +219,7 @@ class FilterForm extends Component {
               searchType="location"
               width='auto'
               placeholder={t('location-select-placeholder')}
+              searchHolder={t('search-select-placeholder')}  
               icon={images.mapPoint}
               id='ca_form_select_6'
               clear={this.props.clear}
@@ -227,7 +229,7 @@ class FilterForm extends Component {
               getData={this.setSearchData}
               name="tax_form"
               type="common"
-              itemList={t('taxForm', {returnObjects: true})}
+              itemList={t('taxForm', { returnObjects: true })}
               width='auto'
               placeholder={t('tax-form-select-placeholder')}
               icon={images.lable}
@@ -239,7 +241,7 @@ class FilterForm extends Component {
               getData={this.setSearchData}
               name="license"
               type="multiply"
-              itemList={t('license', {returnObjects: true})}
+              itemList={t('license', { returnObjects: true })}
               width='auto'
               placeholder={t('advert-details-license')}
               icon={images.cc}

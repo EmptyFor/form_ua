@@ -43,17 +43,6 @@ class Provider extends Component {
   }
 }
 
-
-// export default connect(
-//   ({ auth, user }) => ({
-//     token: auth.token,
-//     user
-//   }),
-//   dispatch => ({
-//     userActions: bindActionCreators(userActions, dispatch)
-//   })
-// )(Provider);
-
 export default connect(
   (state) => ({ }),
   dispatch => ({ })

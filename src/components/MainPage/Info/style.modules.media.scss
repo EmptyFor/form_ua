@@ -126,9 +126,11 @@
 
 /* Small Devices, Tablets */
 
-@media only screen and (min-width: 769px) and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1420px) and (max-height: 700px) {
+  .description{
+    min-height: 300px;
+  }
 }
-
 /* Medium Devices, Desktops */
 
 @media only screen and (min-width: 769px) {
