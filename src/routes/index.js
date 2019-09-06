@@ -5,6 +5,7 @@ import Login from '../components/Login';
 import App from '../components/App';
 import MainPage from '../components/MainPage';
 import CreateAdvert from '../components/CreateAdvert';
+import EditAdvert from '../components/EditAdvert';
 import Provider from '../components/Provider';
 import RegistrationFirst from '../components/Registration/FirstPage';
 import { MainTemplate } from '../components/themes';
@@ -30,6 +31,7 @@ class Routes extends PureComponent {
               <Route exact path={links.details} component={AdvertDetails} />
               <Route exact path={links.profile} component={Profile} />
               <Route exact path={links.createAdvert} component={CreateAdvert} />
+              <Route exact path={links.editAdvert} component={EditAdvert} />
               <Route exact path={links.registrationFirst} component={RegistrationFirst} />
               <Route exact path={links.registrationTwice} component={RegistrationTwice} />
               <Route exact path={links.search} component={Search} />

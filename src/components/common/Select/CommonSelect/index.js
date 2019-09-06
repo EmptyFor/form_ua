@@ -206,23 +206,43 @@ export class CommonSelect extends Component {
     }
 
     componentWillMount() {
-        let value = this.props.value
-        if (value !== undefined && value !== "") {
-            let item = this.props.itemList.map(item => { return item.value === value ? item.name : "" })
-            this.setState(prevState => ({
-                value: value,
-                item: item,
-                style: {
-                    ...prevState.style,
-                    placeholder: {
-                        display: "none"
-                    },
-                    value: {
-                        display: "inline-block"
+        if (this.props.editValue === undefined) {
+            let value = this.props.value
+            if (value !== undefined && value !== "") {
+                let item = this.props.itemList.map(item => { return item.value === value ? item.name : "" })
+                this.setState(prevState => ({
+                    value: value,
+                    item: item,
+                    style: {
+                        ...prevState.style,
+                        placeholder: {
+                            display: "none"
+                        },
+                        value: {
+                            display: "inline-block"
+                        }
                     }
-                }
-            }))
+                }))
+            }
         }
+    }
+
+    setEditValue = (nextProps) => {
+        let name = nextProps.editValue
+        let value = this.props.itemList.map(item => { return item.name === name ? item.value : "" })
+        this.setState(prevState => ({
+            value: value,
+            item: name,
+            style: {
+                ...prevState.style,
+                placeholder: {
+                    display: "none"
+                },
+                value: {
+                    display: "inline-block"
+                }
+            }
+        }))
     }
 
     componentDidMount() {
@@ -253,6 +273,7 @@ export class CommonSelect extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearVlaue() : void 0
+        nextProps.editValue !== undefined && this.setEditValue(nextProps)
     }
 
     render() {

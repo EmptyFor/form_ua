@@ -93,17 +93,25 @@ class Modal extends Component {
                                 <div style={{ width: '40%' }}><Button width="100%" className="delete_modal_btn" text={t('yes')} onClick={this.deactivateConfirmation} /></div>
                                 <Button width="40%" onClick={this.closeModal} className="delete_modal_btn" text={t('cancel')} />
                             </div>
-                        </div>
+                        </div> :
 
-
-                        : <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
+                        this.props.type === 'edit' ? <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
                             <div className="modal_header">
-                                <span onClick={this.handleClose}>&times;</span>
+                                {/* <span onClick={this.handleClose}>&times;</span> */}
                             </div>
-                            <p className="modal_text">{t('commoon-modal-create-advert')} </p>
+                            <p className="modal_text">{t('commoon-modal-edit-advert')} </p>
                             <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text={t('commoon-modal-create-advert-btn')} onClick={this.setAdvertid} /></Link></span>
 
-                        </div>}
+                        </div>
+
+                            : <div className="modal_window" status={this.props.status} advertid={this.props.advertid}>
+                                <div className="modal_header">
+                                    <span onClick={this.handleClose}>&times;</span>
+                                </div>
+                                <p className="modal_text">{t('commoon-modal-create-advert')} </p>
+                                <span className="link_modal_btn"><Link className='common_btn_link' to={links.details}><Button width="100%" text={t('commoon-modal-create-advert-btn')} onClick={this.setAdvertid} /></Link></span>
+
+                            </div>}
 
             </div> : null}
         </div>

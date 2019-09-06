@@ -28,8 +28,15 @@ export class Radiobutton extends Component {
         this.value = ""
     }
 
+    setEditValue = (nextProps) => {
+        let checkMar = document.getElementById(this.props.id).getElementsByTagName('input')
+        nextProps.value ? checkMar[0].checked = true : checkMar[1].checked = true
+
+    }
+
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearValue() : void 0
+        nextProps.value !== null && nextProps.value !== undefined && this.setEditValue(nextProps)
     }
 
     render() {

@@ -35,6 +35,7 @@ export class Select extends Component {
                 required={this.props.required}
                 itemList={this.props.itemList}
                 value={this.props.value}
+                editValue={this.props.editValue}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}
@@ -49,6 +50,7 @@ export class Select extends Component {
                 required={this.props.required}
                 itemList={this.props.itemList}
                 value={this.props.value}
+                editValue={this.props.editValue}
                 icon={icon}
                 id={id}
                 searchType={this.props.searchType}
@@ -65,6 +67,7 @@ export class Select extends Component {
                 required={this.props.required}
                 itemList={this.props.itemList}
                 value={this.props.value}
+                editValue={this.props.editValue}
                 searchHolder={this.props.searchHolder}
                 icon={icon}
                 id={id}
@@ -80,6 +83,7 @@ export class Select extends Component {
                 required={this.props.required}
                 itemList={this.props.itemList}
                 value={this.props.value}
+                editValue={this.props.editValue}
                 icon={icon}
                 id={id}
                 getData={this.props.getData}

@@ -118,7 +118,6 @@ export class Form extends Component {
 
     render() {
         const { t } = this.props;
-        console.log("ZALUPA",t('taxForm', {returnObjects: true }))
         this.sendSearchData()
         return (
 

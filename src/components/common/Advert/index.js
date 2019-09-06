@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './style.modules.scss';
 import './style.modules.media.scss';
-import * as searchActions from '../../../store/actions/details'
-import * as profileActions from '../../../store/actions/profile'
+import * as searchActions from '../../../store/actions/details';
+import * as profileActions from '../../../store/actions/profile';
 import links from '../../../config/links';
 import { Link } from 'react-router-dom';
-import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage'
-import { baseURL } from '../../../core/constants/baseURL'
-import delete_img from '../../../assets/images/delete2.png'
-import deactivate_img from '../../../assets/images/deactivate2x.png'
-import edit_img from '../../../assets/images/edit2x.png'
+import { removePostId, setPostId, getPostId } from '../../../store/helpers/localStorage';
+import { baseURL } from '../../../core/constants/baseURL';
+import delete_img from '../../../assets/images/delete2.png';
+import deactivate_img from '../../../assets/images/deactivate2x.png';
+import edit_img from '../../../assets/images/edit2x.png';
 import ispdacheck from '../../../assets/images/ispdacheck.svg';
 import { withTranslation } from 'react-i18next';
 
@@ -19,13 +19,15 @@ class Advert extends Component {
 
     modal = null;
 
+    hasData = false;
+
     state = {
         text: '',
         profile: false,
-        rendering:''
+        rendering: ''
     }
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.t = props.t
     }
@@ -72,6 +74,11 @@ class Advert extends Component {
         this.props.profileActions.getAdvertId(advertid, type, activate)
     }
 
+    editAdvert = () => {
+        this.props.searchActions.setAdvertDetails({})
+        this.props.searchActions.getAdvertDetails(this.props.advertid)
+    }
+
     render() {
 
         const { activate } = this.props;
@@ -114,8 +121,10 @@ class Advert extends Component {
                             activate ? <span className="profile_advert_action_disactivate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-activate')}</span> :
                                 <span className="profile_advert_action_activate" onClick={this.deactivateAdvert}><img src={deactivate_img} />{this.t('commoon-advert-actions-deactivate')}</span>
                         }
+                        <Link to={links.editAdvert} onClick={this.editAdvert} style={{ color: 'inherit' }}>
+                            <span className="profile_advert_action_edit" onClick={this.editAdvert} ><img src={edit_img} />{this.t('commoon-advert-actions-edit')}</span>
+                        </Link>
 
-                        <span className="profile_advert_action_edit" onClick={this.props.onClick}><img src={edit_img} />{this.t('commoon-advert-actions-edit')}</span>
                     </div>
 
                 </div> : null
@@ -127,10 +136,11 @@ class Advert extends Component {
 
 export default withTranslation()(connect(
     (state) => ({
-        activeStatus: state.profile.activeStatus
+        activeStatus: state.profile.activeStatus,
+        info: state.details.info,
     }),
     dispatch => ({
         searchActions: bindActionCreators(searchActions, dispatch),
-        profileActions: bindActionCreators(profileActions, dispatch)
+        profileActions: bindActionCreators(profileActions, dispatch),
     })
 )(Advert));

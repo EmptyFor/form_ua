@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { baseURL } from '../../../core/constants/baseURL'
 import * as FormData from 'form-data';
 import * as actions from '../../../store/actions/advert'
 import './styles.modules.scss';
@@ -125,6 +126,14 @@ export class UloadField extends Component {
         // }
     };
 
+    previewEditImage = (nextProps) => {
+        let uploadInfo = this.uploadInfoRef.current
+        let img = this.imageRef.current
+        uploadInfo.style.display = 'none'
+        img.style.width = '100%'
+        this.setState({ image: { src: baseURL + nextProps.value } })
+    }
+
     //Init handle func
     componentDidMount() {
         this.dragCounter = 0
@@ -159,9 +168,12 @@ export class UloadField extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearValue() : void 0
+        nextProps.value !== undefined && this.previewEditImage(nextProps)
+        console.log(this.state)
     }
 
     render() {
+        console.log(this.props)
         const { t } = this.props
         return (
             <form id="upload-container" ref={this.dropRef} className={this.state.dragoverClass} encType="multipart/form-data" >

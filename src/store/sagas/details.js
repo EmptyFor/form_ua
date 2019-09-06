@@ -9,11 +9,12 @@ export function* getAdvertDetailsInfo(advertid) {
     try {
         const info = yield axios.get(`${baseURL}${lang}/api/v1/posts/${advertid}`)
             .then(response => {
-                console.log('DETAILS INFO ->>>>>',response)
+                console.log('DETAILS INFO ->>>>>', response)
                 return response.data;
             })
         yield put(actions.setAdvertDetails(info))
     } catch (error) {
+        yield put(actions.setAdvertDetails({}))
     }
 }
 

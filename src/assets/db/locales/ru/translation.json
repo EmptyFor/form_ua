@@ -107,6 +107,8 @@
     "create-advert-footer-alert": "Заполните обязательные поля",
     "create-advert-footer-clear-btn": "Очистить данные",
     "create-advert-footer-confirm-btn": "Oпубликовать",
+    "create-advert-footer-edit-btn": "Сохранить",
+
 
 
     "search-filter-header":"Общие параметры поиска",
@@ -133,6 +135,7 @@
     "commoon-modal-activate": "Вы действительно хотите активировать это объявление?",
     "commoon-modal-disactivate": "Вы действительно хотите деактивировать это объявление?",
     "commoon-modal-create-advert": "Ваше объявление было успешно опубликовано. \n Ожидайте звонков от покупателей.",
+    "commoon-modal-edit-advert": "Ваше объявление было успешно отредактировано. \n Ожидайте звонков от покупателей.",
     "commoon-modal-create-advert-btn": "Посмотреть",
 
 

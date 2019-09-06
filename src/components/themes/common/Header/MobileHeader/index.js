@@ -101,7 +101,7 @@ class MobileHeader extends Component {
 
         <div className={`${styles.mobile_menu} ${this.state.hideMenu ? styles.close : styles.open}`}>
           <div className={styles.language} id="language">
-            <span onClick={this.setLanguage.bind(this, 'ukr')}>
+            <span onClick={this.setLanguage.bind(this, 'ua')}>
             {t('language-translate-ukr')}
             </span>
             <span onClick={this.setLanguage.bind(this, 'ru')}>

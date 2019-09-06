@@ -1,0 +1,53 @@
+.owner_info {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: minmax(40px, auto);
+  grid-gap: 1em;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+  .input {
+    padding: 10px 20px;
+  }
+  .append_phone {
+    position: absolute;
+    right: 0;
+    width: 130px;
+    display: flex;
+    align-items: center;
+    font-family: AvenirNext-Medium;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.92;
+    letter-spacing: 0.07px;
+    color: #1ccee9;
+    cursor: pointer;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 13px;
+      height: 13px;
+      margin-left: 10px;
+      color: #fff;
+      border-radius: 50%;
+      background-color: #1ccee9;
+      &:after {
+        position: absolute;
+        font-family: AvenirNext-Regular;
+        content: "+";
+        top: -11px;
+        left: 1px;
+        font-size: 18px;
+      }
+    }
+  }
+  .input {
+      margin-bottom: 25px;
+  }
+  .second_position {
+    position: relative;
+  }
+}

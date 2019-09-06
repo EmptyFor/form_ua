@@ -282,6 +282,24 @@ export class SearchSelect extends Component {
         }
     }
 
+    setEditValue = (nextProps) => {
+        let value = nextProps.editValue
+        if (value !== undefined && value !== ", ") {
+            this.setState(prevState => ({
+                value: value,
+                style: {
+                    ...prevState.style,
+                    placeholder: {
+                        display: "none"
+                    },
+                    value: {
+                        display: "inline-block"
+                    }
+                }
+            }))
+        }
+    }
+
     //Set top for select list
 
     setTop = () => {
@@ -340,6 +358,7 @@ export class SearchSelect extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearVlaue() : void 0
+        nextProps.editValue !== undefined && this.setEditValue(nextProps)
     }
 
     render() {

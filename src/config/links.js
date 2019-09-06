@@ -3,6 +3,7 @@ export default {
   
     home: '/home',
     createAdvert:'/create_advert',
+    editAdvert:'/edit_advert',
     registrationFirst:'/registration_first_step',
     registrationTwice:'/registration_twice_step',
     search:'/extended_search',

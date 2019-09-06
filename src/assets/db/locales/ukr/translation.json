@@ -7,7 +7,7 @@
     "registration": "Зареєструватися",
     "login-empty-error-email": "Будь ласка, введіть email!",
     "login-empty-error-password": "Будь ласка, введіть пароль!",
-    "login-error-label": "Неправильно введенный логин или пароль!",
+    "login-error-label": "Неправильно введений логін або пароль!",
     "header-logout": "Вийти",
     "header-profile": "Профіль",
     
@@ -93,7 +93,7 @@
 
     "create-advert-additional-header": "Положення відповідно до законодавства",
     "create-advert-additional-legal-form": "Організаційно-правова форма:",
-    "create-advert-additional-kved-name": "Основний вид господарської діяльності:",
+    "create-advert-additional-kved-name": "Основний вид господарської діяльності(КВЕД):",
     "create-advert-additional-extra-kved": "Додаткові види (до 10 видів):",
     "create-advert-additional-tax-form": "Форма оподаткування:",
     "create-advert-additional-license": "Ліцензія (до 5 видів):",
@@ -109,6 +109,8 @@
     "create-advert-footer-alert": "Заповніть обов'язкові поля",
     "create-advert-footer-clear-btn": "Очистити дані",
     "create-advert-footer-confirm-btn": "Oпублікувати",
+    "create-advert-footer-edit-btn": "Зберегти",
+
 
 
 
@@ -136,6 +138,7 @@
     "commoon-modal-activate": "Ви дійсно хочете активувати це оголошення?",
     "commoon-modal-disactivate": "Ви дійсно хочете деактивувати це оголошення?",
     "commoon-modal-create-advert": "Ваше оголошення було успішно опубліковано. \n Чекайте дзвінків від покупців.",
+    "commoon-modal-edit-advert": "Ваше оголошення було успішно відредаговано. \n Чекайте дзвінків від покупців.",
     "commoon-modal-create-advert-btn": "Переглянути",
 
 

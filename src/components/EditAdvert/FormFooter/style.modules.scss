@@ -1,0 +1,16 @@
+.form_footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 5%;
+  .clear_btn {
+    margin-right: 30px;
+    width: 20%;
+    padding: 14px;
+  }
+  .publish_btn {
+    padding: 14px;
+    width: 20%;
+  }
+}

@@ -18,6 +18,7 @@ export class Input extends Component {
 
     checkInputValue = (e) => {
         let value = e.target.value
+        this.setState({ value: value })
         this.props.required ? value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : value.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
     }
 
@@ -29,8 +30,8 @@ export class Input extends Component {
         this.moneyInputValue = e.target.value
 
         let out = e.target.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        e.target.value = out
-        this.checkInputValue(e)
+        this.setState({ value: out })
+        this.props.required ? out.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: 'tomato' }) : out.length > 0 ? this.setState({ borderColor: '#1ccee9' }) : this.setState({ borderColor: '' })
     }
 
     //Input with Mask
@@ -107,6 +108,8 @@ export class Input extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.clear ? this.clearInput() : void 0
+        nextProps.value !== undefined && this.setState({ value: nextProps.value })
+        console.log('input: ', nextProps.value)
     }
 
     render() {
@@ -139,6 +142,7 @@ export class Input extends Component {
                 onChange={this.moneyInput}
                 onBlur={this.props.getData}
                 id={id}
+                value={this.state.value}
                 required={required}
             ></input>
         }
@@ -196,6 +200,7 @@ export class Input extends Component {
                 autoComplete="off"
                 onBlur={this.props.getData}
                 id={id}
+                value={this.state.value}
                 required={required}
             ></input>
         }
